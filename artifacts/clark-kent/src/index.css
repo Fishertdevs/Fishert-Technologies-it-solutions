@@ -33,6 +33,20 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/HelveticaNeue-Heavy.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/HelveticaNeue-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 html,
 body,
