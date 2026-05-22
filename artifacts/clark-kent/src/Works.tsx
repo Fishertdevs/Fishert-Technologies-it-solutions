@@ -7,24 +7,24 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const worksData = [
-  { id: 1, img: "W1.png" },
-  { id: 2, img: "W2.png" },
-  { id: 3, img: "W3.png" },
-  { id: 4, img: "W4.png" },
-  { id: 5, img: "W5.png" },
-  { id: 6, img: "W6.png" },
-  { id: 7, img: "W7.png" },
-  { id: 8, img: "W8.png" },
-  { id: 9, img: "W9.png" },
-  { id: 10, img: "W1.png" },
-  { id: 11, img: "W2.png" },
-  { id: 12, img: "W3.png" },
-  { id: 13, img: "W4.png" },
-  { id: 14, img: "W5.png" },
-  { id: 15, img: "W6.png" },
-  { id: 16, img: "W7.png" },
-  { id: 17, img: "W8.png" },
-  { id: 18, img: "W9.png" },
+  { id: 1, img: "W1.png", title: "Porcelain Crane" },
+  { id: 2, img: "W2.png", title: "Flamingo Dreams" },
+  { id: 3, img: "W3.png", title: "Red Equestrian" },
+  { id: 4, img: "W4.png", title: "Blue Tulip" },
+  { id: 5, img: "W5.png", title: "Opera Mask" },
+  { id: 6, img: "W6.png", title: "Blue Bloom" },
+  { id: 7, img: "W7.png", title: "First Contact" },
+  { id: 8, img: "W8.png", title: "White Yak" },
+  { id: 9, img: "W9.png", title: "Heron Girl" },
+  { id: 10, img: "W1.png", title: "Porcelain Crane" },
+  { id: 11, img: "W2.png", title: "Flamingo Dreams" },
+  { id: 12, img: "W3.png", title: "Red Equestrian" },
+  { id: 13, img: "W4.png", title: "Blue Tulip" },
+  { id: 14, img: "W5.png", title: "Opera Mask" },
+  { id: 15, img: "W6.png", title: "Blue Bloom" },
+  { id: 16, img: "W7.png", title: "First Contact" },
+  { id: 17, img: "W8.png", title: "White Yak" },
+  { id: 18, img: "W9.png", title: "Heron Girl" },
 ];
 
 type SlotConfig = {
@@ -207,7 +207,7 @@ export default function Works() {
           >
             <img
               src={`${base}${item.img}`}
-              alt={`Work ${item.id}`}
+              alt={item.title}
               style={{
                 width: "100%",
                 height: "100%",
@@ -216,6 +216,9 @@ export default function Works() {
                 display: "block",
               }}
             />
+            <div className="works-item-overlay">
+              <span className="works-item-title">{item.title}</span>
+            </div>
           </div>
         ))}
       </div>

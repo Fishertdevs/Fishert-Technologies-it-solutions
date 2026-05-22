@@ -1,0 +1,77 @@
+In Works.tsx, add a hover overlay with project name on each image.
+
+Update worksData to include titles:
+const worksData = [
+  { id: 1, img: "W1.png", title: "Porcelain Crane" },
+  { id: 2, img: "W2.png", title: "Flamingo Dreams" },
+  { id: 3, img: "W3.png", title: "Red Equestrian" },
+  { id: 4, img: "W4.png", title: "Blue Tulip" },
+  { id: 5, img: "W5.png", title: "Opera Mask" },
+  { id: 6, img: "W6.png", title: "Blue Bloom" },
+  { id: 7, img: "W7.png", title: "First Contact" },
+  { id: 8, img: "W8.png", title: "White Yak" },
+  { id: 9, img: "W9.png", title: "Heron Girl" },
+  // duplicates for loop
+  { id: 10, img: "W1.png", title: "Porcelain Crane" },
+  { id: 11, img: "W2.png", title: "Flamingo Dreams" },
+  { id: 12, img: "W3.png", title: "Red Equestrian" },
+  { id: 13, img: "W4.png", title: "Blue Tulip" },
+  { id: 14, img: "W5.png", title: "Opera Mask" },
+  { id: 15, img: "W6.png", title: "Blue Bloom" },
+  { id: 16, img: "W7.png", title: "First Contact" },
+  { id: 17, img: "W8.png", title: "White Yak" },
+  { id: 18, img: "W9.png", title: "Heron Girl" },
+];
+
+Update JSX to add hover overlay inside each works-item:
+{domItems.map((item) => (
+  <div
+    key={item.id}
+    className={`works-item works-item--${item.id}`}
+    style={{ overflow: "hidden", position: "absolute", bottom: 0, left: 0 }}
+  >
+    <img
+      src={`${base}${item.img}`}
+      alt={item.title}
+      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom left", display: "block" }}
+    />
+    <div className="works-item-overlay">
+      <span className="works-item-title">{item.title}</span>
+    </div>
+  </div>
+))}
+
+Add CSS in index.css:
+.works-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  transition: background 0.3s ease;
+  pointer-events: auto;
+}
+
+.works-item:hover .works-item-overlay {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.works-item-title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.works-item:hover .works-item-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+Do not change anything else.
