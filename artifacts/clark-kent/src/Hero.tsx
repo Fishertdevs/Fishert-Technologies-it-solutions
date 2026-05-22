@@ -206,7 +206,7 @@ export default function Hero() {
         <div>CLARK</div>
         <div>KENT</div>
       </div>
-      <a href="#contact" className="contact-btn">
+      <a href="#contact" className="contact-btn rounded-tl-[1px] rounded-tr-[1px] rounded-br-[1px] rounded-bl-[1px]">
         <span className="contact-btn-corner top-left"></span>
         <span className="contact-btn-corner top-right"></span>
         <span className="contact-btn-text">Get in touch</span>
