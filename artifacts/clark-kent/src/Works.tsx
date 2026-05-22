@@ -11,10 +11,11 @@ export default function Works() {
     const track = document.querySelector(".works-track") as HTMLElement | null;
     if (!track) return;
 
-    const totalWidth = track.scrollWidth - window.innerWidth + 96;
+    const totalWidth = track.scrollWidth - window.innerWidth;
 
     gsap.set(".works-item--6, .works-item--7, .works-item--8", {
-      scale: 0.4,
+      scaleX: 0.3,
+      scaleY: 0.6,
       opacity: 0,
       transformOrigin: "bottom left",
     });
@@ -41,18 +42,36 @@ export default function Works() {
 
     worksTl.to(
       ".works-item--6",
-      { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" },
-      0.3,
+      {
+        scaleX: 1,
+        scaleY: 1,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      },
+      0.2,
     );
     worksTl.to(
       ".works-item--7",
-      { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" },
-      0.6,
+      {
+        scaleX: 1,
+        scaleY: 1,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      },
+      0.5,
     );
     worksTl.to(
       ".works-item--8",
-      { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" },
-      0.9,
+      {
+        scaleX: 1,
+        scaleY: 1,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      },
+      0.8,
     );
 
     return () => {

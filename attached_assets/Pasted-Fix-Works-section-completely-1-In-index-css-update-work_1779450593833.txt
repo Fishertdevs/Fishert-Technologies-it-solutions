@@ -1,0 +1,97 @@
+Fix Works section completely:
+
+1. In index.css, update .works-track and .works-item:
+.works-track {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  padding: 0;
+}
+
+.works-item {
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+2. Use these images in order (already in public folder):
+w1.png = 3.png (chrome sculpture)
+w2.png = 2.png (melting clock)  
+w3.png = Top.png (man no mask)
+w4.png = Bottom.png (man with mask)
+w5.png = 1.png (door)
+
+Copy these files in public folder with new names:
+- Copy 3.png → w1.png
+- Copy 2.png → w2.png
+- Copy Top.png → w3.png
+- Copy Bottom.png → w4.png
+- Copy 1.png → w5.png
+- Copy 1.png → w6.png
+- Copy 2.png → w7.png
+- Copy 3.png → w8.png
+
+3. In Works.tsx useEffect, fix the horizontal scroll:
+const track = document.querySelector(".works-track") as HTMLElement;
+if (!track) return;
+
+const totalWidth = track.scrollWidth - window.innerWidth;
+
+gsap.set(".works-item--6, .works-item--7, .works-item--8", {
+  scaleX: 0.3,
+  scaleY: 0.6,
+  opacity: 0,
+  transformOrigin: "bottom left"
+});
+
+const worksTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".works-section",
+    start: "top top",
+    end: "+=300%",
+    scrub: 1,
+    pin: true,
+  }
+});
+
+worksTl.to(".works-track", {
+  x: -totalWidth,
+  ease: "none",
+  duration: 2,
+}, 0);
+
+worksTl.to(".works-item--6", {
+  scaleX: 1,
+  scaleY: 1,
+  opacity: 1,
+  duration: 0.6,
+  ease: "power2.out",
+}, 0.2);
+
+worksTl.to(".works-item--7", {
+  scaleX: 1,
+  scaleY: 1,
+  opacity: 1,
+  duration: 0.6,
+  ease: "power2.out",
+}, 0.5);
+
+worksTl.to(".works-item--8", {
+  scaleX: 1,
+  scaleY: 1,
+  opacity: 1,
+  duration: 0.6,
+  ease: "power2.out",
+}, 0.8);
+
+4. Keep all sizes as defined before:
+.works-item--1 { width: 180px; height: 300px; }
+.works-item--2 { width: 260px; height: 400px; }
+.works-item--3 { width: 320px; height: 480px; }
+.works-item--4 { width: 380px; height: 520px; }
+.works-item--5 { width: 420px; height: 560px; }
+.works-item--6 { width: 460px; height: 600px; }
+.works-item--7 { width: 500px; height: 640px; }
+.works-item--8 { width: 540px; height: 680px; }
+
+Do not change anything else.
