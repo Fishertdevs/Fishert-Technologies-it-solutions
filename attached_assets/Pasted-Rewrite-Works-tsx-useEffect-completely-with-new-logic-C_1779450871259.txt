@@ -1,0 +1,131 @@
+Rewrite Works.tsx useEffect completely with new logic:
+
+CORRECT BEHAVIOR:
+- Initially show items 1-5 filling the full viewport width
+- Item 6, 7, 8 start hidden at LEFT side, small (width: 0)
+- On scroll: item 6 grows from left pushing others right
+- Then item 7 grows, then item 8 — each one pushes all previous items to the right
+- Track moves RIGHT (positive x) as new items push from left
+
+NEW CODE for useEffect:
+
+// Make items 1-5 fill viewport initially
+const items = document.querySelectorAll('.works-item');
+const viewportWidth = window.innerWidth;
+const itemCount = 5;
+const itemWidth = (viewportWidth - 0) / itemCount;
+
+// Set initial sizes for items 1-5
+gsap.set('.works-item--1', { width: itemWidth * 0.7 });
+gsap.set('.works-item--2', { width: itemWidth * 0.85 });
+gsap.set('.works-item--3', { width: itemWidth });
+gsap.set('.works-item--4', { width: itemWidth * 0.85 });
+gsap.set('.works-item--5', { width: itemWidth * 0.7 });
+
+// Hide items 6,7,8 — start at width 0 from left
+gsap.set('.works-item--6, .works-item--7, .works-item--8', {
+  width: 0,
+  opacity: 1,
+});
+
+// Reorder DOM: put items 6,7,8 BEFORE items 1-5 in the track
+// Do this in JSX instead — see below
+
+const worksTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.works-section',
+    start: 'top top',
+    end: '+=400%',
+    scrub: 1,
+    pin: true,
+  }
+});
+
+// Phase 1: item 6 grows from 0 to full size, pushes others right
+worksTl.to('.works-item--6', {
+  width: itemWidth * 1.2,
+  duration: 1,
+  ease: 'power2.out',
+}, 0);
+
+// Phase 2: item 7 grows
+worksTl.to('.works-item--7', {
+  width: itemWidth * 1.1,
+  duration: 1,
+  ease: 'power2.out',
+}, 1);
+
+// Phase 3: item 8 grows
+worksTl.to('.works-item--8', {
+  width: itemWidth,
+  duration: 1,
+  ease: 'power2.out',
+}, 2);
+
+UPDATE JSX — put items 6,7,8 FIRST so they appear on left:
+return (
+  <section className="works-section">
+    <div className="works-track">
+      <div className="works-item works-item--6">
+        <img src={`${base}w6.png`} alt="" />
+      </div>
+      <div className="works-item works-item--7">
+        <img src={`${base}w7.png`} alt="" />
+      </div>
+      <div className="works-item works-item--8">
+        <img src={`${base}w8.png`} alt="" />
+      </div>
+      <div className="works-item works-item--1">
+        <img src={`${base}w1.png`} alt="" />
+      </div>
+      <div className="works-item works-item--2">
+        <img src={`${base}w2.png`} alt="" />
+      </div>
+      <div className="works-item works-item--3">
+        <img src={`${base}w3.png`} alt="" />
+      </div>
+      <div className="works-item works-item--4">
+        <img src={`${base}w4.png`} alt="" />
+      </div>
+      <div className="works-item works-item--5">
+        <img src={`${base}w5.png`} alt="" />
+      </div>
+    </div>
+  </section>
+);
+
+UPDATE CSS — all items same height, width controlled by GSAP:
+.works-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  align-items: flex-end;
+}
+
+.works-track {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.works-item {
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 0;
+  height: 100%;
+}
+
+.works-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+Remove all fixed width/height from .works-item--1 through --8
+GSAP controls all widths dynamically.
