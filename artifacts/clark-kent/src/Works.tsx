@@ -24,7 +24,6 @@ export default function Works() {
   const initialVisibleCount = 5;
   const initialVisible = worksData.slice(0, initialVisibleCount);
   const queuedItems = worksData.slice(initialVisibleCount);
-
   const domItems = [...[...queuedItems].reverse(), ...initialVisible];
 
   useEffect(() => {
@@ -41,15 +40,21 @@ export default function Works() {
     ];
 
     gsap.set(".works-item", {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      x: 0,
       width: 0,
-      height: heights[0],
-      opacity: 1,
+      height: 0,
+      opacity: 0,
     });
 
     initialVisible.forEach((item, index) => {
       gsap.set(`.works-item--${item.id}`, {
+        x: index * itemW,
         width: itemW,
         height: heights[index],
+        opacity: 1,
       });
     });
 
@@ -69,9 +74,15 @@ export default function Works() {
       const enteringId = queuedItem.id;
       const startTime = cycleIndex;
 
+      gsap.set(`.works-item--${enteringId}`, { opacity: 1 });
       worksTl.to(
         `.works-item--${enteringId}`,
-        { width: itemW, duration: 1, ease: "power2.inOut" },
+        {
+          width: itemW,
+          height: heights[0],
+          duration: 1,
+          ease: "none",
+        },
         startTime,
       );
 
@@ -79,7 +90,22 @@ export default function Works() {
         if (index < initialVisibleCount - 1) {
           worksTl.to(
             `.works-item--${screenId}`,
-            { height: heights[index + 1], duration: 1, ease: "power2.inOut" },
+            {
+              x: (index + 1) * itemW,
+              height: heights[index + 1],
+              duration: 1,
+              ease: "none",
+            },
+            startTime,
+          );
+        } else {
+          worksTl.to(
+            `.works-item--${screenId}`,
+            {
+              x: 5 * itemW,
+              duration: 1,
+              ease: "none",
+            },
             startTime,
           );
         }
@@ -99,16 +125,19 @@ export default function Works() {
     <section
       className="works-section"
       ref={sectionRef}
-      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#fff" }}
+      style={{
+        height: "100vh",
+        overflow: "hidden",
+        backgroundColor: "#fff",
+        position: "relative",
+      }}
     >
       <div
         className="works-track"
         style={{
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "flex-start",
+          position: "relative",
+          width: "100%",
           height: "100%",
-          width: "max-content",
         }}
       >
         {domItems.map((item) => (
@@ -117,7 +146,6 @@ export default function Works() {
             className={`works-item works-item--${item.id}`}
             style={{
               overflow: "hidden",
-              flexShrink: 0,
             }}
           >
             <img
@@ -127,6 +155,7 @@ export default function Works() {
                 width: "20vw",
                 height: "100%",
                 objectFit: "cover",
+                objectPosition: "bottom left",
                 display: "block",
               }}
             />
