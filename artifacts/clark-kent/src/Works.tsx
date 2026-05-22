@@ -1,15 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL || "/";
+
+const worksData = [
+  { id: 1, img: "w1.png" },
+  { id: 2, img: "w2.png" },
+  { id: 3, img: "w3.png" },
+  { id: 4, img: "w4.png" },
+  { id: 5, img: "w5.png" },
+  { id: 6, img: "w6.png" },
+  { id: 7, img: "w7.png" },
+  { id: 8, img: "w8.png" },
+  { id: 9, img: "w9.png" },
+];
 
 export default function Works() {
+  const sectionRef = useRef(null);
+
+  const initialVisibleCount = 5;
+  const initialVisible = worksData.slice(0, initialVisibleCount);
+  const queuedItems = worksData.slice(initialVisibleCount);
+
+  const domItems = [...[...queuedItems].reverse(), ...initialVisible];
+
   useEffect(() => {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
+    const itemW = vw / 5;
 
     const heights = [
       vh * 0.35,
@@ -19,81 +40,54 @@ export default function Works() {
       vh * 0.9,
     ];
 
-    const itemW = vw / 5;
-
-    for (let i = 1; i <= 5; i++) {
-      gsap.set(`.works-item--${i}`, {
-        width: itemW,
-        height: heights[i - 1],
-        opacity: 1,
-      });
-    }
-
-    gsap.set(".works-item--6, .works-item--7, .works-item--8", {
+    gsap.set(".works-item", {
       width: 0,
       height: heights[0],
       opacity: 1,
     });
 
-    gsap.set(".works-track", { x: 0 });
+    initialVisible.forEach((item, index) => {
+      gsap.set(`.works-item--${item.id}`, {
+        width: itemW,
+        height: heights[index],
+      });
+    });
 
     const worksTl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".works-section",
+        trigger: sectionRef.current,
         start: "top top",
-        end: "+=500%",
+        end: `+=${queuedItems.length * 100}%`,
         scrub: 1,
         pin: true,
       },
     });
 
-    // Cycle 1 — item 6 enters
-    worksTl.to(
-      ".works-item--6",
-      { width: itemW, duration: 0.6, ease: "power2.out" },
-      0,
-    );
-    worksTl.to(".works-item--1", { height: heights[1], duration: 0.6 }, 0);
-    worksTl.to(".works-item--2", { height: heights[2], duration: 0.6 }, 0);
-    worksTl.to(".works-item--3", { height: heights[3], duration: 0.6 }, 0);
-    worksTl.to(".works-item--4", { height: heights[4], duration: 0.6 }, 0);
-    worksTl.to(
-      ".works-track",
-      { x: `+=${itemW}`, duration: 0.6, ease: "power2.inOut" },
-      0,
-    );
+    const currentScreen = initialVisible.map((item) => item.id);
 
-    // Cycle 2 — item 7 enters
-    worksTl.to(
-      ".works-item--7",
-      { width: itemW, duration: 0.6, ease: "power2.out" },
-      1.2,
-    );
-    worksTl.to(".works-item--6", { height: heights[1], duration: 0.6 }, 1.2);
-    worksTl.to(".works-item--1", { height: heights[2], duration: 0.6 }, 1.2);
-    worksTl.to(".works-item--2", { height: heights[3], duration: 0.6 }, 1.2);
-    worksTl.to(".works-item--3", { height: heights[4], duration: 0.6 }, 1.2);
-    worksTl.to(
-      ".works-track",
-      { x: `+=${itemW}`, duration: 0.6, ease: "power2.inOut" },
-      1.2,
-    );
+    queuedItems.forEach((queuedItem, cycleIndex) => {
+      const enteringId = queuedItem.id;
+      const startTime = cycleIndex;
 
-    // Cycle 3 — item 8 enters
-    worksTl.to(
-      ".works-item--8",
-      { width: itemW, duration: 0.6, ease: "power2.out" },
-      2.4,
-    );
-    worksTl.to(".works-item--7", { height: heights[1], duration: 0.6 }, 2.4);
-    worksTl.to(".works-item--6", { height: heights[2], duration: 0.6 }, 2.4);
-    worksTl.to(".works-item--1", { height: heights[3], duration: 0.6 }, 2.4);
-    worksTl.to(".works-item--2", { height: heights[4], duration: 0.6 }, 2.4);
-    worksTl.to(
-      ".works-track",
-      { x: `+=${itemW}`, duration: 0.6, ease: "power2.inOut" },
-      2.4,
-    );
+      worksTl.to(
+        `.works-item--${enteringId}`,
+        { width: itemW, duration: 1, ease: "power2.inOut" },
+        startTime,
+      );
+
+      currentScreen.forEach((screenId, index) => {
+        if (index < initialVisibleCount - 1) {
+          worksTl.to(
+            `.works-item--${screenId}`,
+            { height: heights[index + 1], duration: 1, ease: "power2.inOut" },
+            startTime,
+          );
+        }
+      });
+
+      currentScreen.unshift(enteringId);
+      currentScreen.pop();
+    });
 
     return () => {
       worksTl.scrollTrigger?.kill();
@@ -102,32 +96,42 @@ export default function Works() {
   }, []);
 
   return (
-    <section className="works-section">
-      <div className="works-track">
-        <div className="works-item works-item--8">
-          <img src={`${base}w8.png`} alt="" />
-        </div>
-        <div className="works-item works-item--7">
-          <img src={`${base}w7.png`} alt="" />
-        </div>
-        <div className="works-item works-item--6">
-          <img src={`${base}w6.png`} alt="" />
-        </div>
-        <div className="works-item works-item--1">
-          <img src={`${base}w1.png`} alt="" />
-        </div>
-        <div className="works-item works-item--2">
-          <img src={`${base}w2.png`} alt="" />
-        </div>
-        <div className="works-item works-item--3">
-          <img src={`${base}w3.png`} alt="" />
-        </div>
-        <div className="works-item works-item--4">
-          <img src={`${base}w4.png`} alt="" />
-        </div>
-        <div className="works-item works-item--5">
-          <img src={`${base}w5.png`} alt="" />
-        </div>
+    <section
+      className="works-section"
+      ref={sectionRef}
+      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#fff" }}
+    >
+      <div
+        className="works-track"
+        style={{
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "flex-start",
+          height: "100%",
+          width: "max-content",
+        }}
+      >
+        {domItems.map((item) => (
+          <div
+            key={item.id}
+            className={`works-item works-item--${item.id}`}
+            style={{
+              overflow: "hidden",
+              flexShrink: 0,
+            }}
+          >
+            <img
+              src={`${base}${item.img}`}
+              alt={`Work ${item.id}`}
+              style={{
+                width: "20vw",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
