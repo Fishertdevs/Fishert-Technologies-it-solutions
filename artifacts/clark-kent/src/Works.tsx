@@ -16,6 +16,15 @@ const worksData = [
   { id: 7, img: "W7.png" },
   { id: 8, img: "W8.png" },
   { id: 9, img: "W9.png" },
+  { id: 10, img: "W1.png" },
+  { id: 11, img: "W2.png" },
+  { id: 12, img: "W3.png" },
+  { id: 13, img: "W4.png" },
+  { id: 14, img: "W5.png" },
+  { id: 15, img: "W6.png" },
+  { id: 16, img: "W7.png" },
+  { id: 17, img: "W8.png" },
+  { id: 18, img: "W9.png" },
 ];
 
 type SlotConfig = {
