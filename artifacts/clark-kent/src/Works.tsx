@@ -165,6 +165,18 @@ export default function Works() {
         position: "relative",
       }}
     >
+      <div className="works-text-block">
+        <h2 className="works-heading">
+          WHERE IDEAS<br />BECOME IMAGES.
+        </h2>
+        <p className="works-tagline">
+          A curated selection of projects across<br />
+          design, direction & AI.
+        </p>
+        <p className="works-sub">
+          DESIGN. DIRECTION. AI. CODE.
+        </p>
+      </div>
       <div
         className="works-track"
         style={{

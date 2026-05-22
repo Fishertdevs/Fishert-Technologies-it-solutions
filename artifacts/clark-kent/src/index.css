@@ -169,3 +169,44 @@ body {
   object-fit: cover;
   display: block;
 }
+
+.works-text-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 48px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.works-heading {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(48px, 7vw, 110px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: #111;
+  text-transform: uppercase;
+  margin: 0 0 24px 0;
+}
+
+.works-tagline {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(11px, 1vw, 14px);
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  color: #111;
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+}
+
+.works-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: clamp(10px, 0.85vw, 12px);
+  letter-spacing: 0.1em;
+  color: #111;
+  text-transform: uppercase;
+  margin: 0;
+}
