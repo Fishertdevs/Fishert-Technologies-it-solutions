@@ -1,0 +1,88 @@
+In About.tsx, add a two-phase scroll animation:
+
+PHASE 1 — Red shape sweeps across each line left to right, then disappears:
+- Each .about-row gets a pseudo red bar overlay
+- Bar starts at scaleX(0) from left, sweeps to scaleX(1), then sweeps off to right (scaleX(0) from right)
+- Stagger between rows: 0.15 each
+
+PHASE 2 — Images expand in (existing animation, starts after phase 1)
+
+Implementation:
+
+1. Add a .about-sweep span inside each about-row div, as first child:
+<div className="about-row">
+  <span className="about-sweep"></span>
+  <span className="about-text">FULL STACK</span>
+</div>
+— add .about-sweep to ALL 6 rows
+
+2. CSS for .about-sweep:
+.about-sweep {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #FF0000;
+  transform-origin: left center;
+  transform: scaleX(0);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.about-row {
+  position: relative;
+  overflow: hidden;
+}
+
+3. GSAP timeline — update useEffect:
+
+gsap.set(".about-box", { width: 0, height: 0, opacity: 0 });
+gsap.set(".about-row", { gap: 0 });
+gsap.set(".about-sweep", { scaleX: 0, transformOrigin: "left center" });
+
+const aboutTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top top",
+    end: "+=300%",
+    scrub: 1,
+    pin: true,
+  },
+});
+
+// Phase 1 — sweep in (left to right)
+aboutTl.to(".about-sweep", {
+  scaleX: 1,
+  duration: 0.4,
+  ease: "power2.inOut",
+  stagger: 0.15,
+}, 0);
+
+// Phase 1 — sweep out (right side disappears)
+aboutTl.to(".about-sweep", {
+  scaleX: 0,
+  transformOrigin: "right center",
+  duration: 0.4,
+  ease: "power2.inOut",
+  stagger: 0.15,
+}, 0.6);
+
+// Phase 2 — gap opens
+aboutTl.to(".about-row", {
+  gap: 20,
+  duration: 0.8,
+  ease: "power2.out",
+}, 1.2);
+
+// Phase 2 — images expand
+aboutTl.to(".about-box", {
+  width: 150,
+  height: 150,
+  opacity: 1,
+  duration: 0.8,
+  ease: "power2.out",
+  stagger: 0.2,
+}, 1.2);
+
+Do not change anything else.
