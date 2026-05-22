@@ -280,3 +280,16 @@ body {
 .contact-btn-corner.top-right { top: 8px; right: 8px; }
 .contact-btn-corner.bottom-left { bottom: 8px; left: 8px; }
 .contact-btn-corner.bottom-right { bottom: 8px; right: 8px; }
+
+.hero-description {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  z-index: 10;
+  max-width: 200px;
+}

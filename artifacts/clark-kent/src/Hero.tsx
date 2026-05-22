@@ -206,6 +206,11 @@ export default function Hero() {
         <div>CLARK</div>
         <div>KENT</div>
       </div>
+      <p className="hero-description">
+        A visual exploration of color,<br />
+        texture, and the freedom of<br />
+        abstract expression
+      </p>
       <a href="#contact" className="contact-btn rounded-tl-[1px] rounded-tr-[1px] rounded-br-[1px] rounded-bl-[1px]">
         <span className="contact-btn-corner top-left"></span>
         <span className="contact-btn-corner top-right"></span>
