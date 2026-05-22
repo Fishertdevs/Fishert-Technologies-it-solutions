@@ -64,6 +64,10 @@ body {
 }
 
 body {
+  cursor: default;
+}
+
+.hero {
   cursor: none;
 }
 
