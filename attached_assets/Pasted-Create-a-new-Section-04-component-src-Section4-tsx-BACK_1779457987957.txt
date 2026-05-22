@@ -1,0 +1,226 @@
+Create a new Section 04 component: src/Section4.tsx
+
+BACKGROUND:
+- Fullscreen background image: /public/section4.png (upload this image manually)
+- Image covers full viewport, object-fit: cover
+- Dark overlay: rgba(0,0,0,0.35) on top of image
+
+TEXT CONTENT:
+Two phases of 4 lines each, same position, same size:
+
+Phase 1:
+Line 1: "LIMITS ARE NOT"
+Line 2: "REAL THEY ARE"
+Line 3: "JUST SOMEONE"
+Line 4: "ELSE'S OPINION."
+
+Phase 2:
+Line 1: "CREATE BEYOND"
+Line 2: "WHAT EYES CAN"
+Line 3: "SEE AND MINDS"
+Line 4: "DARE TO DREAM."
+
+LAYOUT:
+- Text block positioned: right side, vertically centered
+- right: 6vw, top: 50%, transform: translateY(-50%)
+- Each line: font-family Helvetica Neue, font-weight 700
+- font-size: clamp(36px, 5vw, 72px)
+- color: white
+- text-transform: uppercase
+- line-height: 1.1
+- letter-spacing: -0.02em
+
+RED SWEEP ANIMATION using GSAP ScrollTrigger:
+- Section pinned: pin: true, end: "+=400%", scrub: 1
+- Each line has a .sweep-bar overlay (position absolute, 
+  width 100%, height 100%, background #FF0000, 
+  transform-origin: left center)
+
+PHASE 1 ANIMATION (lines 1-4, staggered):
+Step 1 — sweep bars sweep IN left to right (scaleX 0→1), 
+stagger 0.15 between lines
+Step 2 — sweep bars sweep OUT right to left 
+(transformOrigin: right center, scaleX 1→0), stagger 0.15,
+revealing white text underneath
+
+PHASE 2 ANIMATION (lines 1-4, same position):
+Phase 1 text fades out opacity 1→0
+Phase 2 text fades in opacity 0→1
+Then repeat same sweep IN and sweep OUT for phase 2 lines,
+same stagger pattern
+
+COMPONENT STRUCTURE:
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+const phase1 = [
+  "LIMITS ARE NOT",
+  "REAL THEY ARE", 
+  "JUST SOMEONE",
+  "ELSE'S OPINION.",
+];
+
+const phase2 = [
+  "CREATE BEYOND",
+  "WHAT EYES CAN",
+  "SEE AND MINDS",
+  "DARE TO DREAM.",
+];
+
+export default function Section4() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "+=400%",
+        scrub: 1,
+        pin: true,
+      }
+    });
+
+    // Set initial states
+    gsap.set(".sweep-bar", { scaleX: 0, transformOrigin: "left center" });
+    gsap.set(".phase1-line", { opacity: 1 });
+    gsap.set(".phase2-line", { opacity: 0 });
+    gsap.set(".line-wrapper", { overflow: "hidden", position: "relative" });
+
+    // Phase 1 sweep IN
+    tl.to(".p1-bar", {
+      scaleX: 1,
+      duration: 0.4,
+      stagger: 0.15,
+      ease: "none",
+    }, 0);
+
+    // Phase 1 sweep OUT
+    tl.to(".p1-bar", {
+      scaleX: 0,
+      transformOrigin: "right center",
+      duration: 0.4,
+      stagger: 0.15,
+      ease: "none",
+    }, 0.8);
+
+    // Transition: phase1 out, phase2 in
+    tl.to(".phase1-line", { opacity: 0, duration: 0.2 }, 1.6);
+    tl.to(".phase2-line", { opacity: 1, duration: 0.2 }, 1.7);
+
+    // Phase 2 sweep IN
+    tl.to(".p2-bar", {
+      scaleX: 1,
+      transformOrigin: "left center",
+      duration: 0.4,
+      stagger: 0.15,
+      ease: "none",
+    }, 2.0);
+
+    // Phase 2 sweep OUT
+    tl.to(".p2-bar", {
+      scaleX: 0,
+      transformOrigin: "right center",
+      duration: 0.4,
+      stagger: 0.15,
+      ease: "none",
+    }, 2.8);
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="section4"
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
+      <img
+        src="/section4.png"
+        alt=""
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: 0,
+        }}
+      />
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: "rgba(0,0,0,0.35)",
+        zIndex: 1,
+      }} />
+
+      <div className="text-block" style={{
+        position: "absolute",
+        right: "6vw",
+        top: "50%",
+        transform: "translateY(-50%)",
+        zIndex: 2,
+        textAlign: "right",
+      }}>
+        {phase1.map((line, i) => (
+          <div key={i} className="line-wrapper" style={{ position: "relative", overflow: "hidden" }}>
+            <div className="phase1-line">
+              <span style={{
+                display: "block",
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(36px, 5vw, 72px)",
+                color: "#fff",
+                textTransform: "uppercase",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+              }}>{line}</span>
+            </div>
+            <div className="phase2-line" style={{ position: "absolute", top: 0, left: 0, width: "100%" }}>
+              <span style={{
+                display: "block",
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(36px, 5vw, 72px)",
+                color: "#fff",
+                textTransform: "uppercase",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+              }}>{phase2[i]}</span>
+            </div>
+            <div className="sweep-bar p1-bar" style={{
+              position: "absolute",
+              inset: 0,
+              background: "#FF0000",
+              zIndex: 3,
+            }} />
+            <div className="sweep-bar p2-bar" style={{
+              position: "absolute",
+              inset: 0,
+              background: "#FF0000",
+              zIndex: 3,
+              transform: "scaleX(0)",
+            }} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+After creating Section4.tsx:
+1. Upload section4.png to public folder manually
+2. Import Section4 in App.tsx or Home.tsx after Works section
+3. Add cleanup in return statement
+
+Do not change any other files.
