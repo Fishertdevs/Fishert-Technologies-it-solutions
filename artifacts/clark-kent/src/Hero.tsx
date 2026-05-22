@@ -211,7 +211,7 @@ export default function Hero() {
         texture, and the freedom of<br />
         abstract expression
       </p>
-      <a href="#contact" className="contact-btn rounded-tl-[1px] rounded-tr-[1px] rounded-br-[1px] rounded-bl-[1px]">
+      <a href="#contact" className="contact-btn rounded-tl-[0px] rounded-tr-[0px] rounded-br-[0px] rounded-bl-[0px]">
         <span className="contact-btn-corner top-left"></span>
         <span className="contact-btn-corner top-right"></span>
         <span className="contact-btn-text">Get in touch</span>
