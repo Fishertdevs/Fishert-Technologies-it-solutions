@@ -31,6 +31,8 @@ export default function Section4() {
         end: "+=400%",
         scrub: 1,
         pin: true,
+        invalidateOnRefresh: true,
+        refreshPriority: 1,
       },
     });
 
