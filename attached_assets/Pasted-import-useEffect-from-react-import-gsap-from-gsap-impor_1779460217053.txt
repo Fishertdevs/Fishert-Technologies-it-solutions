@@ -1,0 +1,84 @@
+import { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const base = import.meta.env.BASE_URL;
+
+export default function About() {
+  useEffect(() => {
+    gsap.set(".about-box", { width: 0, height: 0, opacity: 0 });
+    gsap.set(".about-row", { gap: 0 });
+
+    const aboutTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "top top",
+        end: "+=200%",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        refreshPriority: 3, // Highest priority because it's the first pinned section
+      },
+    });
+
+    aboutTl.to(
+      ".about-row",
+      {
+        gap: 20,
+        duration: 1,
+        ease: "none", // Reset to linear ease for direct, fluid scroll connection
+      },
+      0,
+    );
+
+    aboutTl.to(
+      ".about-box",
+      {
+        width: 150,
+        height: 150,
+        opacity: 1,
+        duration: 1,
+        ease: "none", // Keep linear to ensure it completes its journey fully with scroll
+        stagger: 0.3,
+      },
+      0,
+    );
+
+    return () => {
+      aboutTl.scrollTrigger?.kill();
+      aboutTl.kill();
+    };
+  }, []);
+
+  return (
+    <section className="about-section">
+      <div className="about-row">
+        <span className="about-text">FULL STACK</span>
+      </div>
+      <div className="about-row">
+        <span className="about-text">CREA</span>
+        <img className="about-box" src={`${base}1.png`} alt="" />
+        <span className="about-text">TIVE</span>
+      </div>
+      <div className="about-row">
+        <span className="about-text">SHOOTS &amp;</span>
+      </div>
+      <div className="about-row">
+        <span className="about-text">DIR</span>
+        <img className="about-box" src={`${base}3.png`} alt="" />
+        <span className="about-text">CTS</span>
+      </div>
+      <div className="about-row">
+        <span className="about-text">DESIGNS &amp;</span>
+      </div>
+      <div className="about-row">
+        <span className="about-text">BUI</span>
+        <img className="about-box" src={`${base}2.png`} alt="" />
+        <span className="about-text">DS WITH AI</span>
+      </div>
+    </section>
+  );
+}

@@ -18,6 +18,9 @@ export default function About() {
         end: "+=200%",
         scrub: 1,
         pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        refreshPriority: 3,
       },
     });
 
@@ -26,7 +29,7 @@ export default function About() {
       {
         gap: 20,
         duration: 1,
-        ease: "power2.out",
+        ease: "none",
       },
       0,
     );
@@ -38,7 +41,7 @@ export default function About() {
         height: 150,
         opacity: 1,
         duration: 1,
-        ease: "power2.out",
+        ease: "none",
         stagger: 0.3,
       },
       0,
