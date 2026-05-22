@@ -1,0 +1,108 @@
+Rewrite Works.tsx with CORRECT logic:
+
+CORRECT BEHAVIOR:
+- New images appear from LEFT side, starting SMALL
+- They grow LARGER pushing existing items to the RIGHT
+- Rightmost item eventually goes off screen right
+- Track moves RIGHT (positive x) as new item grows from left
+
+useEffect:
+const vw = window.innerWidth;
+const vh = window.innerHeight;
+
+const heights = [
+  vh * 0.35,
+  vh * 0.48,
+  vh * 0.62,
+  vh * 0.76,
+  vh * 0.90,
+];
+
+const itemW = vw / 5;
+
+// Items 1-5 initial state — fill viewport, staircase heights
+for (let i = 1; i <= 5; i++) {
+  gsap.set(`.works-item--${i}`, {
+    width: itemW,
+    height: heights[i - 1],
+    opacity: 1,
+  });
+}
+
+// Items 6,7,8 start at LEFT edge, width 0, smallest height
+gsap.set(".works-item--6, .works-item--7, .works-item--8", {
+  width: 0,
+  height: heights[0],
+  opacity: 1,
+});
+
+// Position track so items 6,7,8 are at left edge (width 0 so invisible)
+gsap.set(".works-track", { x: 0 });
+
+const worksTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".works-section",
+    start: "top top",
+    end: "+=500%",
+    scrub: 1,
+    pin: true,
+  },
+});
+
+// --- CYCLE 1: item 6 enters from left ---
+// item 6 grows from width 0 → itemW, height stays small initially
+worksTl.to(".works-item--6", {
+  width: itemW,
+  duration: 0.6,
+  ease: "power2.out",
+}, 0);
+
+// Simultaneously all items shift heights up one step (6 takes heights[0], others shift up)
+worksTl.to(".works-item--1", { height: heights[1], duration: 0.6 }, 0);
+worksTl.to(".works-item--2", { height: heights[2], duration: 0.6 }, 0);
+worksTl.to(".works-item--3", { height: heights[3], duration: 0.6 }, 0);
+worksTl.to(".works-item--4", { height: heights[4], duration: 0.6 }, 0);
+// item 5 moves off screen right — track shifts right by itemW
+worksTl.to(".works-track", { x: `+=${itemW}`, duration: 0.6, ease: "power2.inOut" }, 0);
+
+// --- CYCLE 2: item 7 enters from left ---
+worksTl.to(".works-item--7", {
+  width: itemW,
+  duration: 0.6,
+  ease: "power2.out",
+}, 1.2);
+worksTl.to(".works-item--6", { height: heights[1], duration: 0.6 }, 1.2);
+worksTl.to(".works-item--1", { height: heights[2], duration: 0.6 }, 1.2);
+worksTl.to(".works-item--2", { height: heights[3], duration: 0.6 }, 1.2);
+worksTl.to(".works-item--3", { height: heights[4], duration: 0.6 }, 1.2);
+worksTl.to(".works-track", { x: `+=${itemW}`, duration: 0.6, ease: "power2.inOut" }, 1.2);
+
+// --- CYCLE 3: item 8 enters from left ---
+worksTl.to(".works-item--8", {
+  width: itemW,
+  duration: 0.6,
+  ease: "power2.out",
+}, 2.4);
+worksTl.to(".works-item--7", { height: heights[1], duration: 0.6 }, 2.4);
+worksTl.to(".works-item--6", { height: heights[2], duration: 0.6 }, 2.4);
+worksTl.to(".works-item--1", { height: heights[3], duration: 0.6 }, 2.4);
+worksTl.to(".works-item--2", { height: heights[4], duration: 0.6 }, 2.4);
+worksTl.to(".works-track", { x: `+=${itemW}`, duration: 0.6, ease: "power2.inOut" }, 2.4);
+
+JSX — items 6,7,8 FIRST in DOM (leftmost):
+return (
+  <section className="works-section">
+    <div className="works-track">
+      <div className="works-item works-item--8"><img src={`${base}w8.png`} alt="" /></div>
+      <div className="works-item works-item--7"><img src={`${base}w7.png`} alt="" /></div>
+      <div className="works-item works-item--6"><img src={`${base}w6.png`} alt="" /></div>
+      <div className="works-item works-item--1"><img src={`${base}w1.png`} alt="" /></div>
+      <div className="works-item works-item--2"><img src={`${base}w2.png`} alt="" /></div>
+      <div className="works-item works-item--3"><img src={`${base}w3.png`} alt="" /></div>
+      <div className="works-item works-item--4"><img src={`${base}w4.png`} alt="" /></div>
+      <div className="works-item works-item--5"><img src={`${base}w5.png`} alt="" /></div>
+    </div>
+  </section>
+);
+
+Keep same CSS as before. Do not change anything else.
