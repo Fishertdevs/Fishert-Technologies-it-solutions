@@ -1,0 +1,213 @@
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const base = import.meta.env.BASE_URL || "/";
+
+const worksData = [
+  { id: 1, img: "w1.png" },
+  { id: 2, img: "w2.png" },
+  { id: 3, img: "w3.png" },
+  { id: 4, img: "w4.png" },
+  { id: 5, img: "w5.png" },
+  { id: 6, img: "w6.png" },
+  { id: 7, img: "w7.png" },
+  { id: 8, img: "w8.png" },
+  { id: 9, img: "w9.png" },
+];
+
+type SlotConfig = {
+  size: number;
+  x: number;
+};
+
+export default function Works() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [slots, setSlots] = useState<SlotConfig[]>([]);
+
+  const initialVisibleCount = 5;
+  const initialVisible = worksData.slice(0, initialVisibleCount);
+  const queuedItems = worksData.slice(initialVisibleCount);
+  const domItems = [...[...queuedItems].reverse(), ...initialVisible];
+
+  useEffect(() => {
+    const handleResize = () => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      // Define progressive 1:1 square sizes for the 5 slots (from smallest to largest)
+      // Modifying these percentages tweaks the step steepness
+      const sizes = [
+        vw * 0.12, // Slot 0 (Smallest, incoming)
+        vw * 0.16, // Slot 1
+        vw * 0.20, // Slot 2
+        vw * 0.24, // Slot 3
+        vw * 0.28, // Slot 4 (Largest, rightmost)
+      ];
+
+      // Calculate exact X positions so the items sit side-by-side cleanly
+      const computedSlots: SlotConfig[] = [];
+      let currentX = 0;
+      
+      for (let i = 0; i < initialVisibleCount; i++) {
+        computedSlots.push({
+          size: sizes[i],
+          x: currentX,
+        });
+        currentX += sizes[i]; // Next item starts exactly where the previous ends
+      }
+
+      setSlots(computedSlots);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (slots.length === 0) return;
+
+    // Reset all background/waiting items to a 0x0 dot at the bottom left
+    gsap.set(".works-item", {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      x: 0,
+      width: 0,
+      height: 0,
+      opacity: 0,
+    });
+
+    // Initialize the first 5 visible items into their distinct scaling slots
+    initialVisible.forEach((item, index) => {
+      const slot = slots[index];
+      gsap.set(`.works-item--${item.id}`, {
+        x: slot.x,
+        width: slot.size,
+        height: slot.size, // 1:1 Square
+        opacity: 1,
+      });
+    });
+
+    const worksTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${queuedItems.length * 100}%`,
+        scrub: 1,
+        pin: true,
+      },
+    });
+
+    let currentScreen = initialVisible.map((item) => item.id);
+
+    queuedItems.forEach((queuedItem, cycleIndex) => {
+      const enteringId = queuedItem.id;
+      const startTime = cycleIndex;
+
+      // 1. Reveal new incoming item: scales smoothly from 0x0 up to Slot 0 size
+      gsap.set(`.works-item--${enteringId}`, { opacity: 1 });
+      worksTl.to(
+        `.works-item--${enteringId}`,
+        {
+          x: slots[0].x,
+          width: slots[0].size,
+          height: slots[0].size,
+          duration: 1,
+          ease: "none",
+        },
+        startTime
+      );
+
+      // 2. Animate items on screen: shift position and scale size simultaneously
+      currentScreen.forEach((screenId, index) => {
+        if (index < initialVisibleCount - 1) {
+          const nextSlotIndex = index + 1;
+          const nextSlot = slots[nextSlotIndex];
+          
+          worksTl.to(
+            `.works-item--${screenId}`,
+            {
+              x: nextSlot.x,
+              width: nextSlot.size,
+              height: nextSlot.size, // Scales perfectly preserving 1:1 ratio
+              duration: 1,
+              ease: "none",
+            },
+            startTime
+          );
+        } else {
+          // 3. Rightmost item slides entirely out of view based on its current tracking position
+          const lastSlot = slots[initialVisibleCount - 1];
+          worksTl.to(
+            `.works-item--${screenId}`,
+            {
+              x: lastSlot.x + lastSlot.size,
+              duration: 1,
+              ease: "none",
+            },
+            startTime
+          );
+        }
+      });
+
+      currentScreen.unshift(enteringId);
+      currentScreen.pop();
+    });
+
+    return () => {
+      worksTl.scrollTrigger?.kill();
+      worksTl.kill();
+    };
+  }, [slots]);
+
+  return (
+    <section
+      className="works-section"
+      ref={sectionRef}
+      style={{
+        height: "100vh",
+        overflow: "hidden",
+        backgroundColor: "#fff",
+        position: "relative",
+      }}
+    >
+      <div
+        className="works-track"
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        {domItems.map((item) => (
+          <div
+            key={item.id}
+            className={`works-item works-item--${item.id}`}
+            style={{
+              overflow: "hidden",
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+            }}
+          >
+            <img
+              src={`${base}${item.img}`}
+              alt={`Work ${item.id}`}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "bottom left",
+                display: "block",
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

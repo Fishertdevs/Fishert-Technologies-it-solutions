@@ -18,9 +18,14 @@ const worksData = [
   { id: 9, img: "w9.png" },
 ];
 
+type SlotConfig = {
+  size: number;
+  x: number;
+};
+
 export default function Works() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [itemSize, setItemSize] = useState<number>(0);
+  const [slots, setSlots] = useState<SlotConfig[]>([]);
 
   const initialVisibleCount = 5;
   const initialVisible = worksData.slice(0, initialVisibleCount);
@@ -30,7 +35,27 @@ export default function Works() {
   useEffect(() => {
     const handleResize = () => {
       const vw = window.innerWidth;
-      setItemSize(vw / 5);
+
+      const sizes = [
+        vw * 0.12,
+        vw * 0.16,
+        vw * 0.2,
+        vw * 0.24,
+        vw * 0.28,
+      ];
+
+      const computedSlots: SlotConfig[] = [];
+      let currentX = 0;
+
+      for (let i = 0; i < initialVisibleCount; i++) {
+        computedSlots.push({
+          size: sizes[i],
+          x: currentX,
+        });
+        currentX += sizes[i];
+      }
+
+      setSlots(computedSlots);
     };
 
     handleResize();
@@ -39,7 +64,7 @@ export default function Works() {
   }, []);
 
   useEffect(() => {
-    if (itemSize === 0) return;
+    if (slots.length === 0) return;
 
     gsap.set(".works-item", {
       position: "absolute",
@@ -52,10 +77,11 @@ export default function Works() {
     });
 
     initialVisible.forEach((item, index) => {
+      const slot = slots[index];
       gsap.set(`.works-item--${item.id}`, {
-        x: index * itemSize,
-        width: itemSize,
-        height: itemSize,
+        x: slot.x,
+        width: slot.size,
+        height: slot.size,
         opacity: 1,
       });
     });
@@ -80,9 +106,9 @@ export default function Works() {
       worksTl.to(
         `.works-item--${enteringId}`,
         {
-          x: 0,
-          width: itemSize,
-          height: itemSize,
+          x: slots[0].x,
+          width: slots[0].size,
+          height: slots[0].size,
           duration: 1,
           ease: "none",
         },
@@ -91,23 +117,25 @@ export default function Works() {
 
       currentScreen.forEach((screenId, index) => {
         if (index < initialVisibleCount - 1) {
-          const nextSlotIndex = index + 1;
+          const nextSlot = slots[index + 1];
+
           worksTl.to(
             `.works-item--${screenId}`,
             {
-              x: nextSlotIndex * itemSize,
-              width: itemSize,
-              height: itemSize,
+              x: nextSlot.x,
+              width: nextSlot.size,
+              height: nextSlot.size,
               duration: 1,
               ease: "none",
             },
             startTime,
           );
         } else {
+          const lastSlot = slots[initialVisibleCount - 1];
           worksTl.to(
             `.works-item--${screenId}`,
             {
-              x: initialVisibleCount * itemSize,
+              x: lastSlot.x + lastSlot.size,
               duration: 1,
               ease: "none",
             },
@@ -124,7 +152,7 @@ export default function Works() {
       worksTl.scrollTrigger?.kill();
       worksTl.kill();
     };
-  }, [itemSize]);
+  }, [slots]);
 
   return (
     <section
