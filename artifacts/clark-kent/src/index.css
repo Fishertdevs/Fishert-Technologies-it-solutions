@@ -248,7 +248,7 @@ body {
 }
 
 .contact-btn {
-  position: fixed;
+  position: absolute;
   bottom: 2rem;
   right: 2rem;
   background: #111;
@@ -265,7 +265,6 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: fixed;
 }
 
 .contact-btn-corner {
