@@ -253,10 +253,11 @@ body {
   right: 2rem;
   background: #111;
   color: #fff;
-  padding: 16px 32px;
-  border-radius: 8px;
+  width: 214px;
+  height: 74px;
+  border-radius: 10px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   text-decoration: none;
   z-index: 10;
@@ -264,17 +265,19 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: fixed;
 }
 
 .contact-btn-corner {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 1.5px solid rgba(255,255,255,0.5);
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid rgba(255,255,255,0.6);
   border-radius: 50%;
+  background: transparent;
 }
 
-.contact-btn-corner.top-left { top: 6px; left: 6px; }
-.contact-btn-corner.top-right { top: 6px; right: 6px; }
-.contact-btn-corner.bottom-left { bottom: 6px; left: 6px; }
-.contact-btn-corner.bottom-right { bottom: 6px; right: 6px; }
+.contact-btn-corner.top-left { top: 8px; left: 8px; }
+.contact-btn-corner.top-right { top: 8px; right: 8px; }
+.contact-btn-corner.bottom-left { bottom: 8px; left: 8px; }
+.contact-btn-corner.bottom-right { bottom: 8px; right: 8px; }
