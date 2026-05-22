@@ -18,16 +18,9 @@ const worksData = [
   { id: 9, img: "w9.png" },
 ];
 
-type Dimensions = { itemSize: number; heights: number[] };
-
 export default function Works() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
-
-  const [dimensions, setDimensions] = useState<Dimensions>({
-    itemSize: 0,
-    heights: [],
-  });
+  const [itemSize, setItemSize] = useState<number>(0);
 
   const initialVisibleCount = 5;
   const initialVisible = worksData.slice(0, initialVisibleCount);
@@ -37,54 +30,33 @@ export default function Works() {
   useEffect(() => {
     const handleResize = () => {
       const vw = window.innerWidth;
-      const vh = window.innerHeight;
-
-      const itemSize = vw / 5;
-
-      const maxHeightV = vh * 0.9;
-      const minHeightV = vh * 0.35;
-      const heightStep = (maxHeightV - minHeightV) / (initialVisibleCount - 1);
-
-      const newHeights = initialVisible.map((_, index) => {
-        return maxHeightV - index * heightStep;
-      });
-
-      setDimensions({ itemSize, heights: newHeights });
+      setItemSize(vw / 5);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    if (dimensions.itemSize === 0) return;
+    if (itemSize === 0) return;
 
-    const itemSize = dimensions.itemSize;
-    const heights = dimensions.heights;
-
-    initialVisible.forEach((item, index) => {
-      const reversedIndex = initialVisibleCount - 1 - index;
-      gsap.set(`.works-item--${item.id}`, {
-        x: reversedIndex * itemSize,
-        width: itemSize,
-        height: heights[reversedIndex],
-        opacity: 1,
-      });
+    gsap.set(".works-item", {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      x: 0,
+      width: 0,
+      height: 0,
+      opacity: 0,
     });
 
-    queuedItems.forEach((item) => {
+    initialVisible.forEach((item, index) => {
       gsap.set(`.works-item--${item.id}`, {
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        x: 0,
-        width: 0,
-        height: 0,
-        opacity: 0,
+        x: index * itemSize,
+        width: itemSize,
+        height: itemSize,
+        opacity: 1,
       });
     });
 
@@ -110,7 +82,7 @@ export default function Works() {
         {
           x: 0,
           width: itemSize,
-          height: heights[0],
+          height: itemSize,
           duration: 1,
           ease: "none",
         },
@@ -119,13 +91,13 @@ export default function Works() {
 
       currentScreen.forEach((screenId, index) => {
         if (index < initialVisibleCount - 1) {
-          const newSlotIndex = index + 1;
-
+          const nextSlotIndex = index + 1;
           worksTl.to(
             `.works-item--${screenId}`,
             {
-              x: newSlotIndex * itemSize,
-              height: heights[newSlotIndex],
+              x: nextSlotIndex * itemSize,
+              width: itemSize,
+              height: itemSize,
               duration: 1,
               ease: "none",
             },
@@ -152,7 +124,7 @@ export default function Works() {
       worksTl.scrollTrigger?.kill();
       worksTl.kill();
     };
-  }, [dimensions.itemSize]);
+  }, [itemSize]);
 
   return (
     <section
@@ -167,7 +139,6 @@ export default function Works() {
     >
       <div
         className="works-track"
-        ref={trackRef}
         style={{
           position: "relative",
           width: "100%",
@@ -185,28 +156,17 @@ export default function Works() {
               left: 0,
             }}
           >
-            <div
+            <img
+              src={`${base}${item.img}`}
+              alt={`Work ${item.id}`}
               style={{
-                position: "relative",
                 width: "100%",
-                paddingBottom: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "bottom left",
+                display: "block",
               }}
-            >
-              <img
-                src={`${base}${item.img}`}
-                alt={`Work ${item.id}`}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "bottom left",
-                  display: "block",
-                }}
-              />
-            </div>
+            />
           </div>
         ))}
       </div>
