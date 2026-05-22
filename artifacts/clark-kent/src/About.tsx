@@ -8,7 +8,7 @@ const base = import.meta.env.BASE_URL;
 
 export default function About() {
   useEffect(() => {
-    gsap.set(".about-box", { width: 0, opacity: 0 });
+    gsap.set(".about-box", { width: 0, height: 0, opacity: 0 });
     gsap.set(".about-row", { gap: 0 });
 
     const aboutTl = gsap.timeline({
@@ -34,8 +34,8 @@ export default function About() {
     aboutTl.to(
       ".about-box",
       {
-        width: "1.1em",
-        height: "1.1em",
+        width: 150,
+        height: 150,
         opacity: 1,
         duration: 1,
         ease: "power2.out",
