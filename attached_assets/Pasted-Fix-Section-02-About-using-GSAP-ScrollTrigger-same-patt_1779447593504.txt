@@ -1,0 +1,94 @@
+Fix Section 02 — About using GSAP ScrollTrigger, 
+same pattern as the existing views-section in the codebase.
+
+REFERENCE: Copy the exact same GSAP pattern from views-section:
+- pin: true
+- scrub: 1  
+- Images start at width: 0, opacity: 0
+- Images animate to width: [target], opacity: 1
+- Use same timeline structure as viewsTl
+
+IMPLEMENTATION:
+
+1. Section setup:
+   - className="about-section"
+   - Same structure as views-section
+   - Background: #F5F4F0
+   - padding: 120px 48px
+
+2. Each line is an "about-row" (same as views-row):
+   - display: flex, align-items: center, justify-content: center
+   - gap starts at 0, animates to 20px (same as views-row)
+
+3. Text uses className="about-text" (same as views-text):
+   - font-family: "Helvetica Neue"
+   - font-weight: 700
+   - font-size: clamp(40px, 7vw, 100px)
+   - color: #111
+   - text-transform: uppercase
+
+4. Images use className="about-box" (same as views-box):
+   - Start: width: 0, opacity: 0
+   - End: width: 0.85em, height: 0.85em
+   - object-fit: cover
+   - border-radius: 4px
+
+5. HTML structure:
+<section className="about-section">
+  <div className="about-row">
+    <span className="about-text">FULL STACK</span>
+  </div>
+  <div className="about-row">
+    <span className="about-text">CREA</span>
+    <img className="about-box" src={`${import.meta.env.BASE_URL}1.png`} alt="" />
+    <span className="about-text">TIVE</span>
+  </div>
+  <div className="about-row">
+    <span className="about-text">SHOOTS &</span>
+  </div>
+  <div className="about-row">
+    <span className="about-text">DIR</span>
+    <img className="about-box" src={`${import.meta.env.BASE_URL}3.png`} alt="" />
+    <span className="about-text">CTS</span>
+  </div>
+  <div className="about-row">
+    <span className="about-text">DESIGNS &</span>
+  </div>
+  <div className="about-row">
+    <span className="about-text">BUI</span>
+    <img className="about-box" src={`${import.meta.env.BASE_URL}2.png`} alt="" />
+    <span className="about-text">DS WITH AI</span>
+  </div>
+</section>
+
+6. GSAP in useEffect (after existing viewsTl):
+const aboutTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top top",
+    end: "+=150%",
+    scrub: 1,
+    pin: true,
+  },
+});
+
+gsap.set(".about-box", { width: 0, opacity: 0 });
+gsap.set(".about-row", { gap: 0 });
+
+aboutTl.to(".about-row", {
+  gap: 20,
+  duration: 1,
+  ease: "power2.out"
+}, 0);
+
+aboutTl.to(".about-box", {
+  width: "0.85em",
+  opacity: 1,
+  duration: 1,
+  ease: "power2.out",
+  stagger: 0.3
+}, 0);
+
+7. Add cleanup: include aboutTl in the return cleanup.
+
+Place the about-section AFTER the hero section, BEFORE partnerships section.
