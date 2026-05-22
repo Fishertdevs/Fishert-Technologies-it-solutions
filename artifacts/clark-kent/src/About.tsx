@@ -15,7 +15,7 @@ export default function About() {
       scrollTrigger: {
         trigger: ".about-section",
         start: "top top",
-        end: "+=150%",
+        end: "+=200%",
         scrub: 1,
         pin: true,
       },
@@ -34,7 +34,8 @@ export default function About() {
     aboutTl.to(
       ".about-box",
       {
-        width: "0.85em",
+        width: "1.1em",
+        height: "1.1em",
         opacity: 1,
         duration: 1,
         ease: "power2.out",

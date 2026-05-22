@@ -131,10 +131,10 @@ body {
 }
 
 .about-box {
-  height: 0.85em;
-  width: 0.85em;
+  height: 0;
   object-fit: cover;
-  border-radius: 4px;
-  display: inline-block;
+  border-radius: 6px;
   flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
