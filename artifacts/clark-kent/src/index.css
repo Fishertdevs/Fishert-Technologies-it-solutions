@@ -96,6 +96,7 @@ body {
   position: absolute;
   top: 2.5rem;
   left: 2.5rem;
+  padding-left: 40px;
   z-index: 2;
   color: #ffffff;
   font-weight: 900;
@@ -179,6 +180,7 @@ body {
   top: 0;
   left: 0;
   padding: 48px;
+  padding-left: 40px;
   z-index: 10;
   pointer-events: none;
 }
@@ -284,7 +286,7 @@ body {
 .hero-description {
   position: absolute;
   bottom: 2rem;
-  left: 2rem;
+  left: 40px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-weight: 400;
@@ -300,7 +302,7 @@ body {
 
 .section4-indicator {
   position: absolute;
-  left: 3vw;
+  left: 40px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;

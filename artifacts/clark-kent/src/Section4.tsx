@@ -245,7 +245,7 @@ export default function Section4() {
         className="text-block"
         style={{
           position: "absolute",
-          right: "6vw",
+          right: "40px",
           top: "50%",
           transform: "translateY(-50%)",
           zIndex: 2,
