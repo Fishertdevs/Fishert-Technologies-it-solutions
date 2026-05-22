@@ -99,7 +99,7 @@ export default function Section4() {
     display: "block",
     fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
     fontWeight: 700,
-    fontSize: "clamp(36px, 5vw, 72px)",
+    fontSize: "clamp(47px, 6.5vw, 94px)",
     color: "#fff",
     textTransform: "uppercase" as const,
     lineHeight: 1.1,
