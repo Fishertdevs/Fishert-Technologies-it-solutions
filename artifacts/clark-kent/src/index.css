@@ -103,19 +103,34 @@ body {
   mix-blend-mode: normal;
 }
 
+.about-wrapper {
+  position: relative;
+  height: 300vh;
+  background: #f5f4f0;
+}
+
 .about {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   background: #f5f4f0;
   color: #111111;
   padding: 6vw 4vw;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .about-inner {
   font-weight: 700;
-  font-size: clamp(60px, 10vw, 140px);
+  font-size: clamp(40px, 7vw, 100px);
   line-height: 0.92;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  width: 100%;
 }
 
 .about-line {
@@ -127,8 +142,9 @@ body {
 .about-img {
   display: inline-block;
   vertical-align: middle;
-  width: 1em;
-  height: 1em;
+  height: 0.75em;
+  width: 0.75em;
   object-fit: cover;
   border-radius: 4px;
+  flex-shrink: 0;
 }
