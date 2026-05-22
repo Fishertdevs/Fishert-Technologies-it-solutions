@@ -1,0 +1,230 @@
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const base = import.meta.env.BASE_URL || "/";
+
+const worksData = [
+  { id: 1, img: "w1.png" },
+  { id: 2, img: "w2.png" },
+  { id: 3, img: "w3.png" },
+  { id: 4, img: "w4.png" },
+  { id: 5, img: "w5.png" },
+  { id: 6, img: "w6.png" },
+  { id: 7, img: "w7.png" },
+  { id: 8, img: "w8.png" },
+  { id: 9, img: "w9.png" },
+];
+
+export default function Works() {
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
+  
+  // Calculate slots based on a strict 1:1 ratio, just like in image_2.png
+  // The viewport will be divided into 5 slots
+  const [dimensions, setDimensions] = useState({ itemSize: 0, heights: [] });
+
+  const initialVisibleCount = 5;
+  const initialVisible = worksData.slice(0, initialVisibleCount);
+  const queuedItems = worksData.slice(initialVisibleCount);
+  const domItems = [...[...queuedItems].reverse(), ...initialVisible];
+
+  useEffect(() => {
+    // 1. Calculate base size and slot heights based on 1:1 ratio
+    const handleResize = () => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      
+      // Divide viewport width into 5 slots (1:1 ratio items)
+      const itemSize = vw / 5;
+      
+      // Calculate decreasing heights (e.g., from 90vh to 35vh), but force 1:1 image inside
+      const maxHeightV = vh * 0.9;
+      const minHeightV = vh * 0.35;
+      const heightStep = (maxHeightV - minHeightV) / (initialVisibleCount - 1);
+      
+      const newHeights = initialVisible.map((_, index) => {
+        // Decreasing heights from left to right (slot 0 to slot 4)
+        return maxHeightV - (index * heightStep);
+      });
+
+      setDimensions({ itemSize, heights: newHeights });
+    };
+
+    handleResize(); // Initial call
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (dimensions.itemSize === 0) return; // Wait for initial resize calculation
+
+    const itemSize = dimensions.itemSize;
+    const heights = dimensions.heights;
+
+    // 2. Setup initial visible items (slots 0-4) with strict 1:1 ratio
+    // positioned from right to left
+    initialVisible.forEach((item, index) => {
+      const reversedIndex = (initialVisibleCount - 1) - index; // 4, 3, 2, 1, 0
+      gsap.set(`.works-item--${item.id}`, {
+        x: reversedIndex * itemSize,
+        width: itemSize,
+        // Container height changes, but image will be forced 1:1 inside
+        height: heights[reversedIndex],
+        opacity: 1,
+      });
+    });
+
+    // 3. Setup queued items (slots -N to -1) as 0x0 hidden dots
+    queuedItems.forEach((item, index) => {
+      gsap.set(`.works-item--${item.id}`, {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        x: 0,
+        width: 0,
+        height: 0,
+        opacity: 0,
+      });
+    });
+
+    // 4. Timeline GSAP with absolute positioning and continuous fluid scaling
+    const worksTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${queuedItems.length * 100}%`,
+        scrub: 1, // Fluid scrolling sync
+        pin: true,
+      },
+    });
+
+    let currentScreen = initialVisible.map((item) => item.id);
+
+    queuedItems.forEach((queuedItem, cycleIndex) => {
+      const enteringId = queuedItem.id;
+      const startTime = cycleIndex;
+
+      // New item enters slot 0 (far left), scaling up from 0x0
+      gsap.set(`.works-item--${enteringId}`, { opacity: 1 });
+      worksTl.to(
+        `.works-item--${enteringId}`,
+        { 
+          x: 0,
+          width: itemSize, 
+          height: heights[0], 
+          duration: 1, 
+          ease: "none" // Linear flow
+        },
+        startTime
+      );
+
+      // Existing items move right one slot and scale height
+      currentScreen.forEach((screenId, index) => {
+        // Items 1-4 move from slot i to i+1
+        if (index < initialVisibleCount - 1) {
+          const fromSlot = (initialVisibleCount - 1) - index; // 4, 3, 2, 1
+          const toSlot = fromSlot - 1; // 3, 2, 1, 0 -> WRONG LOGIC IN PREV, correct below
+
+          // New correct slots logic (0-indexed slots, left to right)
+          // index 0 -> left-most (Slot 0), index 4 -> right-most (Slot 4)
+          // The data is w1..w5 from LEFT to RIGHT in the `initialVisible` array.
+          // BUT, in image_2.png, w5 (rightmost) is biggest.
+          
+          // Let's redefine the currentScreen map to represent slot indices:
+          // Slot 0 (left) = w1, Slot 1 = w2, ..., Slot 4 (right) = w5
+          // w1 must move to Slot 1, w2 to Slot 2, etc.
+          
+          // Using currentScreen = [w1, w2, w3, w4, w5] as slots [0, 1, 2, 3, 4]
+          // w1 (index 0) moves to Slot 1 (x=itemSize), w2 (index 1) to Slot 2 (x=2*itemSize)
+          const newSlotIndex = index + 1;
+          
+          worksTl.to(
+            `.works-item--${screenId}`,
+            { 
+              x: newSlotIndex * itemSize, 
+              height: heights[newSlotIndex], 
+              duration: 1, 
+              ease: "none" 
+            },
+            startTime
+          );
+        } else {
+          // The 5th item (w5, rightmost, slot 4) moves off-screen
+          worksTl.to(
+            `.works-item--${screenId}`,
+            { 
+              x: initialVisibleCount * itemSize, 
+              duration: 1, 
+              ease: "none" 
+            },
+            startTime
+          );
+        }
+      });
+
+      // Update screen queue array: add new leftmost, remove rightmost
+      currentScreen.unshift(enteringId);
+      currentScreen.pop();
+    });
+
+    return () => {
+      worksTl.scrollTrigger?.kill();
+      worksTl.kill();
+    };
+  }, [dimensions.itemSize]); // Re-run whenever item size changes
+
+  return (
+    <section
+      className="works-section"
+      ref={sectionRef}
+      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#fff", position: "relative" }}
+    >
+      <div
+        className="works-track"
+        ref={trackRef}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        {domItems.map((item) => (
+          <div
+            key={item.id}
+            className={`works-item works-item--${item.id}`}
+            style={{
+              overflow: "hidden",
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+            }}
+          >
+            {/* FORCE STRICT 1:1 RATIO ON IMAGE, matching image_2.png */}
+            <div style={{ position: "relative", width: "100%", paddingBottom: "100%" }}>
+              <img
+                src={`${base}${item.img}`}
+                alt={`Work ${item.id}`}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "bottom left", // Reveals perfectly from a bottom-left dot
+                  display: "block",
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

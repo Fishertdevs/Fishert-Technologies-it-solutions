@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -18,8 +18,16 @@ const worksData = [
   { id: 9, img: "w9.png" },
 ];
 
+type Dimensions = { itemSize: number; heights: number[] };
+
 export default function Works() {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+
+  const [dimensions, setDimensions] = useState<Dimensions>({
+    itemSize: 0,
+    heights: [],
+  });
 
   const initialVisibleCount = 5;
   const initialVisible = worksData.slice(0, initialVisibleCount);
@@ -27,34 +35,56 @@ export default function Works() {
   const domItems = [...[...queuedItems].reverse(), ...initialVisible];
 
   useEffect(() => {
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    const itemW = vw / 5;
+    const handleResize = () => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
 
-    const heights = [
-      vh * 0.35,
-      vh * 0.48,
-      vh * 0.62,
-      vh * 0.76,
-      vh * 0.9,
-    ];
+      const itemSize = vw / 5;
 
-    gsap.set(".works-item", {
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      x: 0,
-      width: 0,
-      height: 0,
-      opacity: 0,
-    });
+      const maxHeightV = vh * 0.9;
+      const minHeightV = vh * 0.35;
+      const heightStep = (maxHeightV - minHeightV) / (initialVisibleCount - 1);
+
+      const newHeights = initialVisible.map((_, index) => {
+        return maxHeightV - index * heightStep;
+      });
+
+      setDimensions({ itemSize, heights: newHeights });
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (dimensions.itemSize === 0) return;
+
+    const itemSize = dimensions.itemSize;
+    const heights = dimensions.heights;
 
     initialVisible.forEach((item, index) => {
+      const reversedIndex = initialVisibleCount - 1 - index;
       gsap.set(`.works-item--${item.id}`, {
-        x: index * itemW,
-        width: itemW,
-        height: heights[index],
+        x: reversedIndex * itemSize,
+        width: itemSize,
+        height: heights[reversedIndex],
         opacity: 1,
+      });
+    });
+
+    queuedItems.forEach((item) => {
+      gsap.set(`.works-item--${item.id}`, {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        x: 0,
+        width: 0,
+        height: 0,
+        opacity: 0,
       });
     });
 
@@ -78,7 +108,8 @@ export default function Works() {
       worksTl.to(
         `.works-item--${enteringId}`,
         {
-          width: itemW,
+          x: 0,
+          width: itemSize,
           height: heights[0],
           duration: 1,
           ease: "none",
@@ -88,11 +119,13 @@ export default function Works() {
 
       currentScreen.forEach((screenId, index) => {
         if (index < initialVisibleCount - 1) {
+          const newSlotIndex = index + 1;
+
           worksTl.to(
             `.works-item--${screenId}`,
             {
-              x: (index + 1) * itemW,
-              height: heights[index + 1],
+              x: newSlotIndex * itemSize,
+              height: heights[newSlotIndex],
               duration: 1,
               ease: "none",
             },
@@ -102,7 +135,7 @@ export default function Works() {
           worksTl.to(
             `.works-item--${screenId}`,
             {
-              x: 5 * itemW,
+              x: initialVisibleCount * itemSize,
               duration: 1,
               ease: "none",
             },
@@ -119,7 +152,7 @@ export default function Works() {
       worksTl.scrollTrigger?.kill();
       worksTl.kill();
     };
-  }, []);
+  }, [dimensions.itemSize]);
 
   return (
     <section
@@ -134,6 +167,7 @@ export default function Works() {
     >
       <div
         className="works-track"
+        ref={trackRef}
         style={{
           position: "relative",
           width: "100%",
@@ -146,19 +180,33 @@ export default function Works() {
             className={`works-item works-item--${item.id}`}
             style={{
               overflow: "hidden",
+              position: "absolute",
+              bottom: 0,
+              left: 0,
             }}
           >
-            <img
-              src={`${base}${item.img}`}
-              alt={`Work ${item.id}`}
+            <div
               style={{
-                width: "20vw",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "bottom left",
-                display: "block",
+                position: "relative",
+                width: "100%",
+                paddingBottom: "100%",
               }}
-            />
+            >
+              <img
+                src={`${base}${item.img}`}
+                alt={`Work ${item.id}`}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "bottom left",
+                  display: "block",
+                }}
+              />
+            </div>
           </div>
         ))}
       </div>
