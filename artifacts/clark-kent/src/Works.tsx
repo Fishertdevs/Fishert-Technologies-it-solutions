@@ -102,6 +102,8 @@ export default function Works() {
         end: `+=${queuedItems.length * 100}%`,
         scrub: 1,
         pin: true,
+        invalidateOnRefresh: true,
+        refreshPriority: 2,
       },
     });
 
