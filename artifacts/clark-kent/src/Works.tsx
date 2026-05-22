@@ -7,15 +7,15 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const worksData = [
-  { id: 1, img: "w1.png" },
-  { id: 2, img: "w2.png" },
-  { id: 3, img: "w3.png" },
-  { id: 4, img: "w4.png" },
-  { id: 5, img: "w5.png" },
-  { id: 6, img: "w6.png" },
-  { id: 7, img: "w7.png" },
-  { id: 8, img: "w8.png" },
-  { id: 9, img: "w9.png" },
+  { id: 1, img: "W1.png" },
+  { id: 2, img: "W2.png" },
+  { id: 3, img: "W3.png" },
+  { id: 4, img: "W4.png" },
+  { id: 5, img: "W5.png" },
+  { id: 6, img: "W6.png" },
+  { id: 7, img: "W7.png" },
+  { id: 8, img: "W8.png" },
+  { id: 9, img: "W9.png" },
 ];
 
 type SlotConfig = {
