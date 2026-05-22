@@ -20,6 +20,14 @@ const phase2 = [
   "DARE TO DREAM.",
 ];
 
+const phase3 = [
+  "ART IS NOT WHAT",
+  "YOU SEE BUT WHAT",
+  "YOU MAKE OTHERS",
+  "SEE FEEL AND",
+  "DARE TO BECOME.",
+];
+
 export default function Section4() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -28,7 +36,7 @@ export default function Section4() {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=400%",
+        end: "+=600%",
         scrub: 1,
         pin: true,
         pinSpacing: true,
@@ -41,6 +49,8 @@ export default function Section4() {
     gsap.set(".sweep-bar", { scaleX: 0, transformOrigin: "left center" });
     gsap.set(".phase1-line", { opacity: 1 });
     gsap.set(".phase2-line", { opacity: 0 });
+    gsap.set(".phase3-line", { opacity: 0 });
+    gsap.set(".p3-bar", { scaleX: 0, transformOrigin: "left center" });
     gsap.set(".line-wrapper", { overflow: "hidden", position: "relative" });
 
     tl.to(
@@ -70,6 +80,30 @@ export default function Section4() {
     tl.to(".phase2-line", { opacity: 1, duration: 0.2 }, 1.7);
 
     tl.to(
+      ".indicator-circle[data-num='1']",
+      {
+        borderColor: "rgba(255,255,255,0.3)",
+        color: "rgba(255,255,255,0.3)",
+        duration: 0.1,
+      },
+      1.6,
+    );
+    tl.to(
+      ".line-1-2",
+      { "--line-progress": "100%", duration: 0.3 },
+      1.6,
+    );
+    tl.to(
+      ".indicator-circle[data-num='2']",
+      {
+        borderColor: "rgba(255,255,255,0.9)",
+        color: "rgba(255,255,255,0.9)",
+        duration: 0.1,
+      },
+      1.9,
+    );
+
+    tl.to(
       ".p2-bar",
       {
         scaleX: 1,
@@ -91,6 +125,57 @@ export default function Section4() {
         ease: "none",
       },
       2.8,
+    );
+
+    tl.to(".phase2-line", { opacity: 0, duration: 0.2 }, 3.6);
+    tl.to(".phase3-line", { opacity: 1, duration: 0.2 }, 3.7);
+
+    tl.to(
+      ".indicator-circle[data-num='2']",
+      {
+        borderColor: "rgba(255,255,255,0.3)",
+        color: "rgba(255,255,255,0.3)",
+        duration: 0.1,
+      },
+      3.6,
+    );
+    tl.to(
+      ".line-2-3",
+      { "--line-progress": "100%", duration: 0.3 },
+      3.6,
+    );
+    tl.to(
+      ".indicator-circle[data-num='3']",
+      {
+        borderColor: "rgba(255,255,255,0.9)",
+        color: "rgba(255,255,255,0.9)",
+        duration: 0.1,
+      },
+      3.9,
+    );
+
+    tl.to(
+      ".p3-bar",
+      {
+        scaleX: 1,
+        transformOrigin: "left center",
+        duration: 0.4,
+        stagger: 0.15,
+        ease: "none",
+      },
+      4.0,
+    );
+
+    tl.to(
+      ".p3-bar",
+      {
+        scaleX: 0,
+        transformOrigin: "right center",
+        duration: 0.4,
+        stagger: 0.15,
+        ease: "none",
+      },
+      4.8,
     );
 
     return () => {
@@ -142,6 +227,20 @@ export default function Section4() {
         }}
       />
 
+      <div className="section4-indicator">
+        <div className="indicator-item">
+          <div className="indicator-circle active" data-num="1">1</div>
+          <div className="indicator-line line-1-2"></div>
+        </div>
+        <div className="indicator-item">
+          <div className="indicator-circle" data-num="2">2</div>
+          <div className="indicator-line line-2-3"></div>
+        </div>
+        <div className="indicator-item">
+          <div className="indicator-circle" data-num="3">3</div>
+        </div>
+      </div>
+
       <div
         className="text-block"
         style={{
@@ -153,48 +252,86 @@ export default function Section4() {
           textAlign: "right",
         }}
       >
-        {phase1.map((line, i) => (
-          <div
-            key={i}
-            className="line-wrapper"
-            style={{ position: "relative", overflow: "hidden" }}
-          >
-            <div className="phase1-line">
-              <span style={lineStyle}>{line}</span>
-            </div>
+        {phase3.map((p3line, i) => {
+          const hasP1P2 = i < phase1.length;
+          return (
             <div
-              className="phase2-line"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-              }}
+              key={i}
+              className="line-wrapper"
+              style={{ position: "relative", overflow: "hidden" }}
             >
-              <span style={lineStyle}>{phase2[i]}</span>
+              {hasP1P2 ? (
+                <div className="phase1-line">
+                  <span style={lineStyle}>{phase1[i]}</span>
+                </div>
+              ) : (
+                <div style={{ visibility: "hidden" }}>
+                  <span style={lineStyle}>{p3line}</span>
+                </div>
+              )}
+              {hasP1P2 && (
+                <div
+                  className="phase2-line"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                  }}
+                >
+                  <span style={lineStyle}>{phase2[i]}</span>
+                </div>
+              )}
+              <div
+                className="phase3-line"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                }}
+              >
+                <span style={lineStyle}>{p3line}</span>
+              </div>
+              {hasP1P2 && (
+                <>
+                  <div
+                    className="sweep-bar p1-bar"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "#FF0000",
+                      zIndex: 3,
+                    }}
+                  />
+                  <div
+                    className="sweep-bar p2-bar"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "#FF0000",
+                      zIndex: 3,
+                      transform: "scaleX(0)",
+                    }}
+                  />
+                </>
+              )}
+              <div
+                className="sweep-bar p3-bar"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "#FF0000",
+                  zIndex: 3,
+                  transform: "scaleX(0)",
+                }}
+              />
             </div>
-            <div
-              className="sweep-bar p1-bar"
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "#FF0000",
-                zIndex: 3,
-              }}
-            />
-            <div
-              className="sweep-bar p2-bar"
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "#FF0000",
-                zIndex: 3,
-                transform: "scaleX(0)",
-              }}
-            />
-          </div>
-        ))}
+          );
+        })}
       </div>
+
+      <p className="section4-year">Portfolio 2026</p>
     </section>
   );
 }
