@@ -246,3 +246,35 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+.contact-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #111;
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.contact-btn-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+}
+
+.contact-btn-corner.top-left { top: 6px; left: 6px; }
+.contact-btn-corner.top-right { top: 6px; right: 6px; }
+.contact-btn-corner.bottom-left { bottom: 6px; left: 6px; }
+.contact-btn-corner.bottom-right { bottom: 6px; right: 6px; }

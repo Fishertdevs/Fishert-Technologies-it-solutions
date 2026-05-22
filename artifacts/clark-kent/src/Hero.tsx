@@ -206,6 +206,13 @@ export default function Hero() {
         <div>CLARK</div>
         <div>KENT</div>
       </div>
+      <a href="#contact" className="contact-btn">
+        <span className="contact-btn-corner top-left"></span>
+        <span className="contact-btn-corner top-right"></span>
+        <span className="contact-btn-text">Get in touch</span>
+        <span className="contact-btn-corner bottom-left"></span>
+        <span className="contact-btn-corner bottom-right"></span>
+      </a>
     </div>
   );
 }
