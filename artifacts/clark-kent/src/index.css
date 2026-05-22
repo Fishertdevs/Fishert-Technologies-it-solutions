@@ -318,15 +318,15 @@ body {
 }
 
 .indicator-circle {
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid rgba(255,255,255,0.4);
+  width: 38px;
+  height: 38px;
+  border: 1.8px solid rgba(255,255,255,0.4);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   color: rgba(255,255,255,0.4);
   background: transparent;
   transition: all 0.3s ease;
@@ -338,8 +338,8 @@ body {
 }
 
 .indicator-line {
-  width: 1.5px;
-  height: 40px;
+  width: 1.8px;
+  height: 48px;
   background: rgba(255,255,255,0.2);
   position: relative;
   overflow: hidden;
