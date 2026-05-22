@@ -106,11 +106,12 @@ body {
 .about {
   background: #f5f4f0;
   color: #111111;
-  padding: 6vw 6vw;
+  padding: 6vw 4vw;
+  text-align: center;
 }
 
 .about-inner {
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(60px, 10vw, 140px);
   line-height: 0.92;
   letter-spacing: -0.02em;
@@ -120,6 +121,7 @@ body {
 .about-line {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .about-img {
