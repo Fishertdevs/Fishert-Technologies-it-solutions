@@ -286,10 +286,14 @@ body {
   bottom: 2rem;
   left: 2rem;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
   z-index: 10;
-  max-width: 200px;
+  max-width: 320px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
