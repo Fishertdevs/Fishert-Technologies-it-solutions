@@ -1,0 +1,94 @@
+Build a fullscreen portfolio hero section for "Clark Kent".
+
+LAYOUT:
+- Fullscreen canvas as background
+- Large bold white text "CLARK" and "KENT" stacked, top-left, padding 2.5rem
+- Font: bold sans-serif, very large (clamp 80px to 160px)
+- Text on top of canvas via z-index
+- Nothing else — no nav, no tagline, no buttons
+- cursor: none on body
+
+SETUP:
+- Single index.html + styles.css + script.js + shaders.js
+- Load Three.js from CDN: https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js
+- Two images in /public folder: Top.png and Bottom.png
+
+USE THESE FILES EXACTLY:
+
+=== shaders.js ===
+const vertexShader = `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const fluidFragmentShader = `
+  uniform sampler2D uPrevTrails;
+  uniform vec2 uMouse;
+  uniform vec2 uPrevMouse;
+  uniform vec2 uResolution;
+  uniform float uDecay;
+  uniform bool uIsMoving;
+  varying vec2 vUv;
+  void main() {
+    vec4 prevState = texture2D(uPrevTrails, vUv);
+    float newValue = prevState.r * uDecay;
+    if (uIsMoving) {
+      vec2 mouseDirection = uMouse - uPrevMouse;
+      float lineLength = length(mouseDirection);
+      if (lineLength > 0.001) {
+        vec2 mouseDir = mouseDirection / lineLength;
+        vec2 toPixel = vUv - uPrevMouse;
+        float projAlong = dot(toPixel, mouseDir);
+        projAlong = clamp(projAlong, 0.0, lineLength);
+        vec2 closestPoint = uPrevMouse + projAlong * mouseDir;
+        float dist = length(vUv - closestPoint);
+        float lineWidth = 0.09;
+        float intensity = smoothstep(lineWidth, 0.0, dist) * 0.3;
+        newValue += intensity;
+      }
+    }
+    gl_FragColor = vec4(newValue, 0.0, 0.0, 1.0);
+  }
+`;
+
+const displayFragmentShader = `
+  uniform sampler2D uFluid;
+  uniform sampler2D uTopTexture;
+  uniform sampler2D uBottomTexture;
+  uniform vec2 uResolution;
+  uniform float uDpr;
+  uniform vec2 uTopTextureSize;
+  uniform vec2 uBottomTextureSize;
+  varying vec2 vUv;
+  vec2 getCoverUV(vec2 uv, vec2 textureSize) {
+    if (textureSize.x < 1.0 || textureSize.y < 1.0) return uv;
+    vec2 s = uResolution / textureSize;
+    float scale = max(s.x, s.y);
+    vec2 scaledSize = textureSize * scale;
+    vec2 offset = (uResolution - scaledSize) * 0.5;
+    return (uv * uResolution - offset) / scaledSize;
+  }
+  void main() {
+    float fluid = texture2D(uFluid, vUv).r;
+    vec2 topUV = getCoverUV(vUv, uTopTextureSize);
+    vec2 bottomUV = getCoverUV(vUv, uBottomTextureSize);
+    vec4 topColor = texture2D(uTopTexture, topUV);
+    vec4 bottomColor = texture2D(uBottomTexture, bottomUV);
+    float threshold = 0.02;
+    float edgeWidth = 0.004 / uDpr;
+    float t = smoothstep(threshold, threshold + edgeWidth, fluid);
+    gl_FragColor = mix(topColor, bottomColor, t);
+  }
+`;
+
+=== script.js ===
+- Import shaders from shaders.js
+- Load Top.png as topTexture, Bottom.png as bottomTexture from /public
+- Use HalfFloatType for render targets (better browser compatibility)
+- Ping pong render targets size 512x512
+- Handle mousemove and touchmove events
+- Handle window resize
+- Animate loop with ping pong simulation

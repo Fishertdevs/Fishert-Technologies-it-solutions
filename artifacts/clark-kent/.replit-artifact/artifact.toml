@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Clark Kent"
+version = "1.0.0"
+id = "artifacts/clark-kent"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25279
+
+[services.development]
+run = "pnpm --filter @workspace/clark-kent run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/clark-kent", "run", "build" ]
+publicDir = "artifacts/clark-kent/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25279"
+BASE_PATH = "/"
