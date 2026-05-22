@@ -180,7 +180,7 @@ export default function Works() {
     >
       <div className="works-text-block">
         <h2 className="works-heading">
-          WHERE IDEAS<br />BECOME IMAGES.
+          WHERE IDEAS<br />BECOME REALITY.
         </h2>
         <p className="works-tagline">
           A curated selection of projects across<br />
