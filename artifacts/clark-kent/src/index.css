@@ -167,22 +167,33 @@ body {
   opacity: 1;
 }
 
-.navbar-cta {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #f5f4f0;
-  background: #111;
-  text-decoration: none;
-  padding: 10px 22px;
+.navbar-lang-toggle {
+  background: none;
+  border: 1.5px solid rgba(17, 17, 17, 0.2);
   border-radius: 100px;
-  transition: background 0.2s ease, color 0.2s ease;
+  padding: 7px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(17, 17, 17, 0.4);
+  transition: border-color 0.2s ease;
 }
 
-.navbar-cta:hover {
-  background: #333;
+.navbar-lang-toggle:hover {
+  border-color: rgba(17, 17, 17, 0.5);
+}
+
+.navbar-lang--active {
+  color: #111;
+}
+
+.navbar-lang-sep {
+  opacity: 0.3;
 }
 
 /* ── About section ──────────────────────────────────────── */
@@ -231,7 +242,7 @@ body {
   display: block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
-  font-size: clamp(52px, 9vw, 130px);
+  font-size: clamp(40px, 6.5vw, 96px);
   line-height: 0.92;
   letter-spacing: -0.03em;
   color: #111;
@@ -255,7 +266,7 @@ body {
   z-index: 3;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.16);
 }
 
 .about-float img {
@@ -265,26 +276,27 @@ body {
   display: block;
 }
 
+/* All three clustered together on the right side */
 .about-float--1 {
-  width: clamp(160px, 17vw, 240px);
-  height: clamp(200px, 21vw, 300px);
-  right: 18%;
-  top: 12%;
+  width: clamp(140px, 15vw, 210px);
+  height: clamp(170px, 18vw, 260px);
+  right: 8%;
+  top: 8%;
 }
 
 .about-float--2 {
-  width: clamp(140px, 14vw, 200px);
-  height: clamp(140px, 14vw, 200px);
-  right: 6%;
-  top: 40%;
+  width: clamp(130px, 13vw, 185px);
+  height: clamp(130px, 13vw, 185px);
+  right: 24%;
+  top: 30%;
   border-radius: 50%;
 }
 
 .about-float--3 {
-  width: clamp(180px, 19vw, 280px);
-  height: clamp(140px, 14vw, 210px);
-  right: 26%;
-  bottom: 8%;
+  width: clamp(150px, 16vw, 230px);
+  height: clamp(120px, 12vw, 180px);
+  right: 7%;
+  top: 55%;
 }
 
 .works-section {

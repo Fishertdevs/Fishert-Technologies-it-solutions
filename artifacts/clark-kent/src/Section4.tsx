@@ -1,35 +1,29 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLang } from "./LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const base = import.meta.env.BASE_URL || "/";
 
-const phase1 = [
-  "LIMITS ARE NOT",
-  "REAL THEY ARE",
-  "JUST SOMEONE",
-  "ELSE'S OPINION.",
-];
-
-const phase2 = [
-  "CREATE BEYOND",
-  "WHAT EYES CAN",
-  "SEE AND MINDS",
-  "DARE TO DREAM.",
-];
-
-const phase3 = [
-  "ART IS NOT WHAT",
-  "YOU SEE BUT WHAT",
-  "YOU MAKE OTHERS",
-  "SEE FEEL AND",
-  "DARE TO BECOME.",
-];
+const phases = {
+  es: {
+    phase1: ["LOS LÍMITES NO", "SON REALES, SON", "SOLO OPINIONES", "DE OTROS."],
+    phase2: ["CREA MÁS ALLÁ", "DE LO QUE LOS", "OJOS PUEDEN", "VER Y SOÑAR."],
+    phase3: ["EL ARTE NO ES LO", "QUE VES SINO LO", "QUE HACES SENTIR", "Y ATREVERSE A", "CONVERTIRSE."],
+  },
+  en: {
+    phase1: ["LIMITS ARE NOT", "REAL THEY ARE", "JUST SOMEONE", "ELSE'S OPINION."],
+    phase2: ["CREATE BEYOND", "WHAT EYES CAN", "SEE AND MINDS", "DARE TO DREAM."],
+    phase3: ["ART IS NOT WHAT", "YOU SEE BUT WHAT", "YOU MAKE OTHERS", "SEE FEEL AND", "DARE TO BECOME."],
+  },
+};
 
 export default function Section4() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const { lang } = useLang();
+  const { phase1, phase2, phase3 } = phases[lang];
 
   useEffect(() => {
     const tl = gsap.timeline({

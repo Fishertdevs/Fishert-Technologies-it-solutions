@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLang } from "./LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,6 +36,7 @@ type SlotConfig = {
 export default function Works() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [slots, setSlots] = useState<SlotConfig[]>([]);
+  const { lang } = useLang();
 
   const initialVisibleCount = 5;
   const initialVisible = worksData.slice(0, initialVisibleCount);
@@ -180,14 +182,15 @@ export default function Works() {
     >
       <div className="works-text-block">
         <h2 className="works-heading">
-          WHERE IDEAS<br />BECOME REALITY.
+          {lang === "es" ? <>DONDE LAS IDEAS<br />SE VUELVEN REALIDAD.</> : <>WHERE IDEAS<br />BECOME REALITY.</>}
         </h2>
         <p className="works-tagline">
-          A curated selection of projects across<br />
-          design, direction & AI.
+          {lang === "es"
+            ? <>Una selección curada de proyectos en<br />diseño, dirección e IA.</>
+            : <>A curated selection of projects across<br />design, direction & AI.</>}
         </p>
         <p className="works-sub">
-          DESIGN. DIRECTION. AI. CODE.
+          {lang === "es" ? "DISEÑO. DIRECCIÓN. IA. CÓDIGO." : "DESIGN. DIRECTION. AI. CODE."}
         </p>
       </div>
       <div

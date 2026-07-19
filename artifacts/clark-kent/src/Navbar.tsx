@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
+import { useLang } from "./LanguageContext";
 
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Works", href: "#works" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
-];
+const navLinks = {
+  es: [
+    { label: "Nosotros", href: "#about" },
+    { label: "Proyectos", href: "#works" },
+    { label: "Servicios", href: "#services" },
+    { label: "Contacto", href: "#contact" },
+  ],
+  en: [
+    { label: "About", href: "#about" },
+    { label: "Works", href: "#works" },
+    { label: "Services", href: "#services" },
+    { label: "Contact", href: "#contact" },
+  ],
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { lang, toggle } = useLang();
+  const links = navLinks[lang];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -19,9 +30,7 @@ export default function Navbar() {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
+    if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -32,19 +41,17 @@ export default function Navbar() {
       <ul className="navbar-links">
         {links.map((l) => (
           <li key={l.label}>
-            <a
-              className="navbar-link"
-              href={l.href}
-              onClick={(e) => handleClick(e, l.href)}
-            >
+            <a className="navbar-link" href={l.href} onClick={(e) => handleClick(e, l.href)}>
               {l.label}
             </a>
           </li>
         ))}
       </ul>
-      <a className="navbar-cta" href="#contact" onClick={(e) => handleClick(e, "#contact")}>
-        Get in touch
-      </a>
+      <button className="navbar-lang-toggle" onClick={toggle} aria-label="Toggle language">
+        <span className={lang === "es" ? "navbar-lang--active" : ""}>ES</span>
+        <span className="navbar-lang-sep">/</span>
+        <span className={lang === "en" ? "navbar-lang--active" : ""}>EN</span>
+      </button>
     </nav>
   );
 }
