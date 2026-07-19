@@ -1,150 +1,174 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const content = {
-  es: {
-    badge: "FISHERT SOFTWARE AGENCY",
-    label: "SERVICIOS",
-    items: [
-      {
-        num: "01",
-        title: "Diseño de Producto",
-        desc: "Interfaces que reducen fricción y aumentan retención.",
-      },
-      {
-        num: "02",
-        title: "Desarrollo Web & Móvil",
-        desc: "Código limpio, arquitecturas escalables, entregas reales.",
-      },
-      {
-        num: "03",
-        title: "Ingeniería de Software",
-        desc: "Sistemas robustos diseñados para crecer sin romperse.",
-      },
-      {
-        num: "04",
-        title: "Estrategia Digital",
-        desc: "Roadmaps claros para productos que compiten y ganan.",
-      },
-      {
-        num: "05",
-        title: "Inteligencia Artificial",
-        desc: "IA integrada donde realmente agrega valor al negocio.",
-      },
-    ],
-  },
-  en: {
-    badge: "FISHERT SOFTWARE AGENCY",
-    label: "SERVICES",
-    items: [
-      {
-        num: "01",
-        title: "Product Design",
-        desc: "Interfaces that cut friction and drive retention.",
-      },
-      {
-        num: "02",
-        title: "Web & Mobile Dev",
-        desc: "Clean code, scalable architecture, real deliverables.",
-      },
-      {
-        num: "03",
-        title: "Software Engineering",
-        desc: "Robust systems built to scale without breaking.",
-      },
-      {
-        num: "04",
-        title: "Digital Strategy",
-        desc: "Clear roadmaps for products that compete and win.",
-      },
-      {
-        num: "05",
-        title: "Artificial Intelligence",
-        desc: "AI integrated where it genuinely adds business value.",
-      },
-    ],
-  },
-};
+const base = import.meta.env.BASE_URL || "/";
+
+const galleryData = [
+  { id: 101, img: "W4.png", title: "Blue Tulip" },
+  { id: 102, img: "W5.png", title: "Opera Mask" },
+  { id: 103, img: "W6.png", title: "Blue Bloom" },
+  { id: 104, img: "W7.png", title: "First Contact" },
+  { id: 105, img: "W8.png", title: "White Yak" },
+  { id: 106, img: "W9.png", title: "Heron Girl" },
+  { id: 107, img: "W1.png", title: "Porcelain Crane" },
+  { id: 108, img: "W2.png", title: "Flamingo Dreams" },
+  { id: 109, img: "W3.png", title: "Red Equestrian" },
+  { id: 110, img: "W4.png", title: "Blue Tulip" },
+  { id: 111, img: "W5.png", title: "Opera Mask" },
+  { id: 112, img: "W6.png", title: "Blue Bloom" },
+  { id: 113, img: "W7.png", title: "First Contact" },
+  { id: 114, img: "W8.png", title: "White Yak" },
+  { id: 115, img: "W9.png", title: "Heron Girl" },
+  { id: 116, img: "W1.png", title: "Porcelain Crane" },
+  { id: 117, img: "W2.png", title: "Flamingo Dreams" },
+  { id: 118, img: "W3.png", title: "Red Equestrian" },
+];
+
+type SlotConfig = { size: number; x: number };
 
 export default function Servicios() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [slots, setSlots] = useState<SlotConfig[]>([]);
   const { lang } = useLang();
-  const t = content[lang];
+
+  const initialVisibleCount = 5;
+  const initialVisible = galleryData.slice(0, initialVisibleCount);
+  const queuedItems = galleryData.slice(initialVisibleCount);
+  const domItems = [...[...queuedItems].reverse(), ...initialVisible];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.set(".srv-item", { clipPath: "inset(0% 0% 100% 0%)", opacity: 0 });
-      gsap.set(".srv-badge", { opacity: 0, y: 16 });
-      gsap.set(".srv-label-inner", { yPercent: 110 });
-      gsap.set(".srv-progress-fill", { scaleY: 0, transformOrigin: "top center" });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=320%",
-          scrub: 1.2,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: 4,
-        },
-      });
-
-      tl.to(".srv-badge", { opacity: 1, y: 0, duration: 0.4, ease: "none" }, 0);
-      tl.to(".srv-label-inner", { yPercent: 0, duration: 0.5, ease: "none" }, 0);
-      tl.to(".srv-progress-fill", { scaleY: 1, duration: 2.5, ease: "none" }, 0.4);
-
-      // Reveal each service item sequentially
-      const items = gsap.utils.toArray<HTMLElement>(".srv-item");
-      items.forEach((item, i) => {
-        const startAt = 0.3 + i * 0.42;
-        tl.to(
-          item,
-          {
-            clipPath: "inset(0% 0% 0% 0%)",
-            opacity: 1,
-            duration: 0.5,
-            ease: "none",
-          },
-          startAt,
-        );
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
+    const handleResize = () => {
+      const vw = window.innerWidth;
+      const sizes = [vw * 0.12, vw * 0.16, vw * 0.2, vw * 0.24, vw * 0.28];
+      const computedSlots: SlotConfig[] = [];
+      let currentX = 0;
+      for (let i = 0; i < initialVisibleCount; i++) {
+        computedSlots.push({ size: sizes[i], x: currentX });
+        currentX += sizes[i];
+      }
+      setSlots(computedSlots);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return (
-    <section id="servicios" className="srv-section" ref={sectionRef}>
-      <div className="srv-inner">
-        {/* Left column */}
-        <div className="srv-left">
-          <div className="srv-badge">{t.badge}</div>
-          <div className="srv-label-wrap">
-            <span className="srv-label-inner">{t.label}</span>
-          </div>
-          <div className="srv-progress-track">
-            <div className="srv-progress-fill" />
-          </div>
-        </div>
+  useEffect(() => {
+    if (slots.length === 0) return;
 
-        {/* Right column: service list */}
-        <div className="srv-list">
-          {t.items.map((item) => (
-            <div key={item.num} className="srv-item">
-              <span className="srv-item-num">{item.num}</span>
-              <div className="srv-item-body">
-                <span className="srv-item-title">{item.title}</span>
-                <span className="srv-item-desc">{item.desc}</span>
-              </div>
+    gsap.set(".svc-item", {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      x: 0,
+      width: 0,
+      height: 0,
+      opacity: 0,
+    });
+
+    initialVisible.forEach((item, index) => {
+      const slot = slots[index];
+      gsap.set(`.svc-item--${item.id}`, {
+        x: slot.x,
+        width: slot.size,
+        height: slot.size,
+        opacity: 1,
+      });
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${queuedItems.length * 100}%`,
+        scrub: 1,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        refreshPriority: 4,
+      },
+    });
+
+    const currentScreen = initialVisible.map((item) => item.id);
+
+    queuedItems.forEach((queuedItem, cycleIndex) => {
+      const enteringId = queuedItem.id;
+      const startTime = cycleIndex;
+
+      gsap.set(`.svc-item--${enteringId}`, { opacity: 1 });
+      tl.to(
+        `.svc-item--${enteringId}`,
+        { x: slots[0].x, width: slots[0].size, height: slots[0].size, duration: 1, ease: "none" },
+        startTime,
+      );
+
+      currentScreen.forEach((screenId, index) => {
+        if (index < initialVisibleCount - 1) {
+          const nextSlot = slots[index + 1];
+          tl.to(
+            `.svc-item--${screenId}`,
+            { x: nextSlot.x, width: nextSlot.size, height: nextSlot.size, duration: 1, ease: "none" },
+            startTime,
+          );
+        } else {
+          const lastSlot = slots[initialVisibleCount - 1];
+          tl.to(
+            `.svc-item--${screenId}`,
+            { x: lastSlot.x + lastSlot.size, duration: 1, ease: "none" },
+            startTime,
+          );
+        }
+      });
+
+      currentScreen.unshift(enteringId);
+      currentScreen.pop();
+    });
+
+    return () => { tl.scrollTrigger?.kill(); tl.kill(); };
+  }, [slots]);
+
+  return (
+    <section
+      id="servicios"
+      ref={sectionRef}
+      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#fff", position: "relative" }}
+    >
+      <div className="works-text-block">
+        <h2 className="works-heading">
+          {lang === "es" ? <>LO QUE<br />HACEMOS.</> : <>WHAT WE<br />DO.</>}
+        </h2>
+        <p className="works-tagline">
+          {lang === "es"
+            ? <>Diseño, ingeniería e IA aplicada<br />para productos que escalan.</>
+            : <>Design, engineering and applied AI<br />for products that scale.</>}
+        </p>
+        <p className="works-sub">
+          {lang === "es" ? "DISEÑO. CÓDIGO. ESTRATEGIA. IA." : "DESIGN. CODE. STRATEGY. AI."}
+        </p>
+      </div>
+
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        {domItems.map((item) => (
+          <div
+            key={item.id}
+            className={`svc-item svc-item--${item.id}`}
+            style={{ overflow: "hidden", position: "absolute", bottom: 0, left: 0 }}
+          >
+            <img
+              src={`${base}${item.img}`}
+              alt={item.title}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom left", display: "block" }}
+            />
+            <div className="works-item-overlay">
+              <span className="works-item-title">{item.title}</span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

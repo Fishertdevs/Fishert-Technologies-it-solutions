@@ -35,11 +35,10 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.set(".about-line-inner", { yPercent: 105 });
+      // Images start hidden — reveal + parallax on scroll
       gsap.set(".about-float", { clipPath: "inset(100% 0% 0% 0%)", opacity: 0 });
-      gsap.set(".about-agency-badge", { opacity: 0, y: 20 });
 
-      const tl = gsap.timeline({
+      const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
@@ -48,20 +47,30 @@ export default function About() {
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          refreshPriority: 3,
+          refreshPriority: 5,
         },
       });
 
-      tl.to(".about-line-inner", { yPercent: 0, duration: 1.2, ease: "none", stagger: 0.18 }, 0);
-      tl.to(".about-agency-badge", { opacity: 1, y: 0, duration: 0.6, ease: "none" }, 0.3);
+      scrollTl.to(
+        ".about-float--1",
+        { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" },
+        0.05,
+      );
+      scrollTl.to(
+        ".about-float--2",
+        { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" },
+        0.35,
+      );
+      scrollTl.to(
+        ".about-float--3",
+        { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" },
+        0.62,
+      );
 
-      tl.to(".about-float--1", { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" }, 0.2);
-      tl.to(".about-float--2", { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" }, 0.5);
-      tl.to(".about-float--3", { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" }, 0.78);
-
-      tl.to(".about-float--1", { y: -30, duration: 2, ease: "none" }, 0);
-      tl.to(".about-float--2", { y: -20, duration: 2, ease: "none" }, 0);
-      tl.to(".about-float--3", { y: -25, duration: 2, ease: "none" }, 0);
+      // Subtle parallax drift
+      scrollTl.to(".about-float--1", { y: -30, duration: 2, ease: "none" }, 0);
+      scrollTl.to(".about-float--2", { y: -20, duration: 2, ease: "none" }, 0);
+      scrollTl.to(".about-float--3", { y: -25, duration: 2, ease: "none" }, 0);
     }, sectionRef);
 
     return () => ctx.revert();
