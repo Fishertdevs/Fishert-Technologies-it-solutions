@@ -16,7 +16,7 @@ export default function Footer() {
   const t = content[lang];
 
   return (
-    <footer id="contact" className="footer-section">
+    <footer id="contacto" className="footer-section">
       <div className="footer-inner">
         <div className="footer-top">
           <h2 className="footer-heading">

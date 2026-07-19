@@ -68,7 +68,7 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="about-section" ref={sectionRef}>
+    <section id="inicio" className="about-section" ref={sectionRef}>
       {floatingImages.map((img, i) => (
         <div key={i} className={img.className}>
           <img src={img.src} alt="" />

@@ -1,8 +1,9 @@
 import { LanguageProvider } from "./LanguageContext";
 import Navbar from "./Navbar";
 import About from "./About";
-import Works from "./Works";
-import Section4 from "./Section4";
+import Servicios from "./Servicios";
+import Nosotros from "./Nosotros";
+import Portafolio from "./Portafolio";
 import Footer from "./Footer";
 
 export default function App() {
@@ -10,8 +11,9 @@ export default function App() {
     <LanguageProvider>
       <Navbar />
       <About />
-      <Works />
-      <Section4 />
+      <Servicios />
+      <Nosotros />
+      <Portafolio />
       <Footer />
     </LanguageProvider>
   );

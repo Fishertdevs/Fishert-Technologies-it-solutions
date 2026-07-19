@@ -54,7 +54,7 @@ body,
   margin: 0;
   padding: 0;
   width: 100%;
-  background: #000;
+  background: #fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -122,7 +122,7 @@ body {
 }
 
 .navbar--scrolled {
-  background: rgba(245, 244, 240, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding: 14px 40px;
@@ -198,7 +198,7 @@ body {
 
 /* ── About section ──────────────────────────────────────── */
 .about-section {
-  background: #f5f4f0;
+  background: #fff;
   box-sizing: border-box;
   min-height: 100vh;
   position: relative;
@@ -613,4 +613,258 @@ body {
 
 .footer-social-link:hover {
   color: #fff;
+}
+
+/* ── Servicios section ──────────────────────────────────── */
+.srv-section {
+  background: #fff;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.srv-inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0;
+  padding: 120px 48px 80px;
+  box-sizing: border-box;
+  align-items: start;
+}
+
+.srv-left {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: sticky;
+  top: 120px;
+}
+
+.srv-badge {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.4);
+}
+
+.srv-label-wrap {
+  overflow: hidden;
+  line-height: 1;
+}
+
+.srv-label-inner {
+  display: block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(36px, 5vw, 76px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.srv-progress-track {
+  width: 1.5px;
+  height: 180px;
+  background: rgba(17, 17, 17, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.srv-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #111;
+}
+
+.srv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 8px;
+}
+
+.srv-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.srv-item:first-child {
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.srv-item-num {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(17, 17, 17, 0.35);
+  padding-top: 8px;
+  min-width: 28px;
+}
+
+.srv-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.srv-item-title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 3.5vw, 54px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.srv-item-desc {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(17, 17, 17, 0.5);
+  max-width: 380px;
+}
+
+/* ── Nosotros section ───────────────────────────────────── */
+.nos-section {
+  background: #fff;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.nos-inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  padding: 120px 48px 80px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.nos-left {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.nos-badge {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.4);
+}
+
+.nos-lines {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nos-line {
+  overflow: hidden;
+  line-height: 0.9;
+}
+
+.nos-line-inner {
+  display: block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 96px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: #111;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+}
+
+.nos-right {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  justify-content: center;
+}
+
+.nos-body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(15px, 1.4vw, 20px);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(17, 17, 17, 0.6);
+  margin: 0;
+}
+
+.nos-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(17, 17, 17, 0.12);
+}
+
+.nos-stats {
+  display: flex;
+  gap: 48px;
+}
+
+.nos-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nos-stat-num {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(36px, 4vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #111;
+}
+
+.nos-stat-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.4);
+}
+
+/* ── Portafolio items (same as works but scoped) ─────────── */
+.port-item {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.port-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

@@ -3,16 +3,18 @@ import { useLang } from "./LanguageContext";
 
 const navLinks = {
   es: [
-    { label: "Nosotros", href: "#about" },
-    { label: "Proyectos", href: "#works" },
-    { label: "Servicios", href: "#services" },
-    { label: "Contacto", href: "#contact" },
+    { label: "Inicio", href: "#inicio" },
+    { label: "Servicios", href: "#servicios" },
+    { label: "Nosotros", href: "#nosotros" },
+    { label: "Portafolio", href: "#portafolio" },
+    { label: "Contacto", href: "#contacto" },
   ],
   en: [
-    { label: "About", href: "#about" },
-    { label: "Works", href: "#works" },
-    { label: "Services", href: "#services" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "#inicio" },
+    { label: "Services", href: "#servicios" },
+    { label: "About", href: "#nosotros" },
+    { label: "Portfolio", href: "#portafolio" },
+    { label: "Contact", href: "#contacto" },
   ],
 };
 
@@ -35,7 +37,7 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
-      <a className="navbar-logo" href="#about" onClick={(e) => handleClick(e, "#about")}>
+      <a className="navbar-logo" href="#inicio" onClick={(e) => handleClick(e, "#inicio")}>
         FISHERT<span className="navbar-logo-dot">.</span>
       </a>
       <ul className="navbar-links">
