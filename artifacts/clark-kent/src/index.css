@@ -107,39 +107,184 @@ body {
   mix-blend-mode: normal;
 }
 
-.about-section {
-  background: #f5f4f0;
-  padding: 120px 48px;
-  box-sizing: border-box;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.about-row {
+/* ── Navbar ─────────────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 22px 40px;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, padding 0.35s ease;
 }
 
-.about-text {
+.navbar--scrolled {
+  background: rgba(245, 244, 240, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 14px 40px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.navbar-logo {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  font-size: clamp(40px, 7vw, 100px);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  color: #111111;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+  color: #111;
+  text-decoration: none;
   text-transform: uppercase;
 }
 
-.about-box {
+.navbar-logo-dot {
+  color: #111;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-link {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111;
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-link:hover {
+  opacity: 1;
+}
+
+.navbar-cta {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f5f4f0;
+  background: #111;
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: 100px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navbar-cta:hover {
+  background: #333;
+}
+
+/* ── About section ──────────────────────────────────────── */
+.about-section {
+  background: #f5f4f0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.about-content {
+  position: relative;
+  z-index: 2;
+  padding: 120px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about-agency-badge {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.4);
+}
+
+.about-lines {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.about-line {
+  overflow: hidden;
+  line-height: 0.9;
+}
+
+.about-line-inner {
+  display: block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(52px, 9vw, 130px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: #111;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+}
+
+.about-descriptor {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(14px, 1.2vw, 17px);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(17, 17, 17, 0.55);
+  max-width: 420px;
+  margin: 0;
+}
+
+/* ── Floating image cards ───────────────────────────────── */
+.about-float {
+  position: absolute;
+  z-index: 3;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+.about-float img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 6px;
-  flex-shrink: 0;
-  display: inline-block;
-  vertical-align: middle;
+  display: block;
+}
+
+.about-float--1 {
+  width: clamp(160px, 17vw, 240px);
+  height: clamp(200px, 21vw, 300px);
+  right: 18%;
+  top: 12%;
+}
+
+.about-float--2 {
+  width: clamp(140px, 14vw, 200px);
+  height: clamp(140px, 14vw, 200px);
+  right: 6%;
+  top: 40%;
+  border-radius: 50%;
+}
+
+.about-float--3 {
+  width: clamp(180px, 19vw, 280px);
+  height: clamp(140px, 14vw, 210px);
+  right: 26%;
+  bottom: 8%;
 }
 
 .works-section {
