@@ -8,9 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL;
 
 const floatingImages = [
-  { src: `${base}tech1_2.png`, className: "about-float about-float--1" },
-  { src: `${base}tech2_2.png`, className: "about-float about-float--2" },
-  { src: `${base}tech3_2.png`, className: "about-float about-float--3" },
+  { src: `${base}surreal1.png`, className: "about-float about-float--1" },
+  { src: `${base}surreal2.png`, className: "about-float about-float--2" },
+  { src: `${base}surreal3.png`, className: "about-float about-float--3" },
 ];
 
 const content = {

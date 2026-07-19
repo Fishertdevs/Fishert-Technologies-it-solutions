@@ -241,14 +241,19 @@ body {
 
 .about-line-inner {
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
   font-weight: 900;
-  font-size: clamp(40px, 6.5vw, 96px);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  color: #111;
+  font-size: clamp(52px, 8.5vw, 128px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: #E8001C;
   text-transform: uppercase;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+}
+
+/* Alternate lines get italic — matches editorial serif reference */
+.about-line:nth-child(even) .about-line-inner {
+  font-style: italic;
 }
 
 .about-descriptor {

@@ -36,3 +36,21 @@ id = "TO2yWWlnThMA2iJ7lT45a"
 uri = "file://artifacts/clark-kent/public/tech3_2.png"
 type = "image"
 title = "Avatar 3 — Figura de cristal con datos neon"
+
+[[outputs]]
+id = "v2m2-9HA_Yymy93zMYEBM"
+uri = "file://artifacts/clark-kent/public/surreal1.png"
+type = "image"
+title = "Surreal 1 — Mujer porcelana con grulla"
+
+[[outputs]]
+id = "7fotALq-kJ5C6CA861GJW"
+uri = "file://artifacts/clark-kent/public/surreal2.png"
+type = "image"
+title = "Surreal 2 — Figura cobalto azul, fondo naranja"
+
+[[outputs]]
+id = "59azAFF5_9zxMGilRwjlE"
+uri = "file://artifacts/clark-kent/public/surreal3.png"
+type = "image"
+title = "Surreal 3 — Pintura teatral roja/naranja"
