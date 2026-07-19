@@ -1,0 +1,20 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "vLoU6wTN6r8dsIYyFn_N9"
+uri = "file://artifacts/clark-kent/public/tech1.png"
+type = "image"
+title = "Retrato techno 1 — Máscara cromada"
+
+[[outputs]]
+id = "BFo-97Q2YtjDK23LlOXEI"
+uri = "file://artifacts/clark-kent/public/tech2.png"
+type = "image"
+title = "Retrato techno 2 — Visera holográfica"
+
+[[outputs]]
+id = "liaiABlAeojHw5C-_R40C"
+uri = "file://artifacts/clark-kent/public/tech3.png"
+type = "image"
+title = "Retrato techno 3 — Gafas espejo futuristas"

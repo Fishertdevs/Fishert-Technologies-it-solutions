@@ -8,23 +8,23 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL;
 
 const floatingImages = [
-  { src: `${base}ai1.png`, className: "about-float about-float--1" },
-  { src: `${base}ai2.png`, className: "about-float about-float--2" },
-  { src: `${base}ai3.png`, className: "about-float about-float--3" },
+  { src: `${base}tech1.png`, className: "about-float about-float--1" },
+  { src: `${base}tech2.png`, className: "about-float about-float--2" },
+  { src: `${base}tech3.png`, className: "about-float about-float--3" },
 ];
 
 const content = {
   es: {
-    badge: "FISHERT SOFTWARE AGENCY · EST. 2020",
-    lines: ["CONSTRUIMOS", "PRODUCTOS", "DIGITALES", "QUE ESCALAN", "Y RINDEN"],
+    badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2020",
+    lines: ["TRANSFORMA", "TU NEGOCIO", "CON SOFTWARE", "HECHO PARA", "GANAR."],
     descriptor:
-      "Creamos productos digitales de extremo a extremo — desde estrategia y diseño hasta ingeniería y despliegue — para equipos que se niegan a lanzar software mediocre.",
+      "Bienvenidos a Fishert Studio. Somos una agencia de software que diseña, construye y escala productos digitales que transforman negocios en líderes de su industria.",
   },
   en: {
-    badge: "FISHERT SOFTWARE AGENCY · EST. 2020",
-    lines: ["WE BUILD", "DIGITAL", "PRODUCTS", "THAT SCALE", "& PERFORM"],
+    badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2020",
+    lines: ["TRANSFORM", "YOUR BUSINESS", "WITH SOFTWARE", "BUILT", "TO WIN."],
     descriptor:
-      "We craft end-to-end digital products — from strategy and design to engineering and deployment — for teams that refuse to ship mediocre software.",
+      "Welcome to Fishert Studio. We are a software agency that designs, builds and scales digital products — turning businesses into leaders of their industry.",
   },
 };
 
