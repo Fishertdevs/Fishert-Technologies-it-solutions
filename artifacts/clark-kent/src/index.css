@@ -252,14 +252,44 @@ body {
 }
 
 .about-descriptor {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(17px, 1.55vw, 22px);
-  font-weight: 400;
-  line-height: 1.65;
-  color: rgba(17, 17, 17, 0.6);
-  max-width: 600px;
-  margin: 0 auto;
+  display: none;
+}
+
+/* ── Welcome section ──────────────────────────────────────── */
+.welcome-section {
+  width: 100%;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 100px 40px;
+  box-sizing: border-box;
+}
+
+.welcome-inner {
+  max-width: 740px;
   text-align: center;
+}
+
+.welcome-title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(30px, 4vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #111;
+  text-transform: none;
+  margin: 0 0 28px 0;
+}
+
+.welcome-body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(17px, 1.6vw, 22px);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(17, 17, 17, 0.58);
+  margin: 0;
 }
 
 /* ── Floating image cards ───────────────────────────────── */

@@ -18,3 +18,21 @@ id = "liaiABlAeojHw5C-_R40C"
 uri = "file://artifacts/clark-kent/public/tech3.png"
 type = "image"
 title = "Retrato techno 3 — Gafas espejo futuristas"
+
+[[outputs]]
+id = "ZchP9hmvGlcP1cWZN-1c8"
+uri = "file://artifacts/clark-kent/public/tech1_2.png"
+type = "image"
+title = "Avatar 1 — Android teal con circuitos dorados"
+
+[[outputs]]
+id = "iOXF_bVlRhmYHiLre0U0k"
+uri = "file://artifacts/clark-kent/public/tech2_2.png"
+type = "image"
+title = "Avatar 2 — Escultura cromada de espejo"
+
+[[outputs]]
+id = "TO2yWWlnThMA2iJ7lT45a"
+uri = "file://artifacts/clark-kent/public/tech3_2.png"
+type = "image"
+title = "Avatar 3 — Figura de cristal con datos neon"

@@ -8,23 +8,19 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL;
 
 const floatingImages = [
-  { src: `${base}tech1.png`, className: "about-float about-float--1" },
-  { src: `${base}tech2.png`, className: "about-float about-float--2" },
-  { src: `${base}tech3.png`, className: "about-float about-float--3" },
+  { src: `${base}tech1_2.png`, className: "about-float about-float--1" },
+  { src: `${base}tech2_2.png`, className: "about-float about-float--2" },
+  { src: `${base}tech3_2.png`, className: "about-float about-float--3" },
 ];
 
 const content = {
   es: {
     badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2020",
     lines: ["TRANSFORMA", "TU NEGOCIO", "CON SOFTWARE", "HECHO PARA", "GANAR."],
-    descriptor:
-      "Bienvenidos a Fishert Studio. Somos una agencia de software que diseña, construye y escala productos digitales que transforman negocios en líderes de su industria.",
   },
   en: {
     badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2020",
     lines: ["TRANSFORM", "YOUR BUSINESS", "WITH SOFTWARE", "BUILT", "TO WIN."],
-    descriptor:
-      "Welcome to Fishert Studio. We are a software agency that designs, builds and scales digital products — turning businesses into leaders of their industry.",
   },
 };
 
@@ -35,14 +31,18 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Images start hidden — reveal + parallax on scroll
-      gsap.set(".about-float", { clipPath: "inset(100% 0% 0% 0%)", opacity: 0 });
+      // Title lines: hidden below clip, reveal on scroll
+      gsap.set(".about-line-inner", { yPercent: 110 });
+      // Images: hidden, oversized — will zoom in one by one to collage
+      gsap.set(".about-float--1", { opacity: 0, scale: 3.2, transformOrigin: "center center" });
+      gsap.set(".about-float--2", { opacity: 0, scale: 3.2, transformOrigin: "center center" });
+      gsap.set(".about-float--3", { opacity: 0, scale: 3.2, transformOrigin: "center center" });
 
-      const scrollTl = gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=220%",
+          end: "+=430%",
           scrub: 1.2,
           pin: true,
           anticipatePin: 1,
@@ -51,26 +51,27 @@ export default function About() {
         },
       });
 
-      scrollTl.to(
-        ".about-float--1",
-        { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" },
-        0.05,
-      );
-      scrollTl.to(
-        ".about-float--2",
-        { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" },
-        0.35,
-      );
-      scrollTl.to(
-        ".about-float--3",
-        { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 0.9, ease: "none" },
-        0.62,
+      // ── Phase 1: title lines reveal staggered ───────────────
+      tl.to(
+        ".about-line-inner",
+        { yPercent: 0, stagger: 0.09, duration: 0.55, ease: "none" },
+        0,
       );
 
-      // Subtle parallax drift
-      scrollTl.to(".about-float--1", { y: -30, duration: 2, ease: "none" }, 0);
-      scrollTl.to(".about-float--2", { y: -20, duration: 2, ease: "none" }, 0);
-      scrollTl.to(".about-float--3", { y: -25, duration: 2, ease: "none" }, 0);
+      // ── Phase 2: img1 zooms in from large → collage position ─
+      tl.to(".about-float--1", { opacity: 1, duration: 0.2, ease: "none" }, 0.7);
+      tl.to(".about-float--1", { scale: 1, duration: 0.9, ease: "none" }, 0.85);
+
+      // ── Phase 3: img2 ────────────────────────────────────────
+      tl.to(".about-float--2", { opacity: 1, duration: 0.2, ease: "none" }, 1.65);
+      tl.to(".about-float--2", { scale: 1, duration: 0.9, ease: "none" }, 1.8);
+
+      // ── Phase 4: img3 ────────────────────────────────────────
+      tl.to(".about-float--3", { opacity: 1, duration: 0.2, ease: "none" }, 2.55);
+      tl.to(".about-float--3", { scale: 1, duration: 0.9, ease: "none" }, 2.7);
+
+      // ── Phase 5: all hold in collage ─────────────────────────
+      // (timeline ends at 3.8 — pin holds)
     }, sectionRef);
 
     return () => ctx.revert();
@@ -93,7 +94,6 @@ export default function About() {
             </div>
           ))}
         </div>
-        <p className="about-descriptor">{t.descriptor}</p>
       </div>
     </section>
   );

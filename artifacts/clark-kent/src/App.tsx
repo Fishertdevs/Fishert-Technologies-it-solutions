@@ -1,6 +1,7 @@
 import { LanguageProvider } from "./LanguageContext";
 import Navbar from "./Navbar";
 import About from "./About";
+import Welcome from "./Welcome";
 import Servicios from "./Servicios";
 import Nosotros from "./Nosotros";
 import Portafolio from "./Portafolio";
@@ -12,6 +13,7 @@ export default function App() {
     <LanguageProvider>
       <Navbar />
       <About />
+      <Welcome />
       <Servicios />
       <Nosotros />
       <Portafolio />
