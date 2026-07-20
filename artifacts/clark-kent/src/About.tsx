@@ -28,17 +28,32 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Pin the section while scrolling down — content stays fully visible.
-      // No fade-out: it only disappears when scrolling back up past the entry point.
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=350%",
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        refreshPriority: 5,
+      // Background image always visible — no animation on it.
+      // Text + CTAs start hidden and reveal on scroll down.
+      gsap.set(".about-line-inner", { yPercent: 108, skewX: -3 });
+      gsap.set(".about-cta-wrap", { opacity: 0, y: 18 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=350%",
+          scrub: 1.1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          refreshPriority: 5,
+        },
       });
+
+      // Text slides up from below as you scroll down
+      tl.to(
+        ".about-line-inner",
+        { yPercent: 0, skewX: 0, stagger: 0.1, duration: 0.55, ease: "none" },
+        0,
+      );
+      tl.to(".about-cta-wrap", { opacity: 1, y: 0, duration: 0.25, ease: "none" }, 0.5);
+      // No fade-out — content stays visible until the pin releases
     }, sectionRef);
 
     return () => ctx.revert();
@@ -65,9 +80,6 @@ export default function About() {
           <div className="about-cta-wrap">
             <a href="#contacto" className="about-cta-primary">
               {t.cta_primary}
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
             </a>
             <a href="#portafolio" className="about-cta-secondary">
               {t.cta_secondary}
