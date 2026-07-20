@@ -38,8 +38,7 @@ export default function Navbar() {
   return (
     <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
       <a className="navbar-logo" href="#inicio" onClick={(e) => handleClick(e, "#inicio")}>
-        <span className="navbar-logo-sub">FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026</span>
-        <span className="navbar-logo-name">FISHERT<span className="navbar-logo-dot">.</span></span>
+        FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026
       </a>
       <ul className="navbar-links">
         {links.map((l) => (
