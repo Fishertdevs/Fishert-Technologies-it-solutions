@@ -68,8 +68,13 @@ export default function About() {
 
   return (
     <section id="inicio" className="about-section" ref={sectionRef}>
+      {/* Full-screen background image */}
+      <div className="vapor-img vapor-img--1">
+        <img src={heroImage} alt="" />
+      </div>
+
       <div className="about-content">
-        {/* LEFT — text */}
+        {/* Text */}
         <div className="about-text-col">
           <div className="about-lines">
             {t.lines.map((line, i) => (
@@ -89,13 +94,6 @@ export default function About() {
             <a href="#portafolio" className="about-cta-secondary">
               {t.cta_secondary}
             </a>
-          </div>
-        </div>
-
-        {/* RIGHT — single large image */}
-        <div className="about-collage">
-          <div className="vapor-img vapor-img--1">
-            <img src={heroImage} alt="" />
           </div>
         </div>
       </div>

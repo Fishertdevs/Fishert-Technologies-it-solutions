@@ -226,7 +226,7 @@ body {
 
 /* ── About section ──────────────────────────────────────── */
 .about-section {
-  background: #fff;
+  background: #000;
   box-sizing: border-box;
   height: 100vh;
   width: 100%;
@@ -239,35 +239,27 @@ body {
 .about-content {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 38%;
+  display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
 }
 
-/* ── Right: single large image ───────────────────────────── */
-.about-collage {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* Single hero image — fills full right column */
+/* Full-screen background image */
 .vapor-img {
   position: absolute;
   inset: 0;
   overflow: hidden;
   will-change: transform, opacity;
+  z-index: 1;
 }
 
 .vapor-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   display: block;
 }
 
@@ -309,7 +301,7 @@ body {
   font-size: clamp(42px, 6.2vw, 112px);
   line-height: 0.9;
   letter-spacing: -0.01em;
-  color: #E8001C;
+  color: #ffffff;
   text-transform: uppercase;
   padding-bottom: 8px;
   white-space: nowrap;
@@ -341,7 +333,7 @@ body {
   gap: 8px;
   background: none;
   border: none;
-  color: #E8001C;
+  color: #ffffff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: 600;
@@ -368,14 +360,14 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  color: rgba(17, 17, 17, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   padding: 0;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .about-cta-secondary:hover {
-  color: #111;
+  color: #fff;
 }
 
 /* ── Welcome section ──────────────────────────────────────── */
