@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useLang } from "./LanguageContext";
 
 const navLinks = {
@@ -19,15 +18,8 @@ const navLinks = {
 };
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const { lang, toggle } = useLang();
   const links = navLinks[lang];
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -36,7 +28,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
+    <nav className="navbar">
       <a className="navbar-logo" href="#inicio" onClick={(e) => handleClick(e, "#inicio")}>
         FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026
       </a>
