@@ -8,20 +8,18 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL;
 
 const floatingImages = [
-  { src: `${base}ai1_2.png`, className: "about-float about-float--1" },
-  { src: `${base}ai2_2.png`, className: "about-float about-float--2" },
-  { src: `${base}ai3_2.png`, className: "about-float about-float--3" },
+  { src: `${base}smiley1.png`, className: "about-float about-float--1" },
+  { src: `${base}smiley2.png`, className: "about-float about-float--2" },
+  { src: `${base}smiley3.png`, className: "about-float about-float--3" },
 ];
 
 const content = {
   es: {
-    badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026",
     lines: ["TU PRÓXIMA", "GRAN IDEA", "COMIENZA", "CON", "NOSOTROS"],
     cta_primary: "Iniciar Proyecto",
     cta_secondary: "Ver Portafolio",
   },
   en: {
-    badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026",
     lines: ["YOUR NEXT", "BIG IDEA", "STARTS", "WITH", "US"],
     cta_primary: "Start a Project",
     cta_secondary: "View Portfolio",
@@ -36,38 +34,18 @@ export default function About() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // ── Initial hidden states ───────────────────────────────
-      gsap.set(".about-badge", { opacity: 0, y: 12 });
       gsap.set(".about-line-inner", { yPercent: 108, skewX: -3 });
       gsap.set(".about-cta-wrap", { opacity: 0, y: 18 });
       gsap.set(".about-float--1", { opacity: 0, x: 50, y: -30, rotate: 7, scale: 0.9 });
       gsap.set(".about-float--2", { opacity: 0, x: 70, y: 50, rotate: -5, scale: 0.85 });
       gsap.set(".about-float--3", { opacity: 0, x: 30, y: 25, rotate: 4, scale: 0.88 });
 
-      // ── PAGE LOAD entrance (no scroll needed) ───────────────
-      const intro = gsap.timeline({ delay: 0.1 });
-
-      intro.to(".about-badge", {
-        opacity: 1, y: 0, duration: 0.55, ease: "power2.out",
-      });
-
-      intro.to(
-        ".about-line-inner",
-        { yPercent: 0, skewX: 0, stagger: 0.075, duration: 0.65, ease: "power3.out" },
-        "-=0.3",
-      );
-
-      intro.to(
-        ".about-cta-wrap",
-        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
-        "-=0.25",
-      );
-
-      // ── SCROLL-PINNED phase: images drift in while pinned ───
-      const scrollTl = gsap.timeline({
+      // ── SCROLL-PINNED timeline (text + images reveal on scroll) ──
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=350%",
+          end: "+=430%",
           scrub: 1.1,
           pin: true,
           anticipatePin: 1,
@@ -76,20 +54,28 @@ export default function About() {
         },
       });
 
-      scrollTl.to(".about-float--1", {
-        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1,
-        duration: 0.65, ease: "none",
-      }, 0.15);
+      // Phase 1 — title lines cascade up with de-skew
+      tl.to(
+        ".about-line-inner",
+        { yPercent: 0, skewX: 0, stagger: 0.09, duration: 0.52, ease: "none" },
+        0,
+      );
 
-      scrollTl.to(".about-float--2", {
-        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1,
-        duration: 0.65, ease: "none",
-      }, 0.75);
+      // Phase 2 — CTA buttons appear
+      tl.to(".about-cta-wrap", { opacity: 1, y: 0, duration: 0.22, ease: "none" }, 0.6);
 
-      scrollTl.to(".about-float--3", {
-        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1,
-        duration: 0.65, ease: "none",
-      }, 1.35);
+      // Phase 3 — images drift in sequentially
+      tl.to(".about-float--1", {
+        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, duration: 0.65, ease: "none",
+      }, 0.9);
+
+      tl.to(".about-float--2", {
+        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, duration: 0.65, ease: "none",
+      }, 1.55);
+
+      tl.to(".about-float--3", {
+        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, duration: 0.65, ease: "none",
+      }, 2.2);
     }, sectionRef);
 
     return () => ctx.revert();
@@ -104,8 +90,6 @@ export default function About() {
       ))}
 
       <div className="about-content">
-        <div className="about-agency-badge about-badge">{t.badge}</div>
-
         <div className="about-lines">
           {t.lines.map((line, i) => (
             <div className="about-line" key={i}>
