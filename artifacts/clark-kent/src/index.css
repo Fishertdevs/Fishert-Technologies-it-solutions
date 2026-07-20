@@ -224,28 +224,13 @@ body {
   opacity: 0.3;
 }
 
-/* When scrolled — switch back to dark text */
-.navbar--scrolled .navbar-logo {
-  color: rgba(17, 17, 17, 0.55);
-}
-.navbar--scrolled .navbar-logo-sub {
-  color: rgba(17, 17, 17, 0.4);
-}
-.navbar--scrolled .navbar-logo-dot {
-  color: #111;
-}
-.navbar--scrolled .navbar-link {
-  color: #111;
-}
-.navbar--scrolled .navbar-lang-toggle {
-  border-color: rgba(17, 17, 17, 0.2);
-  color: rgba(17, 17, 17, 0.4);
-}
-.navbar--scrolled .navbar-lang-toggle:hover {
-  border-color: rgba(17, 17, 17, 0.5);
-}
-.navbar--scrolled .navbar-lang--active {
-  color: #111;
+/* When scrolled past hero — frosted dark navbar */
+.navbar--scrolled {
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 14px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ── About section ──────────────────────────────────────── */
