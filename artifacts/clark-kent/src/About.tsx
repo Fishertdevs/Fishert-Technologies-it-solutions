@@ -15,11 +15,11 @@ const floatingImages = [
 
 const content = {
   es: {
-    badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2020",
+    badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026",
     lines: ["TRANSFORMA", "TU NEGOCIO", "CON SOFTWARE", "HECHO PARA", "GANAR."],
   },
   en: {
-    badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2020",
+    badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026",
     lines: ["TRANSFORM", "YOUR BUSINESS", "WITH SOFTWARE", "BUILT", "TO WIN."],
   },
 };

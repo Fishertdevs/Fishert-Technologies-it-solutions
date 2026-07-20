@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const content = {
   es: {
-    badge: "FISHERT SOFTWARE AGENCY · EST. 2020",
+    badge: "FISHERT SOFTWARE AGENCY · EST. 2026",
     lines: ["EQUIPO", "PEQUEÑO.", "IMPACTO", "GRANDE."],
     body: "No somos una agencia tradicional. Somos un equipo compacto de diseñadores e ingenieros que construye software como si fuera nuestro propio producto — con ownership real y sin atajos.",
     stats: [
@@ -17,7 +17,7 @@ const content = {
     ],
   },
   en: {
-    badge: "FISHERT SOFTWARE AGENCY · EST. 2020",
+    badge: "FISHERT SOFTWARE AGENCY · EST. 2026",
     lines: ["SMALL", "TEAM.", "BIG", "IMPACT."],
     body: "We're not a traditional agency. We're a compact team of designers and engineers who builds software as if it were our own product — with real ownership and zero shortcuts.",
     stats: [
