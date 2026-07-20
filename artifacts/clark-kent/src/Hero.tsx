@@ -202,6 +202,11 @@ export default function Hero() {
   return (
     <div className="hero-root">
       <div ref={containerRef} className="hero-canvas" />
+      <img
+        src={`${import.meta.env.BASE_URL}hero-statue.png`}
+        alt="Hero statue"
+        className="hero-statue"
+      />
       <div className="hero-text">
         <div>CLARK</div>
         <div>KENT</div>

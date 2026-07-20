@@ -6,7 +6,7 @@ import { useLang } from "./LanguageContext";
 gsap.registerPlugin(ScrollTrigger);
 
 const base = import.meta.env.BASE_URL;
-const heroImage = `${base}vapor-hero.jpg`;
+const heroImage = `${base}hero-statue.png`;
 
 const content = {
   es: {
