@@ -86,7 +86,6 @@ export default function About() {
       ))}
 
       <div className="about-content">
-        <div className="about-agency-badge">{t.badge}</div>
         <div className="about-lines">
           {t.lines.map((line, i) => (
             <div className="about-line" key={i}>

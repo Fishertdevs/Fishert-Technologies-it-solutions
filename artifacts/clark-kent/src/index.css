@@ -137,6 +137,24 @@ body {
   color: #111;
   text-decoration: none;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1;
+}
+
+.navbar-logo-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: rgba(17, 17, 17, 0.4);
+  text-transform: uppercase;
+  display: block;
+}
+
+.navbar-logo-name {
+  display: block;
 }
 
 .navbar-logo-dot {
