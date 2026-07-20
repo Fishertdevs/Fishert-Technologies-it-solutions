@@ -235,19 +235,19 @@ body {
   box-sizing: border-box;
 }
 
-/* ── Right: collage of 3 images ──────────────────────────── */
+/* ── Right: single large image ───────────────────────────── */
 .about-collage {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: visible;
+  overflow: hidden;
 }
 
-/* Base for all vapor images */
+/* Single hero image — fills full right column */
 .vapor-img {
   position: absolute;
+  inset: 0;
   overflow: hidden;
-  transform-origin: center center;
   will-change: transform, opacity;
 }
 
@@ -255,37 +255,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
-}
-
-/* Image 1 — large organic circle, top-left of collage */
-.vapor-img--1 {
-  width: clamp(200px, 26vw, 400px);
-  height: clamp(240px, 32vw, 480px);
-  top: 4%;
-  left: 2%;
-  clip-path: url(#clip-blob-circle);
-  z-index: 2;
-}
-
-/* Image 2 — medium arch/stadium, top-right, overlaps #1 */
-.vapor-img--2 {
-  width: clamp(160px, 20vw, 300px);
-  height: clamp(220px, 28vw, 420px);
-  top: 8%;
-  right: 3%;
-  clip-path: url(#clip-arch);
-  z-index: 3;
-}
-
-/* Image 3 — slant rounded rect, bottom-center, overlaps both */
-.vapor-img--3 {
-  width: clamp(180px, 23vw, 340px);
-  height: clamp(200px, 26vw, 380px);
-  bottom: 4%;
-  left: 18%;
-  clip-path: url(#clip-slant);
-  z-index: 4;
 }
 
 /* ── Right: text ─────────────────────────────────────────── */
