@@ -130,6 +130,9 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 22px 40px;
+  background: rgba(90, 8, 8, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition: background 0.35s ease, backdrop-filter 0.35s ease, padding 0.35s ease;
 }
 
