@@ -28,9 +28,10 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Text starts hidden — image is visible from the start
+      // Everything starts hidden and reveals on scroll in sync
       gsap.set(".about-line-inner", { yPercent: 108, skewX: -3 });
       gsap.set(".about-cta-wrap", { opacity: 0, y: 18 });
+      gsap.set(".vapor-img--1 img", { yPercent: 108 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -45,16 +46,14 @@ export default function About() {
         },
       });
 
-      // Text lines slide up
+      // Text lines slide up + image slides up in sync
       tl.to(
         ".about-line-inner",
         { yPercent: 0, skewX: 0, stagger: 0.1, duration: 0.55, ease: "none" },
         0,
       );
+      tl.to(".vapor-img--1 img", { yPercent: 0, duration: 0.55, ease: "none" }, 0);
       tl.to(".about-cta-wrap", { opacity: 1, y: 0, duration: 0.25, ease: "none" }, 0.6);
-
-      // Subtle scale on the image as text appears
-      tl.fromTo(".vapor-img--1 img", { scale: 1.06 }, { scale: 1, duration: 0.7, ease: "none" }, 0);
 
       // Fade everything out together at the end
       tl.to(
