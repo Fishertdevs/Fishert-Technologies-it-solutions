@@ -8,19 +8,23 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL;
 
 const floatingImages = [
-  { src: `${base}surreal1.png`, className: "about-float about-float--1" },
-  { src: `${base}surreal2.png`, className: "about-float about-float--2" },
-  { src: `${base}surreal3.png`, className: "about-float about-float--3" },
+  { src: `${base}ai1_2.png`, className: "about-float about-float--1" },
+  { src: `${base}ai2_2.png`, className: "about-float about-float--2" },
+  { src: `${base}ai3_2.png`, className: "about-float about-float--3" },
 ];
 
 const content = {
   es: {
     badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026",
-    lines: ["TRANSFORMA", "TU NEGOCIO", "CON SOFTWARE", "HECHO PARA", "GANAR."],
+    lines: ["TU PRÓXIMA", "GRAN IDEA", "COMIENZA", "CON", "NOSOTROS"],
+    cta_primary: "Iniciar Proyecto",
+    cta_secondary: "Ver Portafolio",
   },
   en: {
     badge: "FISHERT STUDIO · SOFTWARE AGENCY · EST. 2026",
-    lines: ["TRANSFORM", "YOUR BUSINESS", "WITH SOFTWARE", "BUILT", "TO WIN."],
+    lines: ["YOUR NEXT", "BIG IDEA", "STARTS", "WITH", "US"],
+    cta_primary: "Start a Project",
+    cta_secondary: "View Portfolio",
   },
 };
 
@@ -31,19 +35,40 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title lines: hidden below clip, reveal on scroll
-      gsap.set(".about-line-inner", { yPercent: 110 });
-      // Images: hidden, oversized — will zoom in one by one to collage
-      gsap.set(".about-float--1", { opacity: 0, scale: 3.2, transformOrigin: "center center" });
-      gsap.set(".about-float--2", { opacity: 0, scale: 3.2, transformOrigin: "center center" });
-      gsap.set(".about-float--3", { opacity: 0, scale: 3.2, transformOrigin: "center center" });
+      // ── Initial hidden states ───────────────────────────────
+      gsap.set(".about-badge", { opacity: 0, y: 12 });
+      gsap.set(".about-line-inner", { yPercent: 108, skewX: -3 });
+      gsap.set(".about-cta-wrap", { opacity: 0, y: 18 });
+      gsap.set(".about-float--1", { opacity: 0, x: 50, y: -30, rotate: 7, scale: 0.9 });
+      gsap.set(".about-float--2", { opacity: 0, x: 70, y: 50, rotate: -5, scale: 0.85 });
+      gsap.set(".about-float--3", { opacity: 0, x: 30, y: 25, rotate: 4, scale: 0.88 });
 
-      const tl = gsap.timeline({
+      // ── PAGE LOAD entrance (no scroll needed) ───────────────
+      const intro = gsap.timeline({ delay: 0.1 });
+
+      intro.to(".about-badge", {
+        opacity: 1, y: 0, duration: 0.55, ease: "power2.out",
+      });
+
+      intro.to(
+        ".about-line-inner",
+        { yPercent: 0, skewX: 0, stagger: 0.075, duration: 0.65, ease: "power3.out" },
+        "-=0.3",
+      );
+
+      intro.to(
+        ".about-cta-wrap",
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+        "-=0.25",
+      );
+
+      // ── SCROLL-PINNED phase: images drift in while pinned ───
+      const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=430%",
-          scrub: 1.2,
+          end: "+=350%",
+          scrub: 1.1,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -51,27 +76,20 @@ export default function About() {
         },
       });
 
-      // ── Phase 1: title lines reveal staggered ───────────────
-      tl.to(
-        ".about-line-inner",
-        { yPercent: 0, stagger: 0.09, duration: 0.55, ease: "none" },
-        0,
-      );
+      scrollTl.to(".about-float--1", {
+        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1,
+        duration: 0.65, ease: "none",
+      }, 0.15);
 
-      // ── Phase 2: img1 zooms in from large → collage position ─
-      tl.to(".about-float--1", { opacity: 1, duration: 0.2, ease: "none" }, 0.7);
-      tl.to(".about-float--1", { scale: 1, duration: 0.9, ease: "none" }, 0.85);
+      scrollTl.to(".about-float--2", {
+        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1,
+        duration: 0.65, ease: "none",
+      }, 0.75);
 
-      // ── Phase 3: img2 ────────────────────────────────────────
-      tl.to(".about-float--2", { opacity: 1, duration: 0.2, ease: "none" }, 1.65);
-      tl.to(".about-float--2", { scale: 1, duration: 0.9, ease: "none" }, 1.8);
-
-      // ── Phase 4: img3 ────────────────────────────────────────
-      tl.to(".about-float--3", { opacity: 1, duration: 0.2, ease: "none" }, 2.55);
-      tl.to(".about-float--3", { scale: 1, duration: 0.9, ease: "none" }, 2.7);
-
-      // ── Phase 5: all hold in collage ─────────────────────────
-      // (timeline ends at 3.8 — pin holds)
+      scrollTl.to(".about-float--3", {
+        opacity: 1, x: 0, y: 0, rotate: 0, scale: 1,
+        duration: 0.65, ease: "none",
+      }, 1.35);
     }, sectionRef);
 
     return () => ctx.revert();
@@ -86,12 +104,26 @@ export default function About() {
       ))}
 
       <div className="about-content">
+        <div className="about-agency-badge about-badge">{t.badge}</div>
+
         <div className="about-lines">
           {t.lines.map((line, i) => (
             <div className="about-line" key={i}>
               <span className="about-line-inner">{line}</span>
             </div>
           ))}
+        </div>
+
+        <div className="about-cta-wrap">
+          <a href="#contacto" className="about-cta-primary">
+            {t.cta_primary}
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+          <a href="#portafolio" className="about-cta-secondary">
+            {t.cta_secondary}
+          </a>
         </div>
       </div>
     </section>

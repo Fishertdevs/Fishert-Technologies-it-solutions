@@ -1,6 +1,6 @@
-# [Project name]
+# Fishert Studio
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Fishert Studio is a software agency landing site — it showcases services, portfolio, and team with a bold editorial aesthetic in Spanish and English.
 
 ## Run & Operate
 

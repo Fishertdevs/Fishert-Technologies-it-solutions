@@ -259,12 +259,12 @@ body {
   display: block;
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(58px, 9.5vw, 140px);
-  line-height: 0.88;
+  font-size: clamp(38px, 6vw, 90px);
+  line-height: 0.9;
   letter-spacing: -0.01em;
   color: #E8001C;
   text-transform: uppercase;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 /* Alternate lines italic — matches editorial serif reference */
@@ -275,6 +275,57 @@ body {
 
 .about-descriptor {
   display: none;
+}
+
+/* ── About CTA buttons ──────────────────────────────────── */
+.about-cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.about-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #E8001C;
+  color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 28px;
+  border-radius: 2px;
+  transition: background 0.22s ease, transform 0.18s ease;
+}
+
+.about-cta-primary:hover {
+  background: #c20018;
+  transform: translateY(-1px);
+}
+
+.about-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #111;
+  border-bottom: 1.5px solid rgba(17, 17, 17, 0.35);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.about-cta-secondary:hover {
+  color: #E8001C;
+  border-color: #E8001C;
 }
 
 /* ── Welcome section ──────────────────────────────────────── */
