@@ -221,7 +221,6 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
@@ -229,13 +228,74 @@ body {
   position: relative;
   z-index: 2;
   padding: 88px 48px 48px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 20px;
+  gap: 0;
   width: 100%;
   box-sizing: border-box;
-  text-align: center;
+}
+
+/* Left column */
+.about-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Right column */
+.about-char-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.about-char-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-char-img {
+  width: clamp(260px, 36vw, 520px);
+  height: auto;
+  display: block;
+  user-select: none;
+  animation: char-float 3.8s ease-in-out infinite;
+  transform-origin: center bottom;
+  filter: drop-shadow(0 32px 48px rgba(0,0,0,0.13));
+}
+
+/* ── Character float animation ───────────────────────────── */
+@keyframes char-float {
+  0%   { transform: translateY(0px)    rotate(-1.5deg) scale(1); }
+  20%  { transform: translateY(-18px)  rotate(1deg)    scale(1.015); }
+  45%  { transform: translateY(-28px)  rotate(-0.5deg) scale(1.02); }
+  65%  { transform: translateY(-14px)  rotate(1.5deg)  scale(1.01); }
+  80%  { transform: translateY(-22px)  rotate(-1deg)   scale(1.018); }
+  100% { transform: translateY(0px)    rotate(-1.5deg) scale(1); }
+}
+
+/* ── Drop shadow pulses with the float ───────────────────── */
+@keyframes char-shadow {
+  0%, 100% { opacity: 0.5; transform: scaleX(1); }
+  45%       { opacity: 0.18; transform: scaleX(0.75); }
+}
+
+.about-char-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  translate: -50% 0;
+  width: 55%;
+  height: 18px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.22) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: char-shadow 3.8s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .about-agency-badge {
