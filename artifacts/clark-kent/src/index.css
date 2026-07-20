@@ -130,10 +130,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 22px 40px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: transparent;
   transition: background 0.35s ease, backdrop-filter 0.35s ease, padding 0.35s ease;
 }
 
