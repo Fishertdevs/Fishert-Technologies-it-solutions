@@ -28,39 +28,17 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Everything starts hidden and reveals on scroll in sync
-      gsap.set(".about-line-inner", { yPercent: 108, skewX: -3 });
-      gsap.set(".about-cta-wrap", { opacity: 0, y: 18 });
-      gsap.set(".vapor-img--1 img", { yPercent: 108 });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=350%",
-          scrub: 1.1,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: 5,
-        },
+      // Pin the section while scrolling down — content stays fully visible.
+      // No fade-out: it only disappears when scrolling back up past the entry point.
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "+=350%",
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        refreshPriority: 5,
       });
-
-      // Text lines slide up + image slides up in sync
-      tl.to(
-        ".about-line-inner",
-        { yPercent: 0, skewX: 0, stagger: 0.1, duration: 0.55, ease: "none" },
-        0,
-      );
-      tl.to(".vapor-img--1 img", { yPercent: 0, duration: 0.55, ease: "none" }, 0);
-      tl.to(".about-cta-wrap", { opacity: 1, y: 0, duration: 0.25, ease: "none" }, 0.6);
-
-      // Fade everything out together at the end
-      tl.to(
-        [".about-line-inner", ".about-cta-wrap", ".vapor-img--1"],
-        { opacity: 0, duration: 0.18, ease: "none" },
-        0.86,
-      );
     }, sectionRef);
 
     return () => ctx.revert();
