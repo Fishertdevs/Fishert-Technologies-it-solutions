@@ -8,10 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL;
 
 const heroImages = [
-  `${base}hero-img1.jpg`,
-  `${base}hero-img2.jpg`,
-  `${base}hero-img3.jpg`,
-  `${base}hero-img4.jpg`,
+  `${base}fantasy1.jpg`,
+  `${base}fantasy2.jpg`,
+  `${base}fantasy3.jpg`,
+  `${base}fantasy4.jpg`,
 ];
 
 const content = {
@@ -65,16 +65,7 @@ export default function About() {
   return (
     <section id="inicio" className="about-section" ref={sectionRef}>
       <div className="about-content">
-        {/* LEFT — 4 photos */}
-        <div className="about-photo-grid">
-          {heroImages.map((src, i) => (
-            <div key={i} className="about-photo-item">
-              <img src={src} alt="" />
-            </div>
-          ))}
-        </div>
-
-        {/* RIGHT — text */}
+        {/* LEFT — text */}
         <div className="about-text-col">
           <div className="about-lines">
             {t.lines.map((line, i) => (
@@ -95,6 +86,15 @@ export default function About() {
               {t.cta_secondary}
             </a>
           </div>
+        </div>
+
+        {/* RIGHT — 4 photos */}
+        <div className="about-photo-grid">
+          {heroImages.map((src, i) => (
+            <div key={i} className="about-photo-item">
+              <img src={src} alt="" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
