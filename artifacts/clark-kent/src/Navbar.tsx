@@ -24,9 +24,16 @@ export default function Navbar() {
   const links = navLinks[lang];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 3.4);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    // Switch navbar when the welcome section (first section after hero) enters view
+    const target = document.querySelector(".welcome-section") as Element | null;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setScrolled(entry.isIntersecting),
+      { threshold: 0.05 }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
   }, []);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
