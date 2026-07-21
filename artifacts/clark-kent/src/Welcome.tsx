@@ -56,7 +56,6 @@ export default function Welcome() {
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          refreshPriority: 4,
         },
       });
 

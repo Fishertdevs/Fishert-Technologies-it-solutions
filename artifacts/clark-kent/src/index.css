@@ -429,7 +429,7 @@ body {
   position: relative;
   display: inline-block;
   margin-bottom: 44px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .wlc-title {
