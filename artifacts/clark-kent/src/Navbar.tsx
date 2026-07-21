@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = {
   es: [
@@ -21,10 +25,22 @@ const navLinks = {
 const NAVBAR_H = 72; // px — approximate navbar height
 
 export default function Navbar() {
+  const [pastHero, setPastHero] = useState(false);
   const [textOverlap, setTextOverlap] = useState(false);
   const { lang, toggle } = useLang();
   const links = navLinks[lang];
 
+
+  useEffect(() => {
+    // Switch to light frosted navbar once welcome section enters viewport
+    const trigger = ScrollTrigger.create({
+      trigger: ".welcome-section",
+      start: "top top",
+      onEnter: () => setPastHero(true),
+      onLeaveBack: () => setPastHero(false),
+    });
+    return () => trigger.kill();
+  }, []);
 
   useEffect(() => {
     // Add backdrop when hero text overlaps the navbar zone
@@ -51,7 +67,11 @@ export default function Navbar() {
     if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
-  const cls = textOverlap ? "navbar navbar--text-overlap" : "navbar";
+  const cls = pastHero
+    ? "navbar navbar--light"
+    : textOverlap
+    ? "navbar navbar--text-overlap"
+    : "navbar";
 
   return (
     <nav className={cls}>

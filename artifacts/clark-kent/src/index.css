@@ -225,6 +225,18 @@ body {
   opacity: 0.3;
 }
 
+/* Outside hero — light frosted glass, dark text */
+.navbar--light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.navbar--light .navbar-logo { color: rgba(17, 17, 17, 0.85); }
+.navbar--light .navbar-link { color: #111; }
+.navbar--light .navbar-lang-toggle { border-color: rgba(17,17,17,0.25); color: rgba(17,17,17,0.5); }
+.navbar--light .navbar-lang--active { color: #111; }
+
 /* When hero text overlaps navbar — subtle frosted backdrop */
 .navbar--text-overlap {
   background: rgba(0, 0, 0, 0.35);
