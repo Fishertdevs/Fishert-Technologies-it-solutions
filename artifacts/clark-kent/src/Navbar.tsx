@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = {
   es: [
@@ -24,16 +28,14 @@ export default function Navbar() {
   const links = navLinks[lang];
 
   useEffect(() => {
-    // Switch navbar when the welcome section (first section after hero) enters view
-    const target = document.querySelector(".welcome-section") as Element | null;
-    if (!target) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setScrolled(entry.isIntersecting),
-      { threshold: 0.05 }
-    );
-    observer.observe(target);
-    return () => observer.disconnect();
+    // Fire exactly when .welcome-section reaches the top of the viewport
+    const trigger = ScrollTrigger.create({
+      trigger: ".welcome-section",
+      start: "top top",
+      onEnter: () => setScrolled(true),
+      onLeaveBack: () => setScrolled(false),
+    });
+    return () => trigger.kill();
   }, []);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
