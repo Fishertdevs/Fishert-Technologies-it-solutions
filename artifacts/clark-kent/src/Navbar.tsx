@@ -22,8 +22,11 @@ const navLinks = {
   ],
 };
 
+const NAVBAR_H = 72; // px — approximate navbar height
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [textOverlap, setTextOverlap] = useState(false);
   const { lang, toggle } = useLang();
   const links = navLinks[lang];
 
@@ -38,14 +41,39 @@ export default function Navbar() {
     return () => trigger.kill();
   }, []);
 
+  useEffect(() => {
+    // Add backdrop when hero text overlaps the navbar zone
+    const check = () => {
+      const lines = document.querySelector(".about-lines") as HTMLElement | null;
+      if (!lines) return;
+      const rect = lines.getBoundingClientRect();
+      setTextOverlap(rect.top < NAVBAR_H && rect.bottom > 0);
+    };
+    window.addEventListener("scroll", check, { passive: true });
+    // Also run on each animation frame while hero is active (GSAP scrub)
+    let rafId: number;
+    const loop = () => { check(); rafId = requestAnimationFrame(loop); };
+    rafId = requestAnimationFrame(loop);
+    return () => {
+      window.removeEventListener("scroll", check);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
+  const cls = scrolled
+    ? "navbar navbar--scrolled"
+    : textOverlap
+    ? "navbar navbar--text-overlap"
+    : "navbar";
+
   return (
-    <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
+    <nav className={cls}>
       <a className="navbar-logo" href="#inicio" onClick={(e) => handleClick(e, "#inicio")}>
         FISHERT STUDIO · SOFTWARE AGENCY
       </a>

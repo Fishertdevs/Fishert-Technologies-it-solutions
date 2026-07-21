@@ -225,6 +225,13 @@ body {
   opacity: 0.3;
 }
 
+/* When hero text overlaps navbar — subtle frosted backdrop */
+.navbar--text-overlap {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 /* When scrolled past hero — frosted dark navbar with white text */
 .navbar--scrolled {
   background: rgba(10, 10, 10, 0.88);
