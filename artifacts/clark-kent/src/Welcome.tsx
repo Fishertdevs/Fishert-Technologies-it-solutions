@@ -53,6 +53,9 @@ export default function Welcome() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           refreshPriority: 4,
+          onLeaveBack: () => {
+            gsap.set(titleInner, { yPercent: 108, skewX: -3 });
+          },
         },
       });
 

@@ -43,6 +43,10 @@ export default function About() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           refreshPriority: 5,
+          onLeaveBack: () => {
+            gsap.set(".about-line-inner", { yPercent: 108, skewX: -3 });
+            gsap.set(".about-cta-wrap", { opacity: 0, y: 18 });
+          },
         },
       });
 
