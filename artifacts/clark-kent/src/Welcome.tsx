@@ -8,11 +8,25 @@ gsap.registerPlugin(ScrollTrigger);
 const content = {
   es: {
     title: "Bienvenidos a Fishert Studio",
-    body: "Somos una agencia de software especializada en diseñar, construir y escalar productos digitales de alto impacto. Convertimos ideas ambiciosas en experiencias reales que posicionan a los negocios como líderes de su industria.",
+    lines: [
+      "Somos una agencia de software especializada",
+      "en diseñar, construir y escalar productos",
+      "digitales de alto impacto.",
+      "Convertimos ideas ambiciosas en experiencias",
+      "reales que posicionan a los negocios",
+      "como líderes de su industria.",
+    ],
   },
   en: {
     title: "Welcome to Fishert Studio",
-    body: "We are a software agency specialized in designing, building and scaling high-impact digital products. We turn ambitious ideas into real experiences that position businesses as leaders of their industry.",
+    lines: [
+      "We are a software agency specialized",
+      "in designing, building and scaling",
+      "high-impact digital products.",
+      "We turn ambitious ideas into real experiences",
+      "that position businesses as leaders",
+      "of their industry.",
+    ],
   },
 };
 
@@ -20,16 +34,16 @@ export default function Welcome() {
   const sectionRef = useRef<HTMLElement>(null);
   const { lang } = useLang();
   const t = content[lang];
-  const words = t.body.split(" ");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const titleInner = sectionRef.current!.querySelector<HTMLElement>(".wlc-title-inner");
-      const wordEls = sectionRef.current!.querySelectorAll<HTMLElement>(".wlc-word");
+      const lineInners = sectionRef.current!.querySelectorAll<HTMLElement>(".wlc-line-inner");
 
-      // Same initial state as hero lines
+      // Title: same clip-reveal as hero
       gsap.set(titleInner, { yPercent: 108, skewX: -3 });
-      gsap.set(wordEls, { opacity: 0.12 });
+      // Body lines: start clipped below, slight skew
+      gsap.set(lineInners, { yPercent: 110, skewX: -2 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -43,15 +57,22 @@ export default function Welcome() {
         },
       });
 
-      // Phase 1 (0 → 0.18): title clips up from below — identical to hero
-      tl.to(titleInner, { yPercent: 0, skewX: 0, duration: 0.18, ease: "power2.out" }, 0);
+      // Phase 1 (0 → 0.16): Title clips in
+      tl.to(titleInner, { yPercent: 0, skewX: 0, duration: 0.16, ease: "power2.out" }, 0);
 
-      // Phase 2 (0.20 → 1): word-by-word reveal
-      const wordStep = 0.80 / wordEls.length;
-      wordEls.forEach((word, i) => {
-        tl.to(word, { opacity: 1, duration: wordStep * 2.5, ease: "none" }, 0.20 + i * wordStep);
+      // Phase 2 (0.22 → 1): Lines slide up one by one, staggered
+      const lineStart = 0.22;
+      const lineStep = 0.12;
+      const lineDur = 0.18;
+
+      lineInners.forEach((line, i) => {
+        tl.to(
+          line,
+          { yPercent: 0, skewX: 0, duration: lineDur, ease: "power2.out" },
+          lineStart + i * lineStep,
+        );
       });
-    }, sectionRef); // scope to section — same pattern as About.tsx
+    }, sectionRef);
 
     return () => ctx.revert();
   }, [lang]);
@@ -59,20 +80,19 @@ export default function Welcome() {
   return (
     <section className="welcome-section" ref={sectionRef}>
       <div className="welcome-inner">
+        {/* Title — clip-reveal from below */}
         <div className="wlc-title-clip">
           <h2 className="wlc-title-inner">{t.title}</h2>
         </div>
 
-        <p className="wlc-body">
-          {words.reduce<React.ReactNode[]>((acc, word, i) => {
-            const span = (
-              <span key={`${lang}-${i}`} className="wlc-word">
-                {word}
-              </span>
-            );
-            return i === 0 ? [span] : [...acc, " ", span];
-          }, [])}
-        </p>
+        {/* Body — line-by-line clip reveal, each line its own overflow:hidden mask */}
+        <div className="wlc-lines">
+          {t.lines.map((line, i) => (
+            <div key={`${lang}-${i}`} className="wlc-line-clip">
+              <span className="wlc-line-inner">{line}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
