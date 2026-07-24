@@ -200,29 +200,44 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="hero-root">
-      <div ref={containerRef} className="hero-canvas" />
-      <img
-        src={`${import.meta.env.BASE_URL}hero-statue.png`}
-        alt="Hero statue"
-        className="hero-statue"
-      />
-      <div className="hero-text">
-        <div>CLARK</div>
-        <div>KENT</div>
+    <div className="hero-wrapper">
+      <div className="hero-root">
+        <div ref={containerRef} className="hero-canvas" />
+        <img
+          src={`${import.meta.env.BASE_URL}hero-statue.png`}
+          alt="Hero statue"
+          className="hero-statue"
+        />
+        <div className="hero-text">
+          <div>CLARK</div>
+          <div>KENT</div>
+        </div>
+        <p className="hero-description">
+          A visual exploration of color,<br />
+          texture, and the freedom of<br />
+          abstract expression
+        </p>
+        <a href="#contact" className="contact-btn rounded-tl-[0px] rounded-tr-[0px] rounded-br-[0px] rounded-bl-[0px]">
+          <span className="contact-btn-corner top-left"></span>
+          <span className="contact-btn-corner top-right"></span>
+          <span className="contact-btn-text">Get in touch</span>
+          <span className="contact-btn-corner bottom-left"></span>
+          <span className="contact-btn-corner bottom-right"></span>
+        </a>
       </div>
-      <p className="hero-description">
-        A visual exploration of color,<br />
-        texture, and the freedom of<br />
-        abstract expression
-      </p>
-      <a href="#contact" className="contact-btn rounded-tl-[0px] rounded-tr-[0px] rounded-br-[0px] rounded-bl-[0px]">
-        <span className="contact-btn-corner top-left"></span>
-        <span className="contact-btn-corner top-right"></span>
-        <span className="contact-btn-text">Get in touch</span>
-        <span className="contact-btn-corner bottom-left"></span>
-        <span className="contact-btn-corner bottom-right"></span>
-      </a>
+
+      {/* SVG wave — sits outside overflow:hidden so it's never clipped */}
+      <svg
+        className="hero-wave"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          fill="#000000"
+        />
+      </svg>
     </div>
   );
 }

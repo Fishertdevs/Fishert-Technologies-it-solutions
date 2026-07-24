@@ -104,6 +104,21 @@ body {
   height: 100% !important;
 }
 
+.hero-wrapper {
+  position: relative;
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+  pointer-events: none;
+  display: block;
+}
+
 .hero-text {
   position: absolute;
   top: 2.5rem;
@@ -402,6 +417,18 @@ body {
 
 .about-cta-secondary:hover {
   opacity: 0.65;
+}
+
+/* ── About section wave divider ─────────────────────────── */
+.about-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+  pointer-events: none;
+  display: block;
 }
 
 /* ── Welcome section ──────────────────────────────────────── */
