@@ -481,7 +481,7 @@ body {
   gap: 0;
 }
 
-/* Each line — starts opacity:0, y:40 via GSAP, no clipping needed */
+/* Each line — always fully visible, no animation */
 .wlc-line {
   display: block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -490,7 +490,6 @@ body {
   line-height: 1.7;
   color: #111111;
   text-align: center;
-  opacity: 0; /* GSAP animates this to 1 */
 }
 
 /* ── Floating image cards ───────────────────────────────── */

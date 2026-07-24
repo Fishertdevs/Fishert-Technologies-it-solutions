@@ -42,9 +42,6 @@ export default function Welcome() {
 
       // Title: clip-reveal from below (same as hero)
       gsap.set(titleInner, { yPercent: 108, skewX: -3 });
-      // Body lines: invisible + shifted down
-      gsap.set(lines, { opacity: 0, y: 40 });
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -57,20 +54,8 @@ export default function Welcome() {
         },
       });
 
-      // Phase 1 (0 → 0.16): title clips in
+      // Only the title animates — body lines are always visible
       tl.to(titleInner, { yPercent: 0, skewX: 0, duration: 0.16, ease: "power2.out" }, 0);
-
-      // Phase 2 (0.22 → end): lines fade+slide in staggered
-      const lineStep = 0.12;
-      const lineDur  = 0.20;
-
-      lines.forEach((line, i) => {
-        tl.to(
-          line,
-          { opacity: 1, y: 0, duration: lineDur, ease: "power3.out" },
-          0.22 + i * lineStep,
-        );
-      });
     }, sectionRef);
 
     return () => ctx.revert();
