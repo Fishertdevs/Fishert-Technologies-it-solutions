@@ -20,31 +20,21 @@ export default function Welcome() {
   const sectionRef = useRef<HTMLElement>(null);
   const { lang } = useLang();
   const t = content[lang];
-
   const words = t.body.split(" ");
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+    const ctx = gsap.context(() => {
+      const titleInner = sectionRef.current!.querySelector<HTMLElement>(".wlc-title-inner");
+      const wordEls = sectionRef.current!.querySelectorAll<HTMLElement>(".wlc-word");
 
-    const titleEl = el.querySelector<HTMLElement>(".wlc-title-inner");
-    const wordEls = Array.from(el.querySelectorAll<HTMLElement>(".wlc-word"));
+      // Same initial state as hero lines
+      gsap.set(titleInner, { yPercent: 108, skewX: -3 });
+      gsap.set(wordEls, { opacity: 0.12 });
 
-    // Set initial states immediately so there's no flash
-    if (titleEl) gsap.set(titleEl, { yPercent: 108, skewX: -3 });
-    gsap.set(wordEls, { opacity: 0.12 });
-
-    let tl: gsap.core.Timeline | null = null;
-
-    // Small delay so the About section's pin is registered first
-    const tid = window.setTimeout(() => {
-      if (!el) return;
-
-      tl = gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: el,
+          trigger: sectionRef.current,
           start: "top top",
-          // 6 viewport heights of scroll room — never rushes through
           end: () => `+=${window.innerHeight * 6}`,
           scrub: 1,
           pin: true,
@@ -53,51 +43,26 @@ export default function Welcome() {
         },
       });
 
-      // Phase 1: title clips in from below
-      if (titleEl) {
-        tl.to(titleEl, { yPercent: 0, skewX: 0, duration: 0.18, ease: "power2.out" }, 0);
-      }
+      // Phase 1 (0 → 0.18): title clips up from below — identical to hero
+      tl.to(titleInner, { yPercent: 0, skewX: 0, duration: 0.18, ease: "power2.out" }, 0);
 
-      // Phase 2: each word fades to full opacity sequentially
-      const wordStep = 0.82 / wordEls.length;
+      // Phase 2 (0.20 → 1): word-by-word reveal
+      const wordStep = 0.80 / wordEls.length;
       wordEls.forEach((word, i) => {
-        tl!.to(
-          word,
-          { opacity: 1, duration: wordStep * 2.5, ease: "none" },
-          0.18 + i * wordStep,
-        );
+        tl.to(word, { opacity: 1, duration: wordStep * 2.5, ease: "none" }, 0.20 + i * wordStep);
       });
+    }, sectionRef); // scope to section — same pattern as About.tsx
 
-      // Recalculate all ScrollTrigger positions after About's pin
-      ScrollTrigger.refresh();
-    }, 200);
-
-    return () => {
-      window.clearTimeout(tid);
-      // Kill the timeline and its ScrollTrigger explicitly
-      if (tl) {
-        tl.scrollTrigger?.kill();
-        tl.kill();
-        tl = null;
-      }
-      // Catch any leftover triggers on this element
-      ScrollTrigger.getAll()
-        .filter((st) => st.trigger === el)
-        .forEach((st) => st.kill());
-      if (titleEl) gsap.killTweensOf(titleEl);
-      gsap.killTweensOf(wordEls);
-    };
+    return () => ctx.revert();
   }, [lang]);
 
   return (
     <section className="welcome-section" ref={sectionRef}>
       <div className="welcome-inner">
-        {/* Title — clip-reveal, single line */}
         <div className="wlc-title-clip">
           <h2 className="wlc-title-inner">{t.title}</h2>
         </div>
 
-        {/* Body — word-by-word reveal. Spaces are plain text nodes → wraps correctly */}
         <p className="wlc-body">
           {words.reduce<React.ReactNode[]>((acc, word, i) => {
             const span = (

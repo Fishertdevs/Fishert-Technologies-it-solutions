@@ -582,7 +582,7 @@ body {
   font-size: clamp(48px, 7vw, 110px);
   line-height: 0.92;
   letter-spacing: -0.02em;
-  color: #111;
+  color: #ffffff;
   text-transform: uppercase;
   margin: 0 0 24px 0;
 }
@@ -593,7 +593,7 @@ body {
   font-size: clamp(11px, 1vw, 14px);
   line-height: 1.5;
   letter-spacing: 0.05em;
-  color: #111;
+  color: rgba(255, 255, 255, 0.85);
   text-transform: uppercase;
   margin: 0 0 8px 0;
 }
@@ -603,7 +603,7 @@ body {
   font-weight: 400;
   font-size: clamp(10px, 0.85vw, 12px);
   letter-spacing: 0.1em;
-  color: #111;
+  color: rgba(255, 255, 255, 0.55);
   text-transform: uppercase;
   margin: 0;
 }
