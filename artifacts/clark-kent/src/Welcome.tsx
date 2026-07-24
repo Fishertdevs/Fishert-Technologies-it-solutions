@@ -21,87 +21,91 @@ export default function Welcome() {
   const { lang } = useLang();
   const t = content[lang];
 
-  // Split into words — spaces are rendered as plain text nodes so wrapping works
   const words = t.body.split(" ");
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
-    // Wait one frame so the About section pin has been registered and
-    // ScrollTrigger has calculated positions correctly
-    const raf = requestAnimationFrame(() => {
-      const ctx = gsap.context(() => {
-        const titleInner = el.querySelector<HTMLElement>(".wlc-title-inner");
-        const wordEls = el.querySelectorAll<HTMLElement>(".wlc-word");
+    const titleEl = el.querySelector<HTMLElement>(".wlc-title-inner");
+    const wordEls = Array.from(el.querySelectorAll<HTMLElement>(".wlc-word"));
 
-        // Title: start clipped below (same as hero lines)
-        gsap.set(titleInner, { yPercent: 108, skewX: -3 });
-        // Words: start very faded
-        gsap.set(wordEls, { opacity: 0.12 });
+    // Set initial states immediately so there's no flash
+    if (titleEl) gsap.set(titleEl, { yPercent: 108, skewX: -3 });
+    gsap.set(wordEls, { opacity: 0.12 });
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: el,
-            start: "top top",
-            // 6× viewport height — explicit so it never rushes past
-            end: () => `+=${window.innerHeight * 6}`,
-            scrub: 1.2,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
+    let tl: gsap.core.Timeline | null = null;
 
-        // Phase 1 (0 → 0.16): Title clips in from below
-        tl.to(
-          titleInner,
-          { yPercent: 0, skewX: 0, duration: 0.16, ease: "power2.out" },
-          0,
+    // Small delay so the About section's pin is registered first
+    const tid = window.setTimeout(() => {
+      if (!el) return;
+
+      tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top top",
+          // 6 viewport heights of scroll room — never rushes through
+          end: () => `+=${window.innerHeight * 6}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Phase 1: title clips in from below
+      if (titleEl) {
+        tl.to(titleEl, { yPercent: 0, skewX: 0, duration: 0.18, ease: "power2.out" }, 0);
+      }
+
+      // Phase 2: each word fades to full opacity sequentially
+      const wordStep = 0.82 / wordEls.length;
+      wordEls.forEach((word, i) => {
+        tl!.to(
+          word,
+          { opacity: 1, duration: wordStep * 2.5, ease: "none" },
+          0.18 + i * wordStep,
         );
+      });
 
-        // Phase 2 (0.20 → 1.0): Words reveal sequentially
-        const wordStart = 0.20;
-        const wordBudget = 0.80;
-        const wordStep = wordBudget / wordEls.length;
-
-        wordEls.forEach((word, i) => {
-          tl.to(
-            word,
-            { opacity: 1, duration: wordStep * 2.4, ease: "none" },
-            wordStart + i * wordStep,
-          );
-        });
-
-        // Force recalc after pinned About section has settled
-        ScrollTrigger.refresh();
-      }, el);
-
-      return () => ctx.revert();
-    });
+      // Recalculate all ScrollTrigger positions after About's pin
+      ScrollTrigger.refresh();
+    }, 200);
 
     return () => {
-      cancelAnimationFrame(raf);
+      window.clearTimeout(tid);
+      // Kill the timeline and its ScrollTrigger explicitly
+      if (tl) {
+        tl.scrollTrigger?.kill();
+        tl.kill();
+        tl = null;
+      }
+      // Catch any leftover triggers on this element
+      ScrollTrigger.getAll()
+        .filter((st) => st.trigger === el)
+        .forEach((st) => st.kill());
+      if (titleEl) gsap.killTweensOf(titleEl);
+      gsap.killTweensOf(wordEls);
     };
   }, [lang]);
 
   return (
     <section className="welcome-section" ref={sectionRef}>
       <div className="welcome-inner">
-        {/* Title — clip-reveal from below, single line, red, no wrapping */}
+        {/* Title — clip-reveal, single line */}
         <div className="wlc-title-clip">
           <h2 className="wlc-title-inner">{t.title}</h2>
         </div>
 
-        {/* Body — word-by-word reveal. Spaces are outside spans so text wraps. */}
+        {/* Body — word-by-word reveal. Spaces are plain text nodes → wraps correctly */}
         <p className="wlc-body">
-          {words.map((word, i) => (
-            <span key={`${lang}-${i}`} className="wlc-word">
-              {word}
-            </span>
-          )).reduce<React.ReactNode[]>((acc, el, i) => {
-            if (i === 0) return [el];
-            return [...acc, " ", el];
+          {words.reduce<React.ReactNode[]>((acc, word, i) => {
+            const span = (
+              <span key={`${lang}-${i}`} className="wlc-word">
+                {word}
+              </span>
+            );
+            return i === 0 ? [span] : [...acc, " ", span];
           }, [])}
         </p>
       </div>
