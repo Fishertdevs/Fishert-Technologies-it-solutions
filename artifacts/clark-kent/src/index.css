@@ -439,46 +439,51 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: #000;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .welcome-inner {
-  max-width: 820px;
+  max-width: 860px;
   width: 100%;
-  padding: 0 40px;
+  padding: 0 48px;
   text-align: center;
 }
 
-/* Title */
+/* Title — big, red, always fully visible, no animation */
 .wlc-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
-  font-weight: 600;
-  font-size: clamp(32px, 4vw, 64px);
-  line-height: 1.1;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: clamp(52px, 7vw, 112px);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
   color: #C0001A;
-  margin: 0 0 48px;
-  opacity: 0;
-  transform: translateY(18px);
+  margin: 0 0 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05em;
 }
 
-/* Body — word-by-word reveal */
+.wlc-title-line {
+  display: block;
+}
+
+/* Body — word-by-word reveal, white on black */
 .wlc-body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(16px, 1.5vw, 22px);
+  font-size: clamp(17px, 1.6vw, 24px);
   font-weight: 400;
   line-height: 1.75;
-  color: rgba(17, 17, 17, 1);
+  color: #ffffff;
   margin: 0;
   text-align: center;
 }
 
+/* Each word starts ghost-white and animates to pure white via GSAP */
 .wlc-word {
   display: inline;
-  opacity: 0.12;
-  transition: none; /* GSAP handles animation, no CSS transitions */
+  opacity: 0.15;
 }
 
 /* ── Floating image cards ───────────────────────────────── */
