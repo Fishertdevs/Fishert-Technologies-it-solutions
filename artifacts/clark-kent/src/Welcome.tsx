@@ -7,11 +7,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const content = {
   es: {
-    title: "Bienvenidos a\nFishert Studio",
+    title: "Bienvenidos a Fishert Studio",
     body: "Somos una agencia de software especializada en diseñar, construir y escalar productos digitales de alto impacto. Convertimos ideas ambiciosas en experiencias reales que posicionan a los negocios como líderes de su industria.",
   },
   en: {
-    title: "Welcome to\nFishert Studio",
+    title: "Welcome to Fishert Studio",
     body: "We are a software agency specialized in designing, building and scaling high-impact digital products. We turn ambitious ideas into real experiences that position businesses as leaders of their industry.",
   },
 };
@@ -28,53 +28,63 @@ export default function Welcome() {
     if (!el) return;
 
     const ctx = gsap.context(() => {
+      const titleInner = el.querySelector<HTMLElement>(".wlc-title-inner");
       const wordEls = el.querySelectorAll<HTMLElement>(".wlc-word");
 
-      // All words start ghost-white (very faded)
-      gsap.set(wordEls, { opacity: 0.15 });
+      // Title starts clipped below — same effect as hero lines
+      gsap.set(titleInner, { yPercent: 108, skewX: -3 });
+      // All words start very faded (ghost)
+      gsap.set(wordEls, { opacity: 0.12 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
           start: "top top",
-          end: `+=${Math.max(300, words.length * 60)}%`,
-          scrub: 1.4,
+          // Long enough to not rush: title reveal + all words
+          end: "+=500%",
+          scrub: 1.2,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      // Reveal each word to pure white sequentially, slight overlap for fluid feel
-      const totalDuration = 0.9;
-      const wordStep = totalDuration / wordEls.length;
+      // Phase 1 (0 → 0.18): Title clips in from below, identical to hero
+      tl.to(
+        titleInner,
+        { yPercent: 0, skewX: 0, duration: 0.18, ease: "power2.out" },
+        0,
+      );
+
+      // Phase 2 (0.22 → 1.0): Each word fades to full opacity sequentially
+      const wordStart = 0.22;
+      const wordBudget = 0.78; // remaining timeline for words
+      const wordStep = wordBudget / wordEls.length;
 
       wordEls.forEach((word, i) => {
         tl.to(
           word,
-          { opacity: 1, duration: wordStep * 2, ease: "none" },
-          i * wordStep,
+          { opacity: 1, duration: wordStep * 2.2, ease: "none" },
+          wordStart + i * wordStep,
         );
       });
     }, el);
 
     return () => ctx.revert();
-  }, [lang, words.length]);
+  }, [lang]);
 
   return (
     <section className="welcome-section" ref={sectionRef}>
       <div className="welcome-inner">
-        {/* Title — static, no animation */}
-        <h2 className="wlc-title">
-          {t.title.split("\n").map((line, i) => (
-            <span key={i} className="wlc-title-line">{line}</span>
-          ))}
-        </h2>
+        {/* Title — clip-reveal from below, single line, red */}
+        <div className="wlc-title-clip">
+          <h2 className="wlc-title-inner">{t.title}</h2>
+        </div>
 
-        {/* Body — word-by-word reveal */}
+        {/* Body — word-by-word reveal, dark on white */}
         <p className="wlc-body">
           {words.map((word, i) => (
-            <span key={i} className="wlc-word">
+            <span key={`${lang}-${i}`} className="wlc-word">
               {word}
               {i < words.length - 1 ? "\u00A0" : ""}
             </span>
