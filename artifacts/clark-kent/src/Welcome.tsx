@@ -46,7 +46,7 @@ export default function Welcome() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${window.innerHeight * 6}`,
+          end: () => `+=${window.innerHeight * 10}`,
           scrub: 1,
           pin: true,
           anticipatePin: 1,
