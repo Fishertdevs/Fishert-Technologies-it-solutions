@@ -38,12 +38,12 @@ export default function Welcome() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const titleInner = sectionRef.current!.querySelector<HTMLElement>(".wlc-title-inner");
-      const lineInners = sectionRef.current!.querySelectorAll<HTMLElement>(".wlc-line-inner");
+      const lines = sectionRef.current!.querySelectorAll<HTMLElement>(".wlc-line");
 
-      // Title: same clip-reveal as hero
+      // Title: clip-reveal from below (same as hero)
       gsap.set(titleInner, { yPercent: 108, skewX: -3 });
-      // Body lines: start clipped below, slight skew
-      gsap.set(lineInners, { yPercent: 110, skewX: -2 });
+      // Body lines: invisible + shifted down
+      gsap.set(lines, { opacity: 0, y: 40 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -57,19 +57,18 @@ export default function Welcome() {
         },
       });
 
-      // Phase 1 (0 → 0.16): Title clips in
+      // Phase 1 (0 → 0.16): title clips in
       tl.to(titleInner, { yPercent: 0, skewX: 0, duration: 0.16, ease: "power2.out" }, 0);
 
-      // Phase 2 (0.22 → 1): Lines slide up one by one, staggered
-      const lineStart = 0.22;
+      // Phase 2 (0.22 → end): lines fade+slide in staggered
       const lineStep = 0.12;
-      const lineDur = 0.18;
+      const lineDur  = 0.20;
 
-      lineInners.forEach((line, i) => {
+      lines.forEach((line, i) => {
         tl.to(
           line,
-          { yPercent: 0, skewX: 0, duration: lineDur, ease: "power2.out" },
-          lineStart + i * lineStep,
+          { opacity: 1, y: 0, duration: lineDur, ease: "power3.out" },
+          0.22 + i * lineStep,
         );
       });
     }, sectionRef);
@@ -80,17 +79,17 @@ export default function Welcome() {
   return (
     <section className="welcome-section" ref={sectionRef}>
       <div className="welcome-inner">
-        {/* Title — clip-reveal from below */}
+        {/* Title — clip-reveal */}
         <div className="wlc-title-clip">
           <h2 className="wlc-title-inner">{t.title}</h2>
         </div>
 
-        {/* Body — line-by-line clip reveal, each line its own overflow:hidden mask */}
+        {/* Body — staggered fade + slide-up per line */}
         <div className="wlc-lines">
           {t.lines.map((line, i) => (
-            <div key={`${lang}-${i}`} className="wlc-line-clip">
-              <span className="wlc-line-inner">{line}</span>
-            </div>
+            <span key={`${lang}-${i}`} className="wlc-line">
+              {line}
+            </span>
           ))}
         </div>
       </div>

@@ -473,7 +473,7 @@ body {
   display: block;
 }
 
-/* Body — line-by-line clip reveal */
+/* Body — staggered fade + slide-up per line */
 .wlc-lines {
   display: flex;
   flex-direction: column;
@@ -481,21 +481,16 @@ body {
   gap: 0;
 }
 
-/* Each line is its own overflow:hidden mask */
-.wlc-line-clip {
-  overflow: hidden;
-  line-height: 1.65;
-}
-
-/* The inner span starts yPercent:110 and slides up via GSAP */
-.wlc-line-inner {
+/* Each line — starts opacity:0, y:40 via GSAP, no clipping needed */
+.wlc-line {
   display: block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(16px, 1.5vw, 21px);
   font-weight: 400;
+  line-height: 1.7;
   color: #111111;
   text-align: center;
-  white-space: nowrap;
+  opacity: 0; /* GSAP animates this to 1 */
 }
 
 /* ── Floating image cards ───────────────────────────────── */
