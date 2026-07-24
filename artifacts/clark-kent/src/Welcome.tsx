@@ -1,9 +1,4 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const content = {
   es: {
@@ -31,50 +26,14 @@ const content = {
 };
 
 export default function Welcome() {
-  const sectionRef = useRef<HTMLElement>(null);
   const { lang } = useLang();
   const t = content[lang];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const titleInner = sectionRef.current!.querySelector<HTMLElement>(".wlc-title-inner");
-      const lines = sectionRef.current!.querySelectorAll<HTMLElement>(".wlc-line");
-
-      // Title: clip-reveal from below (same as hero)
-      gsap.set(titleInner, { yPercent: 108, skewX: -3 });
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=600%",
-          scrub: 1.1,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: 4,
-          onLeaveBack: () => {
-            gsap.set(titleInner, { yPercent: 108, skewX: -3 });
-          },
-        },
-      });
-
-      // Only the title animates — body lines are always visible
-      tl.to(titleInner, { yPercent: 0, skewX: 0, duration: 0.16, ease: "power2.out" }, 0);
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [lang]);
-
   return (
-    <section className="welcome-section" ref={sectionRef}>
+    <section className="welcome-section">
       <div className="welcome-inner">
-        {/* Title — clip-reveal */}
-        <div className="wlc-title-clip">
-          <h2 className="wlc-title-inner">{t.title}</h2>
-        </div>
+        <h2 className="wlc-title">{t.title}</h2>
 
-        {/* Body — staggered fade + slide-up per line */}
         <div className="wlc-lines">
           {t.lines.map((line, i) => (
             <span key={`${lang}-${i}`} className="wlc-line">
