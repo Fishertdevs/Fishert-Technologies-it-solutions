@@ -46,11 +46,13 @@ export default function Welcome() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${window.innerHeight * 10}`,
-          scrub: 1,
+          end: "+=600%",
+          scrub: 1.1,
           pin: true,
+          pinSpacing: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          refreshPriority: 4,
         },
       });
 

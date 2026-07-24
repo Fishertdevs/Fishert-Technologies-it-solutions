@@ -90,7 +90,7 @@ export default function Servicios() {
         pinSpacing: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
-        refreshPriority: 4,
+        refreshPriority: 3,
       },
     });
 
