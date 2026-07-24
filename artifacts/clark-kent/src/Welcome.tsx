@@ -8,21 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 const content = {
   es: {
     title: "Bienvenidos a Fishert Studio",
-    lines: [
-      "Somos una agencia de software especializada en diseñar,",
-      "construir y escalar productos digitales de alto impacto.",
-      "Convertimos ideas ambiciosas en experiencias reales que",
-      "posicionan a los negocios como líderes de su industria.",
-    ],
+    body: "Somos una agencia de software especializada en diseñar, construir y escalar productos digitales de alto impacto. Convertimos ideas ambiciosas en experiencias reales que posicionan a los negocios como líderes de su industria.",
   },
   en: {
     title: "Welcome to Fishert Studio",
-    lines: [
-      "We are a software agency specialized in designing,",
-      "building and scaling high-impact digital products.",
-      "We turn ambitious ideas into real experiences that",
-      "position businesses as leaders of their industry.",
-    ],
+    body: "We are a software agency specialized in designing, building and scaling high-impact digital products. We turn ambitious ideas into real experiences that position businesses as leaders of their industry.",
   },
 };
 
@@ -31,72 +21,69 @@ export default function Welcome() {
   const { lang } = useLang();
   const t = content[lang];
 
+  // Split body text into word spans
+  const words = t.body.split(" ");
+
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
     const ctx = gsap.context(() => {
-      const titleBar = el.querySelector<HTMLElement>(".wlc-title-bar");
       const titleEl = el.querySelector<HTMLElement>(".wlc-title");
-      const bodyLines = el.querySelectorAll<HTMLElement>(".wlc-body-line");
-      const bodyBars = el.querySelectorAll<HTMLElement>(".wlc-body-bar");
+      const wordEls = el.querySelectorAll<HTMLElement>(".wlc-word");
 
-      // Initial state
-      gsap.set(titleBar, { scaleX: 0, transformOrigin: "left center" });
-      gsap.set(titleEl, { opacity: 0 });
-      bodyLines.forEach((l) => gsap.set(l, { opacity: 0 }));
-      bodyBars.forEach((b) => gsap.set(b, { scaleX: 0, transformOrigin: "left center" }));
+      // Start state: title slightly faded, all words at minimum opacity
+      gsap.set(titleEl, { opacity: 0, y: 18 });
+      gsap.set(wordEls, { opacity: 0.12 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
           start: "top top",
-          end: "+=320%",
-          scrub: 1,
+          // Give enough scroll room: ~80px per word, min 250%
+          end: `+=${Math.max(280, words.length * 55)}%`,
+          scrub: 1.2,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      // Title sweep in → reveal → sweep out
-      tl.to(titleBar, { scaleX: 1, duration: 0.35, ease: "none" }, 0);
-      tl.to(titleEl, { opacity: 1, duration: 0.01 }, 0.34);
-      tl.to(titleBar, { scaleX: 0, transformOrigin: "right center", duration: 0.35, ease: "none" }, 0.36);
+      // 1. Title fades in
+      tl.to(titleEl, { opacity: 1, y: 0, duration: 0.25, ease: "none" }, 0);
 
-      // Body lines: each line sweeps in, reveals, sweeps out
-      const bodyStart = 0.85;
-      const step = 0.38;
-      bodyLines.forEach((line, i) => {
-        const bar = bodyBars[i];
-        const t0 = bodyStart + i * step;
-        tl.to(bar, { scaleX: 1, duration: 0.28, ease: "none" }, t0);
-        tl.to(line, { opacity: 1, duration: 0.01 }, t0 + 0.27);
-        tl.to(bar, { scaleX: 0, transformOrigin: "right center", duration: 0.28, ease: "none" }, t0 + 0.29);
+      // 2. Words reveal one-by-one (with slight overlap for fluidity)
+      const wordStart = 0.3;
+      const totalWordDuration = 0.65; // portion of timeline for all words
+      const wordStep = totalWordDuration / wordEls.length;
+
+      wordEls.forEach((word, i) => {
+        tl.to(
+          word,
+          { opacity: 1, duration: wordStep * 1.6, ease: "none" },
+          wordStart + i * wordStep,
+        );
       });
     }, el);
 
     return () => ctx.revert();
-  }, [lang]);
+  }, [lang, words.length]);
 
   return (
     <section className="welcome-section" ref={sectionRef}>
       <div className="welcome-inner">
         {/* Title */}
-        <div className="wlc-title-wrap">
-          <h2 className="wlc-title">{t.title}</h2>
-          <div className="wlc-title-bar" />
-        </div>
+        <h2 className="wlc-title">{t.title}</h2>
 
-        {/* Body lines */}
-        <div className="wlc-body">
-          {t.lines.map((line, i) => (
-            <div className="wlc-line-wrap" key={i}>
-              <span className="wlc-body-line">{line}</span>
-              <div className="wlc-body-bar" />
-            </div>
+        {/* Body — word-by-word reveal */}
+        <p className="wlc-body">
+          {words.map((word, i) => (
+            <span key={i} className="wlc-word">
+              {word}
+              {i < words.length - 1 ? " " : ""}
+            </span>
           ))}
-        </div>
+        </p>
       </div>
     </section>
   );
