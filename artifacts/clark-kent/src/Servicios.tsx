@@ -14,6 +14,12 @@ const galleryData = [
   { id: 104, img: "W7.png", title: "First Contact" },
   { id: 105, img: "W8.png", title: "White Yak" },
   { id: 106, img: "W9.png", title: "Heron Girl" },
+  { id: 107, img: "W4.png", title: "Blue Tulip" },
+  { id: 108, img: "W5.png", title: "Opera Mask" },
+  { id: 109, img: "W6.png", title: "Blue Bloom" },
+  { id: 110, img: "W7.png", title: "First Contact" },
+  { id: 111, img: "W8.png", title: "White Yak" },
+  { id: 112, img: "W9.png", title: "Heron Girl" },
 ];
 
 type SlotConfig = { size: number; x: number };
@@ -23,15 +29,15 @@ export default function Servicios() {
   const [slots, setSlots] = useState<SlotConfig[]>([]);
   const { lang } = useLang();
 
-  const initialVisibleCount = 3;
+  const initialVisibleCount = 5;
   const initialVisible = galleryData.slice(0, initialVisibleCount);
   const queuedItems = galleryData.slice(initialVisibleCount);
   const domItems = [...[...queuedItems].reverse(), ...initialVisible];
 
   useEffect(() => {
     const handleResize = () => {
-      const vw = window.innerWidth;
-      const sizes = [vw * 0.25, vw * 0.35, vw * 0.40];
+      const vw = sectionRef.current ? sectionRef.current.clientWidth : window.innerWidth;
+      const sizes = [vw * 0.12, vw * 0.16, vw * 0.2, vw * 0.24, vw * 0.28];
       const computedSlots: SlotConfig[] = [];
       let currentX = 0;
       for (let i = 0; i < initialVisibleCount; i++) {
@@ -46,7 +52,7 @@ export default function Servicios() {
   }, []);
 
   useEffect(() => {
-    if (slots.length === 0) return;
+    if (slots.length < initialVisibleCount) return;
 
     gsap.set(".svc-item", {
       position: "absolute",
