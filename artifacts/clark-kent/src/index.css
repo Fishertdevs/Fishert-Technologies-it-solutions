@@ -552,9 +552,10 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   padding: 48px;
   padding-top: 90px;
-  padding-left: 40px;
+  text-align: center;
   z-index: 10;
   pointer-events: none;
 }
@@ -573,13 +574,13 @@ body {
 .works-tagline {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: clamp(14px, 1.35vw, 20px);
-  line-height: 1.6;
+  font-size: clamp(18px, 1.8vw, 26px);
+  line-height: 1.55;
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.82);
   text-transform: none;
-  margin: 0;
-  max-width: 400px;
+  margin: 0 auto;
+  max-width: 560px;
 }
 
 .works-sub {

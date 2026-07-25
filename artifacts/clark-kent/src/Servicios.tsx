@@ -23,7 +23,7 @@ export default function Servicios() {
   const [slots, setSlots] = useState<SlotConfig[]>([]);
   const { lang } = useLang();
 
-  const initialVisibleCount = 5;
+  const initialVisibleCount = 3;
   const initialVisible = galleryData.slice(0, initialVisibleCount);
   const queuedItems = galleryData.slice(initialVisibleCount);
   const domItems = [...[...queuedItems].reverse(), ...initialVisible];
@@ -31,7 +31,7 @@ export default function Servicios() {
   useEffect(() => {
     const handleResize = () => {
       const vw = window.innerWidth;
-      const sizes = [vw * 0.12, vw * 0.16, vw * 0.2, vw * 0.24, vw * 0.28];
+      const sizes = [vw * 0.25, vw * 0.35, vw * 0.40];
       const computedSlots: SlotConfig[] = [];
       let currentX = 0;
       for (let i = 0; i < initialVisibleCount; i++) {
@@ -124,7 +124,7 @@ export default function Servicios() {
     <section
       id="servicios"
       ref={sectionRef}
-      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative", borderRadius: "56px" }}
+      style={{ width: "100%", height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative", borderRadius: "56px" }}
     >
       <div className="works-text-block">
         <h2 className="works-heading">
