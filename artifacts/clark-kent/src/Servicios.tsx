@@ -14,18 +14,6 @@ const galleryData = [
   { id: 104, img: "W7.png", title: "First Contact" },
   { id: 105, img: "W8.png", title: "White Yak" },
   { id: 106, img: "W9.png", title: "Heron Girl" },
-  { id: 107, img: "W1.png", title: "Porcelain Crane" },
-  { id: 108, img: "W2.png", title: "Flamingo Dreams" },
-  { id: 109, img: "W3.png", title: "Red Equestrian" },
-  { id: 110, img: "W4.png", title: "Blue Tulip" },
-  { id: 111, img: "W5.png", title: "Opera Mask" },
-  { id: 112, img: "W6.png", title: "Blue Bloom" },
-  { id: 113, img: "W7.png", title: "First Contact" },
-  { id: 114, img: "W8.png", title: "White Yak" },
-  { id: 115, img: "W9.png", title: "Heron Girl" },
-  { id: 116, img: "W1.png", title: "Porcelain Crane" },
-  { id: 117, img: "W2.png", title: "Flamingo Dreams" },
-  { id: 118, img: "W3.png", title: "Red Equestrian" },
 ];
 
 type SlotConfig = { size: number; x: number };
