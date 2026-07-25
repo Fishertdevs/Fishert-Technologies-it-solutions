@@ -562,24 +562,25 @@ body {
 .works-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(52px, 7.5vw, 118px);
-  line-height: 0.90;
+  font-size: clamp(36px, 4.8vw, 80px);
+  line-height: 1;
   letter-spacing: -0.01em;
   color: #ffffff;
   text-transform: uppercase;
+  white-space: nowrap;
   margin: 0 0 24px 0;
 }
 
 .works-tagline {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: clamp(12px, 1.1vw, 16px);
-  line-height: 1.55;
+  font-size: clamp(14px, 1.35vw, 20px);
+  line-height: 1.6;
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.82);
   text-transform: none;
   margin: 0;
-  max-width: 360px;
+  max-width: 400px;
 }
 
 .works-sub {
