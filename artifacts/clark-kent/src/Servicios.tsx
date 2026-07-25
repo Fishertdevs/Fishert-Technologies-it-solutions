@@ -138,28 +138,6 @@ export default function Servicios() {
       ref={sectionRef}
       style={{ height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative" }}
     >
-      {/* Top wave — transitions from white Welcome section to green */}
-      <svg
-        aria-hidden="true"
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "80px", zIndex: 20, pointerEvents: "none", display: "block" }}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-      >
-        <path d="M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,0 L0,0 Z" fill="#ffffff" />
-      </svg>
-
-      {/* Bottom wave — transitions from green to the next section */}
-      <svg
-        aria-hidden="true"
-        style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 20, pointerEvents: "none", display: "block" }}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-      >
-        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff" />
-      </svg>
-
       <div className="works-text-block">
         <h2 className="works-heading">
           {lang === "es" ? <>LO QUE<br />HACEMOS.</> : <>WHAT WE<br />DO.</>}
