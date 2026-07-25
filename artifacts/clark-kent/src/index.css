@@ -1130,13 +1130,13 @@ body {
 /* ── Socios / Partners section ──────────────────────────────────────────── */
 .socios-section {
   width: 100%;
-  padding: 64px 48px;
+  padding: 96px 48px;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #ede8f5 0%, #ffffff 30%, #ffffff 70%, #fde8f3 100%);
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 56px;
 }
 
 .socios-divider {
@@ -1171,22 +1171,20 @@ body {
 }
 
 .socios-logo {
-  opacity: 0.6;
-  transition: opacity 0.25s ease, filter 0.25s ease;
+  opacity: 0.55;
   display: flex;
   align-items: center;
+  justify-content: center;
   filter: grayscale(100%);
-}
-
-.socios-logo:hover {
-  opacity: 1;
-  filter: grayscale(0%);
+  /* Fixed container so every logo occupies the same bounding box */
+  width: 160px;
+  height: 52px;
 }
 
 .socios-logo-img {
-  height: 56px;
-  width: auto;
-  max-width: 160px;
+  /* Fit inside the uniform box — same visual weight as the Alterego text logo */
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
 }
