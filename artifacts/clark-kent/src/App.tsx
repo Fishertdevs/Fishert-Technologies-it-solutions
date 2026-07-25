@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import About from "./About";
 import Welcome from "./Welcome";
 import Servicios from "./Servicios";
+import Socios from "./Socios";
 import Nosotros from "./Nosotros";
 import Portafolio from "./Portafolio";
 import Section4 from "./Section4";
@@ -15,6 +16,7 @@ export default function App() {
       <About />
       <Welcome />
       <Servicios />
+      <Socios />
       <Nosotros />
       <Portafolio />
       <Section4 />

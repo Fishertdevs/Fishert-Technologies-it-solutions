@@ -552,10 +552,10 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 48px;
-  padding-top: 90px;
-  padding-left: 48px;
-  text-align: left;
+  width: 100%;
+  padding: 72px 48px 0;
+  box-sizing: border-box;
+  text-align: center;
   z-index: 10;
   pointer-events: none;
 }
@@ -568,19 +568,20 @@ body {
   letter-spacing: -0.01em;
   color: #ffffff;
   text-transform: uppercase;
-  margin: 0 0 24px 0;
+  margin: 0 0 28px 0;
+  text-align: center;
 }
 
 .works-tagline {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: clamp(18px, 1.8vw, 26px);
+  font-size: clamp(20px, 2.2vw, 32px);
   line-height: 1.55;
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.82);
   text-transform: none;
-  margin: 0;
-  text-align: left;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .works-sub {
@@ -1124,6 +1125,62 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+/* ── Socios / Partners section ──────────────────────────────────────────── */
+.socios-section {
+  width: 100%;
+  padding: 64px 48px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #ede8f5 0%, #ffffff 30%, #ffffff 70%, #fde8f3 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.socios-divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.socios-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(100, 100, 140, 0.25);
+}
+
+.socios-divider-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(12px, 1.1vw, 15px);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: rgba(80, 80, 120, 0.55);
+  white-space: nowrap;
+}
+
+.socios-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 48px 64px;
+}
+
+.socios-logo {
+  color: #8b8fa8;
+  opacity: 0.75;
+  transition: opacity 0.25s ease, color 0.25s ease;
+  display: flex;
+  align-items: center;
+}
+
+.socios-logo:hover {
+  opacity: 1;
+  color: #5a5e7a;
 }
 
 .svc-item img {
