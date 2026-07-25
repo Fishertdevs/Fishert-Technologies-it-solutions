@@ -140,15 +140,15 @@ export default function Servicios() {
     >
       <div className="works-text-block">
         <h2 className="works-heading">
-          {lang === "es" ? <>LO QUE<br />HACEMOS.</> : <>WHAT WE<br />DO.</>}
+          {lang === "es" ? <>NUESTRAS<br />SOLUCIONES.</> : <>OUR<br />SOLUTIONS.</>}
         </h2>
         <p className="works-tagline">
           {lang === "es"
-            ? <>Diseño, ingeniería e IA aplicada<br />para productos que escalan.</>
-            : <>Design, engineering and applied AI<br />for products that scale.</>}
+            ? <>Construimos productos digitales que<br />combinan diseño, código e inteligencia.</>
+            : <>We build digital products that blend<br />design, code and intelligence.</>}
         </p>
         <p className="works-sub">
-          {lang === "es" ? "DISEÑO. CÓDIGO. ESTRATEGIA. IA." : "DESIGN. CODE. STRATEGY. AI."}
+          {lang === "es" ? "DISEÑO · INGENIERÍA · IA · ESTRATEGIA" : "DESIGN · ENGINEERING · AI · STRATEGY"}
         </p>
       </div>
 

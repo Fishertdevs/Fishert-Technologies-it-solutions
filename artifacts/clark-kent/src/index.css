@@ -553,6 +553,7 @@ body {
   top: 0;
   left: 0;
   padding: 48px;
+  padding-top: 90px;
   padding-left: 40px;
   z-index: 10;
   pointer-events: none;
