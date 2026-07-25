@@ -30,7 +30,7 @@ export default function Servicios() {
 
   useEffect(() => {
     const handleResize = () => {
-      const vw = window.innerWidth - 24; // subtract section's left+right margin (12px each)
+      const vw = window.innerWidth;
       const sizes = [vw * 0.12, vw * 0.16, vw * 0.2, vw * 0.24, vw * 0.28];
       const computedSlots: SlotConfig[] = [];
       let currentX = 0;
@@ -124,11 +124,11 @@ export default function Servicios() {
     <section
       id="servicios"
       ref={sectionRef}
-      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative", borderRadius: "56px", margin: "0 12px" }}
+      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative", borderRadius: "56px" }}
     >
       <div className="works-text-block">
         <h2 className="works-heading">
-          {lang === "es" ? <>NUESTRAS<br />SOLUCIONES.</> : <>OUR<br />SOLUTIONS.</>}
+          {lang === "es" ? "NUESTRAS SOLUCIONES." : "OUR SOLUTIONS."}
         </h2>
         <p className="works-tagline">
           {lang === "es"
