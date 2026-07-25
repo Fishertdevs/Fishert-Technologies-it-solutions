@@ -136,7 +136,7 @@ export default function Servicios() {
     <section
       id="servicios"
       ref={sectionRef}
-      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative" }}
+      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative", borderRadius: "32px", margin: "0 12px" }}
     >
       <div className="works-text-block">
         <h2 className="works-heading">
@@ -157,7 +157,7 @@ export default function Servicios() {
           <div
             key={item.id}
             className={`svc-item svc-item--${item.id}`}
-            style={{ overflow: "hidden", position: "absolute", bottom: 0, left: 0 }}
+            style={{ overflow: "hidden", position: "absolute", bottom: 0, left: 0, borderRadius: "16px 16px 0 0" }}
           >
             <img
               src={`${base}${item.img}`}
