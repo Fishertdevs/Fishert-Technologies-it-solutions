@@ -581,6 +581,16 @@ body {
   max-width: 360px;
 }
 
+.works-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: clamp(10px, 0.85vw, 12px);
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+
 /* Service card overlay */
 .svc-card-overlay {
   position: absolute;
