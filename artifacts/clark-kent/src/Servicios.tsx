@@ -16,15 +16,11 @@ const galleryData = [
   { id: 6, img: "W9.png", title: "Heron Girl" },
 ];
 
-// After 6 cycles the carousel returns to its exact starting state.
-// Each cycle: one card enters from left (slot 0), all shift right, rightmost exits.
-// Entry order: W9, W8, W7, W6, W5, W4 → then repeats.
-const ENTRY_ORDER = [5, 4, 3, 2, 1, 0]; // indices into galleryData
+// 6 unique images, 5 visible at a time.
+// Entry order: after 6 user-scroll cycles every card returns to its original slot.
+const ENTRY_ORDER = [5, 4, 3, 2, 1, 0]; // indices into galleryData (W9→W8→…→W4)
 
 const VISIBLE = 5;
-const ANIM = 0.7;  // slide duration (s)
-const HOLD = 0.9;  // pause between cycles (s)
-const STEP = ANIM + HOLD;
 
 type Slot = { size: number; x: number };
 
@@ -33,74 +29,70 @@ export default function Servicios() {
   const [slots, setSlots] = useState<Slot[]>([]);
   const { lang } = useLang();
 
-  // ── Compute slot sizes from actual section width ────────────────────────
+  // ── Slot sizes from actual section width ───────────────────────────────
   useEffect(() => {
     const compute = () => {
       const vw = sectionRef.current?.clientWidth ?? window.innerWidth;
       const sizes = [vw * 0.12, vw * 0.16, vw * 0.20, vw * 0.24, vw * 0.28];
       let x = 0;
-      const result: Slot[] = sizes.map((s) => { const slot = { size: s, x }; x += s; return slot; });
-      setSlots(result);
+      setSlots(sizes.map((s) => { const slot = { size: s, x }; x += s; return slot; }));
     };
     compute();
     window.addEventListener("resize", compute);
     return () => window.removeEventListener("resize", compute);
   }, []);
 
-  // ── Build infinite auto-play GSAP timeline ─────────────────────────────
+  // ── Scroll-driven 6-cycle carousel (user controls with scroll) ─────────
   useEffect(() => {
     if (slots.length < VISIBLE || !sectionRef.current) return;
 
-    // Kill any leftover ScrollTrigger instances from previous renders
-    ScrollTrigger.getAll().forEach((t) => t.kill());
-
     const ctx = gsap.context(() => {
-      // 1. Hide all cards
+      // 1. Hide all cards, then place the initial 5
       gsap.set(".svc-item", {
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        x: 0,
-        width: 0,
-        height: 0,
-        opacity: 0,
+        position: "absolute", bottom: 0, left: 0,
+        x: 0, width: 0, height: 0, opacity: 0,
       });
-
-      // 2. Place initial 5 visible cards
       for (let i = 0; i < VISIBLE; i++) {
         gsap.set(`.svc-item--${galleryData[i].id}`, {
-          x: slots[i].x,
-          width: slots[i].size,
-          height: slots[i].size,
-          opacity: 1,
+          x: slots[i].x, width: slots[i].size, height: slots[i].size, opacity: 1,
         });
       }
 
-      // 3. Build 6-cycle looping timeline
-      const tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
-      const screen = [0, 1, 2, 3, 4]; // current visible: indices into galleryData
+      // 2. Scroll-driven timeline — user scrolls to advance each cycle
+      //    6 cycles × 100vh each = 600vh of pinned scroll.
+      //    After all 6 cycles the gallery is back to its original arrangement.
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${6 * 100}%`,
+          scrub: 1,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          refreshPriority: 4,
+        },
+      });
+
+      const screen = [0, 1, 2, 3, 4];
 
       for (let ci = 0; ci < 6; ci++) {
-        const t = ci * STEP;
+        const t = ci;          // label in the timeline (each cycle = duration 1)
         const enterIdx = ENTRY_ORDER[ci];
         const enterId = galleryData[enterIdx].id;
 
-        // Position entering card off-screen left at slot-0 size, just before its turn
+        // Position entering card off-screen left at full slot-0 size, just before cycle
         tl.set(`.svc-item--${enterId}`, {
-          x: -slots[0].size,
-          width: slots[0].size,
-          height: slots[0].size,
-          opacity: 1,
+          x: -slots[0].size, width: slots[0].size, height: slots[0].size, opacity: 1,
         }, t === 0 ? "<" : t - 0.001);
 
-        // Slide entering card to slot 0
+        // Slide entering card into slot 0
         tl.to(`.svc-item--${enterId}`, {
-          x: slots[0].x,
-          duration: ANIM,
-          ease: "power2.inOut",
+          x: slots[0].x, duration: 1, ease: "none",
         }, t);
 
-        // Shift each visible card one slot right; last one exits off-screen
+        // Shift each visible card one slot to the right; rightmost exits
         screen.forEach((idx, si) => {
           const id = galleryData[idx].id;
           if (si < VISIBLE - 1) {
@@ -108,24 +100,20 @@ export default function Servicios() {
               x: slots[si + 1].x,
               width: slots[si + 1].size,
               height: slots[si + 1].size,
-              duration: ANIM,
-              ease: "power2.inOut",
+              duration: 1, ease: "none",
             }, t);
           } else {
-            // Exit right: move beyond the last slot's right edge
             tl.to(`.svc-item--${id}`, {
               x: slots[VISIBLE - 1].x + slots[VISIBLE - 1].size,
-              duration: ANIM,
-              ease: "power2.inOut",
+              duration: 1, ease: "none",
             }, t);
           }
         });
 
-        // Advance screen state (mirrors what the animation does)
         screen.unshift(enterIdx);
         screen.pop();
       }
-    }, sectionRef); // scope selectors to this section
+    }, sectionRef); // scope selectors to this section only
 
     return () => ctx.revert();
   }, [slots]);
@@ -162,8 +150,7 @@ export default function Servicios() {
             style={{
               overflow: "hidden",
               position: "absolute",
-              bottom: 0,
-              left: 0,
+              bottom: 0, left: 0,
               borderRadius: "16px 16px 0 0",
             }}
           >
@@ -171,10 +158,8 @@ export default function Servicios() {
               src={`${base}${item.img}`}
               alt={item.title}
               style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center bottom",
+                width: "100%", height: "100%",
+                objectFit: "cover", objectPosition: "center bottom",
                 display: "block",
               }}
             />
