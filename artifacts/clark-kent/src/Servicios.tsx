@@ -136,7 +136,7 @@ export default function Servicios() {
     <section
       id="servicios"
       ref={sectionRef}
-      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative", borderRadius: "32px", margin: "0 12px" }}
+      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#143020", position: "relative", borderRadius: "56px", margin: "0 12px" }}
     >
       <div className="works-text-block">
         <h2 className="works-heading">
@@ -144,11 +144,8 @@ export default function Servicios() {
         </h2>
         <p className="works-tagline">
           {lang === "es"
-            ? <>Construimos productos digitales que<br />combinan diseño, código e inteligencia.</>
-            : <>We build digital products that blend<br />design, code and intelligence.</>}
-        </p>
-        <p className="works-sub">
-          {lang === "es" ? "DISEÑO · INGENIERÍA · IA · ESTRATEGIA" : "DESIGN · ENGINEERING · AI · STRATEGY"}
+            ? <>Diseñamos, desarrollamos y escalamos<br />soluciones digitales para marcas<br />que buscan liderar.</>
+            : <>We design, build and scale digital<br />solutions for brands that aim to lead.</>}
         </p>
       </div>
 
