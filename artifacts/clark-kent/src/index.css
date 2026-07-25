@@ -1171,16 +1171,24 @@ body {
 }
 
 .socios-logo {
-  color: #8b8fa8;
-  opacity: 0.75;
-  transition: opacity 0.25s ease, color 0.25s ease;
+  opacity: 0.6;
+  transition: opacity 0.25s ease, filter 0.25s ease;
   display: flex;
   align-items: center;
+  filter: grayscale(100%);
 }
 
 .socios-logo:hover {
   opacity: 1;
-  color: #5a5e7a;
+  filter: grayscale(0%);
+}
+
+.socios-logo-img {
+  height: 56px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
 }
 
 .svc-item img {
