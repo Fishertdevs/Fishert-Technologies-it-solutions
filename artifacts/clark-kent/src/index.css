@@ -552,10 +552,10 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
   padding: 48px;
   padding-top: 90px;
-  text-align: center;
+  padding-left: 48px;
+  text-align: left;
   z-index: 10;
   pointer-events: none;
 }
@@ -563,7 +563,7 @@ body {
 .works-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(52px, 7.5vw, 118px);
+  font-size: clamp(47px, 6.75vw, 106px);
   line-height: 0.90;
   letter-spacing: -0.01em;
   color: #ffffff;
@@ -579,8 +579,8 @@ body {
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.82);
   text-transform: none;
-  margin: 0 auto;
-  max-width: 560px;
+  margin: 0;
+  text-align: left;
 }
 
 .works-sub {

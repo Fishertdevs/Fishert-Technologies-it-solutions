@@ -94,10 +94,17 @@ export default function Servicios() {
       const enteringId = queuedItem.id;
       const startTime = cycleIndex;
 
-      gsap.set(`.svc-item--${enteringId}`, { opacity: 1 });
+      // Position card off-screen left at full size RIGHT BEFORE its cycle — so it slides in cleanly
+      tl.set(`.svc-item--${enteringId}`, {
+        x: -slots[0].size,
+        width: slots[0].size,
+        height: slots[0].size,
+        opacity: 1,
+      }, startTime);
+
       tl.to(
         `.svc-item--${enteringId}`,
-        { x: slots[0].x, width: slots[0].size, height: slots[0].size, duration: 1, ease: "none" },
+        { x: slots[0].x, duration: 1, ease: "none" },
         startTime,
       );
 
