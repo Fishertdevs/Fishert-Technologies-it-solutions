@@ -563,7 +563,7 @@ body {
 .works-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(47px, 6.75vw, 106px);
+  font-size: clamp(36px, 5vw, 80px);
   line-height: 0.90;
   letter-spacing: -0.01em;
   color: #ffffff;
@@ -1094,7 +1094,7 @@ body {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
   font-style: italic;
-  font-size: clamp(28px, 3.6vw, 62px);
+  font-size: clamp(32px, 4.4vw, 76px);
   line-height: 1;
   letter-spacing: -0.01em;
   color: #ffffff;
