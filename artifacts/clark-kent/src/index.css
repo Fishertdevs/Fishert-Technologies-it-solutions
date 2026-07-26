@@ -1136,41 +1136,158 @@ body {
   margin: 0;
 }
 
-/* ── Portafolio items (same as works but scoped) ─────────── */
-/* ── Portafolio new two-column layout ── */
+/* ══════════════════════════════════════════════════════════
+   PORTAFOLIO — two-column, browser-mockup carousel
+   ══════════════════════════════════════════════════════════ */
+
 .port-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 40% 60%;
   min-height: 100vh;
   background: #ffffff;
-  padding: 72px 64px 72px 56px;
+  padding: 80px 56px 80px 56px;
   box-sizing: border-box;
-  gap: 64px;
+  gap: 56px;
   align-items: center;
 }
 
+/* ── Left ── */
 .port-left {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-.port-left .casos-heading {
-  text-align: left;
-  white-space: pre-line;
+.port-title {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(40px, 5vw, 78px);
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+  color: #FF5500;
+  text-transform: uppercase;
   margin: 0;
-  line-height: 0.95;
+  text-align: left;
 }
 
-.port-meta {
+/* ── Right ── */
+.port-right {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 }
 
-.port-project-title {
+/* ── Browser chrome ── */
+.port-browser {
+  width: 100%;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  border: 1px solid #e4e4e4;
+}
+
+.port-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f3f3f3;
+  padding: 10px 16px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.port-dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.port-dot-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.port-dot-red    { background: #ff5f57; }
+.port-dot-yellow { background: #febc2e; }
+.port-dot-green  { background: #28c840; }
+
+.port-url-box {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.port-url-lock { display: flex; align-items: center; flex-shrink: 0; }
+
+.port-url-scheme {
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+.port-url-typed {
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* blinking cursor */
+@keyframes port-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.port-url-cursor {
+  display: inline-block;
+  width: 1.5px;
+  height: 13px;
+  background: #555;
+  vertical-align: middle;
+  animation: port-blink 0.9s step-start infinite;
+  flex-shrink: 0;
+}
+
+/* ── Viewport / screenshot ── */
+.port-viewport {
+  width: 100%;
+  height: 52vh;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.port-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: opacity 0.35s ease;
+}
+.port-img-out { opacity: 0; }
+.port-img-in  { opacity: 1; }
+
+/* ── Info + navigation row ── */
+.port-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.port-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.port-project-name {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(20px, 2vw, 30px);
+  font-size: clamp(16px, 1.6vw, 22px);
   font-weight: 600;
   color: #111;
   margin: 0;
@@ -1180,72 +1297,56 @@ body {
 
 .port-visit {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   color: #FF5500;
   text-decoration: none;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: opacity 0.2s;
 }
-.port-visit:hover { opacity: 0.7; }
+.port-visit:hover { opacity: 0.6; }
 
+/* ── Navigation ── */
 .port-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 14px;
 }
 
 .port-arrow {
   background: none;
-  border: 1.5px solid #111;
-  color: #111;
-  font-size: 18px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  border: none;
+  color: #333;
   cursor: pointer;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, color 0.2s;
-  line-height: 1;
+  transition: color 0.18s;
+  border-radius: 4px;
 }
-.port-arrow:hover {
-  background: #111;
-  color: #fff;
-}
+.port-arrow:hover { color: #FF5500; }
 
-.port-counter {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #888;
-  letter-spacing: 0.08em;
-}
-
-.port-right {
+.port-pips {
   display: flex;
+  gap: 8px;
   align-items: center;
-  justify-content: center;
-  height: 100%;
 }
 
-.port-card {
-  width: 100%;
-  max-height: 80vh;
-  border-radius: 20px 20px 0 0;
-  overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+.port-pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
 }
-
-.port-img {
-  width: 100%;
-  height: 100%;
-  max-height: 80vh;
-  object-fit: cover;
-  object-position: top;
-  display: block;
+.port-pip-active {
+  background: #FF5500;
+  transform: scale(1.3);
 }
 
 /* ── Servicios gallery items ─────────────────────────────── */
