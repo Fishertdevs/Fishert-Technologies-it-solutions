@@ -537,7 +537,7 @@ body {
 .works-item {
   flex-shrink: 0;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 18px 18px 0 0;
   height: 100%;
 }
 
@@ -563,10 +563,22 @@ body {
 .works-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(36px, 5vw, 80px);
+  font-size: clamp(47px, 6.75vw, 106px);
   line-height: 0.90;
   letter-spacing: -0.01em;
   color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 28px 0;
+  text-align: center;
+}
+
+.casos-heading {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: clamp(47px, 6.75vw, 106px);
+  line-height: 0.90;
+  letter-spacing: -0.01em;
+  color: #FF5500;
   text-transform: uppercase;
   margin: 0 0 28px 0;
   text-align: center;

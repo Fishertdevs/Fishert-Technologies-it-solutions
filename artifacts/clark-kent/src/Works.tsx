@@ -7,25 +7,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 const base = import.meta.env.BASE_URL || "/";
 
+const projects = [
+  {
+    title: "Alter Ego Store",
+    img: "https://image.thum.io/get/width/600/crop/420/https://www.alterego-store.com.co/",
+  },
+  {
+    title: "Pica Pastos y Molinos Vilar",
+    img: "https://image.thum.io/get/width/600/crop/420/https://www.picapastosymolinosvilar.com.co/",
+  },
+  {
+    title: "SGC Abogados",
+    img: "https://image.thum.io/get/width/600/crop/420/https://www.sgcabogados.com.co/",
+  },
+  {
+    title: "Dr. Mario Sánchez",
+    img: "https://image.thum.io/get/width/600/crop/420/https://dr-mario-sanchez-website-api-server-one.vercel.app/",
+  },
+  {
+    title: "Mi Tienda Go",
+    img: "https://image.thum.io/get/width/600/crop/420/https://app.mitiendago.co",
+  },
+];
+
 const worksData = [
-  { id: 1, img: "W1.png", title: "Porcelain Crane" },
-  { id: 2, img: "W2.png", title: "Flamingo Dreams" },
-  { id: 3, img: "W3.png", title: "Red Equestrian" },
-  { id: 4, img: "W4.png", title: "Blue Tulip" },
-  { id: 5, img: "W5.png", title: "Opera Mask" },
-  { id: 6, img: "W6.png", title: "Blue Bloom" },
-  { id: 7, img: "W7.png", title: "First Contact" },
-  { id: 8, img: "W8.png", title: "White Yak" },
-  { id: 9, img: "W9.png", title: "Heron Girl" },
-  { id: 10, img: "W1.png", title: "Porcelain Crane" },
-  { id: 11, img: "W2.png", title: "Flamingo Dreams" },
-  { id: 12, img: "W3.png", title: "Red Equestrian" },
-  { id: 13, img: "W4.png", title: "Blue Tulip" },
-  { id: 14, img: "W5.png", title: "Opera Mask" },
-  { id: 15, img: "W6.png", title: "Blue Bloom" },
-  { id: 16, img: "W7.png", title: "First Contact" },
-  { id: 17, img: "W8.png", title: "White Yak" },
-  { id: 18, img: "W9.png", title: "Heron Girl" },
+  ...projects.map((p, i) => ({ id: i + 1, ...p })),
+  ...projects.map((p, i) => ({ id: i + 6, ...p })),
 ];
 
 type SlotConfig = {
@@ -181,8 +188,8 @@ export default function Works() {
       }}
     >
       <div className="works-text-block">
-        <h2 className="works-heading">
-          {lang === "es" ? <>DONDE LAS IDEAS<br />SE VUELVEN REALIDAD.</> : <>WHERE IDEAS<br />BECOME REALITY.</>}
+        <h2 className="casos-heading">
+          {lang === "es" ? "NUESTROS CASOS DE ÉXITO." : "OUR SUCCESS STORIES."}
         </h2>
         <p className="works-tagline">
           {lang === "es"
@@ -213,7 +220,7 @@ export default function Works() {
             }}
           >
             <img
-              src={`${base}${item.img}`}
+              src={item.img}
               alt={item.title}
               style={{
                 width: "100%",
