@@ -1082,13 +1082,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 28px;
-  padding: 60px 48px 60px 120px; /* left padding absorbs the tail */
+  padding: 60px 48px;
   box-sizing: border-box;
   height: 100%;
 }
 
-/* Title — single line, bigger */
+/* Title — single line, centered, bigger */
 .nos-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
@@ -1100,9 +1101,10 @@ body {
   text-transform: uppercase;
   white-space: nowrap;
   margin: 0;
+  text-align: center;
 }
 
-/* Simple white rounded-corner card */
+/* Simple white rounded-corner card — centered */
 .nos-card {
   background: #ffffff;
   border-radius: 28px;
@@ -1110,18 +1112,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  position: relative;
-}
-
-/* Curved tail pointing left toward Mona Lisa's mouth */
-.nos-card-tail {
-  position: absolute;
-  left: -156px;
-  top: 18px;
-  width: 160px;
-  height: 56px;
-  display: block;
-  pointer-events: none;
+  width: 100%;
 }
 
 .nos-body {

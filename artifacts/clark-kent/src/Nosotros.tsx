@@ -48,11 +48,6 @@ export default function Nosotros() {
 
           {/* Simple rounded-corner white card */}
           <div className="nos-card">
-            {/* Curved tail pointing left toward mouth */}
-            <svg className="nos-card-tail" viewBox="0 0 160 56"
-              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M160,0 C110,2 40,10 0,28 C40,46 110,54 160,56 Z" fill="#ffffff" />
-            </svg>
             {t.body.map((para, i) => (
               <p key={i} className="nos-body">{para}</p>
             ))}
