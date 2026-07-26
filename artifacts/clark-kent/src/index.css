@@ -1149,25 +1149,17 @@ body {
   max-width: 800px;
 }
 
-/* Title — same size, font and color as wlc-title (Welcome heading) */
+/* Title — same font/color as wlc-title; nowrap forces single line */
 .socios-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(40px, 5.2vw, 84px);
+  font-size: clamp(28px, 3.4vw, 56px);
   line-height: 1.05;
   letter-spacing: -0.01em;
   color: #C0001A;
   margin: 0;
   text-align: center;
-}
-
-.socios-subtitle {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(14px, 1.2vw, 17px);
-  font-weight: 400;
-  line-height: 1.65;
-  color: rgba(17, 17, 17, 0.5);
-  margin: 0;
+  white-space: nowrap;
 }
 
 /* Horizontal rule */
@@ -1192,6 +1184,14 @@ body {
   gap: 14px;
   padding: 24px 40px;
   flex: 1;
+  /* Gray by default; brand colors reveal on hover */
+  filter: grayscale(100%) opacity(0.5);
+  transition: filter 0.35s ease;
+  cursor: default;
+}
+
+.socios-cell:hover {
+  filter: grayscale(0%) opacity(1);
 }
 
 /* Vertical divider between cells */

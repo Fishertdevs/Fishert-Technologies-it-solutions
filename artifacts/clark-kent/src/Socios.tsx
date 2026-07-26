@@ -5,8 +5,9 @@ const base = import.meta.env.BASE_URL || "/";
 const brands = [
   {
     fav: "fav-vilar.png",
-    name: "Vilar Molinos",
-    // Picapastos — bold condensed display, red/aggressive
+    line1: "PICAPASTOS",
+    line2: "VILAR MOLINOS",
+    // Heavy condensed display uppercase — same as logo lettering
     font: "Impact, 'Arial Narrow', Arial, sans-serif",
     weight: 900,
     letterSpacing: "0.06em",
@@ -16,7 +17,8 @@ const brands = [
   },
   {
     fav: "fav-alterego.png",
-    name: "Alterego",
+    line1: "Alterego",
+    line2: "",
     // Elegant serif uppercase
     font: "'Cormorant Garamond', 'Cormorant', Georgia, serif",
     weight: 700,
@@ -27,8 +29,9 @@ const brands = [
   },
   {
     fav: "fav-mitiendago.png",
-    name: "Mi Tienda Go",
-    // Bold italic rounded sans — blue / orange accent brand
+    line1: "Mi Tienda Go",
+    line2: "",
+    // Bold italic rounded sans — blue brand
     font: "'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif",
     weight: 700,
     letterSpacing: "0.00em",
@@ -38,18 +41,20 @@ const brands = [
   },
   {
     fav: "fav-respira.png",
-    name: "Respira",
-    // Wide-spaced navy uppercase — medical, clean
-    font: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-    weight: 700,
-    letterSpacing: "0.28em",
-    textTransform: "uppercase" as const,
+    line1: "Respira",
+    line2: "",
+    // Heavy high-contrast serif — Bodoni/Didot style
+    font: "'Didot', 'Bodoni MT', 'Playfair Display', Georgia, 'Times New Roman', serif",
+    weight: 900,
+    letterSpacing: "0.02em",
+    textTransform: "none" as const,
     fontStyle: "normal" as const,
     color: "#1a3a6b",
   },
   {
     fav: "fav-sgc.png",
-    name: "SGC Abogados",
+    line1: "SGC Abogados",
+    line2: "",
     // Gold serif uppercase — prestigious legal
     font: "Georgia, 'Times New Roman', serif",
     weight: 700,
@@ -70,11 +75,6 @@ export default function Socios() {
         <h2 className="socios-title">
           {lang === "es" ? "Marcas que confían en nosotros" : "Brands that trust us"}
         </h2>
-        <p className="socios-subtitle">
-          {lang === "es"
-            ? <>Hemos tenido el privilegio de colaborar con empresas increíbles<br />que comparten nuestra visión y confían en nuestro trabajo.</>
-            : <>We've had the privilege of working with amazing companies<br />that share our vision and trust in our work.</>}
-        </p>
       </div>
 
       {/* ── Divider ── */}
@@ -83,10 +83,10 @@ export default function Socios() {
       {/* ── Brand grid ── */}
       <div className="socios-grid">
         {brands.map((b, i) => (
-          <div className="socios-cell" key={b.name}>
+          <div className="socios-cell" key={b.line1}>
             <img
               src={`${base}${b.fav}`}
-              alt={b.name}
+              alt={b.line1}
               className="socios-fav"
             />
             <span
@@ -100,7 +100,8 @@ export default function Socios() {
                 color: b.color,
               }}
             >
-              {b.name}
+              {b.line1}
+              {b.line2 && <><br />{b.line2}</>}
             </span>
             {i < brands.length - 1 && <div className="socios-cell-divider" />}
           </div>
