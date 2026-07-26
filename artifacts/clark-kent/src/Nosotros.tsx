@@ -29,8 +29,9 @@ export default function Nosotros() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.set(".nos-line-inner", { yPercent: 105 });
-      gsap.set(".nos-bubble", { opacity: 0, y: 28 });
+      gsap.set(".nos-line-inner", { yPercent: 110 });
+      gsap.set(".nos-bubble",     { opacity: 0, x: 32 });
+      gsap.set(".nos-mona",       { scale: 1.06, opacity: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -45,9 +46,12 @@ export default function Nosotros() {
         },
       });
 
-      tl.to(".nos-line-inner", { yPercent: 0, duration: 1.1, ease: "none", stagger: 0.18 }, 0);
-      tl.to(".nos-mona",       { opacity: 1, y: 0, duration: 0.8, ease: "none" }, 0.5);
-      tl.to(".nos-bubble",     { opacity: 1, y: 0, duration: 0.7, ease: "none" }, 0.7);
+      // Mona Lisa slides in first
+      tl.to(".nos-mona",       { scale: 1, opacity: 1, duration: 0.8, ease: "none" }, 0);
+      // Title reveals line by line from bottom
+      tl.to(".nos-line-inner", { yPercent: 0, duration: 1.0, ease: "none", stagger: 0.2 }, 0.3);
+      // Bubble pops in from the right
+      tl.to(".nos-bubble",     { opacity: 1, x: 0, duration: 0.7, ease: "none" }, 0.8);
     }, sectionRef);
 
     return () => ctx.revert();
@@ -56,7 +60,7 @@ export default function Nosotros() {
   return (
     <section id="nosotros" className="nos-section" ref={sectionRef}>
 
-      {/* ── Top wave — white from Socios curves into dark checker ── */}
+      {/* Top wave — white from Socios curves down into dark checker */}
       <svg
         className="nos-wave nos-wave--top"
         xmlns="http://www.w3.org/2000/svg"
@@ -65,40 +69,55 @@ export default function Nosotros() {
         aria-hidden="true"
       >
         <path
-          d="M0,80 L0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 Z"
+          d="M0,80 L0,38 C240,80 480,0 720,38 C960,80 1200,0 1440,38 L1440,80 Z"
           fill="#ffffff"
         />
       </svg>
 
-      <div className="nos-inner">
-        {/* Left — title + image */}
-        <div className="nos-left">
-          <div className="nos-lines">
-            {t.lines.map((line, i) => (
-              <div className="nos-line" key={i}>
-                <span className="nos-line-inner">{line}</span>
-              </div>
-            ))}
-          </div>
+      <div className="nos-layout">
 
+        {/* ── Left: full-height Mona Lisa + title strip ── */}
+        <div className="nos-img-col">
           <img
-            src={`${import.meta.env.BASE_URL}mona-lisa.jpeg`}
-            alt="Mona Lisa"
+            src={`${import.meta.env.BASE_URL}mona-lisa.png`}
+            alt="Mona Lisa contando la historia de Fisher Studio"
             className="nos-mona"
           />
+
+          {/* Title lives inside a gradient strip at the bottom of the image */}
+          <div className="nos-title-strip">
+            <div className="nos-lines">
+              {t.lines.map((line, i) => (
+                <div className="nos-line" key={i}>
+                  <span className="nos-line-inner">{line}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Right — white speech-bubble card */}
-        <div className="nos-right">
+        {/* ── Right: speech bubble coming from Mona Lisa's mouth ── */}
+        <div className="nos-speech-col">
           <div className="nos-bubble">
+            {/* SVG comic-style tail pointing left toward the mouth */}
+            <svg
+              className="nos-bubble-tail"
+              viewBox="0 0 40 28"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path d="M40,0 Q20,8 0,14 Q20,20 40,28 Z" fill="#ffffff" />
+            </svg>
+
             {t.body.map((para, i) => (
               <p key={i} className="nos-body">{para}</p>
             ))}
           </div>
         </div>
+
       </div>
 
-      {/* ── Bottom wave — dark checker curves into next section ── */}
+      {/* Bottom wave — dark checker curves into next section */}
       <svg
         className="nos-wave nos-wave--bottom"
         xmlns="http://www.w3.org/2000/svg"

@@ -999,15 +999,13 @@ body {
   background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
-  display: flex;
-  align-items: center;
   overflow: hidden;
   box-sizing: border-box;
 }
 
-/* SVG waves — top and bottom */
+/* SVG waves — anchored top and bottom */
 .nos-wave {
   position: absolute;
   left: 0;
@@ -1017,26 +1015,42 @@ body {
   pointer-events: none;
   display: block;
 }
-.nos-wave--top    { top: 0; }
-.nos-wave--bottom { bottom: 0; }
+.nos-wave--top    { top: -1px; }
+.nos-wave--bottom { bottom: -1px; }
 
-.nos-inner {
+/* Two-column full-height grid */
+.nos-layout {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  height: 100%;
+  width: 100%;
   position: relative;
   z-index: 1;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  padding: 110px 64px 110px;
-  box-sizing: border-box;
-  align-items: start;
 }
 
-/* ── Left column: title + image ── */
-.nos-left {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
+/* ── Left: full-height image column ── */
+.nos-img-col {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.nos-mona {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Title strip — gradient overlay at the bottom of the image */
+.nos-title-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 80px 36px 40px;
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%);
 }
 
 .nos-lines {
@@ -1055,63 +1069,52 @@ body {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
   font-style: italic;
-  font-size: clamp(44px, 6vw, 104px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  font-size: clamp(38px, 4.8vw, 88px);
+  line-height: 0.96;
+  letter-spacing: -0.01em;
   color: #ffffff;
   text-transform: uppercase;
-  padding-bottom: 6px;
+  padding-bottom: 4px;
 }
 
-/* Mona Lisa image */
-.nos-mona {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  object-fit: contain;
-  opacity: 0;
-  transform: translateY(20px);
-  border-radius: 12px;
-}
-
-/* ── Right column: white speech-bubble card ── */
-.nos-right {
+/* ── Right: speech-bubble column ── */
+.nos-speech-col {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
-  padding-top: 12px;
+  /* Pushes bubble down to align with Mona Lisa's mouth (~35% from top) */
+  padding: 32vh 52px 0 0;
+  box-sizing: border-box;
 }
 
+/* White speech bubble */
 .nos-bubble {
   background: #ffffff;
-  border-radius: 28px;
-  padding: 36px 40px;
+  border-radius: 24px;
+  padding: 32px 36px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   opacity: 0;
-  transform: translateY(28px);
   position: relative;
+  width: 100%;
+  max-width: 560px;
 }
 
-/* Speech-bubble tail pointing left */
-.nos-bubble::before {
-  content: '';
+/* Comic-style SVG tail — positioned left of bubble */
+.nos-bubble-tail {
   position: absolute;
-  left: -18px;
-  top: 52px;
-  width: 0;
-  height: 0;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-right: 20px solid #ffffff;
+  left: -36px;
+  top: 20px;
+  width: 40px;
+  height: 28px;
+  display: block;
 }
 
 .nos-body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(13px, 1.1vw, 16px);
+  font-size: clamp(12px, 1vw, 15px);
   font-weight: 400;
-  line-height: 1.78;
+  line-height: 1.8;
   color: #111111;
   margin: 0;
 }
