@@ -995,10 +995,8 @@ body {
 
 /* ── Nosotros section ───────────────────────────────────── */
 .nos-section {
-  /* Checkerboard: negro puro + gris oscuro */
   background-color: #1e1e1e;
-  background-image:
-    repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
+  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
   width: 100%;
   min-height: 100vh;
@@ -1009,112 +1007,113 @@ body {
   box-sizing: border-box;
 }
 
+/* SVG waves — top and bottom */
+.nos-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+  pointer-events: none;
+  display: block;
+}
+.nos-wave--top    { top: 0; }
+.nos-wave--bottom { bottom: 0; }
+
 .nos-inner {
   position: relative;
   z-index: 1;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  padding: 120px 64px 80px;
+  gap: 64px;
+  padding: 110px 64px 110px;
   box-sizing: border-box;
-  align-items: center;
+  align-items: start;
 }
 
+/* ── Left column: title + image ── */
 .nos-left {
   display: flex;
   flex-direction: column;
-  gap: 28px;
-}
-
-.nos-badge {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  gap: 36px;
 }
 
 .nos-lines {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .nos-line {
   overflow: hidden;
-  line-height: 0.9;
+  line-height: 0.95;
 }
 
+/* Cormorant Garamond italic — same family as hero/wlc-title */
 .nos-line-inner {
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 900;
-  font-size: clamp(40px, 6vw, 96px);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(44px, 6vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   color: #ffffff;
   text-transform: uppercase;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 
+/* Mona Lisa image */
+.nos-mona {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(20px);
+  border-radius: 12px;
+}
+
+/* ── Right column: white speech-bubble card ── */
 .nos-right {
   display: flex;
-  flex-direction: column;
-  gap: 36px;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 12px;
 }
 
-/* Two-paragraph wrapper */
-.nos-body-group {
+.nos-bubble {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 36px 40px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(28px);
+  position: relative;
+}
+
+/* Speech-bubble tail pointing left */
+.nos-bubble::before {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 52px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 20px solid #ffffff;
 }
 
 .nos-body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(13px, 1.2vw, 17px);
+  font-size: clamp(13px, 1.1vw, 16px);
   font-weight: 400;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.78;
+  color: #111111;
   margin: 0;
-}
-
-.nos-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.nos-stats {
-  display: flex;
-  gap: 48px;
-}
-
-.nos-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.nos-stat-num {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 900;
-  font-size: clamp(36px, 4vw, 64px);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: #ffffff;
-}
-
-.nos-stat-label {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
 }
 
 /* ── Portafolio items (same as works but scoped) ─────────── */
