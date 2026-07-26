@@ -1213,10 +1213,10 @@ body {
   flex-shrink: 0;
 }
 
-/* Brand name — inline style provides font/weight/color per brand */
+/* Brand name — all brands share the same size as Alterego */
 .socios-brand-name {
-  font-size: clamp(14px, 1.35vw, 20px);
-  line-height: 1.25;
+  font-size: 15px;
+  line-height: 1.3;
   white-space: nowrap;
 }
 
