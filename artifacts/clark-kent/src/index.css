@@ -995,7 +995,11 @@ body {
 
 /* ── Nosotros section ───────────────────────────────────── */
 .nos-section {
-  background: #111;           /* fallback while SVG loads */
+  /* Pure CSS checkerboard: black + cream squares */
+  background-color: #f0ece2;
+  background-image:
+    repeating-conic-gradient(#111111 0% 25%, #f0ece2 0% 50%);
+  background-size: 64px 64px;
   width: 100%;
   min-height: 100vh;
   position: relative;
@@ -1003,16 +1007,6 @@ body {
   align-items: center;
   overflow: hidden;
   box-sizing: border-box;
-}
-
-/* Full-bleed wavy checker SVG */
-.nos-checker-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  display: block;
 }
 
 .nos-inner {

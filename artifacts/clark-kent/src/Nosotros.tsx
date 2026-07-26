@@ -34,57 +34,6 @@ const content = {
   },
 };
 
-/** Wavy checkerboard background — SVG feTurbulence displacement */
-function WavyChecker() {
-  return (
-    <svg
-      className="nos-checker-bg"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <defs>
-        <pattern
-          id="nos-checker-pat"
-          x="0"
-          y="0"
-          width="80"
-          height="80"
-          patternUnits="userSpaceOnUse"
-        >
-          <rect width="40" height="40" fill="#111111" />
-          <rect x="40" width="40" height="40" fill="#f0ece2" />
-          <rect y="40" width="40" height="40" fill="#f0ece2" />
-          <rect x="40" y="40" width="40" height="40" fill="#111111" />
-        </pattern>
-        <filter id="nos-wave-f" x="-10%" y="-10%" width="120%" height="120%">
-          <feTurbulence
-            type="turbulence"
-            baseFrequency="0.013 0.013"
-            numOctaves="3"
-            seed="7"
-            result="noise"
-          />
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="noise"
-            scale="50"
-            xChannelSelector="R"
-            yChannelSelector="G"
-          />
-        </filter>
-      </defs>
-      {/* Warped checkerboard + orange accent squares */}
-      <g filter="url(#nos-wave-f)">
-        <rect width="100%" height="100%" fill="url(#nos-checker-pat)" />
-        {/* Orange accents — same positions as the reference image */}
-        <rect x="71%" y="7%"  width="40" height="40" fill="#E84A2A" />
-        <rect x="12%" y="54%" width="40" height="40" fill="#E84A2A" />
-        <rect x="56%" y="79%" width="40" height="40" fill="#E84A2A" />
-        <rect x="38%" y="28%" width="40" height="40" fill="#E84A2A" />
-      </g>
-    </svg>
-  );
-}
 
 export default function Nosotros() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -124,7 +73,6 @@ export default function Nosotros() {
 
   return (
     <section id="nosotros" className="nos-section" ref={sectionRef}>
-      <WavyChecker />
       <div className="nos-inner">
         {/* Left column */}
         <div className="nos-left">
