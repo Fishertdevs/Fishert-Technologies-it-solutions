@@ -5,13 +5,13 @@ const base = import.meta.env.BASE_URL || "/";
 
 const projects = [
   {
-    title: "Alter Ego Store",
-    img:   "proj-alterego.png",
+    title: "Alterego Store",
+    img:   "proj-alterego.svg",
     url:   "www.alterego-store.com.co",
     desc:  "Tienda de moda y lifestyle con catálogo digital y experiencia de compra única.",
   },
   {
-    title: "Pica Pastos y Molinos Vilar",
+    title: "Picapastos y Molinos Vilar",
     img:   "proj-picapastos.png",
     url:   "www.picapastosymolinosvilar.com.co",
     desc:  "Fabricación y venta de maquinaria agroindustrial de alta calidad.",
@@ -36,7 +36,7 @@ const projects = [
   },
 ];
 
-/* Google favicon SVG */
+/* Google multicolor G icon */
 const GoogleIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -46,18 +46,40 @@ const GoogleIcon = () => (
   </svg>
 );
 
+/* Hand cursor SVG */
+const CursorIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <path d="M6 2L6 14L9 11L11 16L13 15L11 10L15 10L6 2Z" fill="#1a1a1a" stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round"/>
+  </svg>
+);
+
 export default function Portafolio() {
-  const [current, setCurrent]       = useState(0);
-  const [typedUrl, setTypedUrl]     = useState("");
+  const [current, setCurrent]     = useState(0);
+  const [typedUrl, setTypedUrl]   = useState("");
   const [showResults, setShowResults] = useState(false);
+  const [showCursor, setShowCursor]   = useState(false);
+  const [clicking, setClicking]       = useState(false);
+  const [showThumb, setShowThumb]     = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const t1 = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const t2 = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const t3 = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const t4 = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { lang } = useLang();
 
-  /* ── Typing animation ── */
+  const clearAll = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    [t1, t2, t3, t4].forEach(r => { if (r.current) clearTimeout(r.current); });
+  };
+
   useEffect(() => {
+    clearAll();
     const url = projects[current].url;
     setTypedUrl("");
     setShowResults(false);
+    setShowCursor(false);
+    setClicking(false);
+    setShowThumb(false);
 
     let i = 0;
     timerRef.current = setInterval(() => {
@@ -65,12 +87,26 @@ export default function Portafolio() {
       setTypedUrl(url.slice(0, i));
       if (i >= url.length) {
         clearInterval(timerRef.current!);
-        timerRef.current = null;
-        setTimeout(() => setShowResults(true), 300);
+        // 1. Show results
+        t1.current = setTimeout(() => {
+          setShowResults(true);
+          // 2. Cursor appears on title
+          t2.current = setTimeout(() => {
+            setShowCursor(true);
+            // 3. Click pulse
+            t3.current = setTimeout(() => {
+              setClicking(true);
+              // 4. Thumbnail fades in
+              t4.current = setTimeout(() => {
+                setShowThumb(true);
+              }, 250);
+            }, 700);
+          }, 500);
+        }, 300);
       }
     }, 36);
 
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+    return clearAll;
   }, [current]);
 
   const prev = () => setCurrent((c) => (c - 1 + projects.length) % projects.length);
@@ -131,7 +167,17 @@ export default function Portafolio() {
                     <p className="port-result-url">https://{project.url}</p>
                   </div>
                 </div>
-                <h3 className="port-result-title">{project.title}</h3>
+
+                {/* Title with click cursor */}
+                <div className="port-title-wrap">
+                  <h3 className="port-result-title">{project.title}</h3>
+                  {showCursor && (
+                    <span className={`port-click-cursor ${clicking ? "port-click-cursor--click" : ""}`}>
+                      <CursorIcon />
+                    </span>
+                  )}
+                </div>
+
                 <p className="port-result-desc">{project.desc}</p>
                 <a
                   className="port-visit"
@@ -143,7 +189,8 @@ export default function Portafolio() {
                 </a>
               </div>
 
-              <div className="port-result-thumb">
+              {/* Thumbnail — only appears after click */}
+              <div className={`port-result-thumb ${showThumb ? "port-thumb-visible" : ""}`}>
                 <img
                   key={current}
                   src={`${base}${project.img}`}
