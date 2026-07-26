@@ -5,12 +5,12 @@ const base = import.meta.env.BASE_URL || "/";
 const brands = [
   {
     fav: "fav-vilar.png",
-    line1: "PICAPASTOS",
-    line2: "VILAR MOLINOS",
-    // Heavy condensed display uppercase — same as logo lettering
-    font: "Impact, 'Arial Narrow', Arial, sans-serif",
+    line1: "PICAPASTOS Y",
+    line2: "MOLINOS VILAR",
+    // Slab-serif bold — matches the Picapastos logo lettering exactly
+    font: "'Rockwell', 'Rockwell Extra Bold', 'Memphis', Georgia, serif",
     weight: 900,
-    letterSpacing: "0.06em",
+    letterSpacing: "0.05em",
     textTransform: "uppercase" as const,
     fontStyle: "normal" as const,
     color: "#C0001A",
@@ -41,9 +41,9 @@ const brands = [
   },
   {
     fav: "fav-respira.png",
-    line1: "Respira",
-    line2: "",
-    // Heavy high-contrast serif — Bodoni/Didot style
+    line1: "Dr. Mario Sanchez",
+    line2: "Terapia Respiratoria",
+    // Heavy high-contrast serif — Bodoni/Didot style matching their brand
     font: "'Didot', 'Bodoni MT', 'Playfair Display', Georgia, 'Times New Roman', serif",
     weight: 900,
     letterSpacing: "0.02em",

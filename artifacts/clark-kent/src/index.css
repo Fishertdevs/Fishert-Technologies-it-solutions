@@ -1215,7 +1215,8 @@ body {
 
 /* Brand name — inline style provides font/weight/color per brand */
 .socios-brand-name {
-  font-size: clamp(13px, 1.2vw, 17px);
+  font-size: clamp(14px, 1.35vw, 20px);
+  line-height: 1.25;
   white-space: nowrap;
 }
 
