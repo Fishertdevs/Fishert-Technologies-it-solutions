@@ -1077,88 +1077,51 @@ body {
   padding-bottom: 4px;
 }
 
-/* ── Right: title + cloud column ── */
+/* ── Right: title + card column ── */
 .nos-speech-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 28px;
-  padding: 60px 48px 60px 80px;
+  padding: 60px 48px 60px 120px; /* left padding absorbs the tail */
   box-sizing: border-box;
   height: 100%;
 }
 
-/* Title — single line, Cormorant Garamond italic */
+/* Title — single line, bigger */
 .nos-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
   font-style: italic;
-  font-size: clamp(24px, 3vw, 52px);
+  font-size: clamp(28px, 3.6vw, 62px);
   line-height: 1;
   letter-spacing: -0.01em;
   color: #ffffff;
   text-transform: uppercase;
   white-space: nowrap;
   margin: 0;
-  opacity: 0;
-  transform: translateY(20px);
 }
 
-/* ── Cloud container ── */
-.nos-cloud-wrap {
-  position: relative;
-  /* Extra left space for the thought-bubble tail circles */
-  margin-left: 80px;
-}
-
-/*
-  Blob layer: all white divs merged into a cloud via the goo SVG filter.
-  position:absolute so it doesn't affect document flow.
-*/
-.nos-cloud-blobs {
-  position: absolute;
-  inset: 0;
-  filter: url(#nos-goo);
-  pointer-events: none;
-  z-index: 0;
-  /* Overflow so the tail circles extend left outside the wrap */
-  overflow: visible;
-}
-
-/* Base style for every blob circle */
-.ncb {
-  position: absolute;
+/* Simple white rounded-corner card */
+.nos-card {
   background: #ffffff;
-  border-radius: 50%;
-}
-
-/* Main cloud body — tall rounded rectangle */
-.ncb-body {
-  inset: 48px 0 0 0;
-  border-radius: 60px;
-}
-
-/* Top bump circles — vary size & horizontal position */
-.ncb-t1 { width: 110px; height: 110px; top:  0px; left:  30px; }
-.ncb-t2 { width: 130px; height: 130px; top: -15px; left: 100px; }
-.ncb-t3 { width: 100px; height: 100px; top:   5px; left: 200px; }
-.ncb-t4 { width: 120px; height: 120px; top: -10px; left: 270px; }
-.ncb-t5 { width:  90px; height:  90px; top:   8px; left: 360px; }
-
-/* Thought-bubble tail — three decreasing circles pointing left */
-.ncb-tail1 { width: 52px; height: 52px; top: 50%; left: -60px;  transform: translateY(-50%); }
-.ncb-tail2 { width: 34px; height: 34px; top: 50%; left: -96px;  transform: translateY(-50%); }
-.ncb-tail3 { width: 20px; height: 20px; top: 50%; left: -124px; transform: translateY(-50%); }
-
-/* Text layer — sits on top of the blobs */
-.nos-cloud {
-  position: relative;
-  z-index: 2;
-  padding: 64px 36px 40px;   /* top padding clears the bump circles */
+  border-radius: 28px;
+  padding: 36px 40px;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  opacity: 0;
+  position: relative;
+}
+
+/* Curved tail pointing left toward Mona Lisa's mouth */
+.nos-card-tail {
+  position: absolute;
+  left: -156px;
+  top: 18px;
+  width: 160px;
+  height: 56px;
+  display: block;
+  pointer-events: none;
 }
 
 .nos-body {
@@ -1168,15 +1131,6 @@ body {
   line-height: 1.8;
   color: #111111;
   margin: 0;
-}
-
-/* Hidden filter definition SVG */
-.nos-filter-def {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: visible;
-  pointer-events: none;
 }
 
 /* ── Portafolio items (same as works but scoped) ─────────── */
