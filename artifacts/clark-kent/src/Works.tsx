@@ -8,26 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const projects = [
-  {
-    title: "Alter Ego Store",
-    img: "https://image.thum.io/get/width/600/crop/420/https://www.alterego-store.com.co/",
-  },
-  {
-    title: "Pica Pastos y Molinos Vilar",
-    img: "https://image.thum.io/get/width/600/crop/420/https://www.picapastosymolinosvilar.com.co/",
-  },
-  {
-    title: "SGC Abogados",
-    img: "https://image.thum.io/get/width/600/crop/420/https://www.sgcabogados.com.co/",
-  },
-  {
-    title: "Dr. Mario Sánchez",
-    img: "https://image.thum.io/get/width/600/crop/420/https://dr-mario-sanchez-website-api-server-one.vercel.app/",
-  },
-  {
-    title: "Mi Tienda Go",
-    img: "https://image.thum.io/get/width/600/crop/420/https://app.mitiendago.co",
-  },
+  { title: "Alter Ego Store",              img: "proj-alterego.png"   },
+  { title: "Pica Pastos y Molinos Vilar",  img: "proj-picapastos.png" },
+  { title: "SGC Abogados",                 img: "proj-sgc.png"        },
+  { title: "Dr. Mario Sánchez",            img: "proj-mario.png"      },
+  { title: "Mi Tienda Go",                 img: "proj-mitienda.png"   },
 ];
 
 const worksData = [
@@ -220,7 +205,7 @@ export default function Works() {
             }}
           >
             <img
-              src={item.img}
+              src={`${base}${item.img}`}
               alt={item.title}
               style={{
                 width: "100%",
