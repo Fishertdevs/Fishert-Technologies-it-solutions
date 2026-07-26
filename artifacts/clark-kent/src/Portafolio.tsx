@@ -7,25 +7,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 const base = import.meta.env.BASE_URL || "/";
 
+const projects = [
+  { title: "Alter Ego Store",             img: "proj-alterego.png"   },
+  { title: "Pica Pastos y Molinos Vilar", img: "proj-picapastos.png" },
+  { title: "SGC Abogados",                img: "proj-sgc.png"        },
+  { title: "Dr. Mario Sánchez",           img: "proj-mario.png"      },
+  { title: "Mi Tienda Go",                img: "proj-mitienda.png"   },
+];
+
 const worksData = [
-  { id: 1, img: "W1.png", title: "Porcelain Crane" },
-  { id: 2, img: "W2.png", title: "Flamingo Dreams" },
-  { id: 3, img: "W3.png", title: "Red Equestrian" },
-  { id: 4, img: "W4.png", title: "Blue Tulip" },
-  { id: 5, img: "W5.png", title: "Opera Mask" },
-  { id: 6, img: "W6.png", title: "Blue Bloom" },
-  { id: 7, img: "W7.png", title: "First Contact" },
-  { id: 8, img: "W8.png", title: "White Yak" },
-  { id: 9, img: "W9.png", title: "Heron Girl" },
-  { id: 10, img: "W1.png", title: "Porcelain Crane" },
-  { id: 11, img: "W2.png", title: "Flamingo Dreams" },
-  { id: 12, img: "W3.png", title: "Red Equestrian" },
-  { id: 13, img: "W4.png", title: "Blue Tulip" },
-  { id: 14, img: "W5.png", title: "Opera Mask" },
-  { id: 15, img: "W6.png", title: "Blue Bloom" },
-  { id: 16, img: "W7.png", title: "First Contact" },
-  { id: 17, img: "W8.png", title: "White Yak" },
-  { id: 18, img: "W9.png", title: "Heron Girl" },
+  ...projects.map((p, i) => ({ id: i + 1, ...p })),
+  ...projects.map((p, i) => ({ id: i + 6, ...p })),
 ];
 
 type SlotConfig = { size: number; x: number };
@@ -139,8 +131,8 @@ export default function Portafolio() {
       style={{ height: "100vh", overflow: "hidden", backgroundColor: "#fff", position: "relative" }}
     >
       <div className="works-text-block">
-        <h2 className="works-heading">
-          {lang === "es" ? <>PROYECTOS<br />SELECCIONADOS.</> : <>SELECTED<br />PROJECTS.</>}
+        <h2 className="casos-heading">
+          {lang === "es" ? "NUESTROS CASOS DE ÉXITO." : "OUR SUCCESS STORIES."}
         </h2>
         <p className="works-tagline">
           {lang === "es"
@@ -157,7 +149,7 @@ export default function Portafolio() {
           <div
             key={item.id}
             className={`port-item port-item--${item.id}`}
-            style={{ overflow: "hidden", position: "absolute", bottom: 0, left: 0 }}
+            style={{ overflow: "hidden", position: "absolute", bottom: 0, left: 0, borderRadius: "18px 18px 0 0" }}
           >
             <img
               src={`${base}${item.img}`}
