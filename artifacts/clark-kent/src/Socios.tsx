@@ -6,42 +6,57 @@ const brands = [
   {
     fav: "fav-vilar.png",
     name: "Vilar Molinos",
-    font: "'Helvetica Neue', Arial, sans-serif",
+    // Picapastos — bold condensed display, red/aggressive
+    font: "Impact, 'Arial Narrow', Arial, sans-serif",
     weight: 900,
     letterSpacing: "0.06em",
     textTransform: "uppercase" as const,
+    fontStyle: "normal" as const,
+    color: "#C0001A",
   },
   {
     fav: "fav-alterego.png",
     name: "Alterego",
+    // Elegant serif uppercase
     font: "'Cormorant Garamond', 'Cormorant', Georgia, serif",
     weight: 700,
-    letterSpacing: "0.12em",
+    letterSpacing: "0.18em",
     textTransform: "uppercase" as const,
+    fontStyle: "normal" as const,
+    color: "#111111",
   },
   {
     fav: "fav-mitiendago.png",
     name: "Mi Tienda Go",
-    font: "'Helvetica Neue', Arial, sans-serif",
+    // Bold italic rounded sans — blue / orange accent brand
+    font: "'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif",
     weight: 700,
-    letterSpacing: "0.01em",
+    letterSpacing: "0.00em",
     textTransform: "none" as const,
+    fontStyle: "italic" as const,
+    color: "#0053A0",
   },
   {
     fav: "fav-respira.png",
     name: "Respira",
-    font: "'Helvetica Neue', Arial, sans-serif",
-    weight: 300,
-    letterSpacing: "0.18em",
+    // Wide-spaced navy uppercase — medical, clean
+    font: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    weight: 700,
+    letterSpacing: "0.28em",
     textTransform: "uppercase" as const,
+    fontStyle: "normal" as const,
+    color: "#1a3a6b",
   },
   {
     fav: "fav-sgc.png",
     name: "SGC Abogados",
+    // Gold serif uppercase — prestigious legal
     font: "Georgia, 'Times New Roman', serif",
     weight: 700,
-    letterSpacing: "0.04em",
-    textTransform: "none" as const,
+    letterSpacing: "0.06em",
+    textTransform: "uppercase" as const,
+    fontStyle: "normal" as const,
+    color: "#b5883a",
   },
 ];
 
@@ -52,13 +67,8 @@ export default function Socios() {
     <section className="socios-section">
       {/* ── Header ── */}
       <div className="socios-header">
-        <span className="socios-eyebrow">
-          {lang === "es" ? "MARCAS QUE CONFÍAN EN NOSOTROS" : "BRANDS THAT TRUST US"}
-        </span>
         <h2 className="socios-title">
-          {lang === "es"
-            ? <>Gracias por <em className="socios-accent">confiar</em> en nosotros</>
-            : <>Thank you for <em className="socios-accent">trusting</em> us</>}
+          {lang === "es" ? "Marcas que confían en nosotros" : "Brands that trust us"}
         </h2>
         <p className="socios-subtitle">
           {lang === "es"
@@ -86,6 +96,8 @@ export default function Socios() {
                 fontWeight: b.weight,
                 letterSpacing: b.letterSpacing,
                 textTransform: b.textTransform,
+                fontStyle: b.fontStyle,
+                color: b.color,
               }}
             >
               {b.name}
