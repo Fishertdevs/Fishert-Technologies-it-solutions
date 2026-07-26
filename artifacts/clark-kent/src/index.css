@@ -1142,12 +1142,12 @@ body {
 
 .port-section {
   display: grid;
-  grid-template-columns: 34% 56%;
+  grid-template-columns: 42% 1fr;
   min-height: auto;
   background: #ffffff;
   padding: 80px 6%;
   box-sizing: border-box;
-  gap: 40px;
+  gap: 32px;
   align-items: center;
   max-width: 1160px;
   margin: 0 auto;
@@ -1156,7 +1156,8 @@ body {
 /* ── Left ── */
 .port-left {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .port-title {
@@ -1176,6 +1177,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  justify-content: center;
 }
 
 /* ── Google wrapper ── */
@@ -1187,6 +1189,76 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  position: relative;
+  overflow: hidden;
+  min-height: 260px;
+}
+
+/* Search UI content — fades out when image shows */
+.port-google-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: opacity 0.3s ease;
+}
+.port-google-content--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Full-size image overlay */
+.port-full-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+.port-full-overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.port-full-img {
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  min-height: 0;
+}
+
+.port-overlay-link {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #FF5500;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.92);
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  transition: opacity 0.2s;
+}
+.port-overlay-link:hover { opacity: 0.75; }
+
+/* Small thumb stub placeholder (invisible — keeps layout stable) */
+.port-result-thumb-stub {
+  width: 130px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
 }
 
 /* Google logo row */
