@@ -1077,13 +1077,21 @@ body {
   padding-bottom: 4px;
 }
 
-/* ── Right: speech-bubble column ── */
+/* ── Right: title-above + speech-bubble column ── */
 .nos-speech-col {
   display: flex;
-  align-items: flex-start;
-  /* Pushes bubble down to align with Mona Lisa's mouth (~35% from top) */
-  padding: 32vh 52px 0 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  /* left padding makes room for the long bubble tail */
+  padding: 80px 52px 80px 120px;
   box-sizing: border-box;
+  height: 100%;
+}
+
+/* Title block sits above the bubble */
+.nos-title-block {
+  /* inherits flex-column gap above */
 }
 
 /* White speech bubble */
@@ -1097,17 +1105,21 @@ body {
   opacity: 0;
   position: relative;
   width: 100%;
-  max-width: 560px;
 }
 
-/* Comic-style SVG tail — positioned left of bubble */
+/*
+  Long curved tail — extends ~160px to the left of the bubble,
+  pointing toward the Mona Lisa's mouth.
+  Position: absolute, left of the bubble's left edge.
+*/
 .nos-bubble-tail {
   position: absolute;
-  left: -36px;
-  top: 20px;
-  width: 40px;
-  height: 28px;
+  left: -156px;
+  top: 18px;
+  width: 160px;
+  height: 56px;
   display: block;
+  pointer-events: none;
 }
 
 .nos-body {
