@@ -57,7 +57,18 @@ export default function Resenas() {
 
   return (
     <section id="resenas" className="resenas-section">
-      <div className="resenas-inner">
+      {/* Top wave — white from portafolio section above */}
+      <svg
+        style={{ display: "block", width: "100%", height: 80, marginBottom: 0 }}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M0,0 L1440,0 L1440,30 C1200,72 960,2 720,30 C480,72 240,2 0,30 Z" fill="#ffffff" />
+      </svg>
+
+      <div className="resenas-inner" style={{ paddingTop: 60 }}>
 
         <div className="resenas-header">
           <h2 className="resenas-heading">

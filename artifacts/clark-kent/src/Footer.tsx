@@ -2,12 +2,12 @@ import { useLang } from "./LanguageContext";
 
 const content = {
   es: {
-    tagline: "Desarrollador Full Stack · Arquitecto de Software",
+    tagline: "Agencia de Diseño & Desarrollo Digital",
     links: ["Términos y Condiciones", "Política de Cookies", "Política de Privacidad"],
     copy: "© 2026 Harry Fishert · Todos los derechos reservados",
   },
   en: {
-    tagline: "Full Stack Developer · Software Architect",
+    tagline: "Design & Digital Development Agency",
     links: ["Terms & Conditions", "Cookie Policy", "Privacy Policy"],
     copy: "© 2026 Harry Fishert · All rights reserved",
   },
@@ -32,7 +32,7 @@ export default function Footer() {
 
       <div className="footer-inner">
         {/* Brand */}
-        <p className="footer-brand">Harry Fishert</p>
+        <p className="footer-brand">Fishert Studio</p>
         <p className="footer-tagline">{t.tagline}</p>
 
         {/* Social icons */}

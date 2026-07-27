@@ -794,7 +794,7 @@ body {
    FOOTER — Checkerboard redesign
    ══════════════════════════════════════════════════════════ */
 .footer-section {
-  background: repeating-conic-gradient(#000000 0% 25%, #ffffff 0% 50%) center / 60px 60px;
+  background: repeating-conic-gradient(#111111 0% 25%, #333333 0% 50%) center / 60px 60px;
   width: 100%;
   padding: 0 0 60px;
   box-sizing: border-box;
@@ -1203,7 +1203,7 @@ body {
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(34px, 4.4vw, 56px);
+  font-size: clamp(36px, 4.8vw, 62px);
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: #FF5500;
@@ -1712,9 +1712,10 @@ body {
    RESEÑAS SECTION
 ══════════════════════════════════════════ */
 .resenas-section {
-  background: #f9f9f7;
-  padding: 100px 6%;
+  background: #e4e4e4;
+  padding: 0 6% 100px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .resenas-inner {
@@ -1734,10 +1735,10 @@ body {
 .resenas-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(48px, 6vw, 96px);
-  line-height: 1.0;
+  font-size: clamp(40px, 5.2vw, 84px);
+  line-height: 1.05;
   letter-spacing: -0.01em;
-  color: #111111;
+  color: #C0001A;
   text-transform: uppercase;
   margin: 0;
   white-space: pre-line;

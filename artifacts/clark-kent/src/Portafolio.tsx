@@ -126,8 +126,8 @@ export default function Portafolio() {
         <div style={{ width: "100%", textAlign: "left" }}>
           <h2 className="port-title" style={{ textAlign: "left" }}>
             {lang === "es"
-              ? <><span>NUESTROS CASOS</span><span>DE ÉXITO.</span></>
-              : <><span>OUR SUCCESS</span><span>STORIES.</span></>}
+              ? <><span>CONOCE NUESTROS</span><span>CASOS DE ÉXITO.</span></>
+              : <><span>DISCOVER OUR</span><span>SUCCESS STORIES.</span></>}
           </h2>
           <p className="port-subtitle" style={{ textAlign: "left" }}>
             {lang === "es"
