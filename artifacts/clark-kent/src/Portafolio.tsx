@@ -132,9 +132,6 @@ export default function Portafolio() {
         </div>
       </div>
 
-      {/* ── Vertical divider ── */}
-      <div className="port-divider" aria-hidden="true" />
-
       {/* ── Right: Google search simulation ── */}
       <div className="port-right">
         <div className="port-google-wrap">

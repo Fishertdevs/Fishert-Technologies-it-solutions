@@ -1181,7 +1181,7 @@ body {
 
 .port-section {
   display: grid;
-  grid-template-columns: minmax(0, 55%) 2px 1fr;
+  grid-template-columns: minmax(0, 55%) 1fr;
   min-height: auto;
   background: #ffffff;
   padding: 80px 5% 80px 3%;
@@ -1192,20 +1192,16 @@ body {
   margin: 0 auto;
 }
 
-.port-divider {
-  width: 2px;
-  align-self: stretch;
-  background: #C0001A;
-  border-radius: 1px;
-  min-height: 160px;
-}
-
 /* ── Left ── */
 .port-left {
   display: block;
-  overflow: hidden;
   min-width: 0;
   width: 100%;
+  border-right: 2px solid #C0001A;
+  border-bottom: 2px solid #C0001A;
+  padding-bottom: 32px;
+  padding-right: 40px;
+  box-sizing: border-box;
 }
 
 .port-title {
