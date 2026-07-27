@@ -131,8 +131,8 @@ export default function Portafolio() {
           </h2>
           <p className="port-subtitle">
             {lang === "es"
-              ? "Proyectos a medida para marcas\nque desean destacar."
-              : "Tailored projects for brands\nthat want to stand out."}
+              ? "Proyectos a medida para marcas que desean destacar.\nDiseñamos, desarrollamos y escalamos experiencias digitales\ncon identidad única — desde la estrategia hasta el lanzamiento."
+              : "Tailored projects for brands that want to stand out.\nWe design, build and scale digital experiences\nwith a unique identity — from strategy to launch."}
           </p>
         </div>
       </div>
