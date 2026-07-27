@@ -1197,11 +1197,32 @@ body {
   display: block;
   min-width: 0;
   width: 100%;
-  border-right: 2px solid #C0001A;
-  border-bottom: 2px solid #C0001A;
+  position: relative;
   padding-bottom: 32px;
   padding-right: 40px;
   box-sizing: border-box;
+}
+
+/* Vertical checkerboard strip — right edge */
+.port-border-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 100%;
+  background: repeating-conic-gradient(#C0001A 0% 25%, #ffffff 0% 50%) right 0 / 12px 12px;
+  pointer-events: none;
+}
+
+/* Horizontal checkerboard strip — bottom edge (stops before vertical strip) */
+.port-border-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 12px);
+  height: 12px;
+  background: repeating-conic-gradient(#C0001A 0% 25%, #ffffff 0% 50%) 0 bottom / 12px 12px;
+  pointer-events: none;
 }
 
 .port-title {
