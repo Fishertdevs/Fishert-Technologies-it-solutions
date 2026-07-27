@@ -123,16 +123,16 @@ export default function Portafolio() {
 
       {/* ── Left: title ── */}
       <div className="port-left">
-        <div>
-          <h2 className="port-title">
+        <div style={{ width: "100%", textAlign: "left" }}>
+          <h2 className="port-title" style={{ textAlign: "left" }}>
             {lang === "es"
               ? <><span>NUESTROS CASOS</span><span>DE ÉXITO.</span></>
               : <><span>OUR SUCCESS</span><span>STORIES.</span></>}
           </h2>
-          <p className="port-subtitle">
+          <p className="port-subtitle" style={{ textAlign: "left" }}>
             {lang === "es"
-              ? "Proyectos a medida para marcas que desean destacar.\nDiseñamos, desarrollamos y escalamos experiencias digitales\ncon identidad única — desde la estrategia hasta el lanzamiento."
-              : "Tailored projects for brands that want to stand out.\nWe design, build and scale digital experiences\nwith a unique identity — from strategy to launch."}
+              ? <>Proyectos a medida para marcas que desean destacar.<br />Diseñamos, desarrollamos y escalamos experiencias digitales<br />con identidad única — desde la estrategia hasta el lanzamiento.</>
+              : <>Tailored projects for brands that want to stand out.<br />We design, build and scale digital experiences<br />with a unique identity — from strategy to launch.</>}
           </p>
         </div>
       </div>
