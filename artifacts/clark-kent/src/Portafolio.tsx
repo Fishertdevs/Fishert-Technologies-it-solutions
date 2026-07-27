@@ -126,8 +126,8 @@ export default function Portafolio() {
         <div>
           <h2 className="port-title">
             {lang === "es"
-              ? <><span>NUESTROS</span><br /><span>CASOS DE ÉXITO.</span></>
-              : <><span>OUR</span><br /><span>SUCCESS STORIES.</span></>}
+              ? <><span>NUESTROS CASOS</span><br /><span>DE ÉXITO.</span></>
+              : <><span>OUR SUCCESS</span><br /><span>STORIES.</span></>}
           </h2>
           <p className="port-subtitle">
             {lang === "es"
