@@ -129,9 +129,11 @@ export default function Portafolio() {
               ? <><span>NUESTROS CASOS</span><span>DE ÉXITO.</span></>
               : <><span>OUR SUCCESS</span><span>STORIES.</span></>}
           </h2>
-          <div style={{ height: 2, background: "#C0001A", width: "100%", marginTop: 20, borderRadius: 1 }} />
         </div>
       </div>
+
+      {/* ── Vertical divider ── */}
+      <div className="port-divider" aria-hidden="true" />
 
       {/* ── Right: Google search simulation ── */}
       <div className="port-right">

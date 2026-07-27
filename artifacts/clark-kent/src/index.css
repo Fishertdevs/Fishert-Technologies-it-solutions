@@ -1181,15 +1181,23 @@ body {
 
 .port-section {
   display: grid;
-  grid-template-columns: minmax(0, 55%) 1fr;
+  grid-template-columns: minmax(0, 55%) 2px 1fr;
   min-height: auto;
   background: #ffffff;
   padding: 80px 5% 80px 3%;
   box-sizing: border-box;
-  gap: 48px;
+  gap: 40px;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.port-divider {
+  width: 2px;
+  align-self: stretch;
+  background: #C0001A;
+  border-radius: 1px;
+  min-height: 160px;
 }
 
 /* ── Left ── */
