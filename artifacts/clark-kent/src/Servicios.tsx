@@ -126,7 +126,7 @@ export default function Servicios() {
         width: "100%",
         height: "100vh",
         overflow: "hidden",
-        backgroundColor: "#143020",
+        background: "repeating-conic-gradient(#143020 0% 25%, #ffffff 0% 50%) center / 52px 52px",
         position: "relative",
         borderRadius: "56px",
       }}

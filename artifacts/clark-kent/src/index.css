@@ -553,11 +553,13 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 72px 48px 0;
+  padding: 56px 48px 40px;
   box-sizing: border-box;
   text-align: left;
   z-index: 10;
   pointer-events: none;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(2px);
 }
 
 .works-heading {
@@ -566,7 +568,7 @@ body {
   font-size: clamp(47px, 6.75vw, 106px);
   line-height: 0.90;
   letter-spacing: -0.01em;
-  color: #ffffff;
+  color: #cc0000;
   text-transform: uppercase;
   margin: 0 0 28px 0;
   text-align: center;
@@ -590,7 +592,7 @@ body {
   font-size: clamp(20px, 2.2vw, 32px);
   line-height: 1.55;
   letter-spacing: 0.01em;
-  color: rgba(255, 255, 255, 0.82);
+  color: #1a1a1a;
   text-transform: none;
   margin: 0;
   text-align: left;
@@ -1142,28 +1144,28 @@ body {
 
 .port-section {
   display: grid;
-  grid-template-columns: 42% 1fr;
+  grid-template-columns: 50% 1fr;
   min-height: auto;
   background: #ffffff;
   padding: 80px 6%;
   box-sizing: border-box;
   gap: 32px;
   align-items: center;
-  max-width: 1160px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 /* ── Left ── */
 .port-left {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 }
 
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(36px, 3.8vw, 62px);
+  font-size: clamp(55px, 6.5vw, 100px);
   line-height: 1.0;
   letter-spacing: -0.01em;
   color: #FF5500;
@@ -1649,4 +1651,126 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* ══════════════════════════════════════════
+   RESEÑAS SECTION
+══════════════════════════════════════════ */
+.resenas-section {
+  background: #f9f9f7;
+  padding: 100px 6%;
+  box-sizing: border-box;
+}
+
+.resenas-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.resenas-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resenas-heading {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  color: #111111;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.resenas-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(13px, 1.2vw, 16px);
+  font-weight: 400;
+  color: #888;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.resenas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.resena-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #ebebeb;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.resena-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+  transform: translateY(-3px);
+}
+
+.resena-stars {
+  display: flex;
+  gap: 3px;
+}
+
+.resena-star {
+  font-size: 18px;
+  color: #FF5500;
+  line-height: 1;
+}
+
+.resena-quote {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 500;
+  font-style: italic;
+  color: #222;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.resena-author {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.resena-name {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.resena-company {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #FF5500;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .resenas-grid {
+    grid-template-columns: 1fr;
+  }
+  .port-section {
+    grid-template-columns: 1fr;
+  }
 }

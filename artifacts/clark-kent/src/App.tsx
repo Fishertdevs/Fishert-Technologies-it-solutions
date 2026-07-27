@@ -6,7 +6,7 @@ import Servicios from "./Servicios";
 import Socios from "./Socios";
 import Nosotros from "./Nosotros";
 import Portafolio from "./Portafolio";
-import Section4 from "./Section4";
+import Resenas from "./Resenas";
 import Footer from "./Footer";
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
       <Socios />
       <Nosotros />
       <Portafolio />
-      <Section4 />
+      <Resenas />
       <Footer />
     </LanguageProvider>
   );
