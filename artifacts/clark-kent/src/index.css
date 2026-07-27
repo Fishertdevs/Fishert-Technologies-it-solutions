@@ -558,7 +558,7 @@ body {
   text-align: left;
   z-index: 10;
   pointer-events: none;
-  background: #111111;
+  background: transparent;
 }
 
 .works-heading {
@@ -571,6 +571,7 @@ body {
   text-transform: uppercase;
   margin: 0 0 28px 0;
   text-align: center;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
 }
 
 .casos-heading {
@@ -595,6 +596,7 @@ body {
   text-transform: none;
   margin: 0;
   text-align: left;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
 }
 
 .works-sub {
@@ -1164,7 +1166,7 @@ body {
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(44px, 5vw, 76px);
+  font-size: clamp(36px, 4vw, 62px);
   line-height: 1.0;
   letter-spacing: -0.01em;
   color: #FF5500;
