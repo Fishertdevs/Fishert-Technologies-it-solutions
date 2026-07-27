@@ -123,11 +123,18 @@ export default function Portafolio() {
 
       {/* ── Left: title ── */}
       <div className="port-left">
-        <h2 className="port-title">
-          {lang === "es"
-            ? <><span>NUESTROS</span><br /><span>CASOS DE ÉXITO.</span></>
-            : <><span>OUR</span><br /><span>SUCCESS STORIES.</span></>}
-        </h2>
+        <div>
+          <h2 className="port-title">
+            {lang === "es"
+              ? <><span>NUESTROS</span><br /><span>CASOS DE ÉXITO.</span></>
+              : <><span>OUR</span><br /><span>SUCCESS STORIES.</span></>}
+          </h2>
+          <p className="port-subtitle">
+            {lang === "es"
+              ? "Proyectos reales. Resultados medibles.\nMarcas que lideran su industria."
+              : "Real projects. Measurable results.\nBrands that lead their industry."}
+          </p>
+        </div>
       </div>
 
       {/* ── Right: Google search simulation ── */}

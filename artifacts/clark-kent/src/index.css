@@ -558,7 +558,7 @@ body {
   text-align: left;
   z-index: 10;
   pointer-events: none;
-  background: #143020;
+  background: #111111;
 }
 
 .works-heading {
@@ -567,7 +567,7 @@ body {
   font-size: clamp(47px, 6.75vw, 106px);
   line-height: 0.90;
   letter-spacing: -0.01em;
-  color: #cc0000;
+  color: #ffffff;
   text-transform: uppercase;
   margin: 0 0 28px 0;
   text-align: center;
@@ -591,7 +591,7 @@ body {
   font-size: clamp(20px, 2.2vw, 32px);
   line-height: 1.55;
   letter-spacing: 0.01em;
-  color: #cc0000;
+  color: rgba(255, 255, 255, 0.82);
   text-transform: none;
   margin: 0;
   text-align: left;
@@ -1164,11 +1164,23 @@ body {
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(55px, 6.5vw, 100px);
+  font-size: clamp(44px, 5vw, 76px);
   line-height: 1.0;
   letter-spacing: -0.01em;
   color: #FF5500;
   text-transform: uppercase;
+  margin: 0 0 18px 0;
+  text-align: left;
+}
+
+.port-subtitle {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 400;
+  color: #888888;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.6;
   margin: 0;
   text-align: left;
 }
