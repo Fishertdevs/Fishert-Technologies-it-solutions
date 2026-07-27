@@ -124,7 +124,6 @@ export default function Portafolio() {
       {/* ── Left: title ── */}
       <div className="port-left">
         <div className="port-border-right" />
-        <div className="port-border-bottom" />
         <div style={{ width: "100%", textAlign: "left" }}>
           <h2 className="port-title" style={{ textAlign: "left" }}>
             {lang === "es"
