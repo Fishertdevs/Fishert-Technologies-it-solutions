@@ -1181,14 +1181,14 @@ body {
 
 .port-section {
   display: grid;
-  grid-template-columns: minmax(0, 50%) 1fr;
+  grid-template-columns: minmax(0, 55%) 1fr;
   min-height: auto;
   background: #ffffff;
-  padding: 80px 6%;
+  padding: 80px 5% 80px 3%;
   box-sizing: border-box;
-  gap: 64px;
+  gap: 48px;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
