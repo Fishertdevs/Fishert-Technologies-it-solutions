@@ -1203,17 +1203,16 @@ body {
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(36px, 4.8vw, 62px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: #FF5500;
+  font-size: clamp(80px, 14vw, 160px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: #C0001A;
   text-transform: uppercase;
-  margin: 0 0 24px 0;
+  margin: 0 0 32px 0;
   text-align: left;
 }
 .port-title span {
   display: block;
-  white-space: nowrap;
 }
 
 .port-subtitle {
