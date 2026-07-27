@@ -1203,7 +1203,7 @@ body {
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(80px, 14vw, 160px);
+  font-size: clamp(48px, 7vw, 100px);
   line-height: 0.92;
   letter-spacing: -0.03em;
   color: #C0001A;

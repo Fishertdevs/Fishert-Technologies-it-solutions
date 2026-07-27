@@ -129,11 +129,6 @@ export default function Portafolio() {
               ? <><span>CONOCE ALGUNOS DE NUESTROS</span><span>CASOS DE ÉXITO.</span></>
               : <><span>DISCOVER SOME OF OUR</span><span>SUCCESS STORIES.</span></>}
           </h2>
-          <p className="port-subtitle" style={{ textAlign: "left" }}>
-            {lang === "es"
-              ? <>Proyectos a medida para marcas que desean destacar.<br />Diseñamos, desarrollamos y escalamos experiencias digitales<br />con identidad única — desde la estrategia hasta el lanzamiento.</>
-              : <>Tailored projects for brands that want to stand out.<br />We design, build and scale digital experiences<br />with a unique identity — from strategy to launch.</>}
-          </p>
         </div>
       </div>
 
