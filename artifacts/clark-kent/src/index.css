@@ -1738,200 +1738,81 @@ body {
 /* ══════════════════════════════════════════
    RESEÑAS SECTION
 ══════════════════════════════════════════ */
-/* ── Reseñas — Gallery Exhibition ───────────────────────── */
+/* ── Reseñas ─────────────────────────────────────────────── */
 .resenas-section {
-  position: relative;
-  padding: 0 0 120px;
+  background: #e4e4e4;
+  padding: 0 6% 100px;
   box-sizing: border-box;
-  overflow: hidden;
-  background: #0d0d0d;
-}
-
-/* Full-bleed gallery background photo */
-.resenas-gallery-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 30%;
-  background-repeat: no-repeat;
-  z-index: 0;
-  /* Fallback: CSS-only gallery spotlights if image doesn't load */
-  background-color: #0d0d0d;
-}
-
-/* Dark scrim — makes text legible and boosts the moody feel */
-.resenas-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.45) 0%,
-    rgba(0,0,0,0.72) 40%,
-    rgba(0,0,0,0.88) 100%
-  );
-  z-index: 1;
-}
-
-/* SVG wave sits above overlay */
-.resenas-wave {
   position: relative;
-  display: block;
-  width: 100%;
-  height: 80px;
-  z-index: 2;
-  margin-bottom: 0;
 }
 
 .resenas-inner {
-  position: relative;
-  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 6%;
   display: flex;
   flex-direction: column;
-  gap: 72px;
+  gap: 64px;
 }
 
 .resenas-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
   text-align: center;
+  gap: 12px;
 }
 
 .resenas-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
   font-size: clamp(40px, 5.2vw, 84px);
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  text-transform: none;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #C0001A;
   margin: 0;
-  white-space: nowrap;
 }
 
 .resenas-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(11px, 1vw, 13px);
-  font-weight: 300;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.18em;
+  font-size: clamp(13px, 1.2vw, 16px);
+  font-weight: 400;
+  color: #888;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0;
 }
 
-/* Gallery wall — three frames side-by-side */
-.resenas-gallery-wall {
+.resenas-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  align-items: start;
+  gap: 32px;
 }
 
-/* Each review as a framed artwork */
-.resena-frame {
-  position: relative;
-}
-
-/* Spotlight glow above each frame */
-.resena-spotlight {
-  position: absolute;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 160px;
-  height: 120px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(220,180,100,0.22) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* The artwork itself — dark mat, cream inner border */
-.resena-artwork {
-  position: relative;
-  z-index: 1;
-  background: rgba(10,10,10,0.82);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow:
-    0 0 0 6px rgba(255,255,255,0.04),
-    0 0 0 7px rgba(255,255,255,0.08),
-    0 24px 60px rgba(0,0,0,0.7);
-  padding: 32px 28px 28px;
+.resena-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 36px 32px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  backdrop-filter: blur(6px);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  gap: 20px;
+  border: 1px solid #ebebeb;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.resena-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+  transform: translateY(-3px);
 }
 
-.resena-artwork:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 0 0 6px rgba(255,255,255,0.06),
-    0 0 0 7px rgba(255,255,255,0.1),
-    0 36px 80px rgba(0,0,0,0.85);
-}
-
-/* Frame label — artwork number + thin rule */
-.resena-frame-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 4px;
-}
-
-.resena-frame-number {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  flex-shrink: 0;
-}
-
-.resena-frame-line {
-  flex: 1;
-  height: 1px;
-  background: rgba(255,255,255,0.1);
-}
-
-.resena-stars {
-  display: flex;
-  gap: 3px;
-}
-
-.resena-star {
-  font-size: 14px;
-  color: #d4a843;
-  line-height: 1;
-}
-
-/* Opening/closing quote marks */
-.resena-quote-mark {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2.5em;
-  line-height: 0;
-  vertical-align: -0.35em;
-  color: rgba(255,255,255,0.15);
-  font-style: normal;
-  margin-right: 2px;
-}
-.resena-quote-mark--close {
-  margin-left: 2px;
-  margin-right: 0;
-}
+.resena-stars { display: flex; gap: 3px; }
+.resena-star  { font-size: 18px; color: #FF5500; line-height: 1; }
 
 .resena-quote {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(15px, 1.4vw, 19px);
-  font-weight: 400;
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 500;
   font-style: italic;
-  color: rgba(255,255,255,0.88);
-  line-height: 1.65;
+  color: #222;
+  line-height: 1.6;
   margin: 0;
   flex: 1;
 }
@@ -1939,26 +1820,26 @@ body {
 .resena-author {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid #f0f0f0;
 }
 
 .resena-name {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.85);
-  letter-spacing: 0.1em;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .resena-company {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 0.06em;
+  font-size: 12px;
+  font-weight: 400;
+  color: #FF5500;
+  letter-spacing: 0.02em;
 }
 
 /* ── Policy pages ────────────────────────────────────────── */
@@ -2107,40 +1988,233 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 8px 18px;
-  border-radius: 6px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 4px;
+  background: transparent;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.15s;
+  transition: opacity 0.2s;
   white-space: nowrap;
 }
-.cookie-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
 .cookie-btn-decline {
-  background: transparent;
-  color: rgba(255,255,255,0.5);
-  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.45);
 }
+.cookie-btn-decline:hover { opacity: 0.7; }
 
 .cookie-btn-accept {
-  background: #C0001A;
   color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cookie-btn-accept:hover { opacity: 0.8; }
+
+/* ── Contacto ─────────────────────────────────────────────── */
+.contacto-section {
+  background: #ffffff;
+  padding: 100px 6%;
+  box-sizing: border-box;
+  border-top: 1px solid #ebebeb;
 }
 
+.contacto-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Left column */
+.contacto-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.contacto-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0001A;
+}
+
+.contacto-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(52px, 7vw, 100px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #111;
+  margin: 0;
+}
+
+.contacto-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 400;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 320px;
+}
+
+.contacto-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contacto-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contacto-info-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.contacto-info-value {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #111;
+}
+
+/* Decorative checkerboard accent */
+.contacto-deco {
+  width: 64px;
+  height: 16px;
+  background: repeating-conic-gradient(#111111 0% 25%, #ffffff 0% 50%) 0 0 / 16px 16px;
+  margin-top: 8px;
+}
+
+/* Right column — form */
+.contacto-right {
+  padding-top: 8px;
+}
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contacto-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contacto-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contacto-field-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.contacto-input {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #111;
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+.contacto-input:focus {
+  border-color: #C0001A;
+  background: #ffffff;
+}
+
+.contacto-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.contacto-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contacto-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #111111;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  align-self: flex-start;
+}
+.contacto-submit:hover { background: #C0001A; transform: translateY(-2px); }
+.contacto-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.contacto-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 80px 40px;
+  text-align: center;
+  background: #f7f7f7;
+  border-radius: 16px;
+}
+
+.contacto-success p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 600;
+  color: #111;
+}
+
+/* ── Media queries ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  .resenas-gallery-wall {
-    grid-template-columns: 1fr;
-  }
-  .resenas-heading {
-    white-space: normal;
-    text-align: center;
-  }
-  .port-section {
-    grid-template-columns: 1fr;
-  }
-  .cookie-banner-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  .resenas-grid        { grid-template-columns: 1fr; }
+  .port-section        { grid-template-columns: 1fr; }
+  .contacto-inner      { grid-template-columns: 1fr; gap: 48px; }
+  .contacto-row        { grid-template-columns: 1fr; }
+  .cookie-banner-inner { flex-direction: column; align-items: flex-start; }
 }
