@@ -32,7 +32,8 @@ export default function Navbar() {
 
 
   useEffect(() => {
-    // Switch to light frosted navbar once welcome section enters viewport
+    // Only create the trigger when the welcome section actually exists (main page)
+    if (!document.querySelector(".welcome-section")) return;
     const trigger = ScrollTrigger.create({
       trigger: ".welcome-section",
       start: "top top",
@@ -43,7 +44,8 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    // Add backdrop when hero text overlaps the navbar zone
+    // Only run the RAF loop when the hero text element exists (main page)
+    if (!document.querySelector(".about-lines")) return;
     const check = () => {
       const lines = document.querySelector(".about-lines") as HTMLElement | null;
       if (!lines) return;
@@ -51,7 +53,6 @@ export default function Navbar() {
       setTextOverlap(rect.top < NAVBAR_H && rect.bottom > 0);
     };
     window.addEventListener("scroll", check, { passive: true });
-    // Also run on each animation frame while hero is active (GSAP scrub)
     let rafId: number;
     const loop = () => { check(); rafId = requestAnimationFrame(loop); };
     rafId = requestAnimationFrame(loop);
