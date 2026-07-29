@@ -35,7 +35,7 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <div className="cookie-banner" role="dialog" aria-label="Cookie consent" data-theme="light">
       <div className="cookie-banner-inner">
         <div className="cookie-banner-text">
           <CookieIcon />

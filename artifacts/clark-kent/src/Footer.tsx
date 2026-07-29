@@ -9,7 +9,7 @@ const content = {
       { label: "Política de Cookies", href: "/cookies" },
       { label: "Política de Privacidad", href: "/privacidad" },
     ],
-    copy: "© 2026 Harry Fishert · Todos los derechos reservados",
+    copy: "© 2026 Fishert Studio · Todos los derechos reservados",
   },
   en: {
     tagline: "Custom Software Agency",
@@ -18,7 +18,7 @@ const content = {
       { label: "Cookie Policy", href: "/cookies" },
       { label: "Privacy Policy", href: "/privacidad" },
     ],
-    copy: "© 2026 Harry Fishert · All rights reserved",
+    copy: "© 2026 Fishert Studio · All rights reserved",
   },
 };
 

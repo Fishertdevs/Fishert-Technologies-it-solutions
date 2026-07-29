@@ -821,7 +821,7 @@ body {
 .footer-brand {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(28px, 3.5vw, 52px);
+  font-size: clamp(20px, 2vw, 32px);
   color: #ffffff;
   margin: 0;
   text-shadow: 0 1px 8px rgba(0,0,0,0.6);
@@ -1846,36 +1846,46 @@ body {
 .policy-page {
   min-height: 100vh;
   background: #fafafa;
-  padding: 80px 6% 120px;
+  padding: 40px 6% 120px;
   box-sizing: border-box;
+  /* leave room for fixed navbar */
+  padding-top: 100px;
 }
 
-.policy-inner {
+.policy-back-wrap {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 32px;
 }
 
 .policy-back {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: #C0001A;
   text-decoration: none;
   letter-spacing: 0.04em;
-  margin-bottom: 48px;
   transition: opacity 0.2s;
 }
 .policy-back:hover { opacity: 0.7; }
 
+/* Centered hero */
+.policy-hero {
+  max-width: 800px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
 .policy-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(32px, 4vw, 56px);
+  font-size: clamp(36px, 4.5vw, 64px);
   color: #111;
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1.0;
 }
 
 .policy-date {
@@ -1883,43 +1893,63 @@ body {
   font-size: 12px;
   font-weight: 400;
   color: #999;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin: 0 0 48px;
+  margin: 0;
 }
 
+/* Body */
 .policy-body {
+  max-width: 800px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
+.policy-section {
+  padding: 28px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+.policy-section:last-child { border-bottom: none; }
+
 .policy-body h2 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(18px, 2vw, 26px);
   color: #111;
-  margin: 36px 0 10px;
+  margin: 0 0 10px;
   letter-spacing: -0.01em;
 }
 
 .policy-body h3 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
-  font-size: 14px;
-  color: #333;
-  letter-spacing: 0.06em;
+  font-size: 13px;
+  color: #C0001A;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin: 20px 0 8px;
+  margin: 0 0 8px;
 }
 
 .policy-body p {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(14px, 1.2vw, 16px);
   font-weight: 400;
-  color: #444;
+  color: #555;
   line-height: 1.8;
   margin: 0;
+}
+
+/* ── Scroll-reveal ───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ── Cookie banner ───────────────────────────────────────── */
@@ -1939,15 +1969,14 @@ body {
 }
 
 .cookie-banner-inner {
-  background: rgba(10,10,10,0.94);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
   border-radius: 12px;
-  backdrop-filter: blur(12px);
   padding: 16px 20px;
   display: flex;
   align-items: center;
   gap: 20px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 .cookie-banner-text {
@@ -1967,13 +1996,13 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: 400;
-  color: rgba(255,255,255,0.75);
+  color: #444;
   line-height: 1.5;
   margin: 0;
 }
 
 .cookie-banner-link {
-  color: #ffffff;
+  color: #C0001A;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -1999,16 +2028,16 @@ body {
 }
 
 .cookie-btn-decline {
-  color: rgba(255,255,255,0.45);
+  color: #C0001A;
 }
 .cookie-btn-decline:hover { opacity: 0.7; }
 
 .cookie-btn-accept {
-  color: #ffffff;
+  color: #C0001A;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.cookie-btn-accept:hover { opacity: 0.8; }
+.cookie-btn-accept:hover { opacity: 0.7; }
 
 /* ── Contacto ─────────────────────────────────────────────── */
 .contacto-section {
