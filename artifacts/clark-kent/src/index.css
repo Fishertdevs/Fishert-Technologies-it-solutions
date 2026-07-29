@@ -1648,8 +1648,8 @@ body {
 /* Horizontal rule */
 .socios-rule {
   width: 100%;
-  height: 52px;
-  background: repeating-conic-gradient(#C0001A 0% 25%, #ffffff 0% 50%) 0 0 / 52px 52px;
+  height: 16px;
+  background: repeating-conic-gradient(#C0001A 0% 25%, #ffffff 0% 50%) 0 0 / 16px 16px;
   border: none;
 }
 
