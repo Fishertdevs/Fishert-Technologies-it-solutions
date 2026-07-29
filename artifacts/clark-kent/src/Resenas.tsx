@@ -1,5 +1,7 @@
 import { useLang } from "./LanguageContext";
 
+const base = import.meta.env.BASE_URL || "/";
+
 const reviews = {
   es: [
     {
@@ -57,9 +59,17 @@ export default function Resenas() {
 
   return (
     <section id="resenas" className="resenas-section">
-      {/* Top wave — white from portafolio section above */}
+      {/* Gallery background image + overlay */}
+      <div
+        className="resenas-gallery-bg"
+        style={{ backgroundImage: `url(${base}gallery-bg.jpg)` }}
+        aria-hidden="true"
+      />
+      <div className="resenas-overlay" aria-hidden="true" />
+
+      {/* Top wave from portafolio (white) */}
       <svg
-        style={{ display: "block", width: "100%", height: 80, marginBottom: 0 }}
+        className="resenas-wave"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"
@@ -68,32 +78,48 @@ export default function Resenas() {
         <path d="M0,0 L1440,0 L1440,30 C1200,72 960,2 720,30 C480,72 240,2 0,30 Z" fill="#ffffff" />
       </svg>
 
-      <div className="resenas-inner" style={{ paddingTop: 60 }}>
-
+      <div className="resenas-inner">
+        {/* Header */}
         <div className="resenas-header">
           <h2 className="resenas-heading">
-            {lang === "es" ? "LO QUE DICEN\nNUESTROS CLIENTES." : "WHAT OUR\nCLIENTS SAY."}
+            {lang === "es" ? "Lo que dicen nuestros clientes." : "What our clients say."}
           </h2>
           <p className="resenas-sub">
-            {lang === "es"
-              ? "Resultados reales. Clientes satisfechos."
-              : "Real results. Satisfied clients."}
+            {lang === "es" ? "— Exposición permanente de resultados." : "— A permanent exhibition of results."}
           </p>
         </div>
 
-        <div className="resenas-grid">
+        {/* Gallery wall — review cards as framed artworks */}
+        <div className="resenas-gallery-wall">
           {list.map((r, i) => (
-            <div key={i} className="resena-card">
-              <Stars count={r.stars} />
-              <blockquote className="resena-quote">"{r.quote}"</blockquote>
-              <div className="resena-author">
-                <span className="resena-name">{r.author}</span>
-                <span className="resena-company">{r.company}</span>
+            <div key={i} className="resena-frame">
+              {/* Spotlight effect per frame */}
+              <div className="resena-spotlight" aria-hidden="true" />
+
+              {/* Artwork frame */}
+              <div className="resena-artwork">
+                {/* Frame border top label */}
+                <div className="resena-frame-label">
+                  <span className="resena-frame-number">0{i + 1}</span>
+                  <span className="resena-frame-line" />
+                </div>
+
+                <Stars count={r.stars} />
+
+                <blockquote className="resena-quote">
+                  <span className="resena-quote-mark">"</span>
+                  {r.quote}
+                  <span className="resena-quote-mark resena-quote-mark--close">"</span>
+                </blockquote>
+
+                <div className="resena-author">
+                  <span className="resena-name">{r.author}</span>
+                  <span className="resena-company">{r.company}</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

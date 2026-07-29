@@ -819,22 +819,24 @@ body {
 }
 
 .footer-brand {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(22px, 2.5vw, 32px);
+  font-size: clamp(28px, 3.5vw, 52px);
   color: #ffffff;
   margin: 0;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
   letter-spacing: -0.01em;
+  line-height: 1;
 }
 
 .footer-tagline {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: clamp(12px, 1.2vw, 15px);
-  color: rgba(255,255,255,0.75);
+  font-weight: 300;
+  font-size: clamp(11px, 1.1vw, 14px);
+  color: rgba(255,255,255,0.65);
   margin: 0;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
@@ -863,6 +865,11 @@ body {
   background: rgba(50,50,50,0.95);
   transform: translateY(-2px);
 }
+
+/* Per-network hover colors */
+.footer-icon-github:hover  { background: #1b1f24; color: #ffffff; }
+.footer-icon-instagram:hover { background: #E1306C; color: #ffffff; }
+.footer-icon-whatsapp:hover  { background: #25D366; color: #ffffff; }
 
 .footer-divider {
   width: min(480px, 80%);
@@ -1731,68 +1738,165 @@ body {
 /* ══════════════════════════════════════════
    RESEÑAS SECTION
 ══════════════════════════════════════════ */
+/* ── Reseñas — Gallery Exhibition ───────────────────────── */
 .resenas-section {
-  background: #e4e4e4;
-  padding: 0 6% 100px;
-  box-sizing: border-box;
   position: relative;
+  padding: 0 0 120px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
+/* Full-bleed gallery background photo */
+.resenas-gallery-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  z-index: 0;
+  /* Fallback: CSS-only gallery spotlights if image doesn't load */
+  background-color: #0d0d0d;
+}
+
+/* Dark scrim — makes text legible and boosts the moody feel */
+.resenas-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.72) 40%,
+    rgba(0,0,0,0.88) 100%
+  );
+  z-index: 1;
+}
+
+/* SVG wave sits above overlay */
+.resenas-wave {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 80px;
+  z-index: 2;
+  margin-bottom: 0;
 }
 
 .resenas-inner {
+  position: relative;
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 6%;
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 72px;
 }
 
 .resenas-header {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
 }
 
 .resenas-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
   font-size: clamp(40px, 5.2vw, 84px);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  color: #C0001A;
-  text-transform: uppercase;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: none;
   margin: 0;
-  white-space: pre-line;
+  white-space: nowrap;
 }
 
 .resenas-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(13px, 1.2vw, 16px);
-  font-weight: 400;
-  color: #888;
-  letter-spacing: 0.08em;
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   margin: 0;
 }
 
-.resenas-grid {
+/* Gallery wall — three frames side-by-side */
+.resenas-gallery-wall {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 40px;
+  align-items: start;
 }
 
-.resena-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 36px 32px;
+/* Each review as a framed artwork */
+.resena-frame {
+  position: relative;
+}
+
+/* Spotlight glow above each frame */
+.resena-spotlight {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 120px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(220,180,100,0.22) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* The artwork itself — dark mat, cream inner border */
+.resena-artwork {
+  position: relative;
+  z-index: 1;
+  background: rgba(10,10,10,0.82);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,0.04),
+    0 0 0 7px rgba(255,255,255,0.08),
+    0 24px 60px rgba(0,0,0,0.7);
+  padding: 32px 28px 28px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  border: 1px solid #ebebeb;
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  gap: 18px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-.resena-card:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.07);
-  transform: translateY(-3px);
+
+.resena-artwork:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,0.06),
+    0 0 0 7px rgba(255,255,255,0.1),
+    0 36px 80px rgba(0,0,0,0.85);
+}
+
+/* Frame label — artwork number + thin rule */
+.resena-frame-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.resena-frame-number {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.resena-frame-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
 }
 
 .resena-stars {
@@ -1801,18 +1905,33 @@ body {
 }
 
 .resena-star {
-  font-size: 18px;
-  color: #FF5500;
+  font-size: 14px;
+  color: #d4a843;
   line-height: 1;
+}
+
+/* Opening/closing quote marks */
+.resena-quote-mark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5em;
+  line-height: 0;
+  vertical-align: -0.35em;
+  color: rgba(255,255,255,0.15);
+  font-style: normal;
+  margin-right: 2px;
+}
+.resena-quote-mark--close {
+  margin-left: 2px;
+  margin-right: 0;
 }
 
 .resena-quote {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(16px, 1.5vw, 20px);
-  font-weight: 500;
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-weight: 400;
   font-style: italic;
-  color: #222;
-  line-height: 1.6;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.65;
   margin: 0;
   flex: 1;
 }
@@ -1820,33 +1939,208 @@ body {
 .resena-author {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   padding-top: 16px;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .resena-name {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #111;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .resena-company {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+}
+
+/* ── Policy pages ────────────────────────────────────────── */
+.policy-page {
+  min-height: 100vh;
+  background: #fafafa;
+  padding: 80px 6% 120px;
+  box-sizing: border-box;
+}
+
+.policy-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.policy-back {
+  display: inline-block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #C0001A;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  margin-bottom: 48px;
+  transition: opacity 0.2s;
+}
+.policy-back:hover { opacity: 0.7; }
+
+.policy-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 56px);
+  color: #111;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.policy-date {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: 400;
-  color: #FF5500;
-  letter-spacing: 0.02em;
+  color: #999;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 48px;
+}
+
+.policy-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.policy-body h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 24px);
+  color: #111;
+  margin: 36px 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.policy-body h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 20px 0 8px;
+}
+
+.policy-body p {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 400;
+  color: #444;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ── Cookie banner ───────────────────────────────────────── */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: min(720px, calc(100vw - 32px));
+  animation: cookie-slide-up 0.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes cookie-slide-up {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.cookie-banner-inner {
+  background: rgba(10,10,10,0.94);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+
+.cookie-banner-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+}
+
+.cookie-banner-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.cookie-banner-text p {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cookie-banner-link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.cookie-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.cookie-btn-decline {
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.cookie-btn-accept {
+  background: #C0001A;
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
-  .resenas-grid {
+  .resenas-gallery-wall {
     grid-template-columns: 1fr;
+  }
+  .resenas-heading {
+    white-space: normal;
+    text-align: center;
   }
   .port-section {
     grid-template-columns: 1fr;
+  }
+  .cookie-banner-inner {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
