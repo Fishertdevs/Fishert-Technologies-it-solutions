@@ -2063,7 +2063,7 @@ body {
 
 /* ── Left: info panel ────────────────────────────────────── */
 .contacto-info {
-  background: #111111;
+  background: repeating-conic-gradient(#111111 0% 25%, #ffffff 0% 50%) center / 40px 40px;
   padding: 48px 40px;
   display: flex;
   flex-direction: column;
@@ -2161,18 +2161,17 @@ body {
   transform: translateY(-1px);
 }
 
-/* ── Right: map ──────────────────────────────────────────── */
-.contacto-map {
+/* ── Right: image ────────────────────────────────────────── */
+.contacto-img-col {
   position: relative;
   overflow: hidden;
 }
 
-.contacto-map iframe {
-  position: absolute;
-  inset: 0;
+.contacto-img {
   width: 100%;
   height: 100%;
-  border: none;
+  object-fit: cover;
+  object-position: top center;
   display: block;
 }
 

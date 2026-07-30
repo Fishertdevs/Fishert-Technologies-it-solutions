@@ -89,13 +89,12 @@ export default function Contacto() {
           </button>
         </div>
 
-        {/* ── Right: map ────────────────────────────────── */}
-        <div className="contacto-map">
-          <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-74.25%2C4.45%2C-73.9%2C4.8&amp;layer=mapnik"
-            title="Fishert Studio location map"
-            loading="lazy"
-            referrerPolicy="no-referrer"
+        {/* ── Right: image ──────────────────────────────── */}
+        <div className="contacto-img-col">
+          <img
+            src={`${import.meta.env.BASE_URL}girl-pearl.png`}
+            alt="Fishert Studio"
+            className="contacto-img"
           />
         </div>
 
