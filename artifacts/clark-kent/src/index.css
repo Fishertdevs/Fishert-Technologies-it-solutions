@@ -2041,187 +2041,139 @@ body {
 
 /* ── Contacto ─────────────────────────────────────────────── */
 /* ══════════════════════════════════════════════════════════════
-   CONTACTO — map hero + form
+   CONTACTO — two-column split (info panel + map)
    ══════════════════════════════════════════════════════════════ */
 
 .contacto-section {
   background: #ffffff;
+  padding: 80px 6% 100px;
   box-sizing: border-box;
 }
 
-/* ── Outer wrapper ────────────────────────────────────────── */
-.contacto-map-outer {
-  padding: 80px 6% 100px;
-}
-
-/* ── Section title ────────────────────────────────────────── */
-.contacto-section-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 700;
-  font-size: clamp(28px, 3.4vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  color: #111111;
-  text-align: center;
-  margin: 0 0 48px;
-}
-
-/* ── Map container ────────────────────────────────────────── */
-.contacto-map-wrap {
-  position: relative;
-  width: 100%;
-  height: 480px;
+/* ── Single rounded container ────────────────────────────── */
+.contacto-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 380px 1fr;
   border-radius: 20px;
   overflow: hidden;
-  isolation: isolate;
+  height: 480px;
 }
 
-.contacto-map-iframe {
+/* ── Left: info panel ────────────────────────────────────── */
+.contacto-info {
+  background: #111111;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.contacto-info-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(26px, 2.6vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.contacto-info-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contacto-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contacto-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.contacto-info-icon {
+  color: #C0001A;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contacto-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.contacto-info-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.contacto-info-value {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.contacto-info-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
+  padding: 13px 22px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.contacto-info-btn:hover {
+  background: #C0001A;
+  border-color: #C0001A;
+  transform: translateY(-1px);
+}
+
+/* ── Right: map ──────────────────────────────────────────── */
+.contacto-map {
+  position: relative;
+  overflow: hidden;
+}
+
+.contacto-map iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: none;
   display: block;
-  filter: saturate(0.85) brightness(0.96);
-}
-
-/* Left fade so card always reads cleanly */
-.contacto-map-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255,255,255,0.72) 0%,
-    rgba(255,255,255,0.55) 30%,
-    rgba(255,255,255,0) 58%
-  );
-  pointer-events: none;
-}
-
-/* ── Floating card ────────────────────────────────────────── */
-.contacto-map-card {
-  position: absolute;
-  top: 50%;
-  left: 36px;
-  transform: translateY(-50%);
-  width: 320px;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 36px 32px;
-  box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  z-index: 2;
-}
-
-.contacto-map-eyebrow {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #C0001A;
-}
-
-.contacto-map-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 700;
-  font-size: clamp(28px, 2.8vw, 38px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: #111111;
-  margin: 0;
-}
-
-.contacto-map-sub {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  color: #666;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.contacto-map-info {
-  list-style: none;
-  padding: 0;
-  margin: 4px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.contacto-map-info-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.contacto-map-info-icon {
-  color: #C0001A;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.contacto-map-info-text {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  color: #333;
-  line-height: 1.4;
-}
-
-.contacto-map-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #ffffff;
-  background: #111111;
-  border: none;
-  border-radius: 8px;
-  padding: 14px 24px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  align-self: flex-start;
-  margin-top: 4px;
-}
-.contacto-map-btn:hover {
-  background: #C0001A;
-  transform: translateY(-1px);
-}
-
-/* ── Form section ─────────────────────────────────────────── */
-.contacto-form-section {
-  background: #ffffff;
-  padding: 80px 6% 100px;
-  border-top: 1px solid #ebebeb;
-}
-
-.contacto-form-inner {
-  max-width: 780px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
-
-.contacto-form-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 700;
-  font-size: clamp(28px, 3.4vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  color: #111111;
-  margin: 0;
-  text-align: center;
 }
 
 .contacto-form {
