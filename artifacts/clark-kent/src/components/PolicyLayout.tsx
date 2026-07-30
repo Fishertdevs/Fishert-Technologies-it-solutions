@@ -1,13 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useScrollReveal } from "../hooks/useScrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   title: string;
@@ -18,11 +14,8 @@ interface Props {
 export default function PolicyLayout({ title, date, sections }: Props) {
   const { lang } = useLang();
 
-  // Kill any lingering GSAP ScrollTriggers from the main page, then scroll to top
-  useEffect(() => {
-    ScrollTrigger.getAll().forEach((t) => t.kill());
-    window.scrollTo(0, 0);
-  }, []);
+  // Always start at the top of the page
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   // Scroll-reveal on the article body
   const bodyRef = useScrollReveal(".reveal");
