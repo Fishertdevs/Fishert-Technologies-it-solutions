@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLang } from "./LanguageContext";
 
 const content = {
@@ -7,88 +6,26 @@ const content = {
     mapTitle: "¿Tienes un proyecto\nen mente?",
     mapSub: "Cuéntanos tu idea y construimos\njuntos la solución.",
     info: [
-      {
-        icon: "location",
-        text: "Colombia · Remoto global",
-      },
-      {
-        icon: "email",
-        text: "hola@fishertstudio.com",
-      },
-      {
-        icon: "whatsapp",
-        text: "+57 300 000 0000",
-      },
+      { icon: "location", text: "Colombia · Remoto global" },
+      { icon: "email",    text: "hola@fishertstudio.com" },
+      { icon: "whatsapp", text: "+57 300 000 0000" },
     ],
     mapBtn: "Escribirnos",
-    formLabel: "¿Tienes un proyecto en mente?",
-    formTitle: "Hablemos.",
-    formSub: "Cuéntanos tu idea y construimos juntos la solución.",
-    fields: {
-      name: "Nombre completo",
-      company: "Empresa o proyecto",
-      email: "Correo electrónico",
-      phone: "Teléfono (opcional)",
-      type: "Tipo de proyecto",
-      typeOptions: [
-        "Sitio web / Landing page",
-        "Aplicación web",
-        "App móvil",
-        "E-commerce",
-        "Branding & Diseño",
-        "Otro",
-      ],
-      message: "Cuéntanos tu idea",
-      submit: "Enviar mensaje",
-      sending: "Enviando…",
-    },
-    success: "¡Mensaje enviado! Te contactamos pronto.",
   },
   en: {
     eyebrow: "Contact us",
     mapTitle: "Have a project\nin mind?",
     mapSub: "Tell us your idea and we'll\nbuild the solution together.",
     info: [
-      {
-        icon: "location",
-        text: "Colombia · Global remote",
-      },
-      {
-        icon: "email",
-        text: "hello@fishertstudio.com",
-      },
-      {
-        icon: "whatsapp",
-        text: "+57 300 000 0000",
-      },
+      { icon: "location", text: "Colombia · Global remote" },
+      { icon: "email",    text: "hello@fishertstudio.com" },
+      { icon: "whatsapp", text: "+57 300 000 0000" },
     ],
     mapBtn: "Write to us",
-    formLabel: "Have a project in mind?",
-    formTitle: "Let's talk.",
-    formSub: "Tell us your idea and we'll build the solution together.",
-    fields: {
-      name: "Full name",
-      company: "Company or project",
-      email: "Email address",
-      phone: "Phone (optional)",
-      type: "Project type",
-      typeOptions: [
-        "Website / Landing page",
-        "Web application",
-        "Mobile app",
-        "E-commerce",
-        "Branding & Design",
-        "Other",
-      ],
-      message: "Tell us about your idea",
-      submit: "Send message",
-      sending: "Sending…",
-    },
-    success: "Message sent! We'll be in touch soon.",
   },
 };
 
-/* ── Icon helpers ────────────────────────────────────────────── */
+/* ── Icons ───────────────────────────────────────────────────── */
 function LocationIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -117,7 +54,7 @@ function WhatsAppIcon() {
 
 const iconMap: Record<string, JSX.Element> = {
   location: <LocationIcon />,
-  email: <EmailIcon />,
+  email:    <EmailIcon />,
   whatsapp: <WhatsAppIcon />,
 };
 
@@ -125,33 +62,19 @@ const iconMap: Record<string, JSX.Element> = {
 export default function Contacto() {
   const { lang } = useLang();
   const t = content[lang];
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSending(true);
-    setTimeout(() => { setSending(false); setSent(true); }, 1200);
-  };
-
-  const scrollToForm = () => {
-    document.getElementById("contacto-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
 
   return (
     <section id="contacto" className="contacto-section">
-
-      {/* ── Map hero ─────────────────────────────────────────── */}
       <div className="contacto-map-outer">
 
-        {/* Decorative top rule */}
+        {/* Top rule */}
         <div className="contacto-rule" aria-hidden="true">
           <span className="contacto-rule-label">{t.eyebrow}</span>
           <span className="contacto-rule-line" />
         </div>
 
+        {/* Map + card */}
         <div className="contacto-map-wrap">
-          {/* Map */}
           <iframe
             className="contacto-map-iframe"
             src="https://www.openstreetmap.org/export/embed.html?bbox=-74.25%2C4.45%2C-73.9%2C4.8&amp;layer=mapnik"
@@ -160,10 +83,8 @@ export default function Contacto() {
             referrerPolicy="no-referrer"
           />
 
-          {/* Gradient overlay on the left so the card reads cleanly */}
           <div className="contacto-map-gradient" aria-hidden="true" />
 
-          {/* Floating info card */}
           <div className="contacto-map-card">
             <span className="contacto-map-eyebrow">{t.eyebrow}</span>
 
@@ -182,15 +103,13 @@ export default function Contacto() {
             <ul className="contacto-map-info">
               {t.info.map((item) => (
                 <li key={item.icon} className="contacto-map-info-item">
-                  <span className="contacto-map-info-icon">
-                    {iconMap[item.icon]}
-                  </span>
+                  <span className="contacto-map-info-icon">{iconMap[item.icon]}</span>
                   <span className="contacto-map-info-text">{item.text}</span>
                 </li>
               ))}
             </ul>
 
-            <button className="contacto-map-btn" onClick={scrollToForm}>
+            <button className="contacto-map-btn">
               {t.mapBtn}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -199,76 +118,8 @@ export default function Contacto() {
             </button>
           </div>
         </div>
+
       </div>
-
-      {/* ── Form ─────────────────────────────────────────────── */}
-      <div id="contacto-form" className="contacto-form-section">
-        <div className="contacto-form-inner">
-
-          {/* Section title */}
-          <h2 className="contacto-form-title">{t.formLabel}</h2>
-
-          {/* Form body */}
-          {sent ? (
-            <div className="contacto-success">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
-                stroke="#C0001A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="m9 12 2 2 4-4" />
-              </svg>
-              <p>{t.success}</p>
-            </div>
-          ) : (
-            <form className="contacto-form" onSubmit={handleSubmit} noValidate>
-              <div className="contacto-row">
-                <div className="contacto-field">
-                  <label className="contacto-field-label">{t.fields.name} *</label>
-                  <input className="contacto-input" type="text" placeholder={t.fields.name} required />
-                </div>
-                <div className="contacto-field">
-                  <label className="contacto-field-label">{t.fields.company}</label>
-                  <input className="contacto-input" type="text" placeholder={t.fields.company} />
-                </div>
-              </div>
-              <div className="contacto-row">
-                <div className="contacto-field">
-                  <label className="contacto-field-label">{t.fields.email} *</label>
-                  <input className="contacto-input" type="email" placeholder={t.fields.email} required />
-                </div>
-                <div className="contacto-field">
-                  <label className="contacto-field-label">{t.fields.phone}</label>
-                  <input className="contacto-input" type="tel" placeholder={t.fields.phone} />
-                </div>
-              </div>
-              <div className="contacto-field">
-                <label className="contacto-field-label">{t.fields.type}</label>
-                <select className="contacto-input contacto-select">
-                  <option value="">— {t.fields.type} —</option>
-                  {t.fields.typeOptions.map((o) => (
-                    <option key={o} value={o}>{o}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="contacto-field">
-                <label className="contacto-field-label">{t.fields.message} *</label>
-                <textarea className="contacto-input contacto-textarea" rows={5}
-                  placeholder={t.fields.message} required />
-              </div>
-              <button type="submit" className="contacto-submit" disabled={sending}>
-                {sending ? t.fields.sending : t.fields.submit}
-                {!sending && (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                )}
-              </button>
-            </form>
-          )}
-
-        </div>
-      </div>
-
     </section>
   );
 }
