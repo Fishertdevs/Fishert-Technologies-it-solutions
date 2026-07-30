@@ -2046,16 +2046,24 @@ body {
 
 .contacto-section {
   background: #ffffff;
-  padding: 80px 6% 100px;
+  padding: 80px 6% 0;
   box-sizing: border-box;
 }
 
-/* ── Single rounded container ────────────────────────────── */
-.contacto-wrap {
-  max-width: 1200px;
+/* ── Outer flex row: container + image side by side ──────── */
+.contacto-outer {
+  max-width: 1300px;
   margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+}
+
+/* ── Rounded container (info + map) ──────────────────────── */
+.contacto-wrap {
+  flex: 1;
   display: grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 360px 1fr;
   border-radius: 20px;
   overflow: hidden;
   height: 480px;
@@ -2161,18 +2169,34 @@ body {
   transform: translateY(-1px);
 }
 
-/* ── Right: image ────────────────────────────────────────── */
-.contacto-img-col {
+/* ── Right col inside container: map ─────────────────────── */
+.contacto-map-col {
   position: relative;
   overflow: hidden;
 }
 
-.contacto-img {
+.contacto-map-col iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  border: none;
   display: block;
+}
+
+/* ── Art image — outside the container ───────────────────── */
+.contacto-art {
+  width: 300px;
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.contacto-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
 }
 
 .contacto-form {

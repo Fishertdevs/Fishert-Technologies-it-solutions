@@ -61,40 +61,54 @@ export default function Contacto() {
 
   return (
     <section id="contacto" className="contacto-section">
-      <div className="contacto-wrap">
+      <div className="contacto-outer">
 
-        {/* ── Left: info panel ──────────────────────────── */}
-        <div className="contacto-info">
-          <h2 className="contacto-info-title">{t.title}</h2>
-          <p className="contacto-info-sub">{t.sub}</p>
+        {/* ── Rounded container: info + map ─────────────── */}
+        <div className="contacto-wrap">
 
-          <ul className="contacto-info-list">
-            {t.info.map((item) => (
-              <li key={item.icon} className="contacto-info-item">
-                <span className="contacto-info-icon">{iconMap[item.icon]}</span>
-                <span className="contacto-info-text">
-                  <span className="contacto-info-label">{item.label}</span>
-                  <span className="contacto-info-value">{item.value}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
+          {/* Left: checkerboard info panel */}
+          <div className="contacto-info">
+            <h2 className="contacto-info-title">{t.title}</h2>
+            <p className="contacto-info-sub">{t.sub}</p>
 
-          <button className="contacto-info-btn">
-            {t.btn}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
+            <ul className="contacto-info-list">
+              {t.info.map((item) => (
+                <li key={item.icon} className="contacto-info-item">
+                  <span className="contacto-info-icon">{iconMap[item.icon]}</span>
+                  <span className="contacto-info-text">
+                    <span className="contacto-info-label">{item.label}</span>
+                    <span className="contacto-info-value">{item.value}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <button className="contacto-info-btn">
+              {t.btn}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Right: map inside container */}
+          <div className="contacto-map-col">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-74.25%2C4.45%2C-73.9%2C4.8&amp;layer=mapnik"
+              title="Mapa Fishert Studio"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+
         </div>
 
-        {/* ── Right: image ──────────────────────────────── */}
-        <div className="contacto-img-col">
+        {/* ── Image outside container ────────────────────── */}
+        <div className="contacto-art">
           <img
             src={`${import.meta.env.BASE_URL}girl-pearl.png`}
             alt="Fishert Studio"
-            className="contacto-img"
           />
         </div>
 
