@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
@@ -25,157 +25,50 @@ export default function Section4() {
   const { lang } = useLang();
   const { phase1, phase2, phase3 } = phases[lang];
 
-  useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=600%",
-        scrub: 1,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        refreshPriority: 1,
-      },
-    });
+  useLayoutEffect(() => {
+    if (!sectionRef.current) return;
 
-    gsap.set(".sweep-bar", { scaleX: 0, transformOrigin: "left center" });
-    gsap.set(".phase1-line", { opacity: 1 });
-    gsap.set(".phase2-line", { opacity: 0 });
-    gsap.set(".phase3-line", { opacity: 0 });
-    gsap.set(".p3-bar", { scaleX: 0, transformOrigin: "left center" });
-    gsap.set(".line-wrapper", { overflow: "hidden", position: "relative" });
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=600%",
+          scrub: 1,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          refreshPriority: 1,
+        },
+      });
 
-    tl.to(
-      ".p1-bar",
-      {
-        scaleX: 1,
-        duration: 0.4,
-        stagger: 0.15,
-        ease: "none",
-      },
-      0,
-    );
+      gsap.set(".sweep-bar", { scaleX: 0, transformOrigin: "left center" });
+      gsap.set(".phase1-line", { opacity: 1 });
+      gsap.set(".phase2-line", { opacity: 0 });
+      gsap.set(".phase3-line", { opacity: 0 });
+      gsap.set(".p3-bar", { scaleX: 0, transformOrigin: "left center" });
+      gsap.set(".line-wrapper", { overflow: "hidden", position: "relative" });
 
-    tl.to(
-      ".p1-bar",
-      {
-        scaleX: 0,
-        transformOrigin: "right center",
-        duration: 0.4,
-        stagger: 0.15,
-        ease: "none",
-      },
-      0.8,
-    );
+      tl.to(".p1-bar", { scaleX: 1, duration: 0.4, stagger: 0.15, ease: "none" }, 0);
+      tl.to(".p1-bar", { scaleX: 0, transformOrigin: "right center", duration: 0.4, stagger: 0.15, ease: "none" }, 0.8);
+      tl.to(".phase1-line", { opacity: 0, duration: 0.2 }, 1.6);
+      tl.to(".phase2-line", { opacity: 1, duration: 0.2 }, 1.7);
+      tl.to(".indicator-circle[data-num='1']", { borderColor: "rgba(255,255,255,0.3)", color: "rgba(255,255,255,0.3)", duration: 0.1 }, 1.6);
+      tl.to(".line-1-2", { "--line-progress": "100%", duration: 0.3 }, 1.6);
+      tl.to(".indicator-circle[data-num='2']", { borderColor: "rgba(255,255,255,0.9)", color: "rgba(255,255,255,0.9)", duration: 0.1 }, 1.9);
+      tl.to(".p2-bar", { scaleX: 1, transformOrigin: "left center", duration: 0.4, stagger: 0.15, ease: "none" }, 2.0);
+      tl.to(".p2-bar", { scaleX: 0, transformOrigin: "right center", duration: 0.4, stagger: 0.15, ease: "none" }, 2.8);
+      tl.to(".phase2-line", { opacity: 0, duration: 0.2 }, 3.6);
+      tl.to(".phase3-line", { opacity: 1, duration: 0.2 }, 3.7);
+      tl.to(".indicator-circle[data-num='2']", { borderColor: "rgba(255,255,255,0.3)", color: "rgba(255,255,255,0.3)", duration: 0.1 }, 3.6);
+      tl.to(".line-2-3", { "--line-progress": "100%", duration: 0.3 }, 3.6);
+      tl.to(".indicator-circle[data-num='3']", { borderColor: "rgba(255,255,255,0.9)", color: "rgba(255,255,255,0.9)", duration: 0.1 }, 3.9);
+      tl.to(".p3-bar", { scaleX: 1, transformOrigin: "left center", duration: 0.4, stagger: 0.15, ease: "none" }, 4.0);
+      tl.to(".p3-bar", { scaleX: 0, transformOrigin: "right center", duration: 0.4, stagger: 0.15, ease: "none" }, 4.8);
+    }, sectionRef);
 
-    tl.to(".phase1-line", { opacity: 0, duration: 0.2 }, 1.6);
-    tl.to(".phase2-line", { opacity: 1, duration: 0.2 }, 1.7);
-
-    tl.to(
-      ".indicator-circle[data-num='1']",
-      {
-        borderColor: "rgba(255,255,255,0.3)",
-        color: "rgba(255,255,255,0.3)",
-        duration: 0.1,
-      },
-      1.6,
-    );
-    tl.to(
-      ".line-1-2",
-      { "--line-progress": "100%", duration: 0.3 },
-      1.6,
-    );
-    tl.to(
-      ".indicator-circle[data-num='2']",
-      {
-        borderColor: "rgba(255,255,255,0.9)",
-        color: "rgba(255,255,255,0.9)",
-        duration: 0.1,
-      },
-      1.9,
-    );
-
-    tl.to(
-      ".p2-bar",
-      {
-        scaleX: 1,
-        transformOrigin: "left center",
-        duration: 0.4,
-        stagger: 0.15,
-        ease: "none",
-      },
-      2.0,
-    );
-
-    tl.to(
-      ".p2-bar",
-      {
-        scaleX: 0,
-        transformOrigin: "right center",
-        duration: 0.4,
-        stagger: 0.15,
-        ease: "none",
-      },
-      2.8,
-    );
-
-    tl.to(".phase2-line", { opacity: 0, duration: 0.2 }, 3.6);
-    tl.to(".phase3-line", { opacity: 1, duration: 0.2 }, 3.7);
-
-    tl.to(
-      ".indicator-circle[data-num='2']",
-      {
-        borderColor: "rgba(255,255,255,0.3)",
-        color: "rgba(255,255,255,0.3)",
-        duration: 0.1,
-      },
-      3.6,
-    );
-    tl.to(
-      ".line-2-3",
-      { "--line-progress": "100%", duration: 0.3 },
-      3.6,
-    );
-    tl.to(
-      ".indicator-circle[data-num='3']",
-      {
-        borderColor: "rgba(255,255,255,0.9)",
-        color: "rgba(255,255,255,0.9)",
-        duration: 0.1,
-      },
-      3.9,
-    );
-
-    tl.to(
-      ".p3-bar",
-      {
-        scaleX: 1,
-        transformOrigin: "left center",
-        duration: 0.4,
-        stagger: 0.15,
-        ease: "none",
-      },
-      4.0,
-    );
-
-    tl.to(
-      ".p3-bar",
-      {
-        scaleX: 0,
-        transformOrigin: "right center",
-        duration: 0.4,
-        stagger: 0.15,
-        ease: "none",
-      },
-      4.8,
-    );
-
-    return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   const lineStyle = {

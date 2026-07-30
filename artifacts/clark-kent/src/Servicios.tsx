@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
@@ -43,7 +43,7 @@ export default function Servicios() {
   }, []);
 
   // ── Scroll-driven 6-cycle carousel (user controls with scroll) ─────────
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (slots.length < VISIBLE || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {

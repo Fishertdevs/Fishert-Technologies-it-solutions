@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
@@ -66,99 +66,69 @@ export default function Works() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    if (slots.length === 0) return;
+  useLayoutEffect(() => {
+    if (slots.length === 0 || !sectionRef.current) return;
 
-    gsap.set(".works-item", {
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      x: 0,
-      width: 0,
-      height: 0,
-      opacity: 0,
-    });
-
-    initialVisible.forEach((item, index) => {
-      const slot = slots[index];
-      gsap.set(`.works-item--${item.id}`, {
-        x: slot.x,
-        width: slot.size,
-        height: slot.size,
-        opacity: 1,
+    const ctx = gsap.context(() => {
+      gsap.set(".works-item", {
+        position: "absolute", bottom: 0, left: 0,
+        x: 0, width: 0, height: 0, opacity: 0,
       });
-    });
 
-    const worksTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: `+=${queuedItems.length * 100}%`,
-        scrub: 1,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        refreshPriority: 2,
-      },
-    });
+      initialVisible.forEach((item, index) => {
+        const slot = slots[index];
+        gsap.set(`.works-item--${item.id}`, {
+          x: slot.x, width: slot.size, height: slot.size, opacity: 1,
+        });
+      });
 
-    const currentScreen = initialVisible.map((item) => item.id);
-
-    queuedItems.forEach((queuedItem, cycleIndex) => {
-      const enteringId = queuedItem.id;
-      const startTime = cycleIndex;
-
-      gsap.set(`.works-item--${enteringId}`, { opacity: 1 });
-      worksTl.to(
-        `.works-item--${enteringId}`,
-        {
-          x: slots[0].x,
-          width: slots[0].size,
-          height: slots[0].size,
-          duration: 1,
-          ease: "none",
+      const worksTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${queuedItems.length * 100}%`,
+          scrub: 1,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          refreshPriority: 2,
         },
-        startTime,
-      );
-
-      currentScreen.forEach((screenId, index) => {
-        if (index < initialVisibleCount - 1) {
-          const nextSlot = slots[index + 1];
-
-          worksTl.to(
-            `.works-item--${screenId}`,
-            {
-              x: nextSlot.x,
-              width: nextSlot.size,
-              height: nextSlot.size,
-              duration: 1,
-              ease: "none",
-            },
-            startTime,
-          );
-        } else {
-          const lastSlot = slots[initialVisibleCount - 1];
-          worksTl.to(
-            `.works-item--${screenId}`,
-            {
-              x: lastSlot.x + lastSlot.size,
-              duration: 1,
-              ease: "none",
-            },
-            startTime,
-          );
-        }
       });
 
-      currentScreen.unshift(enteringId);
-      currentScreen.pop();
-    });
+      const currentScreen = initialVisible.map((item) => item.id);
 
-    return () => {
-      worksTl.scrollTrigger?.kill();
-      worksTl.kill();
-    };
+      queuedItems.forEach((queuedItem, cycleIndex) => {
+        const enteringId = queuedItem.id;
+        const startTime = cycleIndex;
+
+        gsap.set(`.works-item--${enteringId}`, { opacity: 1 });
+        worksTl.to(`.works-item--${enteringId}`, {
+          x: slots[0].x, width: slots[0].size, height: slots[0].size,
+          duration: 1, ease: "none",
+        }, startTime);
+
+        currentScreen.forEach((screenId, index) => {
+          if (index < initialVisibleCount - 1) {
+            const nextSlot = slots[index + 1];
+            worksTl.to(`.works-item--${screenId}`, {
+              x: nextSlot.x, width: nextSlot.size, height: nextSlot.size,
+              duration: 1, ease: "none",
+            }, startTime);
+          } else {
+            const lastSlot = slots[initialVisibleCount - 1];
+            worksTl.to(`.works-item--${screenId}`, {
+              x: lastSlot.x + lastSlot.size, duration: 1, ease: "none",
+            }, startTime);
+          }
+        });
+
+        currentScreen.unshift(enteringId);
+        currentScreen.pop();
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, [slots]);
 
   return (
