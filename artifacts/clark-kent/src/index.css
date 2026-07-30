@@ -2044,11 +2044,28 @@ body {
    CONTACTO — two-column split (info panel + map)
    ══════════════════════════════════════════════════════════════ */
 
+/* ═══════════════════════════════════════════════════════════
+   CONTACTO SECTION
+═══════════════════════════════════════════════════════════ */
 .contacto-section {
   background: #ffffff;
   padding: 80px 6% 0;
   box-sizing: border-box;
+  position: relative;
+  overflow: visible;
 }
+
+/* ── Top wave (fill = color of section above = black) ─────── */
+.contacto-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  display: block;
+  z-index: 10;
+}
+.contacto-wave--top { top: -1px; }
 
 /* ── Outer flex row: left-area + art image ───────────────── */
 .contacto-outer {
@@ -2068,17 +2085,18 @@ body {
   padding-bottom: 80px;
 }
 
-/* ── Section title — black, Nosotros typography ──────────── */
+/* ── Section title — one line, black, Nosotros typography ── */
 .contacto-section-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
   font-style: italic;
-  font-size: clamp(32px, 4.4vw, 76px);
+  font-size: clamp(18px, 3.1vw, 56px);
   line-height: 1;
   letter-spacing: -0.01em;
   color: #111111;
   text-transform: uppercase;
   margin: 0;
+  white-space: nowrap;
 }
 
 /* ── Rounded container (info + map) ──────────────────────── */
@@ -2088,36 +2106,82 @@ body {
   grid-template-columns: 360px 1fr;
   border-radius: 20px;
   overflow: hidden;
-  height: 400px;
+  height: 420px;
 }
 
-/* ── Left: info panel ────────────────────────────────────── */
+/* ── Left: info/slider panel — light checkerboard ────────── */
 .contacto-info {
-  background-color: #1e1e1e;
-  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
+  background-color: #f0f0f0;
+  background-image: repeating-conic-gradient(#ffffff 0% 25%, #d8d8d8 0% 50%);
   background-size: 72px 72px;
-  padding: 32px 36px;
+  padding: 28px 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  justify-content: center;
+  gap: 0;
+  overflow: hidden;
 }
 
-.contacto-info-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+/* ── Slider tabs ─────────────────────────────────────────── */
+.cslider-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+
+.cslider-tab {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
   font-weight: 700;
-  font-size: clamp(26px, 2.6vw, 38px);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  margin: 0;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0 4px 10px;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.cslider-tab + .cslider-tab { margin-left: 20px; }
+.cslider-tab--active {
+  color: #111111;
+  border-bottom-color: #C0001A;
 }
 
+/* ── Slider track ────────────────────────────────────────── */
+.cslider-track-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.cslider-track {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cslider-slide {
+  width: 50%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-right: 4px;
+  box-sizing: border-box;
+}
+
+/* ── Slide 0: contact info ───────────────────────────────── */
 .contacto-info-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
-  color: rgba(255,255,255,0.55);
+  color: rgba(0,0,0,0.5);
   line-height: 1.6;
   margin: 0;
 }
@@ -2125,10 +2189,10 @@ body {
 .contacto-info-list {
   list-style: none;
   padding: 0;
-  margin: 4px 0 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .contacto-info-item {
@@ -2157,14 +2221,14 @@ body {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
+  color: rgba(0,0,0,0.35);
 }
 
 .contacto-info-value {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: 400;
-  color: #ffffff;
+  color: #111111;
   line-height: 1.4;
 }
 
@@ -2177,41 +2241,100 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #111111;
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(0,0,0,0.25);
   border-radius: 8px;
-  padding: 13px 22px;
+  padding: 12px 20px;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
   align-self: flex-start;
   margin-top: 4px;
 }
 .contacto-info-btn:hover {
-  background: #C0001A;
-  border-color: #C0001A;
+  background: #111111;
+  border-color: #111111;
+  color: #ffffff;
   transform: translateY(-1px);
 }
+.contacto-info-btn--wa {
+  background: #25D366;
+  border-color: #25D366;
+  color: #ffffff;
+}
+.contacto-info-btn--wa:hover {
+  background: #1daa53;
+  border-color: #1daa53;
+  color: #ffffff;
+}
 
-/* ── Right col inside container: map ─────────────────────── */
+/* ── Slide 1: steps ──────────────────────────────────────── */
+.cslider-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cslider-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cslider-step-n {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  color: #C0001A;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.cslider-step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cslider-step-title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1.3;
+}
+
+.cslider-step-desc {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.5);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Right col: map — hide OSM attribution footer ────────── */
 .contacto-map-col {
   position: relative;
   overflow: hidden;
-  background-color: #1e1e1e;
-  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
-  background-size: 72px 72px;
+  background: #e8e8e8;
 }
 
 .contacto-map-col iframe {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  /* Extra height pushes the OSM attribution bar below the visible area */
+  height: calc(100% + 32px);
   border: none;
   display: block;
 }
 
-/* ── Art image — outside the container, Nosotros proportions */
+/* ── Art image — anchored from bottom ────────────────────── */
 .contacto-art {
   flex: 0 0 44%;
   align-self: stretch;
