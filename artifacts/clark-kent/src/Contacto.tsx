@@ -92,11 +92,11 @@ export default function Contacto() {
             </button>
           </div>
 
-          {/* Right: map inside container */}
+          {/* Right: map inside container — centrado en Bogotá */}
           <div className="contacto-map-col">
             <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-74.25%2C4.45%2C-73.9%2C4.8&amp;layer=mapnik"
-              title="Mapa Fishert Studio"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-74.12%2C4.58%2C-74.00%2C4.70&amp;layer=mapnik&amp;marker=4.6097%2C-74.0817"
+              title="Mapa Fishert Studio — Bogotá"
               loading="lazy"
               referrerPolicy="no-referrer"
             />

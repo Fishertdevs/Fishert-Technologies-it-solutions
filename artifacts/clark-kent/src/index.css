@@ -2066,13 +2066,15 @@ body {
   grid-template-columns: 360px 1fr;
   border-radius: 20px;
   overflow: hidden;
-  height: 480px;
+  height: 240px;
 }
 
 /* ── Left: info panel ────────────────────────────────────── */
 .contacto-info {
-  background: repeating-conic-gradient(#111111 0% 25%, #ffffff 0% 50%) center / 40px 40px;
-  padding: 48px 40px;
+  background-color: #1e1e1e;
+  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
+  background-size: 72px 72px;
+  padding: 32px 36px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -2173,6 +2175,9 @@ body {
 .contacto-map-col {
   position: relative;
   overflow: hidden;
+  background-color: #1e1e1e;
+  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
+  background-size: 72px 72px;
 }
 
 .contacto-map-col iframe {
@@ -2184,19 +2189,20 @@ body {
   display: block;
 }
 
-/* ── Art image — outside the container ───────────────────── */
+/* ── Art image — outside the container, Nosotros proportions */
 .contacto-art {
-  width: 300px;
-  flex-shrink: 0;
-  align-self: flex-end;
+  /* 44% matches the Nosotros image column width */
+  flex: 0 0 44%;
+  align-self: stretch;
+  overflow: hidden;
 }
 
 .contacto-art img {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: bottom center;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .contacto-form {
