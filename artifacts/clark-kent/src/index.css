@@ -1740,7 +1740,9 @@ body {
 ══════════════════════════════════════════ */
 /* ── Reseñas ─────────────────────────────────────────────── */
 .resenas-section {
-  background: #e4e4e4;
+  background-color: #f0f0f0;
+  background-image: repeating-conic-gradient(#ffffff 0% 25%, #d8d8d8 0% 50%);
+  background-size: 72px 72px;
   padding: 0 6% 100px;
   box-sizing: border-box;
   position: relative;
@@ -2072,7 +2074,7 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
-  align-items: flex-end;
+  align-items: stretch;
   gap: 0;
 }
 
@@ -2081,22 +2083,25 @@ body {
   flex: 0 0 56%;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  align-items: center;
+  gap: 20px;
   padding-bottom: 80px;
 }
 
-/* ── Section title — one line, black, Nosotros typography ── */
+/* ── Section title — exact same size as Nosotros, centered ─ */
 .contacto-section-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
   font-style: italic;
-  font-size: clamp(18px, 3.1vw, 56px);
+  font-size: clamp(32px, 4.4vw, 76px);
   line-height: 1;
   letter-spacing: -0.01em;
   color: #111111;
   text-transform: uppercase;
   margin: 0;
   white-space: nowrap;
+  text-align: center;
+  align-self: center;
 }
 
 /* ── Rounded container (info + map) ──────────────────────── */
@@ -2106,15 +2111,15 @@ body {
   grid-template-columns: 360px 1fr;
   border-radius: 20px;
   overflow: hidden;
-  height: 420px;
+  height: 430px;
 }
 
-/* ── Left: info/slider panel — light checkerboard ────────── */
+/* ── Left: info/slider panel — dark checkerboard ─────────── */
 .contacto-info {
-  background-color: #f0f0f0;
-  background-image: repeating-conic-gradient(#ffffff 0% 25%, #d8d8d8 0% 50%);
+  background-color: #1a1a1a;
+  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
-  padding: 28px 32px;
+  padding: 24px 28px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -2125,8 +2130,8 @@ body {
 .cslider-tabs {
   display: flex;
   gap: 0;
-  margin-bottom: 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.12);
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
   flex-shrink: 0;
 }
 
@@ -2136,7 +2141,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(0,0,0,0.35);
+  color: rgba(255,255,255,0.35);
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
@@ -2148,7 +2153,7 @@ body {
 }
 .cslider-tab + .cslider-tab { margin-left: 20px; }
 .cslider-tab--active {
-  color: #111111;
+  color: #ffffff;
   border-bottom-color: #C0001A;
 }
 
@@ -2171,19 +2176,38 @@ body {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding-right: 4px;
+  justify-content: center;
+  gap: 12px;
   box-sizing: border-box;
 }
 
 /* ── Slide 0: contact info ───────────────────────────────── */
+.cslide-contact-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+
 .contacto-info-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  color: rgba(0,0,0,0.5);
-  line-height: 1.6;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
   margin: 0;
+}
+
+.contacto-info-hours {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .contacto-info-list {
@@ -2192,13 +2216,13 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .contacto-info-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
 }
 
 .contacto-info-icon {
@@ -2217,63 +2241,68 @@ body {
 
 .contacto-info-label {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(0,0,0,0.35);
+  color: rgba(255,255,255,0.35);
 }
 
 .contacto-info-value {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
-  color: #111111;
+  color: #ffffff;
   line-height: 1.4;
 }
 
-.contacto-info-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #111111;
-  background: transparent;
-  border: 1px solid rgba(0,0,0,0.25);
-  border-radius: 8px;
-  padding: 12px 20px;
-  cursor: pointer;
+.contacto-info-link {
+  color: #ffffff;
   text-decoration: none;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
-  align-self: flex-start;
-  margin-top: 4px;
+  transition: color 0.2s;
 }
-.contacto-info-btn:hover {
-  background: #111111;
-  border-color: #111111;
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-.contacto-info-btn--wa {
-  background: #25D366;
-  border-color: #25D366;
-  color: #ffffff;
-}
-.contacto-info-btn--wa:hover {
-  background: #1daa53;
-  border-color: #1daa53;
-  color: #ffffff;
+.contacto-info-link:hover { color: #C0001A; }
+
+/* ── Social icons row — centered ────────────────────────── */
+.contacto-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 6px;
 }
 
-/* ── Slide 1: steps ──────────────────────────────────────── */
+.contacto-social-btn {
+  color: rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, transform 0.15s;
+}
+.contacto-social-btn:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ── Slide 1: booking steps ──────────────────────────────── */
+.cslider-slide--booking {
+  justify-content: center;
+  gap: 14px;
+}
+
+.cslider-booking-intro {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.55;
+  margin: 0 0 4px;
+}
+
 .cslider-steps {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .cslider-step {
@@ -2284,13 +2313,13 @@ body {
 
 .cslider-step-n {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   font-style: italic;
   color: #C0001A;
   line-height: 1;
   flex-shrink: 0;
-  width: 28px;
+  width: 26px;
 }
 
 .cslider-step-body {
@@ -2301,19 +2330,44 @@ body {
 
 .cslider-step-title {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  color: #111111;
+  color: #ffffff;
   line-height: 1.3;
 }
 
 .cslider-step-desc {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
-  color: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.45);
   line-height: 1.5;
   margin: 0;
+}
+
+/* ── "Agendar" — text button with WhatsApp icon ──────────── */
+.cslider-cta-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #25D366;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 0.2s, transform 0.15s;
+  margin-top: 4px;
+}
+.cslider-cta-text:hover {
+  color: #1daa53;
+  transform: translateX(3px);
 }
 
 /* ── Right col: map — hide OSM attribution footer ────────── */
@@ -2328,21 +2382,24 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  /* Extra height pushes the OSM attribution bar below the visible area */
   height: calc(100% + 32px);
   border: none;
   display: block;
 }
 
-/* ── Art image — anchored from bottom ────────────────────── */
+/* ── Art image — strictly anchored to the bottom edge ────── */
 .contacto-art {
   flex: 0 0 44%;
-  align-self: stretch;
+  position: relative;
   overflow: hidden;
+  /* min-height forces the column to be at least as tall as the left area */
+  min-height: 100%;
 }
 
 .contacto-art img {
-  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
