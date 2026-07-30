@@ -2045,36 +2045,25 @@ body {
    ══════════════════════════════════════════════════════════════ */
 
 .contacto-section {
-  background: #111111;
+  background: #ffffff;
   box-sizing: border-box;
 }
 
-/* ── Top rule ─────────────────────────────────────────────── */
+/* ── Outer wrapper ────────────────────────────────────────── */
 .contacto-map-outer {
-  padding: 80px 6% 0;
+  padding: 80px 6% 100px;
 }
 
-.contacto-rule {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 40px;
-}
-
-.contacto-rule-label {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10px;
+/* ── Section title ────────────────────────────────────────── */
+.contacto-section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #C0001A;
-  white-space: nowrap;
-}
-
-.contacto-rule-line {
-  flex: 1;
-  height: 1px;
-  background: rgba(255,255,255,0.12);
+  font-size: clamp(28px, 3.4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #111111;
+  text-align: center;
+  margin: 0 0 48px;
 }
 
 /* ── Map container ────────────────────────────────────────── */

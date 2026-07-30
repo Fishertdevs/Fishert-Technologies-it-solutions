@@ -67,11 +67,10 @@ export default function Contacto() {
     <section id="contacto" className="contacto-section">
       <div className="contacto-map-outer">
 
-        {/* Top rule */}
-        <div className="contacto-rule" aria-hidden="true">
-          <span className="contacto-rule-label">{t.eyebrow}</span>
-          <span className="contacto-rule-line" />
-        </div>
+        {/* Section title */}
+        <h2 className="contacto-section-title">
+          {t.mapTitle.split("\n").join(" ")}
+        </h2>
 
         {/* Map + card */}
         <div className="contacto-map-wrap">
