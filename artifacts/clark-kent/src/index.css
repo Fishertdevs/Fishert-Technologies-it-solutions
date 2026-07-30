@@ -2211,57 +2211,28 @@ body {
 
 /* ── Form section ─────────────────────────────────────────── */
 .contacto-form-section {
+  background: #ffffff;
   padding: 80px 6% 100px;
+  border-top: 1px solid #ebebeb;
 }
 
 .contacto-form-inner {
-  max-width: 1100px;
+  max-width: 780px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.contacto-form-header {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-top: 8px;
+  gap: 48px;
 }
 
-.contacto-label {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #C0001A;
-}
-
-.contacto-title {
+.contacto-form-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(52px, 6vw, 90px);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  color: #ffffff;
+  font-size: clamp(28px, 3.4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #111111;
   margin: 0;
-}
-
-.contacto-sub {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(13px, 1.1vw, 15px);
-  font-weight: 400;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.65;
-  margin: 0;
-  max-width: 300px;
-}
-
-/* Right column — form */
-.contacto-right {
-  padding-top: 8px;
+  text-align: center;
 }
 
 .contacto-form {

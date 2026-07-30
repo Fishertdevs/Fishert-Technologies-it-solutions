@@ -205,72 +205,66 @@ export default function Contacto() {
       <div id="contacto-form" className="contacto-form-section">
         <div className="contacto-form-inner">
 
-          {/* Form header */}
-          <div className="contacto-form-header">
-            <span className="contacto-label">{t.formLabel}</span>
-            <h2 className="contacto-title">{t.formTitle}</h2>
-            <p className="contacto-sub">{t.formSub}</p>
-          </div>
+          {/* Section title */}
+          <h2 className="contacto-form-title">{t.formLabel}</h2>
 
           {/* Form body */}
-          <div className="contacto-right">
-            {sent ? (
-              <div className="contacto-success">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
-                  stroke="#C0001A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
-                <p>{t.success}</p>
+          {sent ? (
+            <div className="contacto-success">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+                stroke="#C0001A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+              <p>{t.success}</p>
+            </div>
+          ) : (
+            <form className="contacto-form" onSubmit={handleSubmit} noValidate>
+              <div className="contacto-row">
+                <div className="contacto-field">
+                  <label className="contacto-field-label">{t.fields.name} *</label>
+                  <input className="contacto-input" type="text" placeholder={t.fields.name} required />
+                </div>
+                <div className="contacto-field">
+                  <label className="contacto-field-label">{t.fields.company}</label>
+                  <input className="contacto-input" type="text" placeholder={t.fields.company} />
+                </div>
               </div>
-            ) : (
-              <form className="contacto-form" onSubmit={handleSubmit} noValidate>
-                <div className="contacto-row">
-                  <div className="contacto-field">
-                    <label className="contacto-field-label">{t.fields.name} *</label>
-                    <input className="contacto-input" type="text" placeholder={t.fields.name} required />
-                  </div>
-                  <div className="contacto-field">
-                    <label className="contacto-field-label">{t.fields.company}</label>
-                    <input className="contacto-input" type="text" placeholder={t.fields.company} />
-                  </div>
-                </div>
-                <div className="contacto-row">
-                  <div className="contacto-field">
-                    <label className="contacto-field-label">{t.fields.email} *</label>
-                    <input className="contacto-input" type="email" placeholder={t.fields.email} required />
-                  </div>
-                  <div className="contacto-field">
-                    <label className="contacto-field-label">{t.fields.phone}</label>
-                    <input className="contacto-input" type="tel" placeholder={t.fields.phone} />
-                  </div>
+              <div className="contacto-row">
+                <div className="contacto-field">
+                  <label className="contacto-field-label">{t.fields.email} *</label>
+                  <input className="contacto-input" type="email" placeholder={t.fields.email} required />
                 </div>
                 <div className="contacto-field">
-                  <label className="contacto-field-label">{t.fields.type}</label>
-                  <select className="contacto-input contacto-select">
-                    <option value="">— {t.fields.type} —</option>
-                    {t.fields.typeOptions.map((o) => (
-                      <option key={o} value={o}>{o}</option>
-                    ))}
-                  </select>
+                  <label className="contacto-field-label">{t.fields.phone}</label>
+                  <input className="contacto-input" type="tel" placeholder={t.fields.phone} />
                 </div>
-                <div className="contacto-field">
-                  <label className="contacto-field-label">{t.fields.message} *</label>
-                  <textarea className="contacto-input contacto-textarea" rows={5}
-                    placeholder={t.fields.message} required />
-                </div>
-                <button type="submit" className="contacto-submit" disabled={sending}>
-                  {sending ? t.fields.sending : t.fields.submit}
-                  {!sending && (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  )}
-                </button>
-              </form>
-            )}
-          </div>
+              </div>
+              <div className="contacto-field">
+                <label className="contacto-field-label">{t.fields.type}</label>
+                <select className="contacto-input contacto-select">
+                  <option value="">— {t.fields.type} —</option>
+                  {t.fields.typeOptions.map((o) => (
+                    <option key={o} value={o}>{o}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="contacto-field">
+                <label className="contacto-field-label">{t.fields.message} *</label>
+                <textarea className="contacto-input contacto-textarea" rows={5}
+                  placeholder={t.fields.message} required />
+              </div>
+              <button type="submit" className="contacto-submit" disabled={sending}>
+                {sending ? t.fields.sending : t.fields.submit}
+                {!sending && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                )}
+              </button>
+            </form>
+          )}
 
         </div>
       </div>
