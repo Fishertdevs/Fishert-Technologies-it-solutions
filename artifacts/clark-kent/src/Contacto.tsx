@@ -2,22 +2,22 @@ import { useLang } from "./LanguageContext";
 
 const content = {
   es: {
-    title: "¿Tienes un proyecto en mente?",
+    title: "¿TIENES UN PROYECTO EN MENTE?",
     sub: "Cuéntanos tu idea y construimos juntos la solución.",
     info: [
-      { icon: "location", label: "Ubicación",         value: "Colombia · Remoto global" },
-      { icon: "email",    label: "Correo electrónico", value: "hola@fishertstudio.com" },
-      { icon: "whatsapp", label: "WhatsApp",           value: "+57 300 000 0000" },
+      { icon: "location", label: "Ubicación",          value: "Colombia · Remoto global" },
+      { icon: "email",    label: "Correo electrónico",  value: "hola@fishertstudio.com" },
+      { icon: "whatsapp", label: "WhatsApp",            value: "+57 300 000 0000" },
     ],
     btn: "Escribirnos",
   },
   en: {
-    title: "Have a project in mind?",
+    title: "DO YOU HAVE A PROJECT IN MIND?",
     sub: "Tell us your idea and we'll build the solution together.",
     info: [
-      { icon: "location", label: "Location",    value: "Colombia · Global remote" },
-      { icon: "email",    label: "Email",        value: "hello@fishertstudio.com" },
-      { icon: "whatsapp", label: "WhatsApp",     value: "+57 300 000 0000" },
+      { icon: "location", label: "Location",   value: "Colombia · Global remote" },
+      { icon: "email",    label: "Email",       value: "hello@fishertstudio.com" },
+      { icon: "whatsapp", label: "WhatsApp",    value: "+57 300 000 0000" },
     ],
     btn: "Write to us",
   },
@@ -63,48 +63,52 @@ export default function Contacto() {
     <section id="contacto" className="contacto-section">
       <div className="contacto-outer">
 
-        {/* ── Rounded container: info + map ─────────────── */}
-        <div className="contacto-wrap">
+        {/* ── Left: title + rounded container ───────────── */}
+        <div className="contacto-left-area">
 
-          {/* Left: checkerboard info panel */}
-          <div className="contacto-info">
-            <h2 className="contacto-info-title">{t.title}</h2>
-            <p className="contacto-info-sub">{t.sub}</p>
+          <h2 className="contacto-section-title">{t.title}</h2>
 
-            <ul className="contacto-info-list">
-              {t.info.map((item) => (
-                <li key={item.icon} className="contacto-info-item">
-                  <span className="contacto-info-icon">{iconMap[item.icon]}</span>
-                  <span className="contacto-info-text">
-                    <span className="contacto-info-label">{item.label}</span>
-                    <span className="contacto-info-value">{item.value}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+          <div className="contacto-wrap">
 
-            <button className="contacto-info-btn">
-              {t.btn}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
+            {/* Info panel — checkerboard */}
+            <div className="contacto-info">
+              <p className="contacto-info-sub">{t.sub}</p>
 
-          {/* Right: map inside container — centrado en Bogotá */}
-          <div className="contacto-map-col">
-            <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-74.12%2C4.58%2C-74.00%2C4.70&amp;layer=mapnik&amp;marker=4.6097%2C-74.0817"
-              title="Mapa Fishert Studio — Bogotá"
-              loading="lazy"
-              referrerPolicy="no-referrer"
-            />
-          </div>
+              <ul className="contacto-info-list">
+                {t.info.map((item) => (
+                  <li key={item.icon} className="contacto-info-item">
+                    <span className="contacto-info-icon">{iconMap[item.icon]}</span>
+                    <span className="contacto-info-text">
+                      <span className="contacto-info-label">{item.label}</span>
+                      <span className="contacto-info-value">{item.value}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
 
-        </div>
+              <button className="contacto-info-btn">
+                {t.btn}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
 
-        {/* ── Image outside container ────────────────────── */}
+            {/* Map — inside container, Bogotá */}
+            <div className="contacto-map-col">
+              <iframe
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-74.12%2C4.58%2C-74.00%2C4.70&amp;layer=mapnik&amp;marker=4.6097%2C-74.0817"
+                title="Mapa Fishert Studio — Bogotá"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+          </div>{/* end .contacto-wrap */}
+        </div>{/* end .contacto-left-area */}
+
+        {/* ── Right: art image outside container ────────── */}
         <div className="contacto-art">
           <img
             src={`${import.meta.env.BASE_URL}girl-pearl.png`}
@@ -112,7 +116,7 @@ export default function Contacto() {
           />
         </div>
 
-      </div>
+      </div>{/* end .contacto-outer */}
     </section>
   );
 }

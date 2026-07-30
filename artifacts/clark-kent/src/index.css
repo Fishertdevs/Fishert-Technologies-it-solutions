@@ -2050,23 +2050,45 @@ body {
   box-sizing: border-box;
 }
 
-/* ── Outer flex row: container + image side by side ──────── */
+/* ── Outer flex row: left-area + art image ───────────────── */
 .contacto-outer {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   align-items: flex-end;
   gap: 0;
 }
 
+/* ── Left area: title + container stacked ────────────────── */
+.contacto-left-area {
+  flex: 0 0 56%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-bottom: 80px;
+}
+
+/* ── Section title — black, Nosotros typography ──────────── */
+.contacto-section-title {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(32px, 4.4vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #111111;
+  text-transform: uppercase;
+  margin: 0;
+}
+
 /* ── Rounded container (info + map) ──────────────────────── */
 .contacto-wrap {
-  flex: 1;
+  width: 100%;
   display: grid;
   grid-template-columns: 360px 1fr;
   border-radius: 20px;
   overflow: hidden;
-  height: 240px;
+  height: 400px;
 }
 
 /* ── Left: info panel ────────────────────────────────────── */
@@ -2191,7 +2213,6 @@ body {
 
 /* ── Art image — outside the container, Nosotros proportions */
 .contacto-art {
-  /* 44% matches the Nosotros image column width */
   flex: 0 0 44%;
   align-self: stretch;
   overflow: hidden;
@@ -2202,7 +2223,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: bottom center;
 }
 
 .contacto-form {
