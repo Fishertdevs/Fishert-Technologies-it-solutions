@@ -1845,7 +1845,7 @@ body {
 /* ── Policy pages ────────────────────────────────────────── */
 .policy-page {
   min-height: 100vh;
-  background: #fafafa;
+  background: #ffffff;
   padding: 40px 6% 120px;
   box-sizing: border-box;
   /* leave room for fixed navbar */
@@ -1881,7 +1881,7 @@ body {
 .policy-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(36px, 4.5vw, 64px);
+  font-size: clamp(28px, 3.2vw, 48px);
   color: #111;
   margin: 0 0 12px;
   letter-spacing: -0.02em;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
@@ -28,7 +29,11 @@ export default function Navbar() {
   const [pastHero, setPastHero] = useState(false);
   const [textOverlap, setTextOverlap] = useState(false);
   const { lang, toggle } = useLang();
+  const [location] = useLocation();
   const links = navLinks[lang];
+
+  // On policy pages there is no dark hero — force light style immediately
+  const isPolicyPage = ["/terminos", "/cookies", "/privacidad"].includes(location);
 
 
   useEffect(() => {
@@ -68,7 +73,7 @@ export default function Navbar() {
     if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
-  const cls = pastHero
+  const cls = isPolicyPage || pastHero
     ? "navbar navbar--light"
     : textOverlap
     ? "navbar navbar--text-overlap"

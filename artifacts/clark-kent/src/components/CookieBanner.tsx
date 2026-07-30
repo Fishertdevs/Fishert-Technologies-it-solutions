@@ -1,38 +1,16 @@
 import { useState, useEffect } from "react";
 import { useLang } from "../LanguageContext";
 
-/** Two hands reaching toward a cookie — inspired by the Creation of Adam */
 function CookieIcon() {
   return (
-    <svg
-      width="64" height="22" viewBox="0 0 110 38" fill="none"
-      xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-      style={{ flexShrink: 0 }}
-    >
-      {/* Cookie */}
-      <circle cx="55" cy="19" r="12" fill="#C8834A" />
-      <circle cx="51"   cy="15"   r="2"   fill="#5C3010" />
-      <circle cx="57"   cy="19"   r="1.7" fill="#5C3010" />
-      <circle cx="52"   cy="23.5" r="1.5" fill="#5C3010" />
-      <circle cx="59.5" cy="14"   r="1.4" fill="#5C3010" />
-
-      {/* Left hand — index finger pointing right toward cookie */}
-      <path
-        d="M0 25 L10 25 Q14 25 14 22 L14 18
-           Q14 15 17 15 L35 15
-           Q38 15 38 18.5 Q38 22 35 22 L17 22
-           Q14 22 14 25 Q14 30 10 32 L0 32 Z"
-        fill="#C9956A"
-      />
-
-      {/* Right hand — index finger pointing left toward cookie */}
-      <path
-        d="M110 25 L100 25 Q96 25 96 22 L96 18
-           Q96 15 93 15 L75 15
-           Q72 15 72 18.5 Q72 22 75 22 L93 22
-           Q96 22 96 25 Q96 30 100 32 L110 32 Z"
-        fill="#C9956A"
-      />
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <path d="M21.598 11.064a1.006 1.006 0 0 0-.854-.172A2.938 2.938 0 0 1 20 11c-1.654 0-3-1.346-3.003-2.937.005-.034.016-.136.017-.17a.998.998 0 0 0-1.254-1.006A2.963 2.963 0 0 1 15 7c-1.654 0-3-1.346-3-3 0-.217.031-.434.081-.648a1 1 0 0 0-1.176-1.176C5.585 3.07 2 7.15 2 12c0 5.514 4.486 10 10 10s10-4.486 10-10c0-.259-.014-.516-.032-.773a1.004 1.004 0 0 0-.37-.163z"
+        fill="#C8834A" />
+      <circle cx="8.5"  cy="11.5" r="1.5" fill="#5C3010" />
+      <circle cx="12"   cy="15"   r="1"   fill="#5C3010" />
+      <circle cx="15"   cy="11"   r="1"   fill="#5C3010" />
+      <circle cx="10"   cy="8"    r="1"   fill="#5C3010" />
     </svg>
   );
 }
