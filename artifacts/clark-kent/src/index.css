@@ -2054,7 +2054,7 @@ body {
   padding: 80px 6% 0;
   box-sizing: border-box;
   position: relative;
-  overflow: visible;
+  overflow: hidden;     /* clips the absolutely-positioned art image */
 }
 
 /* ── Top wave (fill = color of section above = black) ─────── */
@@ -2069,19 +2069,21 @@ body {
 }
 .contacto-wave--top { top: -1px; }
 
-/* ── Outer flex row: left-area + art image ───────────────── */
+/* ── Outer — left column only (art is absolute inside section) */
 .contacto-outer {
+  position: relative;
+  z-index: 1;
   max-width: 1400px;
   margin: 0 auto;
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  min-height: 600px;
+  min-height: 620px;
+  /* right padding reserves space for the art column */
+  padding-right: 46%;
+  box-sizing: border-box;
 }
 
 /* ── Left area: title + container stacked ────────────────── */
 .contacto-left-area {
-  flex: 0 0 56%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2384,48 +2386,102 @@ body {
   transform: translateX(3px);
 }
 
-/* ── Right col: map with dark checkerboard border ────────── */
+/* ── Map column — dark checkerboard, flex centered ────────── */
 .contacto-map-col {
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   background-color: #1a1a1a;
   background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
-  /* padding creates the visible checkerboard border around the iframe */
-  padding: 14px 14px 0 0;
 }
 
-.contacto-map-col iframe {
+/* ── Map search bar ───────────────────────────────────────── */
+.cmap-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 260px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px 8px 0 0;
+  padding: 7px 10px;
+  margin-bottom: 0;
+}
+
+.cmap-search-icon {
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cmap-search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  min-width: 0;
+}
+.cmap-search-input::placeholder { color: rgba(255,255,255,0.3); }
+
+.cmap-search-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(255,255,255,0.45);
+  display: flex;
+  align-items: center;
+  transition: color 0.18s;
+  flex-shrink: 0;
+}
+.cmap-search-btn:hover { color: #ffffff; }
+
+/* ── Map iframe wrapper — compact card ────────────────────── */
+.cmap-frame-wrap {
+  width: 260px;
+  height: 200px;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cmap-frame-wrap iframe {
   position: absolute;
-  /* inset the iframe inside the checkerboard padding, extra height hides OSM footer */
-  top: 14px;
+  top: 0;
   left: 0;
-  right: 14px;
-  bottom: 0;
-  width: calc(100% - 14px);
-  height: calc(100% - 14px + 32px);
+  width: 100%;
+  /* extra height hides OSM attribution footer */
+  height: calc(100% + 32px);
   border: none;
   display: block;
-  border-radius: 4px 4px 0 0;
 }
 
-/* ── Art image — definitively anchored to the bottom ─────── */
-/* The art column is a flex child with align-self:stretch, giving it  */
-/* a definite cross-axis height. position:absolute inset:0 resolves   */
-/* against that definite height, anchoring the image at the bottom.   */
+/* ── Art image — absolutely fills full section height ─────── */
+/* Removed from flex row; now positioned against the section.  */
+/* object-position: top → shows the face at the top without crop. */
 .contacto-art {
-  flex: 0 0 44%;
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 44%;
   overflow: hidden;
+  z-index: 0;
 }
 
 .contacto-art img {
-  position: absolute;
-  inset: 0;               /* top:0 right:0 bottom:0 left:0 */
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: bottom center;
+  object-position: top center;
 }
 
 .contacto-form {
