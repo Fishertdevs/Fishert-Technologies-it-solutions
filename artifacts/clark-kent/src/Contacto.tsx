@@ -300,6 +300,13 @@ export default function Contacto() {
         </div>
 
       </div>{/* .contacto-layout */}
+
+      {/* ── Bottom wave — same pattern as Nosotros bottom, dark fill to match footer */}
+      <svg className="contacto-wave contacto-wave--bottom"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#111111" />
+      </svg>
+
     </section>
   );
 }
