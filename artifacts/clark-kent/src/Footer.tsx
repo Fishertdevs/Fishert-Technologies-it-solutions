@@ -38,7 +38,7 @@ export default function Footer() {
       >
         {/* path fills from top (y=0) down — wave crest sits near y=110-155 so it's
             visible after the -110px margin-top pulls the SVG up into the section */}
-        <path d="M0,0 L1440,0 L1440,60 C1300,160 950,85 720,125 C480,160 180,85 0,105 Z" fill="#ffffff" />
+        <path d="M0,0 L1440,0 L1440,55 C1380,195 980,120 720,155 C460,195 60,115 0,130 Z" fill="#ffffff" />
       </svg>
 
       <div className="footer-inner">
