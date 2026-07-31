@@ -28,19 +28,6 @@ export default function Footer() {
 
   return (
     <footer id="contacto" className="footer-section">
-      {/* Top wave */}
-      <svg
-        className="footer-wave"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        {/* path fills from top (y=0) down — wave crest sits near y=110-155 so it's
-            visible after the -110px margin-top pulls the SVG up into the section */}
-        <path d="M0,0 L1440,0 L1440,32 C1200,72 960,2 720,32 C480,72 240,2 0,32 Z" fill="#ffffff" />
-      </svg>
-
       <div className="footer-inner">
         {/* Brand */}
         <p className="footer-brand">Fishert Studio</p>
