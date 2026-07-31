@@ -2067,6 +2067,20 @@ body {
 .contacto-wave--top    { top: -1px; }
 .contacto-wave--bottom { bottom: -1px; }
 
+/* Dark checkerboard strip behind the bottom wave — fills the transparent
+   area above the wave crests so no white shows between Contacto and footer */
+.contacto-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: repeating-conic-gradient(#111111 0% 25%, #333333 0% 50%);
+  background-size: 60px 60px;
+  z-index: 9; /* just below the wave (z-index: 10) */
+}
+
 /* ── Two-column grid — mirrored from nos-layout ─────────── */
 /* nos: 44% img | 56% content  →  contacto: 58% content | 42% img */
 .contacto-layout {
