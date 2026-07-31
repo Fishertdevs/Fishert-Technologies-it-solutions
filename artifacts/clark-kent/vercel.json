@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "dist/public",
+  "buildCommand": "cd ../.. && pnpm --filter @workspace/clark-kent run build",
+  "installCommand": "cd ../.. && pnpm install",
+  "framework": null
+}
