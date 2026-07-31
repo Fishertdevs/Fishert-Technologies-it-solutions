@@ -36,7 +36,7 @@ export default function Footer() {
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M0,0 L1440,0 L1440,40 C1200,85 960,5 720,40 C480,85 240,5 0,40 Z" fill="#0a0a0a" />
+        <path d="M0,0 L1440,0 L1440,40 C1200,85 960,5 720,40 C480,85 240,5 0,40 Z" fill="#ffffff" />
       </svg>
 
       <div className="footer-inner">
