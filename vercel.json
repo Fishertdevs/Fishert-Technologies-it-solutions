@@ -1,11 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/clark-kent run build",
-  "outputDirectory": "artifacts/clark-kent/dist/public",
+  "outputDirectory": "artifacts/clark-kent/dist",
   "installCommand": "pnpm install",
-  "framework": null,
-  "git": {
-    "deploymentEnabled": {
-      "main": true
-    }
-  }
+  "framework": null
 }
