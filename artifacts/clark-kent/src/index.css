@@ -2386,102 +2386,49 @@ body {
   transform: translateX(3px);
 }
 
-/* ── Map column — dark checkerboard, flex centered ────────── */
+/* ── Map column — original full-column layout + rounded corners */
+/* Rounded corners come from .contacto-wrap's border-radius + overflow:hidden */
 .contacto-map-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  position: relative;
+  overflow: hidden;
   background-color: #1a1a1a;
   background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
+  padding: 14px 14px 0 0;
 }
 
-/* ── Map search bar ───────────────────────────────────────── */
-.cmap-search {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: 260px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 8px 8px 0 0;
-  padding: 7px 10px;
-  margin-bottom: 0;
-}
-
-.cmap-search-icon {
-  color: rgba(255,255,255,0.4);
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.cmap-search-input {
-  flex: 1;
-  background: none;
-  border: none;
-  outline: none;
-  color: #ffffff;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  min-width: 0;
-}
-.cmap-search-input::placeholder { color: rgba(255,255,255,0.3); }
-
-.cmap-search-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: rgba(255,255,255,0.45);
-  display: flex;
-  align-items: center;
-  transition: color 0.18s;
-  flex-shrink: 0;
-}
-.cmap-search-btn:hover { color: #ffffff; }
-
-/* ── Map iframe wrapper — compact card ────────────────────── */
-.cmap-frame-wrap {
-  width: 260px;
-  height: 200px;
-  border-radius: 0 0 12px 12px;
-  overflow: hidden;
-  position: relative;
-}
-
-.cmap-frame-wrap iframe {
+.contacto-map-col iframe {
   position: absolute;
-  top: 0;
+  top: 14px;
   left: 0;
-  width: 100%;
-  /* extra height hides OSM attribution footer */
-  height: calc(100% + 32px);
+  right: 14px;
+  bottom: 0;
+  width: calc(100% - 14px);
+  /* extra height hides OSM attribution footer row */
+  height: calc(100% - 14px + 32px);
   border: none;
   display: block;
 }
 
-/* ── Art image — absolutely fills full section height ─────── */
-/* Removed from flex row; now positioned against the section.  */
-/* object-position: top → shows the face at the top without crop. */
+/* ── Art image — anchored to the BOTTOM of the section ───────
+   The PNG has the figure in the upper portion with transparent
+   space below. Using bottom:0 + height:auto lets the painting
+   sit naturally at the section floor; the top is cropped by the
+   section's overflow:hidden if the image is taller than the section.
+   ─────────────────────────────────────────────────────────── */
 .contacto-art {
   position: absolute;
-  top: 0;
-  right: 0;
   bottom: 0;
+  right: 0;
   width: 44%;
-  overflow: hidden;
   z-index: 0;
+  /* no overflow:hidden here so the image grows upward freely */
 }
 
 .contacto-art img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;     /* natural aspect ratio — no stretching */
 }
 
 .contacto-form {

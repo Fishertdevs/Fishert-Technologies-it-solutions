@@ -138,44 +138,11 @@ const iconMap: Record<string, JSX.Element> = {
   whatsapp: <WhatsAppIcon />,
 };
 
-/* ── Map search icon ───────────────────────────────────────── */
-function SearchIcon() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-    </svg>
-  );
-}
-
 /* ── Component ─────────────────────────────────────────────── */
 export default function Contacto() {
   const { lang } = useLang();
   const t = content[lang];
   const [slide, setSlide] = useState(0);
-
-  /* Map search state */
-  const [mapQuery, setMapQuery] = useState("");
-  const [mapCoords, setMapCoords] = useState({ lat: 4.6097, lon: -74.0817 });
-
-  async function handleMapSearch(e: React.FormEvent) {
-    e.preventDefault();
-    const q = mapQuery.trim();
-    if (!q) return;
-    try {
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1`,
-        { headers: { "Accept-Language": "es" } }
-      );
-      const data = await res.json();
-      if (data[0]) {
-        setMapCoords({ lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) });
-      }
-    } catch { /* silently ignore */ }
-  }
-
-  const delta = 0.018;
-  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${mapCoords.lon - delta}%2C${mapCoords.lat - delta * 0.8}%2C${mapCoords.lon + delta}%2C${mapCoords.lat + delta * 0.8}&layer=mapnik&marker=${mapCoords.lat}%2C${mapCoords.lon}`;
 
   return (
     <section id="contacto" className="contacto-section">
@@ -318,33 +285,14 @@ export default function Contacto() {
 
             </div>{/* .contacto-info */}
 
-            {/* Map — compact card with address search */}
+            {/* Map — original full-column, rounded via wrap overflow */}
             <div className="contacto-map-col">
-              <form className="cmap-search" onSubmit={handleMapSearch}>
-                <span className="cmap-search-icon"><SearchIcon /></span>
-                <input
-                  className="cmap-search-input"
-                  value={mapQuery}
-                  onChange={e => setMapQuery(e.target.value)}
-                  placeholder={lang === "es" ? "Buscar dirección…" : "Search address…"}
-                />
-                <button type="submit" className="cmap-search-btn" aria-label="Buscar">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </button>
-              </form>
-              <div className="cmap-frame-wrap">
-                <iframe
-                  src={mapSrc}
-                  key={mapSrc}
-                  title="Mapa Fishert Studio"
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
+              <iframe
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-74.12%2C4.58%2C-74.00%2C4.70&layer=mapnik&marker=4.6097%2C-74.0817"
+                title="Mapa Fishert Studio — Bogotá"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
             </div>
 
           </div>{/* .contacto-wrap */}
