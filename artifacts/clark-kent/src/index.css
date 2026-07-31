@@ -2076,8 +2076,8 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   min-height: 620px;
-  /* right padding reserves space for the art column */
-  padding-right: 46%;
+  /* right padding reserves space for the art column (matches art width) */
+  padding-right: 36%;
   box-sizing: border-box;
 }
 
@@ -2410,18 +2410,16 @@ body {
 }
 
 /* ── Art image — true bottom-anchor ──────────────────────────
-   The div spans the full section height (top:0 → bottom:0).
-   The img is absolute inside the div with bottom:0 + height:auto:
-   this places the BOTTOM PIXEL of the PNG at the section floor
-   and lets the figure grow upward. overflow:hidden clips anything
-   that goes above the section top.
+   width: 34% keeps the figure proportionally smaller so the wrap
+   (info + map) has enough horizontal room. overflow:hidden clips
+   anything that rises above the section top.
    ─────────────────────────────────────────────────────────── */
 .contacto-art {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 44%;
+  width: 34%;
   overflow: hidden;
   z-index: 0;
 }
