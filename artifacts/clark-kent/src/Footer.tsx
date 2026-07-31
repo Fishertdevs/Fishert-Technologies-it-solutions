@@ -32,11 +32,13 @@ export default function Footer() {
       <svg
         className="footer-wave"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 90"
+        viewBox="0 0 1440 160"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M0,0 L1440,0 L1440,40 C1200,85 960,5 720,40 C480,85 240,5 0,40 Z" fill="#ffffff" />
+        {/* path fills from top (y=0) down — wave crest sits near y=110-155 so it's
+            visible after the -110px margin-top pulls the SVG up into the section */}
+        <path d="M0,0 L1440,0 L1440,110 C1200,155 960,100 720,128 C480,155 240,100 0,110 Z" fill="#ffffff" />
       </svg>
 
       <div className="footer-inner">
