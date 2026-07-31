@@ -2049,15 +2049,19 @@ body {
 /* ═══════════════════════════════════════════════════════════
    CONTACTO SECTION
 ═══════════════════════════════════════════════════════════ */
+/* ── Section — identical to .nos-section but without bottom wave ─ */
 .contacto-section {
-  background: #ffffff;
-  padding: 80px 6% 0;
-  box-sizing: border-box;
+  background-color: #1e1e1e;
+  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
+  background-size: 72px 72px;
+  width: 100%;
+  height: 100vh;
   position: relative;
-  overflow: hidden;     /* clips the absolutely-positioned art image */
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* ── Top wave (fill = color of section above = black) ─────── */
+/* ── Top wave — same as nos-wave ─────────────────────────── */
 .contacto-wave {
   position: absolute;
   left: 0;
@@ -2069,29 +2073,30 @@ body {
 }
 .contacto-wave--top { top: -1px; }
 
-/* ── Outer — left column only (art is absolute inside section) */
-.contacto-outer {
+/* ── Two-column grid — mirrored from nos-layout ─────────── */
+/* nos: 44% img | 56% content  →  contacto: 58% content | 42% img */
+.contacto-layout {
+  display: grid;
+  grid-template-columns: 58% 42%;
+  height: 100%;
+  width: 100%;
   position: relative;
   z-index: 1;
-  max-width: 1400px;
-  margin: 0 auto;
-  min-height: 620px;
-  /* right padding reserves space for the art column (matches art width) */
-  padding-right: 36%;
-  box-sizing: border-box;
 }
 
-/* ── Left area: title + container stacked ────────────────── */
-.contacto-left-area {
-  width: 100%;
+/* ── Left: title + wrap — mirrors nos-speech-col ─────────── */
+.contacto-content-col {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
-  padding-bottom: 80px;
+  gap: 24px;
+  padding: 80px 48px 60px;
+  box-sizing: border-box;
+  height: 100%;
 }
 
-/* ── Section title — exact same size as Nosotros, centered ─ */
+/* ── Section title — white, same font as nos-title ──────── */
 .contacto-section-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
@@ -2099,15 +2104,14 @@ body {
   font-size: clamp(32px, 4.4vw, 76px);
   line-height: 1;
   letter-spacing: -0.01em;
-  color: #111111;
+  color: #ffffff;
   text-transform: uppercase;
   margin: 0;
   white-space: nowrap;
   text-align: center;
-  align-self: center;
 }
 
-/* ── Rounded container (info + map) ──────────────────────── */
+/* ── Rounded info+map container ──────────────────────────── */
 .contacto-wrap {
   width: 100%;
   display: grid;
@@ -2115,6 +2119,21 @@ body {
   border-radius: 20px;
   overflow: hidden;
   height: 430px;
+}
+
+/* ── Right: full-height art image — mirrors nos-img-col ──── */
+.contacto-img-col {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.contacto-pearl {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
 }
 
 /* ── Left: info/slider panel — dark checkerboard ─────────── */
