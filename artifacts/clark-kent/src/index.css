@@ -2108,17 +2108,17 @@ body {
 }
 
 /* ── Rounded container (info + map) ──────────────────────── */
-/* flex + align-items:flex-start → columns can have different heights */
 .contacto-wrap {
   width: 100%;
-  display: flex;
-  align-items: flex-start;
-  /* no overflow:hidden — each col handles its own border-radius */
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 430px;
 }
 
 /* ── Left: info/slider panel — dark checkerboard ─────────── */
 .contacto-info {
-  flex: 0 0 360px;
   background-color: #1a1a1a;
   background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
@@ -2127,7 +2127,6 @@ body {
   flex-direction: column;
   gap: 0;
   overflow: hidden;
-  border-radius: 20px 0 0 20px;
 }
 
 /* ── Slider tabs — centered ───────────────────────────────── */
@@ -2387,17 +2386,14 @@ body {
   transform: translateX(3px);
 }
 
-/* ── Map column — full horizontal width, reduced height, right rounded */
+/* ── Map column — full size, rounded corners via wrap overflow */
 .contacto-map-col {
-  flex: 1;
   position: relative;
   overflow: hidden;
   background-color: #1a1a1a;
   background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
   padding: 14px 14px 0 0;
-  height: 260px;                        /* shorter vertical size */
-  border-radius: 0 20px 20px 0;         /* rounded on right side only */
 }
 
 .contacto-map-col iframe {
