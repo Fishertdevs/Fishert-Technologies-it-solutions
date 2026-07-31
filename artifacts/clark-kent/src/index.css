@@ -2108,17 +2108,17 @@ body {
 }
 
 /* ── Rounded container (info + map) ──────────────────────── */
+/* flex + align-items:flex-start → columns can have different heights */
 .contacto-wrap {
   width: 100%;
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 430px;
+  display: flex;
+  align-items: flex-start;
+  /* no overflow:hidden — each col handles its own border-radius */
 }
 
 /* ── Left: info/slider panel — dark checkerboard ─────────── */
 .contacto-info {
+  flex: 0 0 360px;
   background-color: #1a1a1a;
   background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
@@ -2127,6 +2127,7 @@ body {
   flex-direction: column;
   gap: 0;
   overflow: hidden;
+  border-radius: 20px 0 0 20px;
 }
 
 /* ── Slider tabs — centered ───────────────────────────────── */
@@ -2386,15 +2387,17 @@ body {
   transform: translateX(3px);
 }
 
-/* ── Map column — original full-column layout + rounded corners */
-/* Rounded corners come from .contacto-wrap's border-radius + overflow:hidden */
+/* ── Map column — full horizontal width, reduced height, right rounded */
 .contacto-map-col {
+  flex: 1;
   position: relative;
   overflow: hidden;
   background-color: #1a1a1a;
   background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
   padding: 14px 14px 0 0;
+  height: 260px;                        /* shorter vertical size */
+  border-radius: 0 20px 20px 0;         /* rounded on right side only */
 }
 
 .contacto-map-col iframe {
@@ -2410,25 +2413,29 @@ body {
   display: block;
 }
 
-/* ── Art image — anchored to the BOTTOM of the section ───────
-   The PNG has the figure in the upper portion with transparent
-   space below. Using bottom:0 + height:auto lets the painting
-   sit naturally at the section floor; the top is cropped by the
-   section's overflow:hidden if the image is taller than the section.
+/* ── Art image — true bottom-anchor ──────────────────────────
+   The div spans the full section height (top:0 → bottom:0).
+   The img is absolute inside the div with bottom:0 + height:auto:
+   this places the BOTTOM PIXEL of the PNG at the section floor
+   and lets the figure grow upward. overflow:hidden clips anything
+   that goes above the section top.
    ─────────────────────────────────────────────────────────── */
 .contacto-art {
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 0;
+  bottom: 0;
   width: 44%;
+  overflow: hidden;
   z-index: 0;
-  /* no overflow:hidden here so the image grows upward freely */
 }
 
 .contacto-art img {
-  display: block;
+  position: absolute;
+  bottom: 0;        /* bottom of PNG at section floor */
+  left: 0;
   width: 100%;
-  height: auto;     /* natural aspect ratio — no stretching */
+  height: auto;     /* grows upward at natural proportions */
 }
 
 .contacto-form {
