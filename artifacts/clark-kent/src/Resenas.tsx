@@ -49,6 +49,12 @@ const Stars = ({ count, lang }: { count: number; lang: "es" | "en" }) => (
       <span key={i} className="resena-star">★</span>
     ))}
     <span className="resena-verified">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+        style={{ display: "inline-block", verticalAlign: "middle", marginRight: 3 }}>
+        <path d="M12 2l2.4 4.8 5.3.8-3.85 3.75.91 5.3L12 14.27l-4.76 2.38.91-5.3L4.3 7.6l5.3-.8z"
+          fill="#C0001A" stroke="#C0001A" strokeWidth="1" strokeLinejoin="round"/>
+        <path d="M9 12l2 2 4-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
       {lang === "es" ? "Usuario verificado" : "Verified user"}
     </span>
   </div>
@@ -103,7 +109,12 @@ export default function Resenas() {
             rel="noopener noreferrer"
             className="resenas-cta-btn"
           >
-            {lang === "es" ? "Calificanos" : "Rate us"}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 20h9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            {lang === "es" ? "Agregar reseña" : "Add a review"}
           </a>
         </div>
       </div>

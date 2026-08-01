@@ -1738,7 +1738,7 @@ body {
   background-color: #f0f0f0;
   background-image: repeating-conic-gradient(#ffffff 0% 25%, #d8d8d8 0% 50%);
   background-size: 72px 72px;
-  padding: 0 6% 100px;
+  padding: 0 6% 56px;
   box-sizing: border-box;
   position: relative;
 }
@@ -1748,7 +1748,7 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 40px;
 }
 
 .resenas-header {
@@ -1849,32 +1849,42 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ── Calificanos CTA row ─────────────────────────────────── */
+/* ── Agregar reseña CTA row ──────────────────────────────── */
 .resenas-cta-row {
   display: flex;
   justify-content: center;
-  padding-top: 8px;
+  padding-top: 4px;
 }
 
 .resenas-cta-btn {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #111111;
   background: none;
   border: none;
-  padding: 0;
+  border-bottom: 1.5px solid #111111;
+  padding: 0 0 3px;
   cursor: pointer;
   text-decoration: none;
-  transition: color 0.2s, transform 0.15s;
+  transition: color 0.22s, border-color 0.22s, transform 0.18s;
+}
+.resenas-cta-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.18s;
 }
 .resenas-cta-btn:hover {
   color: #C0001A;
+  border-color: #C0001A;
   transform: translateY(-1px);
+}
+.resenas-cta-btn:hover svg {
+  transform: rotate(20deg);
 }
 
 /* ── Policy pages ────────────────────────────────────────── */
