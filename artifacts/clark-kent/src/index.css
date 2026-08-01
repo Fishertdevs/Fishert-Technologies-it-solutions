@@ -2326,11 +2326,11 @@ body {
 /* ── Cookie banner ───────────────────────────────────────── */
 .cookie-banner {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
   z-index: 9999;
-  width: 100%;
+  width: auto;
   animation: cookie-slide-up 0.4s cubic-bezier(0.16,1,0.3,1) both;
 }
 
@@ -2341,13 +2341,13 @@ body {
 
 .cookie-banner-inner {
   background: #ffffff;
-  border-top: 1px solid #e8e8e8;
-  border-radius: 0;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
   padding: 14px 32px;
   display: flex;
   align-items: center;
   gap: 20px;
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
 }
 
 .cookie-banner-text {
