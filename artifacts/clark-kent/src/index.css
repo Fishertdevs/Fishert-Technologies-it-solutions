@@ -1919,12 +1919,12 @@ body {
 .rf-modal {
   background-color: #1a1a1a;
   background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
-  background-size: 72px 72px;
-  border-radius: 4px;
+  background-size: 56px 56px;
+  border-radius: 20px;
   width: 100%;
-  max-width: 520px;
-  min-height: 420px;
-  padding: 36px 40px 32px;
+  max-width: 440px;
+  min-height: 360px;
+  padding: 28px 32px 24px;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -2016,26 +2016,28 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 18px;
-  padding: 36px 8px 28px;
+  gap: 16px;
+  padding: 28px 8px 20px;
 }
 
 /* ── Typography (white on dark) ─────────────────────── */
 .rf-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(26px, 3.5vw, 38px);
+  font-size: clamp(22px, 3vw, 32px);
   font-weight: 700;
   color: #ffffff;
   margin: 0;
   line-height: 1.05;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
 }
 .rf-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.7);
   margin: -8px 0 4px;
   letter-spacing: 0.04em;
   line-height: 1.5;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
 }
 
 /* ── Star rating ─────────────────────────────────────── */
@@ -2083,7 +2085,8 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.75);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 .rf-req { color: #C0001A; }
 
@@ -2091,22 +2094,24 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #ffffff;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 4px;
-  padding: 12px 14px;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 10px;
+  padding: 11px 14px;
   box-sizing: border-box;
   width: 100%;
   outline: none;
   transition: border-color 0.18s, background 0.18s;
+  text-align: left;
 }
-.rf-input::placeholder { color: rgba(255,255,255,0.22); }
+.rf-input::placeholder { color: rgba(255,255,255,0.35); }
 .rf-input:focus {
   border-color: #C0001A;
-  background: rgba(255,255,255,0.09);
+  background: rgba(0,0,0,0.55);
 }
 .rf-textarea {
   resize: none;
+  text-align: left;
 }
 .rf-input--err { border-color: #C0001A !important; }
 .rf-err-msg {
@@ -2321,28 +2326,28 @@ body {
 /* ── Cookie banner ───────────────────────────────────────── */
 .cookie-banner {
   position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 9999;
-  width: min(720px, calc(100vw - 32px));
+  width: 100%;
   animation: cookie-slide-up 0.4s cubic-bezier(0.16,1,0.3,1) both;
 }
 
 @keyframes cookie-slide-up {
-  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .cookie-banner-inner {
   background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  padding: 16px 20px;
+  border-top: 1px solid #e8e8e8;
+  border-radius: 0;
+  padding: 14px 32px;
   display: flex;
   align-items: center;
   gap: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
 }
 
 .cookie-banner-text {
@@ -2353,9 +2358,9 @@ body {
 }
 
 .cookie-banner-icon {
-  font-size: 18px;
+  font-size: 28px;
   flex-shrink: 0;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .cookie-banner-text p {

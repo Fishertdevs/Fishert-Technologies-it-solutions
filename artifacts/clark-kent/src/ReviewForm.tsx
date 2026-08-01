@@ -18,8 +18,8 @@ const copy = {
       sub: "Tu nombre aparecerá junto a tu reseña.",
       name: "Nombre completo",
       company: "Empresa o proyecto (opcional)",
-      namePh: "Ej. Carlos M.",
-      companyPh: "Ej. Alterego Store",
+      namePh: "Mi nombre",
+      companyPh: "Mi empresa",
     },
     step3: {
       title: "Comparte tu experiencia.",
@@ -49,8 +49,8 @@ const copy = {
       sub: "Your name will appear alongside your review.",
       name: "Full name",
       company: "Company or project (optional)",
-      namePh: "E.g. Carlos M.",
-      companyPh: "E.g. Alterego Store",
+      namePh: "My name",
+      companyPh: "My company",
     },
     step3: {
       title: "Share your experience.",
