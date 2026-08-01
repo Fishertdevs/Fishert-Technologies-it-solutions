@@ -1765,7 +1765,7 @@ body {
   font-size: clamp(40px, 5.2vw, 84px);
   line-height: 1.05;
   letter-spacing: -0.01em;
-  color: #C0001A;
+  color: #000000;
   margin: 0;
 }
 
@@ -1800,8 +1800,18 @@ body {
   transform: translateY(-3px);
 }
 
-.resena-stars { display: flex; gap: 3px; }
-.resena-star  { font-size: 18px; color: #FF5500; line-height: 1; }
+.resena-stars { display: flex; align-items: center; gap: 3px; flex-wrap: wrap; }
+.resena-star  { font-size: 18px; color: #C0001A; line-height: 1; }
+.resena-verified {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #C0001A;
+  margin-left: 6px;
+  opacity: 0.85;
+}
 
 .resena-quote {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
@@ -1835,8 +1845,36 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: 400;
-  color: #FF5500;
+  color: #C0001A;
   letter-spacing: 0.02em;
+}
+
+/* ── Calificanos CTA row ─────────────────────────────────── */
+.resenas-cta-row {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.resenas-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111111;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.15s;
+}
+.resenas-cta-btn:hover {
+  color: #C0001A;
+  transform: translateY(-1px);
 }
 
 /* ── Policy pages ────────────────────────────────────────── */

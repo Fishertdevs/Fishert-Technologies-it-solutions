@@ -43,11 +43,14 @@ const reviews = {
   ],
 };
 
-const Stars = ({ count }: { count: number }) => (
+const Stars = ({ count, lang }: { count: number; lang: "es" | "en" }) => (
   <div className="resena-stars">
     {Array.from({ length: count }).map((_, i) => (
       <span key={i} className="resena-star">★</span>
     ))}
+    <span className="resena-verified">
+      {lang === "es" ? "Usuario verificado" : "Verified user"}
+    </span>
   </div>
 );
 
@@ -75,15 +78,15 @@ export default function Resenas() {
           </h2>
           <p className="resenas-sub">
             {lang === "es"
-              ? "Resultados reales. Clientes satisfechos."
-              : "Real results. Satisfied clients."}
+              ? "Clientes satisfechos que hablan de nuestro trabajo."
+              : "Satisfied clients who speak about our work."}
           </p>
         </div>
 
         <div className="resenas-grid">
           {list.map((r, i) => (
             <div key={i} className="resena-card">
-              <Stars count={r.stars} />
+              <Stars count={r.stars} lang={lang} />
               <blockquote className="resena-quote">"{r.quote}"</blockquote>
               <div className="resena-author">
                 <span className="resena-name">{r.author}</span>
@@ -91,6 +94,17 @@ export default function Resenas() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="resenas-cta-row">
+          <a
+            href="https://www.google.com/search?q=Fishert+Studio+Bogot%C3%A1+rese%C3%B1as"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="resenas-cta-btn"
+          >
+            {lang === "es" ? "Calificanos" : "Rate us"}
+          </a>
         </div>
       </div>
     </section>
