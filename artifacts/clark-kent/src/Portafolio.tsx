@@ -123,7 +123,11 @@ export default function Portafolio() {
 
       {/* ── Left: title ── */}
       <div className="port-left">
-        <div className="port-border-right" />
+        <div className="port-divider" aria-hidden="true">
+          <span className="port-divider-num" key={current}>
+            {String(current + 1).padStart(2, "0")}
+          </span>
+        </div>
         <div style={{ width: "100%", textAlign: "left" }}>
           <h2 className="port-title" style={{ textAlign: "left" }}>
             {lang === "es"
