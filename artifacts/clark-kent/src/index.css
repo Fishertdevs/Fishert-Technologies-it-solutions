@@ -1738,7 +1738,7 @@ body {
   background-color: #f0f0f0;
   background-image: repeating-conic-gradient(#ffffff 0% 25%, #d8d8d8 0% 50%);
   background-size: 72px 72px;
-  padding: 0 6% 56px;
+  padding: 0 6% 0;
   box-sizing: border-box;
   position: relative;
 }
@@ -1800,17 +1800,19 @@ body {
   transform: translateY(-3px);
 }
 
-.resena-stars { display: flex; align-items: center; gap: 3px; flex-wrap: wrap; }
+.resena-stars { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .resena-star  { font-size: 18px; color: #C0001A; line-height: 1; }
 .resena-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #C0001A;
+  color: #555;
   margin-left: 6px;
-  opacity: 0.85;
 }
 
 .resena-quote {
@@ -1885,6 +1887,320 @@ body {
 }
 .resenas-cta-btn:hover svg {
   transform: rotate(20deg);
+}
+
+/* ══════════════════════════════════════════════════════════
+   REVIEW FORM MODAL
+   ══════════════════════════════════════════════════════════ */
+
+/* Overlay */
+.rf-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  animation: rf-fade-in 0.22s ease;
+}
+@keyframes rf-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* Modal card */
+.rf-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  padding: 48px 44px 40px;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.18);
+  animation: rf-slide-up 0.28s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes rf-slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Close button */
+.rf-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f4f4f4;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, color 0.18s;
+}
+.rf-close:hover { background: #ebebeb; color: #111; }
+
+/* ── Progress bar ── */
+.rf-progress {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 36px;
+  position: relative;
+}
+.rf-prog-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  position: relative;
+}
+.rf-prog-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #aaa;
+  transition: border-color 0.22s, background 0.22s, color 0.22s;
+  z-index: 1;
+}
+.rf-prog-step.active .rf-prog-dot {
+  border-color: #C0001A;
+  background: #C0001A;
+  color: #fff;
+}
+.rf-prog-step.done .rf-prog-dot {
+  border-color: #C0001A;
+  background: #C0001A;
+  color: #fff;
+}
+.rf-prog-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+  text-align: center;
+  transition: color 0.22s;
+}
+.rf-prog-step.active .rf-prog-label,
+.rf-prog-step.done .rf-prog-label { color: #C0001A; }
+
+.rf-prog-line {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: #e8e8e8;
+  z-index: 0;
+}
+.rf-prog-step.done .rf-prog-line { background: #C0001A; }
+
+/* ── Step content ── */
+.rf-step { display: flex; flex-direction: column; gap: 20px; }
+
+.rf-step-title {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  line-height: 1.1;
+}
+.rf-step-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #777;
+  margin: -10px 0 0;
+  line-height: 1.5;
+}
+
+/* ── Star rating ── */
+.rf-star-row {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0;
+}
+.rf-star {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: #ddd;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.12s, transform 0.12s;
+}
+.rf-star--on { color: #C0001A; }
+.rf-star:hover { transform: scale(1.15); }
+
+.rf-star-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #C0001A;
+  margin: -8px 0 0;
+  animation: rf-fade-in 0.18s ease;
+}
+
+/* ── Form fields ── */
+.rf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rf-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #444;
+}
+.rf-req { color: #C0001A; }
+
+.rf-input, .rf-textarea {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #111;
+  background: #fafafa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 13px 16px;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  resize: none;
+}
+.rf-input:focus, .rf-textarea:focus {
+  border-color: #C0001A;
+  box-shadow: 0 0 0 3px rgba(192,0,26,0.08);
+  background: #fff;
+}
+.rf-input--err { border-color: #C0001A !important; }
+.rf-err-msg {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  color: #C0001A;
+  margin-top: 2px;
+}
+
+/* ── Step 3 mini recap ── */
+.rf-step3-stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+.rf-step3-name {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-left: 8px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Actions ── */
+.rf-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+.rf-btn-primary {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.rf-btn-primary:hover { background: #C0001A; transform: translateY(-1px); }
+.rf-btn--disabled { opacity: 0.4; pointer-events: none; }
+
+.rf-btn-ghost {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+  background: none;
+  border: none;
+  padding: 12px 4px;
+  cursor: pointer;
+  transition: color 0.18s;
+}
+.rf-btn-ghost:hover { color: #111; }
+
+/* ── Success screen ── */
+.rf-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0 4px;
+  text-align: center;
+  animation: rf-fade-in 0.3s ease;
+}
+.rf-success-icon { margin-bottom: 4px; }
+.rf-success-title {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+.rf-success-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+.rf-success-stars {
+  display: flex;
+  gap: 4px;
+  margin: 4px 0 8px;
+}
+.rf-success .rf-btn-primary { margin-top: 8px; }
+
+/* ── Mobile ── */
+@media (max-width: 540px) {
+  .rf-modal { padding: 36px 24px 28px; }
+  .rf-step-title { font-size: 24px; }
+  .rf-star { font-size: 34px; }
 }
 
 /* ── Policy pages ────────────────────────────────────────── */

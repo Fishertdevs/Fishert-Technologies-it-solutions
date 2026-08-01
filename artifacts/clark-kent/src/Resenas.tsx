@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useLang } from "./LanguageContext";
+import ReviewForm from "./ReviewForm";
 
 const reviews = {
   es: [
@@ -43,19 +45,30 @@ const reviews = {
   ],
 };
 
+/* Blue Twitter-style verified badge */
+function BlueBadge() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+      aria-label="Verificado" style={{ flexShrink: 0 }}>
+      <path
+        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9a12.02 12.02 0 00-.382-3.016z"
+        fill="#1D9BF0"
+        stroke="none"
+      />
+      <path d="M9 12l2 2 4-4" stroke="#fff" strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
 const Stars = ({ count, lang }: { count: number; lang: "es" | "en" }) => (
   <div className="resena-stars">
     {Array.from({ length: count }).map((_, i) => (
       <span key={i} className="resena-star">★</span>
     ))}
     <span className="resena-verified">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"
-        style={{ display: "inline-block", verticalAlign: "middle", marginRight: 3 }}>
-        <path d="M12 2l2.4 4.8 5.3.8-3.85 3.75.91 5.3L12 14.27l-4.76 2.38.91-5.3L4.3 7.6l5.3-.8z"
-          fill="#C0001A" stroke="#C0001A" strokeWidth="1" strokeLinejoin="round"/>
-        <path d="M9 12l2 2 4-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
       {lang === "es" ? "Usuario verificado" : "Verified user"}
+      <BlueBadge />
     </span>
   </div>
 );
@@ -63,6 +76,7 @@ const Stars = ({ count, lang }: { count: number; lang: "es" | "en" }) => (
 export default function Resenas() {
   const { lang } = useLang();
   const list = reviews[lang];
+  const [showForm, setShowForm] = useState(false);
 
   return (
     <section id="resenas" className="resenas-section">
@@ -103,21 +117,29 @@ export default function Resenas() {
         </div>
 
         <div className="resenas-cta-row">
-          <a
-            href="https://www.google.com/search?q=Fishert+Studio+Bogot%C3%A1+rese%C3%B1as"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="resenas-cta-btn"
-          >
+          <button className="resenas-cta-btn" onClick={() => setShowForm(true)}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M12 20h9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             {lang === "es" ? "Agregar reseña" : "Add a review"}
-          </a>
+          </button>
         </div>
       </div>
+
+      {/* Bottom wave — transitions into contacto (white bg) */}
+      <svg
+        style={{ display: "block", width: "100%", height: 70, marginTop: 40 }}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 70"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M0,70 L1440,70 L1440,40 C1200,0 960,68 720,40 C480,0 240,68 0,40 Z" fill="#ffffff" />
+      </svg>
+
+      {showForm && <ReviewForm onClose={() => setShowForm(false)} />}
     </section>
   );
 }
