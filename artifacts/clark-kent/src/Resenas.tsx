@@ -130,7 +130,7 @@ export default function Resenas() {
 
       {/* Bottom wave — transitions into contacto (white bg) */}
       <svg
-        style={{ display: "block", width: "100%", height: 70, marginTop: 40, background: "#f0f0f0" }}
+        style={{ display: "block", width: "100%", height: 70, marginTop: 40 }}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 70"
         preserveAspectRatio="none"
