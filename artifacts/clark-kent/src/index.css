@@ -1204,23 +1204,41 @@ body {
   box-sizing: border-box;
 }
 
-/* Vertical divider — thin red line centered in the 80px gap, fades at top & bottom */
+/* Vertical divider — editorial rule with diamond accent */
 .port-border-right {
   position: absolute;
   top: 0;
   right: -41px;
-  width: 2px;
+  width: 1px;
   height: 100%;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    #C0001A 18%,
-    #C0001A 82%,
+    #C0001A 12%,
+    #C0001A 43%,
+    transparent 48%,
+    transparent 52%,
+    #C0001A 57%,
+    #C0001A 88%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 2;
 }
+
+/* Diamond accent — center of divider */
+.port-border-right::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 9px;
+  height: 9px;
+  background: #C0001A;
+  z-index: 3;
+}
+
 
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
