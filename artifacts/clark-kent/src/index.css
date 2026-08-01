@@ -800,6 +800,7 @@ body {
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  border-radius: 32px 32px 0 0;
 }
 
 
