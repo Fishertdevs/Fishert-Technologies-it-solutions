@@ -150,7 +150,7 @@ export default function Contacto() {
       {/* ── Top wave — same pattern as Nosotros ──────────────── */}
       <svg className="contacto-wave contacto-wave--top"
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,0 L1440,0 L1440,32 C1200,72 960,2 720,32 C480,72 240,2 0,32 Z" fill="#f0f0f0" />
+        <path d="M0,0 L1440,0 L1440,32 C1200,72 960,2 720,32 C480,72 240,2 0,32 Z" fill="#ffffff" />
       </svg>
 
       {/* ── Two-column grid: content (left) | image (right) ──── */}
