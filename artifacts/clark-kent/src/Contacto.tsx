@@ -301,12 +301,6 @@ export default function Contacto() {
 
       </div>{/* .contacto-layout */}
 
-      {/* ── Bottom wave — fills the top area with white (Contacto bg), leaving
-           the footer checkerboard visible below the wave curve */}
-      <svg className="contacto-wave contacto-wave--bottom"
-        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,0 L1440,0 L1440,40 C1200,0 960,80 720,40 C480,0 240,80 0,40 Z" fill="#ffffff" />
-      </svg>
 
     </section>
   );
