@@ -8,12 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const galleryData = [
-  { id: 1, img: "W4.png", title: "Blue Tulip" },
-  { id: 2, img: "W5.png", title: "Opera Mask" },
-  { id: 3, img: "W6.png", title: "Blue Bloom" },
-  { id: 4, img: "W7.png", title: "First Contact" },
-  { id: 5, img: "W8.png", title: "White Yak" },
-  { id: 6, img: "W9.png", title: "Heron Girl" },
+  { id: 1, img: "W4.png", num: "01", es: "Desarrollo Web",                          en: "Web Development" },
+  { id: 2, img: "W5.png", num: "02", es: "Desarrollo de Software",                  en: "Software Development" },
+  { id: 3, img: "W6.png", num: "03", es: "Automatización e IA",                     en: "Automation & AI" },
+  { id: 4, img: "W7.png", num: "04", es: "Marketing Digital",                       en: "Digital Marketing" },
+  { id: 5, img: "W8.png", num: "05", es: "Diseño de Producto Digital",              en: "Digital Product Design" },
+  { id: 6, img: "W9.png", num: "06", es: "Cloud y DevOps",                          en: "Cloud & DevOps" },
 ];
 
 // 6 unique images, 5 visible at a time.
@@ -167,15 +167,16 @@ export default function Servicios() {
           >
             <img
               src={`${base}${item.img}`}
-              alt={item.title}
+              alt={lang === "es" ? item.es : item.en}
               style={{
                 width: "100%", height: "100%",
                 objectFit: "cover", objectPosition: "center bottom",
                 display: "block",
               }}
             />
-            <div className="works-item-overlay">
-              <span className="works-item-title">{item.title}</span>
+            <div className="svc-label-overlay">
+              <span className="svc-label-num">{item.num}</span>
+              <span className="svc-label-title">{lang === "es" ? item.es : item.en}</span>
             </div>
           </div>
         ))}
