@@ -230,19 +230,7 @@ body {
   transition: border-color 0.25s ease;
   overflow: hidden;
 }
-.navbar-lang-toggle:hover {
-  border-color: #C0001A;
-  background: #C0001A;
-}
-.navbar-lang-toggle:hover .navbar-lang-opt {
-  color: rgba(255, 255, 255, 0.7);
-}
-.navbar-lang-toggle:hover .navbar-lang-opt--active {
-  color: #fff;
-}
-.navbar-lang-toggle:hover .navbar-lang-slider {
-  background: rgba(255, 255, 255, 0.25);
-}
+/* No hover effect on the hero (default navbar state) */
 
 /* Sliding pill */
 .navbar-lang-slider {
@@ -285,9 +273,6 @@ body {
 .navbar--light .navbar-link:hover { color: #C0001A; }
 .navbar--light .navbar-lang-toggle { border-color: rgba(17,17,17,0.25); }
 .navbar--light .navbar-lang-toggle:hover { border-color: #C0001A; }
-.navbar--light .navbar-lang-toggle:hover .navbar-lang-slider { background: #C0001A; }
-.navbar--light .navbar-lang-toggle:hover .navbar-lang-opt { color: rgba(17,17,17,0.5); }
-.navbar--light .navbar-lang-toggle:hover .navbar-lang-opt--active { color: #111; }
 .navbar--light .navbar-lang-slider { background: rgba(17,17,17,0.1); }
 .navbar--light .navbar-lang-opt { color: rgba(17,17,17,0.4); }
 .navbar--light .navbar-lang-opt--active { color: #111; }
