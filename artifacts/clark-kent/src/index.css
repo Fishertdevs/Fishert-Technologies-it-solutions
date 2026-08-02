@@ -1186,7 +1186,7 @@ body {
   grid-template-columns: minmax(0, 40%) 1fr;
   min-height: auto;
   background: #ffffff;
-  padding: 80px 5% 80px 3%;
+  padding: 80px 5% 40px 3%;
   box-sizing: border-box;
   gap: 60px;
   align-items: center;
@@ -1205,10 +1205,8 @@ body {
 }
 
 
-/* ── Blob outer wrapper — carries the drop-shadow ── */
-.port-blob-outer {
-  filter: drop-shadow(0 12px 40px rgba(192, 0, 26, 0.12));
-}
+/* ── Blob outer wrapper ── */
+.port-blob-outer {}
 
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
@@ -1251,14 +1249,13 @@ body {
   background: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 14px;
-  padding: 28px 32px 24px;
+  padding: 22px 26px 18px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
   position: relative;
   overflow: hidden;
-  min-height: 380px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  min-height: 310px;
 }
 
 /* Search UI content — fades out when image shows */
