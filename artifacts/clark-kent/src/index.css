@@ -1258,9 +1258,6 @@ body {
   min-height: 310px;
   transition: border-color 0.3s ease;
 }
-.port-google-wrap:hover {
-  border-color: var(--project-color, #111111);
-}
 
 /* Search UI content — fades out when image shows */
 .port-google-content {

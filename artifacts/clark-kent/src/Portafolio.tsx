@@ -65,6 +65,7 @@ export default function Portafolio() {
   const [typedUrl, setTypedUrl] = useState("");
   const [phase, setPhase] = useState<Phase>("typing");
   const [clicking, setClicking] = useState(false);
+  const [hovered, setHovered]   = useState(false);
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const t1 = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -161,7 +162,12 @@ export default function Portafolio() {
       {/* ── Right: Google search simulation ── */}
       <div className="port-right">
         <div className="port-blob-outer">
-        <div className="port-google-wrap" style={{ "--project-color": project.color } as React.CSSProperties}>
+        <div
+          className="port-google-wrap"
+          style={{ borderColor: hovered ? project.color : '#111111' }}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
 
           {/* Search UI (fades out when image shows) */}
           <div className={`port-google-content ${showImage ? "port-google-content--hidden" : ""}`}>
