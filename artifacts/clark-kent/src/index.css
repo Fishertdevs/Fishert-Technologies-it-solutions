@@ -1247,7 +1247,7 @@ body {
 /* ── Google wrapper ── */
 .port-google-wrap {
   background: #fff;
-  border: 1px solid #e8e8e8;
+  border: 2px solid #111111;
   border-radius: 14px;
   padding: 22px 26px 18px;
   display: flex;
