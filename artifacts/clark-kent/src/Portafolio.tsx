@@ -140,7 +140,6 @@ export default function Portafolio() {
       </defs>
     </svg>
 
-    <div className="port-chess-outer">
     <section id="portafolio" className="port-section">
 
       {/* ── Left: title ── */}
@@ -278,7 +277,6 @@ export default function Portafolio() {
       </div>
 
     </section>
-    </div>{/* port-chess-outer */}
     </>
   );
 }

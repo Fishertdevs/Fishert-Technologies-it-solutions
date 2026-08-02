@@ -1181,32 +1181,14 @@ body {
    PORTAFOLIO — Google search simulation
    ══════════════════════════════════════════════════════════ */
 
-/* ── Checkerboard outer container ── */
-.port-chess-outer {
-  margin: 0 3% 0 3%;
-  border-radius: 28px;
-  overflow: hidden;
-  background-color: #111111;
-  background-image:
-    linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
-    linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
-    linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
-  background-size: 22px 22px;
-  background-position: 0 0, 0 11px, 11px -11px, -11px 0px;
-  box-shadow:
-    0 2px 0 0 rgba(255,255,255,0.04) inset,
-    0 32px 80px rgba(0,0,0,0.45);
-}
-
 .port-section {
   display: grid;
-  grid-template-columns: minmax(0, 55%) 1fr;
+  grid-template-columns: minmax(0, 40%) 1fr;
   min-height: auto;
-  background: transparent;
-  padding: 80px 5% 80px 5%;
+  background: #ffffff;
+  padding: 80px 5% 80px 3%;
   box-sizing: border-box;
-  gap: 80px;
+  gap: 60px;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
@@ -1247,7 +1229,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(12px, 1vw, 14px);
   font-weight: 400;
-  color: #aaaaaa;
+  color: #888888;
   letter-spacing: 0.04em;
   text-transform: none;
   line-height: 1.7;
@@ -1268,14 +1250,15 @@ body {
 .port-google-wrap {
   background: #fff;
   border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  padding: 20px 24px 16px;
+  border-radius: 14px;
+  padding: 28px 32px 24px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
   position: relative;
   overflow: hidden;
-  min-height: 260px;
+  min-height: 380px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
 }
 
 /* Search UI content — fades out when image shows */
