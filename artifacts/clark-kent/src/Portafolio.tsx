@@ -9,30 +9,35 @@ const projects = [
     img:   "proj-alterego.png",
     url:   "www.alterego-store.com.co",
     desc:  "Tienda de moda y lifestyle con catálogo digital y experiencia de compra única.",
+    color: "#C0001A",
   },
   {
     title: "Picapastos y Molinos Vilar",
     img:   "proj-picapastos.png",
     url:   "www.picapastosymolinosvilar.com.co",
     desc:  "Fabricación y venta de maquinaria agroindustrial de alta calidad.",
+    color: "#D4500A",
   },
   {
     title: "SGC Abogados",
     img:   "proj-sgc.png",
     url:   "www.sgcabogados.com.co",
     desc:  "Servicios jurídicos especializados, asesoría legal confiable en Colombia.",
+    color: "#1B3A6B",
   },
   {
     title: "Dr. Mario Sánchez",
     img:   "proj-mario.png",
     url:   "dr-mario-sanchez-website-api-server-one.vercel.app",
     desc:  "Terapeuta respiratorio y salubrista público comprometido con el bienestar.",
+    color: "#0077B6",
   },
   {
     title: "Mi Tienda Go",
     img:   "proj-mitienda.png",
     url:   "app.mitiendago.co",
     desc:  "Gestiona ventas, gastos y cajas diarias en un chat rápido, simple y claro.",
+    color: "#00A651",
   },
 ];
 
@@ -156,7 +161,7 @@ export default function Portafolio() {
       {/* ── Right: Google search simulation ── */}
       <div className="port-right">
         <div className="port-blob-outer">
-        <div className="port-google-wrap">
+        <div className="port-google-wrap" style={{ "--project-color": project.color } as React.CSSProperties}>
 
           {/* Search UI (fades out when image shows) */}
           <div className={`port-google-content ${showImage ? "port-google-content--hidden" : ""}`}>
