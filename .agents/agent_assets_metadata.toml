@@ -5,40 +5,40 @@ generated = []
 id = "38mqgB-pYjx-OKOd9B9Ki"
 uri = "file://artifacts/clark-kent/public/svc1_2.jpg"
 type = "image"
-title = "Desarrollo Web — monitor"
-description = "Figura Keith Haring rojo sólido, sin contorno negro, elemento característico del servicio"
+title = "Desarrollo Web — sapito con laptop"
+description = "Sapito minimalista estilo pintura al óleo, fondo rojo, adaptado al servicio"
 
 [[outputs]]
 id = "EjbXzwEGk2HA52vMG0SBj"
 uri = "file://artifacts/clark-kent/public/svc2_2.jpg"
 type = "image"
-title = "Desarrollo de Software — engranaje"
-description = "Figura Keith Haring rojo sólido, sin contorno negro, elemento característico del servicio"
+title = "Desarrollo de Software — sapito con lupa"
+description = "Sapito minimalista estilo pintura al óleo, fondo rojo, adaptado al servicio"
 
 [[outputs]]
 id = "kA4hdb_cte87L997MzFru"
 uri = "file://artifacts/clark-kent/public/svc3_2.jpg"
 type = "image"
-title = "Automatización e IA — rayo"
-description = "Figura Keith Haring rojo sólido, sin contorno negro, elemento característico del servicio"
+title = "Automatización e IA — sapito con robot"
+description = "Sapito minimalista estilo pintura al óleo, fondo rojo, adaptado al servicio"
 
 [[outputs]]
 id = "WPQrI9d_j2NssW9nn0Vui"
 uri = "file://artifacts/clark-kent/public/svc4_2.jpg"
 type = "image"
-title = "Marketing Digital — megáfono"
-description = "Figura Keith Haring rojo sólido, sin contorno negro, elemento característico del servicio"
+title = "Marketing Digital — sapito con megáfono"
+description = "Sapito minimalista estilo pintura al óleo, fondo rojo, adaptado al servicio"
 
 [[outputs]]
 id = "wJVGQpyB47B7cQzVGyD1z"
 uri = "file://artifacts/clark-kent/public/svc5_2.jpg"
 type = "image"
-title = "Diseño de Producto — lápiz"
-description = "Figura Keith Haring rojo sólido, sin contorno negro, elemento característico del servicio"
+title = "Diseño de Producto — sapito dibujando"
+description = "Sapito minimalista estilo pintura al óleo, fondo rojo, adaptado al servicio"
 
 [[outputs]]
 id = "o4nbK6t71X5182GZot4HU"
 uri = "file://artifacts/clark-kent/public/svc6_2.jpg"
 type = "image"
-title = "Cloud & DevOps — nube"
-description = "Figura Keith Haring rojo sólido, sin contorno negro, elemento característico del servicio"
+title = "Cloud & DevOps — sapito y la nube"
+description = "Sapito minimalista estilo pintura al óleo, fondo rojo, adaptado al servicio"
