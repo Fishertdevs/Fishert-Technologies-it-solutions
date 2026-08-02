@@ -1,0 +1,44 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "38mqgB-pYjx-OKOd9B9Ki"
+uri = "file://artifacts/clark-kent/public/svc1_2.jpg"
+type = "image"
+title = "Servicio 1 — Keith Haring rojo"
+description = "Portada minimalista estilo Keith Haring para el servicio 1"
+
+[[outputs]]
+id = "EjbXzwEGk2HA52vMG0SBj"
+uri = "file://artifacts/clark-kent/public/svc2_2.jpg"
+type = "image"
+title = "Servicio 2 — Keith Haring rojo"
+description = "Portada minimalista estilo Keith Haring para el servicio 2"
+
+[[outputs]]
+id = "kA4hdb_cte87L997MzFru"
+uri = "file://artifacts/clark-kent/public/svc3_2.jpg"
+type = "image"
+title = "Servicio 3 — Keith Haring rojo"
+description = "Portada minimalista estilo Keith Haring para el servicio 3"
+
+[[outputs]]
+id = "WPQrI9d_j2NssW9nn0Vui"
+uri = "file://artifacts/clark-kent/public/svc4_2.jpg"
+type = "image"
+title = "Servicio 4 — Keith Haring rojo"
+description = "Portada minimalista estilo Keith Haring para el servicio 4"
+
+[[outputs]]
+id = "wJVGQpyB47B7cQzVGyD1z"
+uri = "file://artifacts/clark-kent/public/svc5_2.jpg"
+type = "image"
+title = "Servicio 5 — Keith Haring rojo"
+description = "Portada minimalista estilo Keith Haring para el servicio 5"
+
+[[outputs]]
+id = "o4nbK6t71X5182GZot4HU"
+uri = "file://artifacts/clark-kent/public/svc6_2.jpg"
+type = "image"
+title = "Servicio 6 — Keith Haring rojo"
+description = "Portada minimalista estilo Keith Haring para el servicio 6"
