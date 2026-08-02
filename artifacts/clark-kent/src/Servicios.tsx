@@ -144,7 +144,7 @@ export default function Servicios() {
 
       <div className="works-text-block">
         <h2 className="works-heading">
-          {lang === "es" ? "NUESTRAS SOLUCIONES." : "OUR SOLUTIONS."}
+          {lang === "es" ? "NUESTROS SERVICIOS." : "OUR SERVICES."}
         </h2>
         <p className="works-tagline">
           {lang === "es"
