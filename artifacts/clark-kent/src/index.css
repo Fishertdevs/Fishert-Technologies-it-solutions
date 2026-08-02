@@ -204,40 +204,63 @@ body {
   color: #fff;
   text-decoration: none;
   opacity: 0.75;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease;
 }
 
 .navbar-link:hover {
   opacity: 1;
+  color: #C0001A;
 }
 
 .navbar-lang-toggle {
+  position: relative;
   background: none;
   border: 1.5px solid rgba(255, 255, 255, 0.35);
   border-radius: 100px;
-  padding: 7px 14px;
+  padding: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 4px;
+  width: 68px;
+  height: 28px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.6);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.25s ease;
+  overflow: hidden;
 }
-
 .navbar-lang-toggle:hover {
-  border-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
-.navbar-lang--active {
+/* Sliding pill */
+.navbar-lang-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(50% - 4px);
+  height: calc(100% - 4px);
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 100px;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Labels */
+.navbar-lang-opt {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.25s ease;
+  position: relative;
+  z-index: 1;
+  user-select: none;
+}
+.navbar-lang-opt--active {
   color: #fff;
-}
-
-.navbar-lang-sep {
-  opacity: 0.3;
 }
 
 /* Outside hero — light frosted glass, dark text */
@@ -249,8 +272,11 @@ body {
 }
 .navbar--light .navbar-logo { color: rgba(17, 17, 17, 0.85); }
 .navbar--light .navbar-link { color: #111; }
-.navbar--light .navbar-lang-toggle { border-color: rgba(17,17,17,0.25); color: rgba(17,17,17,0.5); }
-.navbar--light .navbar-lang--active { color: #111; }
+.navbar--light .navbar-link:hover { color: #C0001A; }
+.navbar--light .navbar-lang-toggle { border-color: rgba(17,17,17,0.25); }
+.navbar--light .navbar-lang-slider { background: rgba(17,17,17,0.1); }
+.navbar--light .navbar-lang-opt { color: rgba(17,17,17,0.4); }
+.navbar--light .navbar-lang-opt--active { color: #111; }
 
 /* When hero text overlaps navbar — subtle frosted backdrop */
 .navbar--text-overlap {

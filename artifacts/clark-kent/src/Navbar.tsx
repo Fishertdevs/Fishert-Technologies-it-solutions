@@ -94,9 +94,12 @@ export default function Navbar() {
         ))}
       </ul>
       <button className="navbar-lang-toggle" onClick={toggle} aria-label="Toggle language">
-        <span className={lang === "es" ? "navbar-lang--active" : ""}>ES</span>
-        <span className="navbar-lang-sep">/</span>
-        <span className={lang === "en" ? "navbar-lang--active" : ""}>EN</span>
+        <span
+          className="navbar-lang-slider"
+          style={{ transform: lang === "en" ? "translateX(calc(100% + 4px))" : "translateX(0)" }}
+        />
+        <span className={`navbar-lang-opt ${lang === "es" ? "navbar-lang-opt--active" : ""}`}>ES</span>
+        <span className={`navbar-lang-opt ${lang === "en" ? "navbar-lang-opt--active" : ""}`}>EN</span>
       </button>
     </nav>
   );
