@@ -8,12 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const galleryData = [
-  { id: 1, img: "svc1.jpg", num: "I",    es: "Desarrollo Web",             en: "Web Development" },
-  { id: 2, img: "svc2.jpg", num: "II",   es: "Desarrollo de Software",     en: "Software Development" },
-  { id: 3, img: "svc3.jpg", num: "III",  es: "Automatización e IA",        en: "Automation & AI" },
-  { id: 4, img: "svc4.jpg", num: "IV",   es: "Marketing Digital",          en: "Digital Marketing" },
-  { id: 5, img: "svc5.jpg", num: "V",    es: "Diseño de Producto Digital", en: "Digital Product Design" },
-  { id: 6, img: "svc6.jpg", num: "VI",   es: "Cloud y DevOps",             en: "Cloud & DevOps" },
+  { id: 1, img: "svc1_2.jpg", num: "I",    es: "Desarrollo Web",             en: "Web Development" },
+  { id: 2, img: "svc2_2.jpg", num: "II",   es: "Desarrollo de Software",     en: "Software Development" },
+  { id: 3, img: "svc3_2.jpg", num: "III",  es: "Automatización e IA",        en: "Automation & AI" },
+  { id: 4, img: "svc4_2.jpg", num: "IV",   es: "Marketing Digital",          en: "Digital Marketing" },
+  { id: 5, img: "svc5_2.jpg", num: "V",    es: "Diseño de Producto Digital", en: "Digital Product Design" },
+  { id: 6, img: "svc6_2.jpg", num: "VI",   es: "Cloud y DevOps",             en: "Cloud & DevOps" },
 ];
 
 // 6 unique images, 5 visible at a time.
