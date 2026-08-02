@@ -1181,12 +1181,30 @@ body {
    PORTAFOLIO — Google search simulation
    ══════════════════════════════════════════════════════════ */
 
+/* ── Checkerboard outer container ── */
+.port-chess-outer {
+  margin: 0 3% 0 3%;
+  border-radius: 28px;
+  overflow: hidden;
+  background-color: #111111;
+  background-image:
+    linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+    linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+    linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+  background-size: 22px 22px;
+  background-position: 0 0, 0 11px, 11px -11px, -11px 0px;
+  box-shadow:
+    0 2px 0 0 rgba(255,255,255,0.04) inset,
+    0 32px 80px rgba(0,0,0,0.45);
+}
+
 .port-section {
   display: grid;
   grid-template-columns: minmax(0, 55%) 1fr;
   min-height: auto;
-  background: #ffffff;
-  padding: 80px 5% 80px 3%;
+  background: transparent;
+  padding: 80px 5% 80px 5%;
   box-sizing: border-box;
   gap: 80px;
   align-items: center;
@@ -1204,34 +1222,11 @@ body {
   box-sizing: border-box;
 }
 
-/* Dynamic project-number divider */
-.port-divider {
-  position: absolute;
-  top: 50%;
-  right: -56px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  z-index: 2;
-  line-height: 1;
-}
 
-.port-divider-num {
-  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(72px, 7vw, 110px);
-  font-weight: 700;
-  color: transparent;
-  -webkit-text-stroke: 1.5px #C0001A;
-  text-stroke: 1.5px #C0001A;
-  letter-spacing: -0.04em;
-  display: block;
-  animation: port-num-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+/* ── Blob outer wrapper — carries the drop-shadow ── */
+.port-blob-outer {
+  filter: drop-shadow(0 12px 40px rgba(192, 0, 26, 0.12));
 }
-
-@keyframes port-num-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
 
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
@@ -1252,7 +1247,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(12px, 1vw, 14px);
   font-weight: 400;
-  color: #888888;
+  color: #aaaaaa;
   letter-spacing: 0.04em;
   text-transform: none;
   line-height: 1.7;

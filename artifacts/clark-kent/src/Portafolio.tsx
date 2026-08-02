@@ -119,15 +119,32 @@ export default function Portafolio() {
   const showImage   = phase === "image";
 
   return (
+    <>
+    {/* Blob clip-path definition — scales with the container via objectBoundingBox */}
+    <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute", overflow: "hidden" }}>
+      <defs>
+        <clipPath id="port-blob-clip" clipPathUnits="objectBoundingBox">
+          <path d="
+            M 0.5 0.04
+            C 0.61 0.01 0.79 0.06 0.88 0.19
+            C 0.97 0.31 0.96 0.47 0.9 0.57
+            C 0.85 0.65 0.72 0.66 0.77 0.78
+            C 0.82 0.9 0.72 0.99 0.59 0.97
+            C 0.5 0.95 0.5 0.99 0.41 0.97
+            C 0.28 0.99 0.18 0.9 0.23 0.78
+            C 0.28 0.66 0.15 0.65 0.1 0.57
+            C 0.04 0.47 0.03 0.31 0.12 0.19
+            C 0.21 0.06 0.39 0.01 0.5 0.04 Z
+          " />
+        </clipPath>
+      </defs>
+    </svg>
+
+    <div className="port-chess-outer">
     <section id="portafolio" className="port-section">
 
       {/* ── Left: title ── */}
       <div className="port-left">
-        <div className="port-divider" aria-hidden="true">
-          <span className="port-divider-num" key={current}>
-            {String(current + 1).padStart(2, "0")}
-          </span>
-        </div>
         <div style={{ width: "100%", textAlign: "left" }}>
           <h2 className="port-title" style={{ textAlign: "left" }}>
             {lang === "es"
@@ -139,6 +156,7 @@ export default function Portafolio() {
 
       {/* ── Right: Google search simulation ── */}
       <div className="port-right">
+        <div className="port-blob-outer">
         <div className="port-google-wrap">
 
           {/* Search UI (fades out when image shows) */}
@@ -232,6 +250,7 @@ export default function Portafolio() {
           </div>
 
         </div>
+        </div>{/* port-blob-outer */}
 
         {/* Navigation */}
         <div className="port-nav">
@@ -259,5 +278,7 @@ export default function Portafolio() {
       </div>
 
     </section>
+    </div>{/* port-chess-outer */}
+    </>
   );
 }
