@@ -232,15 +232,16 @@ body {
 }
 .navbar-lang-toggle:hover {
   border-color: #C0001A;
+  background: #C0001A;
 }
 .navbar-lang-toggle:hover .navbar-lang-opt {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
 }
 .navbar-lang-toggle:hover .navbar-lang-opt--active {
   color: #fff;
 }
 .navbar-lang-toggle:hover .navbar-lang-slider {
-  background: #C0001A;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Sliding pill */
