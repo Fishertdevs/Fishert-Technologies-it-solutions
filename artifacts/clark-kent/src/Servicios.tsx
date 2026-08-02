@@ -8,12 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const galleryData = [
-  { id: 1, img: "W4.png", num: "01", es: "Desarrollo Web",                          en: "Web Development" },
-  { id: 2, img: "W5.png", num: "02", es: "Desarrollo de Software",                  en: "Software Development" },
-  { id: 3, img: "W6.png", num: "03", es: "Automatización e IA",                     en: "Automation & AI" },
-  { id: 4, img: "W7.png", num: "04", es: "Marketing Digital",                       en: "Digital Marketing" },
-  { id: 5, img: "W8.png", num: "05", es: "Diseño de Producto Digital",              en: "Digital Product Design" },
-  { id: 6, img: "W9.png", num: "06", es: "Cloud y DevOps",                          en: "Cloud & DevOps" },
+  { id: 1, img: "W4.png", num: "I",    es: "Desarrollo Web",             en: "Web Development" },
+  { id: 2, img: "W5.png", num: "II",   es: "Desarrollo de Software",     en: "Software Development" },
+  { id: 3, img: "W6.png", num: "III",  es: "Automatización e IA",        en: "Automation & AI" },
+  { id: 4, img: "W7.png", num: "IV",   es: "Marketing Digital",          en: "Digital Marketing" },
+  { id: 5, img: "W8.png", num: "V",    es: "Diseño de Producto Digital", en: "Digital Product Design" },
+  { id: 6, img: "W9.png", num: "VI",   es: "Cloud y DevOps",             en: "Cloud & DevOps" },
 ];
 
 // 6 unique images, 5 visible at a time.
