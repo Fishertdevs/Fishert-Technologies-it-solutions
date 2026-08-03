@@ -8,6 +8,7 @@ import Socios from "./Socios";
 import Nosotros from "./Nosotros";
 import Portafolio from "./Portafolio";
 import Resenas from "./Resenas";
+import PreguntasFrecuentes from "./PreguntasFrecuentes";
 import Contacto from "./Contacto";
 import Footer from "./Footer";
 import CookieBanner from "./components/CookieBanner";
@@ -29,6 +30,7 @@ function MainPage() {
       <Nosotros />
       <Portafolio />
       <Resenas />
+      <PreguntasFrecuentes />
       <Contacto />
       <Footer />
     </>

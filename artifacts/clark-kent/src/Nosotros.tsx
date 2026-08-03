@@ -52,6 +52,14 @@ export default function Nosotros() {
               <p key={i} className="nos-body">{para}</p>
             ))}
           </div>
+
+          {/* Conócenos CTA */}
+          <a href="#contacto" className="nos-cta-btn">
+            <span>{lang === "es" ? "Conócenos" : "Meet Us"}</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
         </div>
 
       </div>
