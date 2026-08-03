@@ -1,6 +1,7 @@
 import { useLayoutEffect, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "wouter";
 import { useLang } from "./LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -8,11 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const galleryData = [
-  { id: 1, img: "svc1_2.jpg", num: "I",    pos: "center center", es: "Desarrollo Web",         en: "Web Development" },
-  { id: 2, img: "svc2_2.jpg", num: "II",   pos: "center bottom", es: "Desarrollo de Software", en: "Software Development" },
-  { id: 3, img: "svc3_2.jpg", num: "III",  pos: "center center", es: "Automatización e IA",    en: "Automation & AI" },
-  { id: 4, img: "svc4_2.jpg", num: "IV",   pos: "center center", es: "Marketing Digital",      en: "Digital Marketing" },
-  { id: 5, img: "svc5_2.jpg", num: "V",    pos: "center bottom", es: "Cloud y DevOps",         en: "Cloud & DevOps" },
+  { id: 1, img: "svc1_2.jpg", num: "I",    pos: "center center", es: "Desarrollo Web",         en: "Web Development",       slug: "desarrollo-web" },
+  { id: 2, img: "svc2_2.jpg", num: "II",   pos: "center bottom", es: "Desarrollo de Software", en: "Software Development",  slug: "desarrollo-software" },
+  { id: 3, img: "svc3_2.jpg", num: "III",  pos: "center center", es: "Automatización e IA",    en: "Automation & AI",       slug: "automatizacion-ia" },
+  { id: 4, img: "svc4_2.jpg", num: "IV",   pos: "center center", es: "Marketing Digital",      en: "Digital Marketing",     slug: "marketing-digital" },
+  { id: 5, img: "svc5_2.jpg", num: "V",    pos: "center bottom", es: "Cloud y DevOps",         en: "Cloud & DevOps",        slug: "cloud-devops" },
 ];
 
 // 5 unique images, 4 visible at a time (1 always off-screen to enable carousel entry).
@@ -183,7 +184,19 @@ export default function Servicios() {
             />
             <div className="svc-label-overlay">
               <span className="svc-label-num">{item.num}</span>
-              <span className="svc-label-title">{lang === "es" ? item.es : item.en}</span>
+              <div className="svc-label-bottom">
+                <span className="svc-label-title">{lang === "es" ? item.es : item.en}</span>
+                <Link
+                  href={`/servicios/${item.slug}`}
+                  className="svc-ver-mas"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {lang === "es" ? "Ver más" : "View more"}
+                  <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+                    <path d="M1 5.5h9M6 1l4.5 4.5L6 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
         ))}

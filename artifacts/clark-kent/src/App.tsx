@@ -15,6 +15,8 @@ import CookieBanner from "./components/CookieBanner";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
 import PoliticaCookies from "./pages/PoliticaCookies";
 import PoliticaPrivacidad from "./pages/PoliticaPrivacidad";
+import ServicioDetalle from "./pages/ServicioDetalle";
+import QuienesSomos from "./pages/QuienesSomos";
 import NotFound from "./pages/not-found";
 
 const base = import.meta.env.BASE_URL?.replace(/\/$/, "") || "";
@@ -46,6 +48,8 @@ export default function App() {
           <Route path="/terminos" component={TerminosCondiciones} />
           <Route path="/cookies" component={PoliticaCookies} />
           <Route path="/privacidad" component={PoliticaPrivacidad} />
+          <Route path="/servicios/:slug" component={ServicioDetalle} />
+          <Route path="/quienes-somos" component={QuienesSomos} />
           <Route component={NotFound} />
         </Switch>
       </Router>
