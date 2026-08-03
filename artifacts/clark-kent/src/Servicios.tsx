@@ -32,7 +32,7 @@ export default function Servicios() {
   useEffect(() => {
     const compute = () => {
       const vw = sectionRef.current?.clientWidth ?? window.innerWidth;
-      const sizes = [vw * 0.18, vw * 0.22, vw * 0.27, vw * 0.33];
+      const sizes = [vw * 0.13, vw * 0.16, vw * 0.20, vw * 0.25];
       let x = 0;
       setSlots(sizes.map((s) => { const slot = { size: s, x }; x += s; return slot; }));
     };
