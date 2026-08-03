@@ -12,7 +12,7 @@ const galleryData = [
   { id: 2, img: "svc2_2.jpg", num: "II",   es: "Desarrollo de Software", en: "Software Development" },
   { id: 3, img: "svc3_2.jpg", num: "III",  es: "Automatización e IA",    en: "Automation & AI" },
   { id: 4, img: "svc4_2.jpg", num: "IV",   es: "Marketing Digital",      en: "Digital Marketing" },
-  { id: 5, img: "svc5_2.jpg", num: "V",    es: "Diseño de Producto Digital", en: "Digital Product Design" },
+  { id: 5, img: "svc5_2.jpg", num: "V",    es: "Cloud y DevOps",         en: "Cloud & DevOps" },
 ];
 
 // 5 unique images, 5 visible at a time.
