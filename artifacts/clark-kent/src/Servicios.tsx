@@ -8,18 +8,18 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const galleryData = [
-  { id: 1, img: "svc1_2.jpg", num: "I",    es: "Desarrollo Web",         en: "Web Development" },
-  { id: 2, img: "svc2_2.jpg", num: "II",   es: "Desarrollo de Software", en: "Software Development" },
-  { id: 3, img: "svc3_2.jpg", num: "III",  es: "Automatización e IA",    en: "Automation & AI" },
-  { id: 4, img: "svc4_2.jpg", num: "IV",   es: "Marketing Digital",      en: "Digital Marketing" },
-  { id: 5, img: "svc5_2.jpg", num: "V",    es: "Cloud y DevOps",         en: "Cloud & DevOps" },
+  { id: 1, img: "svc1_2.jpg", num: "I",    pos: "center center", es: "Desarrollo Web",         en: "Web Development" },
+  { id: 2, img: "svc2_2.jpg", num: "II",   pos: "center bottom", es: "Desarrollo de Software", en: "Software Development" },
+  { id: 3, img: "svc3_2.jpg", num: "III",  pos: "center center", es: "Automatización e IA",    en: "Automation & AI" },
+  { id: 4, img: "svc4_2.jpg", num: "IV",   pos: "center center", es: "Marketing Digital",      en: "Digital Marketing" },
+  { id: 5, img: "svc5_2.jpg", num: "V",    pos: "center bottom", es: "Cloud y DevOps",         en: "Cloud & DevOps" },
 ];
 
-// 5 unique images, 5 visible at a time.
-// Entry order: after 5 user-scroll cycles every card returns to its original slot.
+// 5 unique images, 4 visible at a time (1 always off-screen to enable carousel entry).
+// Entry order: after 5 scroll cycles every card returns to its original slot.
 const ENTRY_ORDER = [4, 3, 2, 1, 0]; // indices into galleryData
 
-const VISIBLE = 5;
+const VISIBLE = 4;
 
 type Slot = { size: number; x: number };
 
@@ -32,7 +32,7 @@ export default function Servicios() {
   useEffect(() => {
     const compute = () => {
       const vw = sectionRef.current?.clientWidth ?? window.innerWidth;
-      const sizes = [vw * 0.12, vw * 0.16, vw * 0.20, vw * 0.24, vw * 0.28];
+      const sizes = [vw * 0.18, vw * 0.22, vw * 0.27, vw * 0.33];
       let x = 0;
       setSlots(sizes.map((s) => { const slot = { size: s, x }; x += s; return slot; }));
     };
@@ -74,7 +74,7 @@ export default function Servicios() {
         },
       });
 
-      const screen = [0, 1, 2, 3, 4];
+      const screen = [0, 1, 2, 3];
 
       for (let ci = 0; ci < 5; ci++) {
         const t = ci;          // label in the timeline (each cycle = duration 1)
@@ -169,7 +169,7 @@ export default function Servicios() {
               alt={lang === "es" ? item.es : item.en}
               style={{
                 width: "100%", height: "100%",
-                objectFit: "cover", objectPosition: "center bottom",
+                objectFit: "cover", objectPosition: item.pos,
                 display: "block",
               }}
             />
