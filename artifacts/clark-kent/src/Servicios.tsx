@@ -8,17 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 const base = import.meta.env.BASE_URL || "/";
 
 const galleryData = [
-  { id: 1, img: "svc1_2.jpg", num: "I",    es: "Desarrollo Web",             en: "Web Development" },
-  { id: 2, img: "svc2_2.jpg", num: "II",   es: "Desarrollo de Software",     en: "Software Development" },
-  { id: 3, img: "svc3_2.jpg", num: "III",  es: "Automatización e IA",        en: "Automation & AI" },
-  { id: 4, img: "svc4_2.jpg", num: "IV",   es: "Marketing Digital",          en: "Digital Marketing" },
+  { id: 1, img: "svc1_2.jpg", num: "I",    es: "Desarrollo Web",         en: "Web Development" },
+  { id: 2, img: "svc2_2.jpg", num: "II",   es: "Desarrollo de Software", en: "Software Development" },
+  { id: 3, img: "svc3_2.jpg", num: "III",  es: "Automatización e IA",    en: "Automation & AI" },
+  { id: 4, img: "svc4_2.jpg", num: "IV",   es: "Marketing Digital",      en: "Digital Marketing" },
   { id: 5, img: "svc5_2.jpg", num: "V",    es: "Diseño de Producto Digital", en: "Digital Product Design" },
-  { id: 6, img: "svc6_2.jpg", num: "VI",   es: "Cloud y DevOps",             en: "Cloud & DevOps" },
 ];
 
-// 6 unique images, 5 visible at a time.
-// Entry order: after 6 user-scroll cycles every card returns to its original slot.
-const ENTRY_ORDER = [5, 4, 3, 2, 1, 0]; // indices into galleryData (W9→W8→…→W4)
+// 5 unique images, 5 visible at a time.
+// Entry order: after 5 user-scroll cycles every card returns to its original slot.
+const ENTRY_ORDER = [4, 3, 2, 1, 0]; // indices into galleryData
 
 const VISIBLE = 5;
 
@@ -65,7 +64,7 @@ export default function Servicios() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: `+=${6 * 100}%`,
+          end: `+=${5 * 100}%`,
           scrub: 1,
           pin: true,
           pinSpacing: true,
@@ -77,7 +76,7 @@ export default function Servicios() {
 
       const screen = [0, 1, 2, 3, 4];
 
-      for (let ci = 0; ci < 6; ci++) {
+      for (let ci = 0; ci < 5; ci++) {
         const t = ci;          // label in the timeline (each cycle = duration 1)
         const enterIdx = ENTRY_ORDER[ci];
         const enterId = galleryData[enterIdx].id;
