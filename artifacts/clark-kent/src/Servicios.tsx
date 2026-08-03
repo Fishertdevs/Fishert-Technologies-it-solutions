@@ -21,7 +21,7 @@ const ENTRY_ORDER = [4, 3, 2, 1, 0]; // indices into galleryData
 
 const VISIBLE = 4;
 
-type Slot = { size: number; x: number };
+type Slot = { size: number; height: number; x: number };
 
 export default function Servicios() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -32,9 +32,19 @@ export default function Servicios() {
   useEffect(() => {
     const compute = () => {
       const vw = sectionRef.current?.clientWidth ?? window.innerWidth;
-      const sizes = [vw * 0.13, vw * 0.16, vw * 0.20, vw * 0.25];
+      const vh = sectionRef.current?.clientHeight ?? window.innerHeight;
+      // Widths must sum to 1.0 × vw so cards fill the section (carousel works)
+      const widths = [vw * 0.18, vw * 0.22, vw * 0.27, vw * 0.33];
+      // Heights are capped at 60 vh so cards aren't overwhelmingly tall
+      const maxH = vh * 0.60;
       let x = 0;
-      setSlots(sizes.map((s) => { const slot = { size: s, x }; x += s; return slot; }));
+      setSlots(
+        widths.map((w) => {
+          const slot: Slot = { size: w, height: Math.min(w, maxH), x };
+          x += w;
+          return slot;
+        })
+      );
     };
     compute();
     window.addEventListener("resize", compute);
@@ -53,13 +63,11 @@ export default function Servicios() {
       });
       for (let i = 0; i < VISIBLE; i++) {
         gsap.set(`.svc-item--${galleryData[i].id}`, {
-          x: slots[i].x, width: slots[i].size, height: slots[i].size, opacity: 1,
+          x: slots[i].x, width: slots[i].size, height: slots[i].height, opacity: 1,
         });
       }
 
       // 2. Scroll-driven timeline — user scrolls to advance each cycle
-      //    6 cycles × 100vh each = 600vh of pinned scroll.
-      //    After all 6 cycles the gallery is back to its original arrangement.
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -77,13 +85,13 @@ export default function Servicios() {
       const screen = [0, 1, 2, 3];
 
       for (let ci = 0; ci < 5; ci++) {
-        const t = ci;          // label in the timeline (each cycle = duration 1)
+        const t = ci;
         const enterIdx = ENTRY_ORDER[ci];
         const enterId = galleryData[enterIdx].id;
 
-        // Position entering card off-screen left at full slot-0 size, just before cycle
+        // Position entering card off-screen left at slot-0 size, just before cycle
         tl.set(`.svc-item--${enterId}`, {
-          x: -slots[0].size, width: slots[0].size, height: slots[0].size, opacity: 1,
+          x: -slots[0].size, width: slots[0].size, height: slots[0].height, opacity: 1,
         }, t === 0 ? "<" : t - 0.001);
 
         // Slide entering card into slot 0
@@ -98,7 +106,7 @@ export default function Servicios() {
             tl.to(`.svc-item--${id}`, {
               x: slots[si + 1].x,
               width: slots[si + 1].size,
-              height: slots[si + 1].size,
+              height: slots[si + 1].height,
               duration: 1, ease: "none",
             }, t);
           } else {
@@ -112,7 +120,7 @@ export default function Servicios() {
         screen.unshift(enterIdx);
         screen.pop();
       }
-    }, sectionRef); // scope selectors to this section only
+    }, sectionRef);
 
     return () => ctx.revert();
   }, [slots]);
