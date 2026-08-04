@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "wouter";
 import { useLang } from "./LanguageContext";
 
 const base = import.meta.env.BASE_URL || "/";
@@ -10,6 +11,7 @@ const projects = [
     url:   "www.alterego-store.com.co",
     desc:  "Tienda de moda y lifestyle con catálogo digital y experiencia de compra única.",
     color: "#111111",
+    slug:  "alterego-store",
   },
   {
     title: "Picapastos y Molinos Vilar",
@@ -17,6 +19,7 @@ const projects = [
     url:   "www.picapastosymolinosvilar.com.co",
     desc:  "Fabricación y venta de maquinaria agroindustrial de alta calidad.",
     color: "#C0001A",
+    slug:  "picapastos-vilar",
   },
   {
     title: "SGC Abogados",
@@ -24,6 +27,7 @@ const projects = [
     url:   "www.sgcabogados.com.co",
     desc:  "Servicios jurídicos especializados, asesoría legal confiable en Colombia.",
     color: "#C9A227",
+    slug:  "sgc-abogados",
   },
   {
     title: "Dr. Mario Sánchez",
@@ -31,6 +35,7 @@ const projects = [
     url:   "dr-mario-sanchez-website-api-server-one.vercel.app",
     desc:  "Terapeuta respiratorio y salubrista público comprometido con el bienestar.",
     color: "#0077B6",
+    slug:  "dr-mario-sanchez",
   },
   {
     title: "Mi Tienda Go",
@@ -38,6 +43,7 @@ const projects = [
     url:   "app.mitiendago.co",
     desc:  "Gestiona ventas, gastos y cajas diarias en un chat rápido, simple y claro.",
     color: "#00A651",
+    slug:  "mi-tienda-go",
   },
 ];
 
@@ -249,14 +255,22 @@ export default function Portafolio() {
               alt={project.title}
               className="port-full-img"
             />
-            <a
-              className="port-overlay-link"
-              href={`https://${project.url}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {lang === "es" ? "Ver proyecto →" : "View project →"}
-            </a>
+            <div className="port-overlay-actions">
+              <a
+                className="port-overlay-link"
+                href={`https://${project.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {lang === "es" ? "Ver proyecto →" : "View project →"}
+              </a>
+              <Link
+                className="port-overlay-case"
+                href={`/portafolio/${project.slug}`}
+              >
+                {lang === "es" ? "Ver caso completo" : "Full case study"}
+              </Link>
+            </div>
           </div>
 
         </div>

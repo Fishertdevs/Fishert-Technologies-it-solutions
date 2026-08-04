@@ -192,9 +192,6 @@ export default function Servicios() {
                   onClick={(e) => e.stopPropagation()}
                 >
                   {lang === "es" ? "Ver más" : "View more"}
-                  <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-                    <path d="M1 5.5h9M6 1l4.5 4.5L6 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
                 </Link>
               </div>
             </div>

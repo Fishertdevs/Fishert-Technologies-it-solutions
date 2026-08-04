@@ -17,6 +17,9 @@ import PoliticaCookies from "./pages/PoliticaCookies";
 import PoliticaPrivacidad from "./pages/PoliticaPrivacidad";
 import ServicioDetalle from "./pages/ServicioDetalle";
 import QuienesSomos from "./pages/QuienesSomos";
+import CasoEstudio from "./pages/CasoEstudio";
+import ComoTrabajamos from "./ComoTrabajamos";
+import WhatsAppButton from "./components/WhatsAppButton";
 import NotFound from "./pages/not-found";
 
 const base = import.meta.env.BASE_URL?.replace(/\/$/, "") || "";
@@ -31,6 +34,7 @@ function MainPage() {
       <Socios />
       <Nosotros />
       <Portafolio />
+      <ComoTrabajamos />
       <Resenas />
       <PreguntasFrecuentes />
       <Contacto />
@@ -50,9 +54,11 @@ export default function App() {
           <Route path="/privacidad" component={PoliticaPrivacidad} />
           <Route path="/servicios/:slug" component={ServicioDetalle} />
           <Route path="/quienes-somos" component={QuienesSomos} />
+          <Route path="/portafolio/:slug" component={CasoEstudio} />
           <Route component={NotFound} />
         </Switch>
       </Router>
+      <WhatsAppButton />
       <CookieBanner />
     </LanguageProvider>
   );
