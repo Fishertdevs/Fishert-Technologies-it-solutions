@@ -55,10 +55,7 @@ export default function Nosotros() {
 
           {/* Conócenos CTA */}
           <a href="/quienes-somos" className="nos-cta-btn">
-            <span>{lang === "es" ? "Conócenos" : "Meet Us"}</span>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            {lang === "es" ? "Conócenos" : "Meet Us"}
           </a>
         </div>
 

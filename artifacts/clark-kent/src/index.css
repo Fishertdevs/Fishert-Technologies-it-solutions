@@ -3083,6 +3083,65 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════
+   PORTFOLIO CTA — red strip below portfolio
+   ══════════════════════════════════════════════════════════ */
+.pcta-section {
+  background: #C0001A;
+  width: 100%;
+  padding: 88px 6%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+.pcta-heading {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+  line-height: 1.05;
+}
+.pcta-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(13px, 1.05vw, 16px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+  line-height: 1.6;
+}
+.pcta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #C0001A;
+  background: #fff;
+  border: none;
+  border-radius: 40px;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin-top: 12px;
+  transition: background 0.22s, color 0.22s, transform 0.18s;
+}
+.pcta-btn:hover {
+  background: #111;
+  color: #fff;
+  transform: translateY(-2px);
+}
+@media (max-width: 600px) {
+  .pcta-section { padding: 64px 5%; }
+}
+
+/* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — FAQ accordion section
    ══════════════════════════════════════════════════════════ */
 .faq-section {

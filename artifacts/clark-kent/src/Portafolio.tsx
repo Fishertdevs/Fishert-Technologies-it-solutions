@@ -255,22 +255,14 @@ export default function Portafolio() {
               alt={project.title}
               className="port-full-img"
             />
-            <div className="port-overlay-actions">
-              <a
-                className="port-overlay-link"
-                href={`https://${project.url}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {lang === "es" ? "Ver proyecto →" : "View project →"}
-              </a>
-              <Link
-                className="port-overlay-case"
-                href={`/portafolio/${project.slug}`}
-              >
-                {lang === "es" ? "Ver caso completo" : "Full case study"}
-              </Link>
-            </div>
+            <a
+              className="port-overlay-link"
+              href={`https://${project.url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {lang === "es" ? "Ver proyecto →" : "View project →"}
+            </a>
           </div>
 
         </div>

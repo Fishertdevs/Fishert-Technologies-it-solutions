@@ -7,6 +7,7 @@ import Servicios from "./Servicios";
 import Socios from "./Socios";
 import Nosotros from "./Nosotros";
 import Portafolio from "./Portafolio";
+import PortfolioCTA from "./PortfolioCTA";
 import Resenas from "./Resenas";
 import PreguntasFrecuentes from "./PreguntasFrecuentes";
 import Contacto from "./Contacto";
@@ -34,6 +35,7 @@ function MainPage() {
       <Socios />
       <Nosotros />
       <Portafolio />
+      <PortfolioCTA />
       <ComoTrabajamos />
       <Resenas />
       <PreguntasFrecuentes />
