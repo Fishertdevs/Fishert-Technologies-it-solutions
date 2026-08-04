@@ -3720,7 +3720,7 @@ body {
   outline: none;
 }
 
-/* Slide-in label pill */
+/* Slide-in label pill — full rounded pill, both sides */
 .wa-fab-label {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
@@ -3730,23 +3730,24 @@ body {
   color: #111;
   background: #fff;
   white-space: nowrap;
-  border-radius: 40px 0 0 40px;
-  padding: 0 20px 0 20px;
+  border-radius: 40px;
   height: 52px;
   line-height: 52px;
-  box-shadow: -2px 0 12px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
   /* hidden by default */
   max-width: 0;
   overflow: hidden;
   opacity: 0;
+  margin-right: 8px;
   transition: max-width 0.35s cubic-bezier(0.4,0,0.2,1),
-              opacity 0.25s ease,
-              padding 0.35s cubic-bezier(0.4,0,0.2,1);
+              opacity 0.28s ease,
+              padding 0.35s cubic-bezier(0.4,0,0.2,1),
+              margin-right 0.35s ease;
   padding-left: 0;
   padding-right: 0;
 }
 
-/* Green circle */
+/* Green circle — no glow */
 .wa-fab-circle {
   display: flex;
   align-items: center;
@@ -3756,21 +3757,20 @@ body {
   border-radius: 50%;
   background: #25D366;
   color: #fff;
-  box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+  box-shadow: none;
   flex-shrink: 0;
-  transition: background 0.22s, box-shadow 0.22s, transform 0.18s;
+  transition: background 0.22s, transform 0.18s;
 }
 
 /* Hover state — label slides in */
 .wa-fab-link:hover .wa-fab-label {
-  max-width: 220px;
+  max-width: 260px;
   opacity: 1;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 22px;
+  padding-right: 22px;
 }
 .wa-fab-link:hover .wa-fab-circle {
   background: #1da851;
-  box-shadow: 0 6px 24px rgba(37,211,102,0.55);
   transform: scale(1.05);
 }
 

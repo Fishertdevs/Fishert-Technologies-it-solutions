@@ -2,12 +2,31 @@ import { useLang } from "../LanguageContext";
 
 // ── Change this number to Fishert Studio's WhatsApp ──────────────
 const WA_NUMBER = "573001234567"; // format: country code + number, no + or spaces
-const WA_MESSAGE_ES = "Hola, quiero conocer más sobre los servicios de Fishert Studio.";
-const WA_MESSAGE_EN = "Hi, I'd like to know more about Fishert Studio's services.";
+
+function getGreeting(lang: "es" | "en"): string {
+  const hour = new Date().getHours();
+  if (lang === "es") {
+    if (hour >= 5 && hour < 12) return "Buenos días";
+    if (hour >= 12 && hour < 19) return "Buenas tardes";
+    return "Buenas noches";
+  } else {
+    if (hour >= 5 && hour < 12) return "Good morning";
+    if (hour >= 12 && hour < 19) return "Good afternoon";
+    return "Good evening";
+  }
+}
+
+function buildMessage(lang: "es" | "en"): string {
+  const greeting = getGreeting(lang);
+  if (lang === "es") {
+    return `${greeting}, Fishert Studio. Me pongo en contacto para solicitar información sobre sus servicios. Quedo atento a su respuesta. Muchas gracias.`;
+  }
+  return `${greeting}, Fishert Studio. I'm reaching out to request information about your services. I look forward to hearing from you. Thank you.`;
+}
 
 export default function WhatsAppButton() {
   const { lang } = useLang();
-  const message = lang === "es" ? WA_MESSAGE_ES : WA_MESSAGE_EN;
+  const message = buildMessage(lang);
   const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
   const label = lang === "es" ? "Chatear con nosotros" : "Chat with us";
 
