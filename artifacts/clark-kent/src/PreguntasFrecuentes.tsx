@@ -16,7 +16,7 @@ const faqs = {
       a: "Incluye estrategia de contenido, gestión de redes sociales, campañas de pauta publicitaria (Meta Ads, Google Ads), SEO y analítica de resultados. Adaptamos el plan a los objetivos de cada cliente.",
     },
     {
-      q: "¿Pueden hacerse cargo del mantenimiento del proyecto después de entregarlo?",
+      q: "¿Pueden hacerse cargo del mantenimiento después de entregar?",
       a: "Sí. Ofrecemos planes de mantenimiento mensual que incluyen actualizaciones, soporte técnico, corrección de errores y mejoras progresivas. Así tu producto sigue evolucionando.",
     },
     {
@@ -59,43 +59,73 @@ const faqs = {
 export default function PreguntasFrecuentes() {
   const { lang } = useLang();
   const items = faqs[lang];
-  const [open, setOpen] = useState<number | null>(null);
+  const [active, setActive] = useState(0);
 
-  const toggle = (i: number) => setOpen(open === i ? null : i);
+  const prev = () => setActive((a) => (a - 1 + items.length) % items.length);
+  const next = () => setActive((a) => (a + 1) % items.length);
+
+  const current = items[active];
 
   return (
-    <section className="faq-section">
-      <div className="faq-inner">
-        <p className="faq-eyebrow">
-          {lang === "es" ? "PREGUNTAS FRECUENTES" : "FREQUENTLY ASKED QUESTIONS"}
-        </p>
-        <h2 className="faq-heading">
-          {lang === "es" ? "Todo lo que necesitas saber." : "Everything you need to know."}
-        </h2>
+    <section className="faq2-section">
+      <div className="faq2-inner">
 
-        <div className="faq-list">
-          {items.map((item, i) => (
-            <div key={i} className={`faq-item${open === i ? " faq-item--open" : ""}`}>
-              <button className="faq-question" onClick={() => toggle(i)} aria-expanded={open === i}>
-                <span>{item.q}</span>
-                <span className="faq-icon" aria-hidden="true">
-                  {open === i ? (
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M4 10h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-                    </svg>
-                  ) : (
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-                    </svg>
-                  )}
-                </span>
-              </button>
-              <div className="faq-answer">
-                <p>{item.a}</p>
-              </div>
-            </div>
-          ))}
+        {/* LEFT — heading block */}
+        <div className="faq2-left">
+          <p className="faq2-eyebrow">
+            {lang === "es" ? "PREGUNTAS" : "FAQ"}
+          </p>
+          <h2 className="faq2-heading">
+            {lang === "es" ? "Preguntas Frecuentes" : "Frequently Asked Questions"}
+          </h2>
+          <p className="faq2-sub">
+            {lang === "es"
+              ? "Todo lo que necesitas saber antes de comenzar tu proyecto con nosotros."
+              : "Everything you need to know before starting your project with us."}
+          </p>
+
+          {/* Counter */}
+          <p className="faq2-counter">
+            <span className="faq2-counter-cur">{String(active + 1).padStart(2, "0")}</span>
+            <span className="faq2-counter-sep"> / </span>
+            <span className="faq2-counter-total">{String(items.length).padStart(2, "0")}</span>
+          </p>
         </div>
+
+        {/* RIGHT — single Q&A carousel */}
+        <div className="faq2-right">
+          <div className="faq2-card" key={active}>
+            <h3 className="faq2-question">{current.q}</h3>
+            <p className="faq2-answer">{current.a}</p>
+          </div>
+
+          {/* Dot navigation */}
+          <div className="faq2-dots">
+            {items.map((_, i) => (
+              <button
+                key={i}
+                className={`faq2-dot${i === active ? " faq2-dot--active" : ""}`}
+                onClick={() => setActive(i)}
+                aria-label={`Pregunta ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Arrow navigation */}
+          <div className="faq2-arrows">
+            <button className="faq2-arrow" onClick={prev} aria-label="anterior">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M11 4L6 9l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <button className="faq2-arrow" onClick={next} aria-label="siguiente">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>
   );
