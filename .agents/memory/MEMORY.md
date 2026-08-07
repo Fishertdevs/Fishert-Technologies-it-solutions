@@ -1,0 +1,1 @@
+- [Vercel static builds](vercel-static-builds.md) — Vite config must tolerate missing Replit-only PORT and BASE_PATH during external static builds.
