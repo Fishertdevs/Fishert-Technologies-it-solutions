@@ -36,6 +36,12 @@ export default function About() {
     return () => ctx.revert();
   }, []);
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id="inicio" className="about-section" ref={sectionRef}>
       {/* Full-screen background image */}
@@ -55,10 +61,10 @@ export default function About() {
           </div>
 
           <div className="about-cta-wrap">
-            <a href="#contacto" className="about-cta-primary">
+            <a href="#contacto" className="about-cta-primary" onClick={(e) => handleClick(e, "#contacto")}>
               {t.cta_primary}
             </a>
-            <a href="#portafolio" className="about-cta-secondary">
+            <a href="#portafolio" className="about-cta-secondary" onClick={(e) => handleClick(e, "#portafolio")}>
               {t.cta_secondary}
             </a>
           </div>
