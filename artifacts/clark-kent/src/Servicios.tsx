@@ -178,7 +178,7 @@ export default function Servicios() {
             }}
           >
             <img
-              src={`${base}${item.img}`}
+              src={/^(https?:)?\/\//.test(item.img) || item.img.startsWith("/") ? item.img : `${base}${item.img}`}
               alt={lang === "es" ? item.es : item.en}
               style={{
                 width: "100%", height: "100%",
