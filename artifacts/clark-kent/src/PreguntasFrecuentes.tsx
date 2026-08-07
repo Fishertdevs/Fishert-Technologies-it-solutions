@@ -70,13 +70,6 @@ export default function PreguntasFrecuentes() {
   return (
     <section className="faq2-section">
 
-      {/* Top wave — same shape as Nosotros */}
-      <svg className="faq2-wave faq2-wave--top" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,0 L1440,0 L1440,32 C1200,72 960,2 720,32 C480,72 240,2 0,32 Z"
-          fill="#ffffff" />
-      </svg>
-
       <div className="faq2-inner">
 
         {/* LEFT — portrait image, full height anchored to bottom */}
