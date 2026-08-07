@@ -3,16 +3,20 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "wouter";
 import { useLang } from "./LanguageContext";
+import webDevelopmentCover from "@assets/image_1786122218586.png";
+import softwareDevelopmentCover from "@assets/image_1786122258578.png";
+import automationCover from "@assets/image_1786122289910.png";
+import marketingCover from "@assets/image_1786122274168.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const base = import.meta.env.BASE_URL || "/";
 
 const galleryData = [
-  { id: 1, img: "svc1_2.jpg", num: "I",    pos: "center center", es: "Desarrollo Web",         en: "Web Development",       slug: "desarrollo-web" },
-  { id: 2, img: "svc2_2.jpg", num: "II",   pos: "center bottom", es: "Desarrollo de Software", en: "Software Development",  slug: "desarrollo-software" },
-  { id: 3, img: "svc3_2.jpg", num: "III",  pos: "center center", es: "Automatización e IA",    en: "Automation & AI",       slug: "automatizacion-ia" },
-  { id: 4, img: "svc4_2.jpg", num: "IV",   pos: "center center", es: "Marketing Digital",      en: "Digital Marketing",     slug: "marketing-digital" },
+  { id: 1, img: webDevelopmentCover, num: "I",    pos: "center center", es: "Desarrollo Web",         en: "Web Development",       slug: "desarrollo-web" },
+  { id: 2, img: softwareDevelopmentCover, num: "II",   pos: "center bottom", es: "Desarrollo de Software", en: "Software Development",  slug: "desarrollo-software" },
+  { id: 3, img: automationCover, num: "III",  pos: "center center", es: "Automatización e IA",    en: "Automation & AI",       slug: "automatizacion-ia" },
+  { id: 4, img: marketingCover, num: "IV",   pos: "center center", es: "Marketing Digital",      en: "Digital Marketing",     slug: "marketing-digital" },
   { id: 5, img: "svc5_2.jpg", num: "V",    pos: "center bottom", es: "Cloud y DevOps",         en: "Cloud & DevOps",        slug: "cloud-devops" },
 ];
 
