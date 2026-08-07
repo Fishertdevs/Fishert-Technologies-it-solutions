@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLang } from "./LanguageContext";
+import faqPortrait from "@assets/faq_portrait.png";
 
 const faqs = {
   es: [
@@ -70,56 +71,47 @@ export default function PreguntasFrecuentes() {
     <section className="faq2-section">
       <div className="faq2-inner">
 
-        {/* LEFT — heading block */}
+        {/* LEFT — portrait image */}
         <div className="faq2-left">
-          <p className="faq2-eyebrow">
-            {lang === "es" ? "PREGUNTAS" : "FAQ"}
-          </p>
+          <img
+            className="faq2-portrait"
+            src={faqPortrait}
+            alt={lang === "es" ? "Ilustración Preguntas Frecuentes" : "FAQ illustration"}
+          />
+        </div>
+
+        {/* RIGHT — title + single Q&A carousel */}
+        <div className="faq2-right">
           <h2 className="faq2-heading">
             {lang === "es" ? "Preguntas Frecuentes" : "Frequently Asked Questions"}
           </h2>
-          <p className="faq2-sub">
-            {lang === "es"
-              ? "Todo lo que necesitas saber antes de comenzar tu proyecto con nosotros."
-              : "Everything you need to know before starting your project with us."}
-          </p>
 
-          {/* Counter */}
-          <p className="faq2-counter">
-            <span className="faq2-counter-cur">{String(active + 1).padStart(2, "0")}</span>
-            <span className="faq2-counter-sep"> / </span>
-            <span className="faq2-counter-total">{String(items.length).padStart(2, "0")}</span>
-          </p>
-        </div>
-
-        {/* RIGHT — single Q&A carousel */}
-        <div className="faq2-right">
           <div className="faq2-card" key={active}>
             <h3 className="faq2-question">{current.q}</h3>
             <p className="faq2-answer">{current.a}</p>
           </div>
 
-          {/* Dot navigation */}
-          <div className="faq2-dots">
-            {items.map((_, i) => (
-              <button
-                key={i}
-                className={`faq2-dot${i === active ? " faq2-dot--active" : ""}`}
-                onClick={() => setActive(i)}
-                aria-label={`Pregunta ${i + 1}`}
-              />
-            ))}
-          </div>
-
-          {/* Arrow navigation */}
-          <div className="faq2-arrows">
-            <button className="faq2-arrow" onClick={prev} aria-label="anterior">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          {/* Navigation — arrows in the same row as dots */}
+          <div className="faq2-nav">
+            <button className="faq2-arrow" onClick={prev} aria-label={lang === "es" ? "anterior" : "previous"}>
+              <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
                 <path d="M11 4L6 9l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            <button className="faq2-arrow" onClick={next} aria-label="siguiente">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+
+            <div className="faq2-dots">
+              {items.map((_, i) => (
+                <button
+                  key={i}
+                  className={`faq2-dot${i === active ? " faq2-dot--active" : ""}`}
+                  onClick={() => setActive(i)}
+                  aria-label={`${lang === "es" ? "Pregunta" : "Question"} ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            <button className="faq2-arrow" onClick={next} aria-label={lang === "es" ? "siguiente" : "next"}>
+              <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
                 <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
