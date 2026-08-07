@@ -3863,54 +3863,138 @@ body {
   line-height: 1.6;
 }
 
-.ctw-grid {
+/* Carousel layout: figure left, slider right */
+.ctw-carousel {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-left: 1px solid rgba(255,255,255,0.1);
-  margin-bottom: 64px;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: stretch;
+  margin-bottom: 56px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  overflow: hidden;
 }
-.ctw-step {
-  padding: 40px 36px 36px;
-  border-right: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+.ctw-figure-wrap {
   position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background: #B71422;
 }
-.ctw-step-num {
+.ctw-figure {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
   display: block;
+}
+.ctw-slider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 52px 48px 0;
+}
+.ctw-slide {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  animation: ctwFade 0.35s ease;
+}
+@keyframes ctwFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ctw-slide-num {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: 52px;
+  font-size: clamp(64px, 8vw, 108px);
   font-weight: 700;
   font-style: italic;
-  color: rgba(255,255,255,0.08);
-  line-height: 1;
-  margin-bottom: 16px;
+  color: rgba(255,255,255,0.1);
+  line-height: 0.9;
   letter-spacing: -0.02em;
+  margin-bottom: 14px;
 }
-.ctw-step-line {
-  width: 32px;
+.ctw-slide-line {
+  width: 40px;
   height: 2px;
   background: #C0001A;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
-.ctw-step-title {
+.ctw-slide-title {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(13px, 1vw, 16px);
+  font-size: clamp(18px, 1.6vw, 26px);
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #fff;
-  margin: 0 0 14px;
+  margin: 0 0 16px;
 }
-.ctw-step-body {
+.ctw-slide-body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(12px, 0.9vw, 14px);
+  font-size: clamp(13px, 1vw, 16px);
   font-weight: 400;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.55);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.6);
   margin: 0;
+  max-width: 460px;
 }
+
+/* Navigation */
+.ctw-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+.ctw-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.28);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.ctw-arrow:hover {
+  background: #C0001A;
+  border-color: #C0001A;
+}
+.ctw-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.ctw-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.22s, width 0.22s;
+}
+.ctw-dot--active {
+  background: #C0001A;
+  width: 24px;
+  border-radius: 4px;
+}
+.ctw-counter {
+  margin-left: auto;
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+}
+.ctw-counter-sep { color: rgba(255,255,255,0.3); }
 
 .ctw-cta-row {
   display: flex;
@@ -3940,11 +4024,116 @@ body {
 }
 
 @media (max-width: 900px) {
-  .ctw-grid { grid-template-columns: repeat(2, 1fr); }
+  .ctw-carousel { grid-template-columns: 1fr; gap: 0; }
+  .ctw-figure-wrap { min-height: 300px; }
+  .ctw-slider { padding: 40px 28px; }
+  .ctw-slide { min-height: 200px; }
   .ctw-section { padding: 72px 5% 80px; }
 }
 @media (max-width: 560px) {
-  .ctw-grid { grid-template-columns: 1fr; }
+  .ctw-counter { display: none; }
+  .ctw-nav { gap: 14px; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   CTA PAISAJE — after contact section
+   ══════════════════════════════════════════════════════════ */
+.cta-land {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 96px 6%;
+}
+.cta-land-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+.cta-land-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 26, 18, 0.28) 0%,
+    rgba(20, 26, 18, 0.42) 55%,
+    rgba(12, 16, 10, 0.62) 100%
+  );
+}
+.cta-land-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cta-land-eyebrow {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  margin: 0 0 20px;
+}
+.cta-land-title {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(40px, 6vw, 78px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0 0 22px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+.cta-land-sub {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(14px, 1.2vw, 18px);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.9);
+  margin: 0 0 38px;
+  max-width: 520px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.35);
+}
+.cta-land-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #14180f;
+  background: #ffffff;
+  border: none;
+  border-radius: 40px;
+  padding: 16px 34px;
+  text-decoration: none;
+  transition: background 0.22s, transform 0.18s, box-shadow 0.22s;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+}
+.cta-land-btn:hover {
+  background: #C0001A;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .cta-land { min-height: 440px; padding: 72px 6%; }
 }
 
 /* ══════════════════════════════════════════════════════════

@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { useLang } from "./LanguageContext";
+import ctwFigure from "@assets/ctw_figure.png";
 
 const steps = {
   es: [
@@ -71,10 +72,14 @@ const steps = {
 export default function ComoTrabajamos() {
   const { lang } = useLang();
   const items = steps[lang];
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const [active, setActive] = useState(0);
+  const current = items[active];
+
+  const prev = () => setActive((a) => (a - 1 + items.length) % items.length);
+  const next = () => setActive((a) => (a + 1) % items.length);
 
   return (
-    <section ref={sectionRef} className="ctw-section">
+    <section className="ctw-section">
       <div className="ctw-inner">
         <div className="ctw-header">
           <p className="ctw-eyebrow">
@@ -90,15 +95,53 @@ export default function ComoTrabajamos() {
           </p>
         </div>
 
-        <div className="ctw-grid">
-          {items.map((step, i) => (
-            <div key={i} className="ctw-step">
-              <span className="ctw-step-num">{step.num}</span>
-              <div className="ctw-step-line" aria-hidden="true" />
-              <h3 className="ctw-step-title">{step.title}</h3>
-              <p className="ctw-step-body">{step.body}</p>
+        <div className="ctw-carousel">
+          {/* LEFT — figure image on its red/white backdrop */}
+          <div className="ctw-figure-wrap">
+            <img className="ctw-figure" src={ctwFigure} alt="" aria-hidden="true" />
+          </div>
+
+          {/* RIGHT — aesthetic step carousel */}
+          <div className="ctw-slider">
+            <div className="ctw-slide" key={active}>
+              <span className="ctw-slide-num">{current.num}</span>
+              <div className="ctw-slide-line" aria-hidden="true" />
+              <h3 className="ctw-slide-title">{current.title}</h3>
+              <p className="ctw-slide-body">{current.body}</p>
             </div>
-          ))}
+
+            {/* Navigation — arrows + progress dots */}
+            <div className="ctw-nav">
+              <button className="ctw-arrow" onClick={prev} aria-label={lang === "es" ? "anterior" : "previous"}>
+                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                  <path d="M11 4L6 9l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              <div className="ctw-dots">
+                {items.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`ctw-dot${i === active ? " ctw-dot--active" : ""}`}
+                    onClick={() => setActive(i)}
+                    aria-label={`${lang === "es" ? "Paso" : "Step"} ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button className="ctw-arrow" onClick={next} aria-label={lang === "es" ? "siguiente" : "next"}>
+                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                  <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              <span className="ctw-counter">
+                {String(active + 1).padStart(2, "0")}
+                <span className="ctw-counter-sep"> / </span>
+                {String(items.length).padStart(2, "0")}
+              </span>
+            </div>
+          </div>
         </div>
 
         <div className="ctw-cta-row">
