@@ -1845,12 +1845,26 @@ body {
   gap: 40px;
 }
 
+.resenas-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: end;
+  gap: 24px;
+}
+
+.resenas-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
 .resenas-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+  gap: 10px;
 }
 
 .resenas-heading {
@@ -1861,7 +1875,6 @@ body {
   letter-spacing: -0.01em;
   color: #000000;
   text-transform: uppercase;
-  white-space: nowrap;
   margin: 0;
 }
 
@@ -1877,8 +1890,8 @@ body {
 
 .resenas-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
 .resena-card {
@@ -1947,11 +1960,80 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ── Agregar reseña CTA row ──────────────────────────────── */
-.resenas-cta-row {
+/* ── Controls row: add review + carousel nav ─────────────── */
+.resenas-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 4px;
+}
+
+.resenas-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.resenas-arrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,0.25);
+  background: transparent;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+}
+.resenas-arrow:hover:not(:disabled) {
+  background: #C0001A;
+  border-color: #C0001A;
+  color: #fff;
+}
+.resenas-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.resenas-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.resenas-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.22s, width 0.22s;
+}
+.resenas-dot--active {
+  background: #C0001A;
+  width: 26px;
+  border-radius: 5px;
+}
+
+/* ── Pink bust ───────────────────────────────────────────── */
+.resenas-bust {
+  position: relative;
+  align-self: end;
   display: flex;
   justify-content: center;
-  padding-top: 4px;
+  pointer-events: none;
+}
+.resenas-bust-img {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  display: block;
+  margin-bottom: -40px;
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.18));
 }
 
 .resenas-cta-btn {
@@ -3021,8 +3103,13 @@ body {
 }
 
 /* ── Media queries ───────────────────────────────────────── */
-@media (max-width: 768px) {
+  @media (max-width: 980px) {
+  .resenas-layout      { grid-template-columns: 1fr; }
+  .resenas-bust        { display: none; }
+  }
+  @media (max-width: 768px) {
   .resenas-grid        { grid-template-columns: 1fr; }
+  .resenas-controls    { flex-direction: column; align-items: flex-start; gap: 24px; }
   .port-section        { grid-template-columns: 1fr; }
   .contacto-inner      { grid-template-columns: 1fr; gap: 48px; }
   .contacto-row        { grid-template-columns: 1fr; }
@@ -3164,7 +3251,7 @@ body {
 
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — FAQ accordion section
-   ═════�����════════════════════════════════════════════════════ */
+   ═════������════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
    ══════════���═════════════════���������═════════════════════════════ */
@@ -3795,7 +3882,7 @@ body {
   .qs-hero { height: 55vh; }
 }
 
-/* ═══════════════════════════════════════════════════════����═
+/* ══════════════════════════════════════════════════════������═
    WHATSAPP FLOATING BUTTON
    ══════════════════════════════════════════════════════════ */
 /* WhatsApp FAB — circle only; label slides in on hover */
