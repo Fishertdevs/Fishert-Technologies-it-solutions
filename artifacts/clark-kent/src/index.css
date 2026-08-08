@@ -1856,11 +1856,12 @@ body {
 .resenas-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(40px, 5.2vw, 84px);
-  line-height: 1.05;
+  font-size: clamp(32px, 4.4vw, 76px);
+  line-height: 1;
   letter-spacing: -0.01em;
   color: #000000;
   text-transform: uppercase;
+  white-space: nowrap;
   margin: 0;
 }
 
