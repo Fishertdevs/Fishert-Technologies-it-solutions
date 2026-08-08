@@ -3,13 +3,13 @@ import { useLang } from "./LanguageContext";
 const copy = {
   es: {
     heading: "¿Quieres un resultado así?",
-    sub: "Cuéntanos tu proyecto. La primera llamada es sin costo.",
-    cta: "Iniciar proyecto",
+    sub: "Cuéntanos sobre tu proyecto y agenda una asesoría inicial sin costo ni compromiso.",
+    cta: "Cotiza tu proyecto",
   },
   en: {
     heading: "Want results like these?",
-    sub: "Tell us about your project. The first call is free.",
-    cta: "Start a project",
+    sub: "Tell us about your project and schedule a free, no-obligation consultation.",
+    cta: "Get a quote",
   },
 };
 
@@ -19,14 +19,27 @@ export default function PortfolioCTA() {
 
   return (
     <section className="pcta-section">
-      <h2 className="pcta-heading">{t.heading}</h2>
-      <p className="pcta-sub">{t.sub}</p>
-      <a href="#contacto" className="pcta-btn">
-        {t.cta}
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </a>
+      {/* Top wave — same shape as FAQ / Nosotros */}
+      <svg className="pcta-wave pcta-wave--top" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z"
+          fill="#ffffff" />
+      </svg>
+
+      <div className="pcta-content">
+        <h2 className="pcta-heading">{t.heading}</h2>
+        <p className="pcta-sub">{t.sub}</p>
+        <a href="#contacto" className="pcta-btn">
+          {t.cta}
+        </a>
+      </div>
+
+      {/* Bottom wave — same shape as FAQ / Nosotros, tinted to blend into the next dark section */}
+      <svg className="pcta-wave pcta-wave--bottom" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          fill="#111111" />
+      </svg>
     </section>
   );
 }

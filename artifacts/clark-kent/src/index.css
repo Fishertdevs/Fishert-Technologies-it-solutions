@@ -1856,10 +1856,12 @@ body {
 .resenas-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(40px, 5.2vw, 84px);
-  line-height: 1.05;
+  font-size: clamp(32px, 4.4vw, 76px);
+  line-height: 1;
   letter-spacing: -0.01em;
   color: #000000;
+  text-transform: uppercase;
+  white-space: nowrap;
   margin: 0;
 }
 
@@ -1867,7 +1869,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(13px, 1.2vw, 16px);
   font-weight: 400;
-  color: #888;
+  color: #C0001A;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0;
@@ -3086,15 +3088,23 @@ body {
    PORTFOLIO CTA — red strip below portfolio
    ══════════════════════════════════════════════════════════ */
 .pcta-section {
-  background: #C0001A;
+  background-color: #4a000d;
+  background-image: repeating-conic-gradient(#3a000a 0% 25%, #6b0014 0% 50%);
+  background-size: 72px 72px;
   width: 100%;
-  padding: 88px 6%;
+  padding: 112px 6%;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+.pcta-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 20px;
+  position: relative;
+  z-index: 1;
 }
 .pcta-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
@@ -3102,6 +3112,7 @@ body {
   font-weight: 700;
   font-style: italic;
   letter-spacing: -0.01em;
+  text-transform: uppercase;
   color: #fff;
   margin: 0;
   line-height: 1.05;
@@ -3112,33 +3123,43 @@ body {
   font-weight: 400;
   color: rgba(255,255,255,0.75);
   margin: 0;
+  max-width: 520px;
   line-height: 1.6;
 }
 .pcta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #C0001A;
-  background: #fff;
+  background: none;
   border: none;
-  border-radius: 40px;
-  padding: 16px 32px;
+  border-bottom: 1.5px solid #fff;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-decoration: none;
+  padding: 0 0 4px 0;
   margin-top: 12px;
-  transition: background 0.22s, color 0.22s, transform 0.18s;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 .pcta-btn:hover {
-  background: #111;
-  color: #fff;
-  transform: translateY(-2px);
+  opacity: 0.65;
 }
+.pcta-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+}
+.pcta-wave--top    { top: -1px; }
+.pcta-wave--bottom { bottom: -1px; }
 @media (max-width: 600px) {
-  .pcta-section { padding: 64px 5%; }
+  .pcta-section { padding: 88px 5%; }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3146,7 +3167,7 @@ body {
    ══════════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
-   ════════════════════════════�����═════════════════════════════ */
+   ══════════���═════════════════���������═════════════════════════════ */
 .faq2-section {
   background: #E8621E;
   width: 100%;
@@ -3209,14 +3230,16 @@ body {
 .faq2-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(22px, 2.8vw, 42px);
-  line-height: 0.98;
+  font-size: clamp(28px, 4vw, 76px);
+  line-height: 1.02;
   letter-spacing: -0.01em;
   color: #ffffff;
   text-transform: uppercase;
   text-align: center;
   margin: 0;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 100%;
+  text-wrap: balance;
   text-shadow: 0 2px 12px rgba(0,0,0,0.18);
 }
 .faq2-card {
@@ -3233,14 +3256,15 @@ body {
 }
 .faq2-question {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(14px, 1.35vw, 21px);
+  font-size: clamp(16px, 1.7vw, 24px);
   font-weight: 700;
   color: #1a0f04;
   margin: 0;
   line-height: 1.3;
   letter-spacing: -0.01em;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 560px;
 }
 .faq2-answer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
