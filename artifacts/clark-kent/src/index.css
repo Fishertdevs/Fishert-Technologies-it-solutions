@@ -3088,15 +3088,23 @@ body {
    PORTFOLIO CTA — red strip below portfolio
    ══════════════════════════════════════════════════════════ */
 .pcta-section {
-  background: #C0001A;
+  background-color: #4a000d;
+  background-image: repeating-conic-gradient(#3a000a 0% 25%, #6b0014 0% 50%);
+  background-size: 72px 72px;
   width: 100%;
-  padding: 88px 6%;
+  padding: 112px 6%;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+.pcta-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 20px;
+  position: relative;
+  z-index: 1;
 }
 .pcta-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
@@ -3104,6 +3112,7 @@ body {
   font-weight: 700;
   font-style: italic;
   letter-spacing: -0.01em;
+  text-transform: uppercase;
   color: #fff;
   margin: 0;
   line-height: 1.05;
@@ -3114,33 +3123,43 @@ body {
   font-weight: 400;
   color: rgba(255,255,255,0.75);
   margin: 0;
+  max-width: 520px;
   line-height: 1.6;
 }
 .pcta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #C0001A;
-  background: #fff;
+  background: none;
   border: none;
-  border-radius: 40px;
-  padding: 16px 32px;
+  border-bottom: 1.5px solid #fff;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-decoration: none;
+  padding: 0 0 4px 0;
   margin-top: 12px;
-  transition: background 0.22s, color 0.22s, transform 0.18s;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 .pcta-btn:hover {
-  background: #111;
-  color: #fff;
-  transform: translateY(-2px);
+  opacity: 0.65;
 }
+.pcta-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+}
+.pcta-wave--top    { top: -1px; }
+.pcta-wave--bottom { bottom: -1px; }
 @media (max-width: 600px) {
-  .pcta-section { padding: 64px 5%; }
+  .pcta-section { padding: 88px 5%; }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3148,7 +3167,7 @@ body {
    ══════════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
-   ════════════════════════════���������═════════════════════════════ */
+   ══════════���═════════════════���������═════════════════════════════ */
 .faq2-section {
   background: #E8621E;
   width: 100%;
