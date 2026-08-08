@@ -11,7 +11,6 @@ import PortfolioCTA from "./PortfolioCTA";
 import Resenas from "./Resenas";
 import PreguntasFrecuentes from "./PreguntasFrecuentes";
 import Contacto from "./Contacto";
-import ContactoCTA from "./ContactoCTA";
 import Footer from "./Footer";
 import CookieBanner from "./components/CookieBanner";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
@@ -41,7 +40,6 @@ function MainPage() {
       <Resenas />
       <PreguntasFrecuentes />
       <Contacto />
-      <ContactoCTA />
       <Footer />
     </>
   );

@@ -3146,34 +3146,54 @@ body {
    ══════════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
-   ════════════════════════════���═════════════════════════════ */
+   ════════════════════════════�����═════════════════════════════ */
 .faq2-section {
   background: #E8621E;
   width: 100%;
-  padding: 100px 6%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
   box-sizing: border-box;
 }
+
+/* SVG waves — anchored top and bottom, same as Nosotros */
+.faq2-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+  pointer-events: none;
+  display: block;
+}
+.faq2-wave--top    { top: -1px; }
+.faq2-wave--bottom { bottom: -1px; }
+
 .faq2-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  height: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 44% 56%;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-/* LEFT — portrait */
+/* LEFT — portrait, figure grounded at the bottom (like Nosotros/Mona Lisa) */
 .faq2-left {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
 }
 .faq2-portrait {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
+  position: absolute;
+  left: 50%;
+  bottom: -12%;
+  transform: translateX(-50%);
+  height: 115%;
+  width: auto;
+  max-width: none;
   display: block;
-  object-fit: contain;
 }
 
 /* RIGHT */
@@ -3183,17 +3203,20 @@ body {
   align-items: center;
   gap: 28px;
   text-align: center;
+  padding: 0 5% 0 3%;
+  box-sizing: border-box;
 }
 .faq2-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(38px, 4.4vw, 68px);
-  line-height: 0.95;
+  font-size: clamp(22px, 2.8vw, 42px);
+  line-height: 0.98;
   letter-spacing: -0.01em;
   color: #ffffff;
   text-transform: uppercase;
   text-align: center;
   margin: 0;
+  white-space: nowrap;
   text-shadow: 0 2px 12px rgba(0,0,0,0.18);
 }
 .faq2-card {
@@ -3210,13 +3233,14 @@ body {
 }
 .faq2-question {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(17px, 1.6vw, 24px);
+  font-size: clamp(14px, 1.35vw, 21px);
   font-weight: 700;
   color: #1a0f04;
   margin: 0;
   line-height: 1.3;
   letter-spacing: -0.01em;
   text-align: center;
+  white-space: nowrap;
 }
 .faq2-answer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -3280,12 +3304,16 @@ body {
 }
 
 @media (max-width: 900px) {
+  .faq2-section { height: auto; }
   .faq2-inner {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
+    padding: 90px 0 80px;
   }
-  .faq2-section { padding: 72px 5% 80px; }
-  .faq2-portrait { max-width: 300px; }
+  .faq2-left { height: 42vh; }
+  .faq2-right { padding: 0 6%; }
+  .faq2-heading { white-space: normal; }
+  .faq2-question { white-space: normal; }
 }
 
 /* ══════════════════════════════════════════════════════════

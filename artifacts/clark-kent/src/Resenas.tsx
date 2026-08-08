@@ -128,15 +128,16 @@ export default function Resenas() {
         </div>
       </div>
 
-      {/* Bottom wave — transitions into contacto (white bg) */}
+      {/* Bottom wave — single boundary into Preguntas Frecuentes (orange).
+          Same signature wave used across the FAQ section. */}
       <svg
-        style={{ display: "block", width: "100%", height: 70, marginTop: 40 }}
+        style={{ display: "block", width: "100%", height: 80, marginTop: 40 }}
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 70"
+        viewBox="0 0 1440 80"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M0,70 L1440,70 L1440,40 C1200,0 960,68 720,40 C480,0 240,68 0,40 Z" fill="#ffffff" />
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#E8621E" />
       </svg>
 
       {showForm && <ReviewForm onClose={() => setShowForm(false)} />}
