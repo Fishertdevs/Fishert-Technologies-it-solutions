@@ -3164,7 +3164,7 @@ body {
 
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — FAQ accordion section
-   ═════���════════════════════════════════════════════════════ */
+   ═════����════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
    ══════════���═════════════════���������═════════════════════════════ */
@@ -3795,7 +3795,7 @@ body {
   .qs-hero { height: 55vh; }
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ════════════════════════════════════════════════════════��═
    WHATSAPP FLOATING BUTTON
    ══════════════════════════════════════════════════════════ */
 /* WhatsApp FAB — circle only; label slides in on hover */
@@ -3915,138 +3915,62 @@ body {
   line-height: 1.6;
 }
 
-/* Carousel layout: figure left, slider right */
-.ctw-carousel {
+/* Imagination block: statue image + quote */
+.ctw-imagination {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
-  align-items: stretch;
+  align-items: center;
   margin-bottom: 56px;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 14px;
   overflow: hidden;
+  background: #0d0d0d;
 }
-.ctw-figure-wrap {
+.ctw-imagination-media {
   position: relative;
-  min-height: 420px;
+  min-height: 460px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #B71422;
+  background: radial-gradient(circle at 50% 40%, #1c1c1c 0%, #0d0d0d 72%);
 }
-.ctw-figure {
+.ctw-imagination-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
+  max-height: 520px;
+  object-fit: contain;
+  object-position: center;
   display: block;
-}
-.ctw-slider {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 48px 52px 48px 0;
-}
-.ctw-slide {
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  animation: ctwFade 0.35s ease;
+  animation: ctwFade 0.6s ease;
 }
 @keyframes ctwFade {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.ctw-slide-num {
+.ctw-imagination-copy {
+  padding: 48px 56px 48px 0;
+}
+.ctw-imagination-quote {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(64px, 8vw, 108px);
+  font-size: clamp(32px, 4vw, 58px);
   font-weight: 700;
   font-style: italic;
-  color: rgba(255,255,255,0.1);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  margin-bottom: 14px;
-}
-.ctw-slide-line {
-  width: 40px;
-  height: 2px;
-  background: #C0001A;
-  margin-bottom: 22px;
-}
-.ctw-slide-title {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(18px, 1.6vw, 26px);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
   color: #fff;
-  margin: 0 0 16px;
+  margin: 0 0 22px;
 }
-.ctw-slide-body {
+.ctw-imagination-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(13px, 1vw, 16px);
+  font-size: clamp(14px, 1.1vw, 17px);
   font-weight: 400;
-  line-height: 1.85;
-  color: rgba(255,255,255,0.6);
+  line-height: 1.75;
+  color: rgba(255,255,255,0.55);
   margin: 0;
-  max-width: 460px;
+  max-width: 420px;
 }
-
-/* Navigation */
-.ctw-nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 40px;
-}
-.ctw-arrow {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.28);
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  padding: 0;
-  flex-shrink: 0;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-.ctw-arrow:hover {
-  background: #C0001A;
-  border-color: #C0001A;
-}
-.ctw-dots {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.ctw-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.25);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.22s, width 0.22s;
-}
-.ctw-dot--active {
-  background: #C0001A;
-  width: 24px;
-  border-radius: 4px;
-}
-.ctw-counter {
-  margin-left: auto;
-  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.85);
-}
-.ctw-counter-sep { color: rgba(255,255,255,0.3); }
 
 .ctw-cta-row {
   display: flex;
@@ -4076,15 +4000,10 @@ body {
 }
 
 @media (max-width: 900px) {
-  .ctw-carousel { grid-template-columns: 1fr; gap: 0; }
-  .ctw-figure-wrap { min-height: 300px; }
-  .ctw-slider { padding: 40px 28px; }
-  .ctw-slide { min-height: 200px; }
+  .ctw-imagination { grid-template-columns: 1fr; gap: 0; }
+  .ctw-imagination-media { min-height: 340px; }
+  .ctw-imagination-copy { padding: 36px 28px 44px; }
   .ctw-section { padding: 72px 5% 80px; }
-}
-@media (max-width: 560px) {
-  .ctw-counter { display: none; }
-  .ctw-nav { gap: 14px; }
 }
 
 /* ══════════════════════════════════════════════════════════
