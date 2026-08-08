@@ -1860,6 +1860,7 @@ body {
   line-height: 1.05;
   letter-spacing: -0.01em;
   color: #000000;
+  text-transform: uppercase;
   margin: 0;
 }
 
@@ -1867,7 +1868,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(13px, 1.2vw, 16px);
   font-weight: 400;
-  color: #888;
+  color: #C0001A;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0;
