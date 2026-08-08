@@ -3164,7 +3164,7 @@ body {
 
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — FAQ accordion section
-   ═════����════════════════════════════════════════════════════ */
+   ═════�����════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
    ══════════���═════════════════���������═════════════════════════════ */
@@ -3795,7 +3795,7 @@ body {
   .qs-hero { height: 55vh; }
 }
 
-/* ════════════════════════════════════════════════════════��═
+/* ═══════════════════════════════════════════════════════����═
    WHATSAPP FLOATING BUTTON
    ══════════════════════════════════════════════════════════ */
 /* WhatsApp FAB — circle only; label slides in on hover */
@@ -3874,58 +3874,21 @@ body {
 
 /* ══════════════════════════════════════════════════════════
    CÓMO TRABAJAMOS — process steps section
-   ══════════════════════════════════════════════════════════ */
+   ══════════════════════════════════════���═══════════════════ */
 .ctw-section {
-  background: #111111;
+  background: #9c887d;
   width: 100%;
   padding: 100px 6% 108px;
   box-sizing: border-box;
 }
 .ctw-inner { max-width: 1200px; margin: 0 auto; }
 
-.ctw-header {
-  max-width: 640px;
-  margin-bottom: 72px;
-}
-.ctw-eyebrow {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #C0001A;
-  margin: 0 0 16px;
-}
-.ctw-heading {
-  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(40px, 5.5vw, 82px);
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: -0.01em;
-  color: #fff;
-  margin: 0 0 16px;
-  line-height: 1.0;
-}
-.ctw-subheading {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(13px, 1.05vw, 16px);
-  font-weight: 400;
-  color: rgba(255,255,255,0.5);
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* Imagination block: statue image + quote */
+/* Imagination block: statue image + quote (no container) */
 .ctw-imagination {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
   align-items: center;
-  margin-bottom: 56px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-  overflow: hidden;
-  background: #0d0d0d;
 }
 .ctw-imagination-media {
   position: relative;
@@ -3933,13 +3896,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 40%, #1c1c1c 0%, #0d0d0d 72%);
 }
 .ctw-imagination-img {
   width: 100%;
   height: 100%;
-  max-height: 520px;
+  max-height: 560px;
   object-fit: contain;
   object-position: center;
   display: block;
@@ -3950,7 +3911,7 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 .ctw-imagination-copy {
-  padding: 48px 56px 48px 0;
+  padding: 0;
 }
 .ctw-imagination-quote {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
@@ -3959,7 +3920,7 @@ body {
   font-style: italic;
   letter-spacing: -0.01em;
   line-height: 1.05;
-  color: #fff;
+  color: #1a1512;
   margin: 0 0 22px;
 }
 .ctw-imagination-sub {
@@ -3967,42 +3928,15 @@ body {
   font-size: clamp(14px, 1.1vw, 17px);
   font-weight: 400;
   line-height: 1.75;
-  color: rgba(255,255,255,0.55);
+  color: rgba(26,21,18,0.72);
   margin: 0;
   max-width: 420px;
 }
 
-.ctw-cta-row {
-  display: flex;
-  justify-content: flex-start;
-}
-.ctw-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #fff;
-  background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  border-radius: 40px;
-  padding: 14px 28px;
-  text-decoration: none;
-  transition: background 0.22s, border-color 0.22s, transform 0.18s;
-}
-.ctw-cta:hover {
-  background: #C0001A;
-  border-color: #C0001A;
-  transform: translateY(-1px);
-}
-
 @media (max-width: 900px) {
-  .ctw-imagination { grid-template-columns: 1fr; gap: 0; }
+  .ctw-imagination { grid-template-columns: 1fr; gap: 24px; }
   .ctw-imagination-media { min-height: 340px; }
-  .ctw-imagination-copy { padding: 36px 28px 44px; }
+  .ctw-imagination-copy { padding: 0; }
   .ctw-section { padding: 72px 5% 80px; }
 }
 
