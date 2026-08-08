@@ -3146,7 +3146,7 @@ body {
    ══════════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
-   ════════════════════════════�������═════════════════════════════ */
+   ════════════════════════════���������═════════════════════════════ */
 .faq2-section {
   background: #E8621E;
   width: 100%;
@@ -3209,14 +3209,16 @@ body {
 .faq2-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-size: clamp(32px, 4.4vw, 76px);
-  line-height: 0.98;
+  font-size: clamp(28px, 4vw, 76px);
+  line-height: 1.02;
   letter-spacing: -0.01em;
   color: #ffffff;
   text-transform: uppercase;
   text-align: center;
   margin: 0;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 100%;
+  text-wrap: balance;
   text-shadow: 0 2px 12px rgba(0,0,0,0.18);
 }
 .faq2-card {
@@ -3233,14 +3235,15 @@ body {
 }
 .faq2-question {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(18px, 2vw, 30px);
+  font-size: clamp(16px, 1.7vw, 24px);
   font-weight: 700;
   color: #1a0f04;
   margin: 0;
   line-height: 1.3;
   letter-spacing: -0.01em;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 560px;
 }
 .faq2-answer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
