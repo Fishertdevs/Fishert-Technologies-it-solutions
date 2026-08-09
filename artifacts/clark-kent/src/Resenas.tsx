@@ -90,7 +90,7 @@ export default function Resenas() {
 
   return (
     <section id="resenas" className="resenas-section">
-      {/* Top wave — white from portafolio section above */}
+      {/* Top wave — terracotta, continues the "Cómo trabajamos" section above */}
       <svg
         className="resenas-wave resenas-wave--top"
         xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ export default function Resenas() {
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M0,0 L1440,0 L1440,30 C1200,72 960,2 720,30 C480,72 240,2 0,30 Z" fill="#ffffff" />
+        <path d="M0,0 L1440,0 L1440,30 C1200,72 960,2 720,30 C480,72 240,2 0,30 Z" fill="#a8532f" />
       </svg>
 
       <div className="resenas-inner">
