@@ -1898,12 +1898,14 @@ body {
 .resena-card {
   background: #ffffff;
   border-radius: 16px;
-  padding: 28px 26px;
+  padding: 44px 34px;
+  min-height: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  gap: 18px;
+  gap: 24px;
   border: 1px solid #ebebeb;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
@@ -1983,8 +1985,8 @@ body {
   gap: 20px;
   padding-top: 4px;
 }
-.resenas-cta-btn { justify-self: start; }
-.resenas-nav { justify-self: center; }
+.resenas-cta-btn { justify-self: center; grid-column: 2; }
+.resenas-nav { justify-self: end; grid-column: 3; }
 
 .resenas-nav {
   display: flex;
@@ -2110,10 +2112,10 @@ body {
   animation: rf-fade-in 0.2s ease;
 }
 
-/* Modal card — dark checkerboard */
+/* Modal card — light checkerboard (matches reseñas section) */
 .rf-modal {
-  background-color: #1a1a1a;
-  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
+  background-color: #f0f0f0;
+  background-image: repeating-conic-gradient(#ffffff 0% 25%, #d8d8d8 0% 50%);
   background-size: 56px 56px;
   border-radius: 20px;
   width: 100%;
@@ -2137,9 +2139,9 @@ body {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.05);
+  color: rgba(0,0,0,0.5);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -2147,7 +2149,7 @@ body {
   transition: background 0.18s, color 0.18s;
   z-index: 2;
 }
-.rf-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.rf-close:hover { background: rgba(0,0,0,0.12); color: #000; }
 
 /* ── TABS (cslider style) ──────────────────────────────── */
 .rf-tabs {
@@ -2155,7 +2157,7 @@ body {
   justify-content: center;
   gap: 0;
   margin-bottom: 0;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
   flex-shrink: 0;
 }
 .rf-tab {
@@ -2164,7 +2166,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: rgba(0,0,0,0.3);
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
@@ -2176,14 +2178,14 @@ body {
 }
 .rf-tab + .rf-tab { margin-left: 24px; }
 .rf-tab--active {
-  color: #ffffff;
+  color: #000000;
   border-bottom-color: #C0001A;
 }
 .rf-tab--done {
-  color: rgba(255,255,255,0.5);
+  color: rgba(0,0,0,0.5);
   cursor: pointer;
 }
-.rf-tab--done:hover { color: rgba(255,255,255,0.75); }
+.rf-tab--done:hover { color: rgba(0,0,0,0.75); }
 
 /* ── SLIDING TRACK ────────────────────────────────────── */
 .rf-track-wrap {
@@ -2220,19 +2222,17 @@ body {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-size: clamp(22px, 3vw, 32px);
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   margin: 0;
   line-height: 1.05;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
 }
 .rf-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(0,0,0,0.6);
   margin: -8px 0 4px;
   letter-spacing: 0.04em;
   line-height: 1.5;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
 }
 
 /* ── Star rating ─────────────────────────────────────── */
@@ -2245,7 +2245,7 @@ body {
   background: none;
   border: none;
   font-size: 44px;
-  color: rgba(255,255,255,0.18);
+  color: rgba(0,0,0,0.18);
   cursor: pointer;
   padding: 0;
   line-height: 1;
@@ -2280,17 +2280,16 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.75);
 }
 .rf-req { color: #C0001A; }
 
 .rf-input {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  color: #ffffff;
-  background: rgba(0,0,0,0.45);
-  border: 1px solid rgba(255,255,255,0.18);
+  color: #111111;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,0,0,0.18);
   border-radius: 10px;
   padding: 11px 14px;
   box-sizing: border-box;
@@ -2299,10 +2298,10 @@ body {
   transition: border-color 0.18s, background 0.18s;
   text-align: left;
 }
-.rf-input::placeholder { color: rgba(255,255,255,0.35); }
+.rf-input::placeholder { color: rgba(0,0,0,0.35); }
 .rf-input:focus {
   border-color: #C0001A;
-  background: rgba(0,0,0,0.55);
+  background: #ffffff;
 }
 .rf-textarea {
   resize: none;
@@ -2328,7 +2327,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
   font-weight: 600;
-  color: rgba(255,255,255,0.45);
+  color: rgba(0,0,0,0.45);
   margin-left: 8px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2340,7 +2339,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(0,0,0,0.1);
   flex-shrink: 0;
 }
 
@@ -2355,13 +2354,13 @@ body {
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #ffffff;
+  color: #111111;
   transition: color 0.2s, opacity 0.2s;
   text-decoration: none;
 }
 .rf-txt-btn:hover { color: #C0001A; }
-.rf-txt-btn--dim { color: rgba(255,255,255,0.35); }
-.rf-txt-btn--dim:hover { color: rgba(255,255,255,0.75); }
+.rf-txt-btn--dim { color: rgba(0,0,0,0.35); }
+.rf-txt-btn--dim:hover { color: rgba(0,0,0,0.75); }
 .rf-txt-btn--disabled { opacity: 0.25; pointer-events: none; }
 .rf-txt-btn--hidden { opacity: 0; pointer-events: none; }
 
@@ -2382,13 +2381,13 @@ body {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-size: clamp(26px, 3vw, 36px);
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   margin: 0;
 }
 .rf-success-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
-  color: rgba(255,255,255,0.45);
+  color: rgba(0,0,0,0.45);
   margin: 0;
   letter-spacing: 0.04em;
 }
@@ -3188,7 +3187,7 @@ body {
   transform: translateX(3px);
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ══════════════════════════���═══════════════════════════════
    PORTFOLIO CTA — red strip below portfolio
    ══════════════════════════════════════════════════════════ */
 .pcta-section {
@@ -3899,7 +3898,7 @@ body {
   .qs-hero { height: 55vh; }
 }
 
-/* ══════════════════════════════════════════════════════������═
+/* ═══════════════════════════════════════════��══════════������═
    WHATSAPP FLOATING BUTTON
    ══════════════════════════════════════════════════════════ */
 /* WhatsApp FAB — circle only; label slides in on hover */
