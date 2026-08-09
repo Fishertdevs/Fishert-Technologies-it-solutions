@@ -1288,9 +1288,9 @@ body {
   position: absolute;
   right: 0;
   bottom: 0;
-  height: 78%;
+  height: 96%;
   width: auto;
-  max-width: 46%;
+  max-width: 52%;
   object-fit: contain;
   object-position: bottom right;
   z-index: 0;
@@ -1342,16 +1342,17 @@ body {
   white-space: pre-line;
 }
 
-/* ── Below: projects (centered in the free space left of the portrait) ── */
+/* ── Below: projects — stay on the LEFT (under the title), but the
+   card itself is centered within that left column ── */
 .port-right {
   display: flex;
   flex-direction: column;
   gap: 16px;
   justify-content: center;
-  align-items: center;
+  align-items: center;      /* centers the card inside the left column */
   width: 100%;
-  /* reserve the right area for the decorative portrait */
-  padding-right: 44%;
+  max-width: 780px;         /* ~ title width → keeps it on the left side */
+  margin-right: auto;       /* pin the whole column to the left */
   position: relative;
   z-index: 1;
 }
