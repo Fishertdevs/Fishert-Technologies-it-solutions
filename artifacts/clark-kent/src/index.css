@@ -1890,7 +1890,7 @@ body {
 .resenas-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(24px, 3.3vw, 54px);
+  font-size: clamp(26px, 3.9vw, 64px);
   line-height: 1.02;
   letter-spacing: -0.01em;
   color: #000000;
@@ -2067,10 +2067,10 @@ body {
 }
 .resenas-bust-img {
   position: absolute;
-  left: 50%;
-  bottom: -20%;
+  left: 62%;
+  bottom: -28%;
   transform: translateX(-50%);
-  height: 130%;
+  height: 138%;
   width: auto;
   max-width: none;
   display: block;
