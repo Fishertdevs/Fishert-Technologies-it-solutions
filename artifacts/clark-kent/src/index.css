@@ -1898,8 +1898,8 @@ body {
 .resena-card {
   background: #ffffff;
   border-radius: 16px;
-  padding: 34px 32px;
-  min-height: 300px;
+  padding: 24px 28px;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3900,7 +3900,7 @@ body {
 
 /* ═══════════════════════════════════════════��══════════������═
    WHATSAPP FLOATING BUTTON
-   ══════════════════════════════════════════════════════════ */
+   ═════════════���════════════════════════════════════════════ */
 /* WhatsApp FAB — circle only; label slides in on hover */
 .wa-fab-wrapper {
   position: fixed;
