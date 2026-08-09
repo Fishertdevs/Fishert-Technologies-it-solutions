@@ -2062,17 +2062,18 @@ body {
 .resenas-bust {
   position: relative;
   height: 100%;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
 }
 .resenas-bust-img {
   position: absolute;
   left: 50%;
-  bottom: -12%;
+  bottom: 0;
   transform: translateX(-50%);
-  height: 115%;
+  height: 92%;
   width: auto;
-  max-width: none;
+  max-width: 100%;
+  object-fit: contain;
   display: block;
   filter: drop-shadow(0 24px 48px rgba(0,0,0,0.18));
 }
