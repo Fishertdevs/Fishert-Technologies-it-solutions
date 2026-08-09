@@ -3216,14 +3216,15 @@ body {
    PORTFOLIO CTA — red strip below portfolio
    ══════════════════════════════════════════════════════════ */
 .pcta-section {
-  background-color: #4a000d;
-  background-image: repeating-conic-gradient(#3a000a 0% 25%, #6b0014 0% 50%);
+  background-color: #1a1a1a;
+  background-image: repeating-conic-gradient(#0a0a0a 0% 25%, #2e2e2e 0% 50%);
   background-size: 72px 72px;
   width: 100%;
   padding: 112px 6%;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  border-radius: 24px;
 }
 .pcta-content {
   display: flex;

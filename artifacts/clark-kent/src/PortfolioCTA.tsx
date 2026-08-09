@@ -3,12 +3,12 @@ import { useLang } from "./LanguageContext";
 const copy = {
   es: {
     heading: "¿Quieres un resultado así?",
-    sub: "Cuéntanos sobre tu proyecto y agenda una asesoría inicial sin costo ni compromiso.",
+    sub: "Cuéntanos sobre tu proyecto y agenda una asesoría inicial para definir juntos la mejor estrategia digital.",
     cta: "Cotiza tu proyecto",
   },
   en: {
     heading: "Want results like these?",
-    sub: "Tell us about your project and schedule a free, no-obligation consultation.",
+    sub: "Tell us about your project and schedule an initial consultation to define the best digital strategy together.",
     cta: "Get a quote",
   },
 };
