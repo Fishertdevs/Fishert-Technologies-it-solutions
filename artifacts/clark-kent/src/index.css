@@ -4022,14 +4022,15 @@ body {
   }
   .ctw-imagination-media {
   position: relative;
-  min-height: 460px;
+  min-height: 520px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  overflow: hidden;
   }
   .ctw-imagination-img {
   width: 100%;
-  height: auto;
+  height: 100%;
   max-height: 560px;
   object-fit: contain;
   object-position: bottom center;
@@ -4041,17 +4042,17 @@ body {
   to   { opacity: 1; transform: translateY(0); }
   }
   .ctw-imagination-copy {
-  padding: 0;
+  padding: 0 0 12px;
   }
   .ctw-imagination-quote {
-  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(32px, 4vw, 58px);
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(40px, 6.2vw, 84px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
   color: #1a1512;
-  margin: 0 0 22px;
+  margin: 0 0 26px;
   }
   .ctw-imagination-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -4067,8 +4068,9 @@ body {
 
 @media (max-width: 900px) {
   .ctw-imagination { grid-template-columns: 1fr; gap: 24px; }
-  .ctw-imagination-media { min-height: 340px; }
+  .ctw-imagination-media { min-height: 360px; }
   .ctw-imagination-copy { padding: 0; }
+  .ctw-imagination-quote { font-size: clamp(34px, 9vw, 52px); }
   .ctw-section { padding: 72px 5% 80px; }
 }
 
