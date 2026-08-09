@@ -1288,11 +1288,11 @@ body {
   position: absolute;
   right: -5%;            /* cancel the section's 5% right padding → true edge */
   bottom: -40px;         /* cancel the section's 40px bottom padding → true edge */
-  height: 118%;          /* que la altura mande y la imagen crezca hasta el borde inferior */
+  height: 100%;          /* tamaño original */
   width: auto;
-  max-width: 72%;        /* techo de ancho más alto para que no frene el crecimiento */
+  max-width: 52%;        /* tamaño original */
   object-fit: contain;
-  object-position: bottom right;
+  object-position: right bottom;
   z-index: 0;
   pointer-events: none;
   user-select: none;
@@ -3333,7 +3333,7 @@ body {
    ═════������════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
-   ══════════���═════════════════���������═════════════════════════════ */
+   ══════════���═════════════════���������═══════════════════════��═════ */
 .faq2-section {
   background: #E8621E;
   width: 100%;
