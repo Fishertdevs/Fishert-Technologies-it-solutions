@@ -1288,9 +1288,9 @@ body {
   position: absolute;
   right: -5%;            /* cancel the section's 5% right padding → true edge */
   bottom: -40px;         /* cancel the section's 40px bottom padding → true edge */
-  height: 105%;
+  height: 118%;          /* que la altura mande y la imagen crezca hasta el borde inferior */
   width: auto;
-  max-width: 60%;
+  max-width: 72%;        /* techo de ancho más alto para que no frene el crecimiento */
   object-fit: contain;
   object-position: bottom right;
   z-index: 0;
