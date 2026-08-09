@@ -1847,7 +1847,7 @@ body {
 
 .resenas-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 1fr) 460px;
   align-items: end;
   gap: 24px;
 }
@@ -1994,10 +1994,10 @@ body {
   gap: 16px;
 }
 .resenas-arrow {
-  width: 34px;
-  height: 34px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  border: 1.5px solid rgba(0,0,0,0.25);
+  border: 1.5px solid rgba(0,0,0,0.6);
   background: transparent;
   color: #111;
   display: flex;
@@ -2023,19 +2023,19 @@ body {
   gap: 8px;
 }
 .resenas-dot {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   border: none;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.25);
   cursor: pointer;
   padding: 0;
   transition: background 0.22s, width 0.22s;
 }
 .resenas-dot--active {
   background: #C0001A;
-  width: 26px;
-  border-radius: 5px;
+  width: 24px;
+  border-radius: 4px;
 }
 
 /* ── Pink bust ───────────────────────────────────────────── */
@@ -2045,13 +2045,14 @@ body {
   display: flex;
   justify-content: center;
   pointer-events: none;
+  z-index: 2;
 }
 .resenas-bust-img {
   width: 100%;
-  max-width: 460px;
+  max-width: 560px;
   height: auto;
   display: block;
-  margin-bottom: -40px;
+  margin-bottom: -80px;
   filter: drop-shadow(0 24px 48px rgba(0,0,0,0.18));
 }
 
@@ -3900,7 +3901,7 @@ body {
 
 /* ═══════════════════════════════════════════��══════════������═
    WHATSAPP FLOATING BUTTON
-   ═════════════���════════════════════════════════════════════ */
+   ═════════════�����════════════════════════════════════════════ */
 /* WhatsApp FAB — circle only; label slides in on hover */
 .wa-fab-wrapper {
   position: fixed;
