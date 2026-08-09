@@ -1279,6 +1279,23 @@ body {
   gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Right-anchored decorative portrait ── */
+.port-anchor-img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 78%;
+  width: auto;
+  max-width: 46%;
+  object-fit: contain;
+  object-position: bottom right;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* ── Top: title ── */
@@ -1304,9 +1321,12 @@ body {
   text-transform: uppercase;
   margin: 0;
   text-align: left;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
 }
 .port-title span {
-  display: block;
+  display: inline;
 }
 
 .port-subtitle {
@@ -1330,8 +1350,10 @@ body {
   justify-content: center;
   align-items: stretch;
   width: 100%;
-  max-width: 760px;
+  max-width: 520px;
   margin-right: auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Google wrapper ── */
@@ -1345,7 +1367,7 @@ body {
   gap: 14px;
   position: relative;
   overflow: hidden;
-  min-height: 310px;
+  min-height: 260px;
   transition: border-color 0.3s ease;
 }
 

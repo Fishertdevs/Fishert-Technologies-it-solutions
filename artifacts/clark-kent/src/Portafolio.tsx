@@ -154,13 +154,21 @@ export default function Portafolio() {
 
     <section id="portafolio" className="port-section">
 
+      {/* Right-anchored decorative portrait — pinned to the section edge */}
+      <img
+        src={`${base}casos-exito-retrato.png`}
+        alt=""
+        aria-hidden="true"
+        className="port-anchor-img"
+      />
+
       {/* ── Left: title ── */}
       <div className="port-left">
         <div style={{ width: "100%", textAlign: "left" }}>
           <h2 className="port-title" style={{ textAlign: "left" }}>
             {lang === "es"
-              ? <><span>NUESTROS CASOS</span><span>DE ÉXITO.</span></>
-              : <><span>OUR SUCCESS</span><span>STORIES.</span></>}
+              ? "NUESTROS CASOS DE ÉXITO."
+              : "OUR SUCCESS STORIES."}
           </h2>
         </div>
       </div>
