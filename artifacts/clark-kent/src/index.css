@@ -4006,7 +4006,7 @@ body {
    CÓMO TRABAJAMOS — process steps section
    ══════════════════════════════════════���═══════════════════ */
  .ctw-section {
-  background: #ff8fb1;
+  background: #a8532f;
   width: 100%;
   padding: 100px 6% 0;
   box-sizing: border-box;
@@ -4050,7 +4050,7 @@ body {
   line-height: 1.02;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  color: #1a1512;
+  color: #fdf3ec;
   margin: 0;
   }
   .ctw-imagination-quote.reveal { transition-delay: 0s; }
