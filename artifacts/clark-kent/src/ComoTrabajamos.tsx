@@ -30,11 +30,6 @@ export default function ComoTrabajamos() {
                 ? "Tu único límite es tu imaginación."
                 : "Your only limit is your imagination."}
             </h3>
-            <p className="ctw-imagination-sub reveal">
-              {lang === "es"
-                ? "Lo clásico y lo nuevo, unidos por lo que somos capaces de crear."
-                : "The classic and the new, joined by what we're able to create."}
-            </p>
           </div>
         </div>
       </div>
