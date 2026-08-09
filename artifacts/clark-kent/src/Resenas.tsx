@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLang } from "./LanguageContext";
 import ReviewForm from "./ReviewForm";
+import resenasBust from "@assets/resenas_bust.png";
 
 const reviews = {
   es: [
@@ -73,10 +74,19 @@ const Stars = ({ count, lang }: { count: number; lang: "es" | "en" }) => (
   </div>
 );
 
+const VISIBLE = 2;
+
 export default function Resenas() {
   const { lang } = useLang();
   const list = reviews[lang];
   const [showForm, setShowForm] = useState(false);
+  const [start, setStart] = useState(0);
+
+  const pages = Math.max(1, list.length - VISIBLE + 1);
+  const clamp = (n: number) => Math.max(0, Math.min(n, pages - 1));
+  const goPrev = () => setStart((s) => clamp(s - 1));
+  const goNext = () => setStart((s) => clamp(s + 1));
+  const visible = list.slice(start, start + VISIBLE);
 
   return (
     <section id="resenas" className="resenas-section">
@@ -92,39 +102,82 @@ export default function Resenas() {
       </svg>
 
       <div className="resenas-inner" style={{ paddingTop: 60 }}>
-        <div className="resenas-header">
-          <h2 className="resenas-heading">
-            {lang === "es" ? "Lo que dicen nuestros clientes." : "What our clients say."}
-          </h2>
-          <p className="resenas-sub">
-            {lang === "es"
-              ? "Clientes satisfechos que hablan de nuestro trabajo."
-              : "Satisfied clients who speak about our work."}
-          </p>
-        </div>
+        <div className="resenas-layout">
+          <div className="resenas-content">
+            <div className="resenas-header">
+              <h2 className="resenas-heading">
+                {lang === "es" ? "Lo que dicen nuestros clientes." : "What our clients say."}
+              </h2>
+              <p className="resenas-sub">
+                {lang === "es"
+                  ? "Clientes satisfechos que hablan de nuestro trabajo."
+                  : "Satisfied clients who speak about our work."}
+              </p>
+            </div>
 
-        <div className="resenas-grid">
-          {list.map((r, i) => (
-            <div key={i} className="resena-card">
-              <Stars count={r.stars} lang={lang} />
-              <blockquote className="resena-quote">"{r.quote}"</blockquote>
-              <div className="resena-author">
-                <span className="resena-name">{r.author}</span>
-                <span className="resena-company">{r.company}</span>
+            <div className="resenas-grid">
+              {visible.map((r, i) => (
+                <div key={start + i} className="resena-card">
+                  <Stars count={r.stars} lang={lang} />
+                  <blockquote className="resena-quote">"{r.quote}"</blockquote>
+                  <div className="resena-author">
+                    <span className="resena-name">{r.author}</span>
+                    <span className="resena-company">{r.company}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="resenas-controls">
+              <button className="resenas-cta-btn" onClick={() => setShowForm(true)}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 20h9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                {lang === "es" ? "Agregar reseña" : "Add a review"}
+              </button>
+
+              <div className="resenas-nav">
+                <button
+                  className="resenas-arrow"
+                  onClick={goPrev}
+                  disabled={start === 0}
+                  aria-label={lang === "es" ? "Anterior" : "Previous"}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                <div className="resenas-dots">
+                  {Array.from({ length: pages }).map((_, i) => (
+                    <button
+                      key={i}
+                      className={`resenas-dot${i === start ? " resenas-dot--active" : ""}`}
+                      onClick={() => setStart(clamp(i))}
+                      aria-label={`${lang === "es" ? "Ir a" : "Go to"} ${i + 1}`}
+                    />
+                  ))}
+                </div>
+                <button
+                  className="resenas-arrow"
+                  onClick={goNext}
+                  disabled={start >= pages - 1}
+                  aria-label={lang === "es" ? "Siguiente" : "Next"}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="resenas-cta-row">
-          <button className="resenas-cta-btn" onClick={() => setShowForm(true)}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 20h9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            {lang === "es" ? "Agregar reseña" : "Add a review"}
-          </button>
+          <div className="resenas-bust" aria-hidden="true">
+            <img src={resenasBust} alt="" className="resenas-bust-img" />
+          </div>
         </div>
       </div>
 
