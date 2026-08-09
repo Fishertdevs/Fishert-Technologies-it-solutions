@@ -1314,7 +1314,9 @@ body {
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(28px, 4vw, 76px);
+  /* pinned so the line spans exactly the projects-card width (620px) on
+     desktop; only shrinks on small screens */
+  font-size: clamp(26px, 6vw, 47px);
   line-height: 1.02;
   letter-spacing: -0.01em;
   color: #C0001A;
@@ -1342,22 +1344,22 @@ body {
   white-space: pre-line;
 }
 
-/* ── Below: projects — stay on the LEFT (under the title), but the
-   card itself is centered within that left column ── */
+/* ── Below: projects — flush-left, sharing the title's exact left edge
+   and width so title + card read as one uniform stacked block ── */
 .port-right {
   display: flex;
   flex-direction: column;
   gap: 16px;
   justify-content: center;
-  align-items: center;      /* centers the card inside the left column */
+  align-items: stretch;     /* card fills the column, flush-left under title */
   width: 100%;
-  max-width: 780px;         /* ~ title width → keeps it on the left side */
+  max-width: 620px;         /* same width as the card → same as the title line */
   margin-right: auto;       /* pin the whole column to the left */
   position: relative;
   z-index: 1;
 }
 
-/* card + nav share the same centered width */
+/* card + nav share the same width as the title line */
 .port-blob-outer,
 .port-right .port-nav {
   width: 100%;
@@ -2142,9 +2144,9 @@ body {
   transform: rotate(20deg);
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ═════════════════════════════════════════��════════════════
    REVIEW FORM MODAL  — dark checkerboard + cslider style
-   ══════════════════════════════════════════════════════════ */
+   ════════════════════════════════════════��═════════════════ */
 
 @keyframes rf-fade-in  { from { opacity: 0; } to { opacity: 1; } }
 @keyframes rf-slide-up {
