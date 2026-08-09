@@ -2068,9 +2068,9 @@ body {
 .resenas-bust-img {
   position: absolute;
   left: 56%;
-  bottom: -6%;
+  bottom: 0;
   transform: translateX(-50%);
-  height: 110%;
+  height: 80%;
   width: auto;
   max-width: none;
   object-fit: contain;
