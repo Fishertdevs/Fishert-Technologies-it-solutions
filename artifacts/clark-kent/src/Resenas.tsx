@@ -92,7 +92,7 @@ export default function Resenas() {
     <section id="resenas" className="resenas-section">
       {/* Top wave — white from portafolio section above */}
       <svg
-        style={{ display: "block", width: "100%", height: 80, marginBottom: 0 }}
+        className="resenas-wave resenas-wave--top"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"
@@ -101,7 +101,7 @@ export default function Resenas() {
         <path d="M0,0 L1440,0 L1440,30 C1200,72 960,2 720,30 C480,72 240,2 0,30 Z" fill="#ffffff" />
       </svg>
 
-      <div className="resenas-inner" style={{ paddingTop: 60 }}>
+      <div className="resenas-inner">
         <div className="resenas-layout">
           <div className="resenas-content">
             <div className="resenas-header">
@@ -184,7 +184,7 @@ export default function Resenas() {
       {/* Bottom wave — single boundary into Preguntas Frecuentes (orange).
           Same signature wave used across the FAQ section. */}
       <svg
-        style={{ display: "block", width: "100%", height: 80, marginTop: 40 }}
+        className="resenas-wave resenas-wave--bottom"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"

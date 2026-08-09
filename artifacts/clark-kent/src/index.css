@@ -1835,26 +1835,46 @@ body {
   padding: 0 6% 0;
   box-sizing: border-box;
   position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
+
+/* SVG waves — anchored top and bottom, same pattern as FAQ */
+.resenas-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+  pointer-events: none;
+  display: block;
+}
+.resenas-wave--top    { top: -1px; }
+.resenas-wave--bottom { bottom: -1px; }
 
 .resenas-inner {
   max-width: 1200px;
   margin: 0 auto;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .resenas-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 460px;
-  align-items: end;
+  align-items: stretch;
   gap: 24px;
+  width: 100%;
+  height: 100%;
 }
 
 .resenas-content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 32px;
   min-width: 0;
 }
@@ -2041,18 +2061,19 @@ body {
 /* ── Pink bust ───────────────────────────────────────────── */
 .resenas-bust {
   position: relative;
-  align-self: end;
-  display: flex;
-  justify-content: center;
+  height: 100%;
+  overflow: hidden;
   pointer-events: none;
-  z-index: 2;
 }
 .resenas-bust-img {
-  width: 100%;
-  max-width: 560px;
-  height: auto;
+  position: absolute;
+  left: 50%;
+  bottom: -12%;
+  transform: translateX(-50%);
+  height: 115%;
+  width: auto;
+  max-width: none;
   display: block;
-  margin-bottom: -80px;
   filter: drop-shadow(0 24px 48px rgba(0,0,0,0.18));
 }
 
@@ -3121,7 +3142,9 @@ body {
 
 /* ── Media queries ───────────────────────────────────────── */
   @media (max-width: 980px) {
-  .resenas-layout      { grid-template-columns: 1fr; }
+  .resenas-section     { height: auto; }
+  .resenas-inner       { height: auto; padding: 120px 0; }
+  .resenas-layout      { grid-template-columns: 1fr; height: auto; }
   .resenas-bust        { display: none; }
   }
   @media (max-width: 768px) {
