@@ -2067,10 +2067,10 @@ body {
 }
 .resenas-bust-img {
   position: absolute;
-  left: 66%;
-  bottom: -16%;
+  left: 50%;
+  bottom: -12%;
   transform: translateX(-50%);
-  height: 118%;
+  height: 115%;
   width: auto;
   max-width: none;
   display: block;
