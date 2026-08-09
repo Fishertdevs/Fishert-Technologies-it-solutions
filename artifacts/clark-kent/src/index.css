@@ -1342,18 +1342,25 @@ body {
   white-space: pre-line;
 }
 
-/* ── Below: projects (left aligned) ── */
+/* ── Below: projects (centered in the free space left of the portrait) ── */
 .port-right {
   display: flex;
   flex-direction: column;
   gap: 16px;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
-  max-width: 520px;
-  margin-right: auto;
+  /* reserve the right area for the decorative portrait */
+  padding-right: 44%;
   position: relative;
   z-index: 1;
+}
+
+/* card + nav share the same centered width */
+.port-blob-outer,
+.port-right .port-nav {
+  width: 100%;
+  max-width: 520px;
 }
 
 /* ── Google wrapper ── */
@@ -1691,7 +1698,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .port-arrow {
@@ -2455,7 +2462,7 @@ body {
   .rf-slide-inner { padding: 28px 0 20px; }
 }
 
-/* ── Policy pages ────────────────────────────────────────── */
+/* ── Policy pages ─────────────────��──────────────────────── */
 .policy-page {
   min-height: 100vh;
   background: #ffffff;
@@ -3178,6 +3185,7 @@ body {
   .resenas-grid        { grid-template-columns: 1fr; }
   .resenas-controls    { flex-direction: column; align-items: flex-start; gap: 24px; }
   .port-section        { grid-template-columns: 1fr; }
+  .port-right          { padding-right: 0; }
   .contacto-inner      { grid-template-columns: 1fr; gap: 48px; }
   .contacto-row        { grid-template-columns: 1fr; }
   .cookie-banner-inner { flex-direction: column; align-items: flex-start; }
@@ -3204,7 +3212,7 @@ body {
   .contacto-form-section { padding: 60px 4% 80px; }
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ═════════════════════════════════════════════════════��════
    NOSOTROS — Conócenos CTA button
    ══════════════════════════════════════════════════════════ */
 .nos-cta-btn {
