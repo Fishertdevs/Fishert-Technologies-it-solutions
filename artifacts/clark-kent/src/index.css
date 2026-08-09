@@ -4005,45 +4005,45 @@ body {
 /* ═══════════��═══════════════════════════════════════���══════
    CÓMO TRABAJAMOS — process steps section
    ══════════════════════════════════════���═══════════════════ */
-.ctw-section {
-  background: #9c887d;
+ .ctw-section {
+  background: #ffffff;
   width: 100%;
   padding: 100px 6% 108px;
   box-sizing: border-box;
-}
-.ctw-inner { max-width: 1200px; margin: 0 auto; }
-
-/* Imagination block: statue image + quote (no container) */
-.ctw-imagination {
+  }
+  .ctw-inner { max-width: 1200px; margin: 0 auto; }
+  
+  /* Imagination block: statue image + quote (no container) */
+  .ctw-imagination {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
-  align-items: center;
-}
-.ctw-imagination-media {
+  align-items: end;
+  }
+  .ctw-imagination-media {
   position: relative;
   min-height: 460px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-}
-.ctw-imagination-img {
+  }
+  .ctw-imagination-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   max-height: 560px;
   object-fit: contain;
-  object-position: center;
+  object-position: bottom center;
   display: block;
   animation: ctwFade 0.6s ease;
-}
-@keyframes ctwFade {
+  }
+  @keyframes ctwFade {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-.ctw-imagination-copy {
+  }
+  .ctw-imagination-copy {
   padding: 0;
-}
-.ctw-imagination-quote {
+  }
+  .ctw-imagination-quote {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-size: clamp(32px, 4vw, 58px);
   font-weight: 700;
@@ -4052,8 +4052,8 @@ body {
   line-height: 1.05;
   color: #1a1512;
   margin: 0 0 22px;
-}
-.ctw-imagination-sub {
+  }
+  .ctw-imagination-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: clamp(14px, 1.1vw, 17px);
   font-weight: 400;
@@ -4061,7 +4061,9 @@ body {
   color: rgba(26,21,18,0.72);
   margin: 0;
   max-width: 420px;
-}
+  }
+  .ctw-imagination-quote.reveal { transition-delay: 0s; }
+  .ctw-imagination-sub.reveal { transition-delay: 0.12s; }
 
 @media (max-width: 900px) {
   .ctw-imagination { grid-template-columns: 1fr; gap: 24px; }
