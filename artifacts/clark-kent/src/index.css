@@ -1288,9 +1288,9 @@ body {
   position: absolute;
   right: -5%;            /* cancel the section's 5% right padding → true edge */
   bottom: -40px;         /* cancel the section's 40px bottom padding → true edge */
-  height: 100%;
+  height: 105%;
   width: auto;
-  max-width: 52%;
+  max-width: 60%;
   object-fit: contain;
   object-position: bottom right;
   z-index: 0;
@@ -1314,9 +1314,9 @@ body {
 .port-title {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  /* pinned so the line spans exactly the projects-card width (620px) on
+  /* pinned so the line spans exactly the projects-card width (700px) on
      desktop; only shrinks on small screens */
-  font-size: clamp(26px, 6vw, 47px);
+  font-size: clamp(30px, 6.6vw, 56px);
   line-height: 1.02;
   letter-spacing: -0.01em;
   color: #C0001A;
@@ -1353,7 +1353,7 @@ body {
   justify-content: center;
   align-items: stretch;     /* card fills the column, flush-left under title */
   width: 100%;
-  max-width: 620px;         /* same width as the card → same as the title line */
+  max-width: 700px;         /* same width as the card → same as the title line */
   margin-right: auto;       /* pin the whole column to the left */
   position: relative;
   z-index: 1;
@@ -1363,7 +1363,7 @@ body {
 .port-blob-outer,
 .port-right .port-nav {
   width: 100%;
-  max-width: 620px;
+  max-width: 700px;
 }
 
 /* ── Google wrapper ── */
@@ -2145,7 +2145,7 @@ body {
 }
 
 /* ═════════════════════════════════════════��════════════════
-   REVIEW FORM MODAL  — dark checkerboard + cslider style
+   REVIEW FORM MODAL  �� dark checkerboard + cslider style
    ════════════════════════════════════════��═════════════════ */
 
 @keyframes rf-fade-in  { from { opacity: 0; } to { opacity: 1; } }
