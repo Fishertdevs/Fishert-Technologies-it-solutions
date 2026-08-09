@@ -1890,13 +1890,13 @@ body {
 .resenas-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
-  font-size: clamp(26px, 3.3vw, 54px);
+  font-size: clamp(24px, 3.3vw, 52px);
   line-height: 1.02;
   letter-spacing: -0.01em;
   color: #000000;
   text-transform: uppercase;
   margin: 0;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
 .resenas-sub {
@@ -2067,10 +2067,10 @@ body {
 }
 .resenas-bust-img {
   position: absolute;
-  left: 50%;
-  bottom: -12%;
+  left: 66%;
+  bottom: -16%;
   transform: translateX(-50%);
-  height: 115%;
+  height: 118%;
   width: auto;
   max-width: none;
   display: block;
@@ -3146,6 +3146,7 @@ body {
   .resenas-inner       { height: auto; padding: 120px 0; }
   .resenas-layout      { grid-template-columns: 1fr; height: auto; }
   .resenas-bust        { display: none; }
+  .resenas-heading     { white-space: normal; text-wrap: balance; }
   }
   @media (max-width: 768px) {
   .resenas-grid        { grid-template-columns: 1fr; }
@@ -3999,7 +4000,7 @@ body {
   .wa-fab-label { display: none; }
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════���══════
    CÓMO TRABAJAMOS — process steps section
    ══════════════════════════════════════���═══════════════════ */
 .ctw-section {
