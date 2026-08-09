@@ -1286,9 +1286,9 @@ body {
 /* ── Right-anchored decorative portrait ── */
 .port-anchor-img {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 96%;
+  right: -5%;            /* cancel the section's 5% right padding → true edge */
+  bottom: -40px;         /* cancel the section's 40px bottom padding → true edge */
+  height: 100%;
   width: auto;
   max-width: 52%;
   object-fit: contain;
@@ -1361,7 +1361,7 @@ body {
 .port-blob-outer,
 .port-right .port-nav {
   width: 100%;
-  max-width: 520px;
+  max-width: 620px;
 }
 
 /* ── Google wrapper ── */
@@ -3504,7 +3504,7 @@ body {
   .faq2-question { white-space: normal; }
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ════════════════════════════��═════════════════════════════
    SERVICIO DETALLE — /servicios/:slug
    ══════════════════════════════════════════════════════════ */
 .svc-page { width: 100%; }
