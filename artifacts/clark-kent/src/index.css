@@ -2068,9 +2068,9 @@ body {
 .resenas-bust-img {
   position: absolute;
   left: 56%;
-  bottom: -12%;
+  bottom: -6%;
   transform: translateX(-50%);
-  height: 115%;
+  height: 110%;
   width: auto;
   max-width: none;
   object-fit: contain;
@@ -4002,7 +4002,7 @@ body {
   .wa-fab-label { display: none; }
 }
 
-/* ═══════════════════════════════════════════════════���══════
+/* ═══════════��═══════════════════════════════════════���══════
    CÓMO TRABAJAMOS — process steps section
    ══════════════════════════════════════���═══════════════════ */
 .ctw-section {
