@@ -154,13 +154,30 @@ export default function Portafolio() {
 
     <section id="portafolio" className="port-section">
 
-      {/* Right-anchored decorative portrait — pinned to the section edge */}
+      {/* Right-anchored decorative portrait — pinned to the true section edge,
+          sibling of the max-width content wrapper so it can bleed full-bleed */}
       <img
         src={`${base}casos-exito-retrato.png`}
         alt=""
         aria-hidden="true"
         className="port-anchor-img"
       />
+
+      {/* Bottom wave — caps the portrait's edge with the same curve used in PreguntasFrecuentes */}
+      <svg
+        className="port-wave port-wave--bottom"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          fill="#ffffff"
+        />
+      </svg>
+
+    <div className="port-inner">
 
       {/* ── Left: title ── */}
       <div className="port-left">
@@ -300,6 +317,8 @@ export default function Portafolio() {
           </button>
         </div>
       </div>
+
+    </div>{/* port-inner */}
 
     </section>
     </>

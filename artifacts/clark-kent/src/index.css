@@ -1269,34 +1269,69 @@ body {
    ══════════════════════════════════════════════════════════ */
 
 .port-section {
+  /* Full-bleed, definite-height section — same base pattern as the other
+     "anchored image" sections (Nosotros / Preguntas Frecuentes) so the
+     percentage-based image sizing below always has a real box to resolve
+     against, instead of the section's own auto (content-driven) height. */
+  width: 100%;
+  height: 100vh;
+  min-height: 640px;
+  background: #ffffff;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Inner content wrapper — carries the old section's padding + max-width so
+   the title/card column stays exactly where it was, while the portrait
+   below is a direct child of the full-bleed section and can reach the
+   true edge on every breakpoint. */
+.port-inner {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-height: auto;
-  background: #ffffff;
+  justify-content: center;
+  height: 100%;
   padding: 80px 5% 40px 3%;
   box-sizing: border-box;
   gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
+  z-index: 1;
 }
 
-/* ── Right-anchored decorative portrait ── */
+/* ── Right-anchored decorative portrait ──
+   Sibling of .port-inner, direct child of the full-bleed, definite-height
+   section → right/bottom/height percentages now resolve reliably and the
+   portrait sits flush against the true section edge instead of stopping at
+   an invisible boundary. */
 .port-anchor-img {
   position: absolute;
-  right: -5%;            /* cancel the section's 5% right padding → true edge */
-  bottom: -40px;         /* cancel the section's 40px bottom padding → true edge */
-  height: 100%;          /* tamaño original */
+  right: 0;
+  bottom: 0;
+  height: 100%;
   width: auto;
-  max-width: 52%;        /* tamaño original */
+  max-width: 56%;
   object-fit: contain;
   object-position: right bottom;
   z-index: 0;
   pointer-events: none;
   user-select: none;
 }
+
+/* Bottom wave — caps the portrait's hard edge with the same curve used in
+   PreguntasFrecuentes, now anchored to a section whose height is definite. */
+.port-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+}
+.port-wave--bottom { bottom: -1px; }
 
 /* ── Top: title ── */
 .port-left {
@@ -2144,7 +2179,7 @@ body {
   transform: rotate(20deg);
 }
 
-/* ═════════════════════════════════════════��════════════════
+/* ═════════════════════════════════════════��═══���════════════
    REVIEW FORM MODAL  �� dark checkerboard + cslider style
    ════════════════════════════════════════��═════════════════ */
 
@@ -3187,7 +3222,9 @@ body {
   @media (max-width: 768px) {
   .resenas-grid        { grid-template-columns: 1fr; }
   .resenas-controls    { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .port-section        { grid-template-columns: 1fr; }
+  .port-section        { height: auto; min-height: auto; }
+  .port-inner          { flex-direction: column; height: auto; padding: 260px 6% 40px; }
+  .port-anchor-img     { max-width: 88%; opacity: 0.9; }
   .port-right          { padding-right: 0; }
   .contacto-inner      { grid-template-columns: 1fr; gap: 48px; }
   .contacto-row        { grid-template-columns: 1fr; }
