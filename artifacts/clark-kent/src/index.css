@@ -1269,27 +1269,51 @@ body {
    ══════════════════════════════════════════════════════════ */
 
 .port-section {
-  --port-anchor-bottom-offset: -4rem;
+  --port-surface: #ffffff;
+  --port-next-section: #a8532f;
+  --port-wave-height: 80px;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-height: auto;
-  background: #ffffff;
-  padding: 80px 5% 40px 3%;
+  color: var(--port-surface);
+  background: linear-gradient(
+    to bottom,
+    var(--port-surface) 0,
+    var(--port-surface) calc(100% - var(--port-wave-height)),
+    var(--port-next-section) calc(100% - var(--port-wave-height)),
+    var(--port-next-section) 100%
+  );
+  padding: 80px 5% var(--port-wave-height) 3%;
   box-sizing: border-box;
   gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
+}
+
+.port-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: var(--port-wave-height);
+  z-index: 10;
+  color: var(--port-surface);
+  pointer-events: none;
+  display: block;
+}
+
+.port-wave--bottom {
+  bottom: -1px;
 }
 
 /* ── Right-anchored decorative portrait ── */
 .port-anchor-img {
   position: absolute;
   right: -5%;            /* cancel the section's 5% right padding → true edge */
-  bottom: var(--port-anchor-bottom-offset); /* align visible artwork with the section boundary */
+  bottom: 0;
   height: 100%;          /* tamaño original */
   width: auto;
   max-width: 52%;        /* tamaño original */
@@ -2146,7 +2170,7 @@ body {
   transform: rotate(20deg);
 }
 
-/* ════════════════════════════��════════════��═══���════════════
+/* ════════════════════════════����════════════��═══���════════════
    REVIEW FORM MODAL  �� dark checkerboard + cslider style
    ════════════════════════════════════════��═════════════════ */
 
@@ -2737,7 +2761,7 @@ body {
   white-space: nowrap;
 }
 
-/* ─�� Rounded info+map container ──────────────────────────── */
+/* ����� Rounded info+map container ──────────────────────────── */
 .contacto-wrap {
   width: 100%;
   display: grid;
@@ -4051,17 +4075,6 @@ body {
   overflow: hidden;
   position: relative;
   }
-  /* SVG wave — top boundary, same pattern as Reseñas */
-  .ctw-wave {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  z-index: 10;
-  pointer-events: none;
-  display: block;
-  }
-  .ctw-wave--top { top: -1px; }
   .ctw-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
   
   /* Imagination block: statue image + quote (no container) */
