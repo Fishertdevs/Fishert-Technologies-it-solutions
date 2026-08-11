@@ -1335,7 +1335,7 @@ body {
   display: block;
   min-width: 0;
   width: 100%;
-  max-width: none;
+  max-width: 700px;
   position: relative;
   box-sizing: border-box;
 }
@@ -3996,7 +3996,7 @@ body {
 
 /* ═══════════════════════════════════════════��══════════������═
    WHATSAPP FLOATING BUTTON
-   ═════════════�����═════════���══════════════════════════════════ */
+   ═════════════�����════════�����══════════════════════════════════ */
 /* WhatsApp FAB — circle only; label slides in on hover */
 .wa-fab-wrapper {
   position: fixed;
