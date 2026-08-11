@@ -1282,7 +1282,7 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* ── Right-anchored decorative portrait ── */
@@ -2146,7 +2146,7 @@ body {
   transform: rotate(20deg);
 }
 
-/* ═════════════════════════════════════════��═══���════════════
+/* ════════════════════════════��════════════��═══���════════════
    REVIEW FORM MODAL  �� dark checkerboard + cslider style
    ════════════════════════════════════════��═════════════════ */
 
@@ -2737,7 +2737,7 @@ body {
   white-space: nowrap;
 }
 
-/* ── Rounded info+map container ──────────────────────────── */
+/* ─�� Rounded info+map container ──────────────────────────── */
 .contacto-wrap {
   width: 100%;
   display: grid;
