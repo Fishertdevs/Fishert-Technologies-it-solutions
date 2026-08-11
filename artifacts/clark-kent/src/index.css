@@ -1312,11 +1312,11 @@ body {
 /* ── Right-anchored decorative portrait ── */
 .port-anchor-img {
   position: absolute;
-  right: -5%;            /* cancel the section's 5% right padding → true edge */
+  right: 0;
   bottom: 0;
-  height: 100%;          /* tamaño original */
+  height: 100%;
   width: auto;
-  max-width: 52%;        /* tamaño original */
+  max-width: 48%;
   object-fit: contain;
   object-position: right bottom;
   z-index: 0;
@@ -1324,11 +1324,18 @@ body {
   user-select: none;
 }
 
+@media (max-width: 1100px) {
+  .port-anchor-img {
+    display: none;
+  }
+}
+
 /* ── Top: title ── */
 .port-left {
   display: block;
   min-width: 0;
   width: 100%;
+  max-width: 700px;
   position: relative;
   box-sizing: border-box;
 }
@@ -1348,7 +1355,7 @@ body {
   color: #C0001A;
   text-transform: uppercase;
   margin: 0;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
   position: relative;
   z-index: 1;
@@ -3356,7 +3363,7 @@ body {
 
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — FAQ accordion section
-   ═════������════════════════════════════════════════════════════ */
+   ═════������════════════════════════════════════���═══════════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
    ══════════���═════════════════���������═══════════════════════��═════ */
