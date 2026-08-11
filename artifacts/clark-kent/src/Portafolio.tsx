@@ -309,7 +309,7 @@ export default function Portafolio() {
         aria-hidden="true"
       >
         <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          d="M0,0 L1440,0 L1440,40 C1200,0 960,80 720,40 C480,0 240,80 0,40 Z"
           fill="currentColor"
         />
       </svg>
