@@ -164,13 +164,11 @@ export default function Portafolio() {
 
       {/* ── Left: title ── */}
       <div className="port-left">
-        <div style={{ width: "100%", textAlign: "left" }}>
-          <h2 className="port-title" style={{ textAlign: "left" }}>
-            {lang === "es"
-              ? "NUESTROS CASOS DE ÉXITO."
-              : "OUR SUCCESS STORIES."}
-          </h2>
-        </div>
+        <h2 className="port-title">
+          {lang === "es"
+            ? "NUESTROS CASOS DE ÉXITO."
+            : "OUR SUCCESS STORIES."}
+        </h2>
       </div>
 
       {/* ── Right: Google search simulation ── */}
@@ -301,6 +299,22 @@ export default function Portafolio() {
         </div>
       </div>
 
+      <svg
+        className="port-wave port-wave--bottom"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,0 L1440,0 L1440,40 C1200,0 960,80 720,40 C480,0 240,80 0,40 Z"
+          fill="var(--port-surface)"
+        />
+        <path
+          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          fill="var(--port-next-section)"
+        />
+      </svg>
     </section>
     </>
   );

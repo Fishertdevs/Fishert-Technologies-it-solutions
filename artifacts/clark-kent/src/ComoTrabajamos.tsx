@@ -8,16 +8,6 @@ export default function ComoTrabajamos() {
 
   return (
     <section className="ctw-section">
-      {/* Top wave — white, continues the portfolio section above */}
-      <svg
-        className="ctw-wave ctw-wave--top"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path d="M0,0 L1440,0 L1440,30 C1200,72 960,2 720,30 C480,72 240,2 0,30 Z" fill="#ffffff" />
-      </svg>
       <div
         className="ctw-inner"
         ref={sectionRef as React.RefObject<HTMLDivElement>}
@@ -43,6 +33,26 @@ export default function ComoTrabajamos() {
           </div>
         </div>
       </div>
+
+      <svg
+        className="ctw-wave ctw-wave--bottom"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern id="ctw-checker" width="144" height="144" patternUnits="userSpaceOnUse">
+            <rect width="144" height="144" fill="#ffffff" />
+            <rect width="72" height="72" fill="#d8d8d8" />
+            <rect x="72" y="72" width="72" height="72" fill="#d8d8d8" />
+          </pattern>
+        </defs>
+        <path
+          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          fill="url(#ctw-checker)"
+        />
+      </svg>
     </section>
   );
 }

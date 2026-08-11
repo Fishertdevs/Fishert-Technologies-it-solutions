@@ -1269,12 +1269,17 @@ body {
    ══════════════════════════════════════════════════════════ */
 
 .port-section {
+  --port-surface: #ffffff;
+  --port-next-section: #a8532f;
+  --port-wave-height: 80px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-height: auto;
-  background: #ffffff;
-  padding: 80px 5% 40px 3%;
+  color: var(--port-surface);
+  background: var(--port-surface);
+  padding: 80px 5% var(--port-wave-height) 3%;
   box-sizing: border-box;
   gap: 40px;
   max-width: 1400px;
@@ -1283,14 +1288,29 @@ body {
   overflow: hidden;
 }
 
+.port-wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: var(--port-wave-height);
+  z-index: 10;
+  color: var(--port-next-section);
+  pointer-events: none;
+  display: block;
+}
+
+.port-wave--bottom {
+  bottom: -1px;
+}
+
 /* ── Right-anchored decorative portrait ── */
 .port-anchor-img {
   position: absolute;
-  right: -5%;            /* cancel the section's 5% right padding → true edge */
-  bottom: -40px;         /* cancel the section's 40px bottom padding → true edge */
-  height: 100%;          /* tamaño original */
+  right: 0;
+  bottom: -12%;
+  height: 115%;
   width: auto;
-  max-width: 52%;        /* tamaño original */
+  max-width: none;
   object-fit: contain;
   object-position: right bottom;
   z-index: 0;
@@ -1298,11 +1318,18 @@ body {
   user-select: none;
 }
 
+@media (max-width: 1100px) {
+  .port-anchor-img {
+    display: none;
+  }
+}
+
 /* ── Top: title ── */
 .port-left {
   display: block;
   min-width: 0;
   width: 100%;
+  max-width: 700px;
   position: relative;
   box-sizing: border-box;
 }
@@ -1322,7 +1349,7 @@ body {
   color: #C0001A;
   text-transform: uppercase;
   margin: 0;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
   position: relative;
   z-index: 1;
@@ -2144,7 +2171,7 @@ body {
   transform: rotate(20deg);
 }
 
-/* ═════════════════════════════════════════��════════════════
+/* ════════════════════════════����════════════��═══���════════════
    REVIEW FORM MODAL  �� dark checkerboard + cslider style
    ════════════════════════════════════════��═════════════════ */
 
@@ -2735,7 +2762,7 @@ body {
   white-space: nowrap;
 }
 
-/* ── Rounded info+map container ──────────────────────────── */
+/* ����� Rounded info+map container ──────────────────────────── */
 .contacto-wrap {
   width: 100%;
   display: grid;
@@ -3330,7 +3357,7 @@ body {
 
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — FAQ accordion section
-   ═════������════════════════════════════════════════════════════ */
+   ═════������════════════════════════════════════���══════���════════ */
 /* ══════════════════════════════════════════════════════════
    PREGUNTAS FRECUENTES — two-column carousel
    ══════════���═════════════════���������═══════════════════════��═════ */
@@ -3963,7 +3990,7 @@ body {
 
 /* ═══════════════════════════════════════════��══════════������═
    WHATSAPP FLOATING BUTTON
-   ═════════════�����════════════════════════════════════════════ */
+   ═════════════�����════════�������══════════════════════════════════ */
 /* WhatsApp FAB — circle only; label slides in on hover */
 .wa-fab-wrapper {
   position: fixed;
@@ -4042,25 +4069,26 @@ body {
    CÓMO TRABAJAMOS — process steps section
    ══════════════════════════════════════���═══════════════════ */
  .ctw-section {
+  --ctw-wave-height: 80px;
+
   background: #a8532f;
   width: 100%;
-  padding: 100px 6% 0;
+  padding: 100px 6% var(--ctw-wave-height);
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
   }
-  /* SVG wave — top boundary, same pattern as Reseñas */
+  .ctw-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
   .ctw-wave {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: var(--ctw-wave-height);
   z-index: 10;
   pointer-events: none;
   display: block;
   }
-  .ctw-wave--top { top: -1px; }
-  .ctw-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .ctw-wave--bottom { bottom: -1px; }
   
   /* Imagination block: statue image + quote (no container) */
   .ctw-imagination {
@@ -4071,7 +4099,8 @@ body {
   }
   .ctw-imagination-media {
   position: relative;
-  height: 600px;
+  height: calc(600px + var(--ctw-wave-height));
+  margin-bottom: calc(var(--ctw-wave-height) * -1);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -4105,10 +4134,10 @@ body {
 
 @media (max-width: 900px) {
   .ctw-imagination { grid-template-columns: 1fr; gap: 24px; }
-  .ctw-imagination-media { height: 380px; }
+  .ctw-imagination-media { height: calc(380px + var(--ctw-wave-height)); }
   .ctw-imagination-copy { padding: 0 0 72px; }
   .ctw-imagination-quote { font-size: clamp(34px, 9vw, 52px); }
-  .ctw-section { padding: 72px 5% 0; }
+  .ctw-section { padding: 72px 5% var(--ctw-wave-height); }
 }
 
 /* ══════════════════════════════════════════════════════════
