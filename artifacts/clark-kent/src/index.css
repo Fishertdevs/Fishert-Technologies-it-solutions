@@ -1269,6 +1269,8 @@ body {
    ══════════════════════════════════════════════════════════ */
 
 .port-section {
+  --port-anchor-bottom-offset: -4rem;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1287,7 +1289,7 @@ body {
 .port-anchor-img {
   position: absolute;
   right: -5%;            /* cancel the section's 5% right padding → true edge */
-  bottom: -40px;         /* cancel the section's 40px bottom padding → true edge */
+  bottom: var(--port-anchor-bottom-offset); /* align visible artwork with the section boundary */
   height: 100%;          /* tamaño original */
   width: auto;
   max-width: 52%;        /* tamaño original */
@@ -2144,7 +2146,7 @@ body {
   transform: rotate(20deg);
 }
 
-/* ═════════════════════════════════════════��════════════════
+/* ═════════════════════════════════════════��═══���════════════
    REVIEW FORM MODAL  �� dark checkerboard + cslider style
    ════════════════════════════════════════��═════════════════ */
 
