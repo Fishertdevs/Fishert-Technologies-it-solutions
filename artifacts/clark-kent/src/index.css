@@ -447,10 +447,10 @@ body {
 /* ── About section wave divider ─────────────────────────── */
 .about-wave {
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 82px;
   z-index: 10;
   pointer-events: none;
   display: block;

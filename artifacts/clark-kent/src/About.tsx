@@ -75,11 +75,11 @@ export default function About() {
         aria-hidden="true"
         className="about-wave"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 80"
+        viewBox="0 0 1440 82"
         preserveAspectRatio="none"
       >
         <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,82 L0,82 Z"
           fill="#ffffff"
         />
       </svg>
