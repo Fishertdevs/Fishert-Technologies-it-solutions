@@ -1281,24 +1281,30 @@ body {
    PORTAFOLIO — Google search simulation
    ══════════════════════════════════════════════════════════ */
 
-.port-section {
+/* Full-width outer wrapper — portrait and wave live here */
+.port-outer {
   --port-surface: #ffffff;
   --port-next-section: #a8532f;
   --port-wave-height: 80px;
+  position: relative;
+  width: 100%;
+  background: var(--port-surface);
+  overflow: hidden;
+}
 
+.port-section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-height: auto;
   color: var(--port-surface);
-  background: var(--port-surface);
+  background: transparent;
   padding: 80px 5% var(--port-wave-height) 3%;
   box-sizing: border-box;
   gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
 }
 
 .port-wave {
@@ -1326,7 +1332,7 @@ body {
   max-width: none;
   object-fit: contain;
   object-position: right bottom;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   user-select: none;
 }

@@ -152,15 +152,17 @@ export default function Portafolio() {
       </defs>
     </svg>
 
-    <section id="portafolio" className="port-section">
+    <div className="port-outer">
 
-      {/* Right-anchored decorative portrait — pinned to the section edge */}
+      {/* Right-anchored decorative portrait — pinned to viewport edge */}
       <img
         src={`${base}casos-exito-retrato.png`}
         alt=""
         aria-hidden="true"
         className="port-anchor-img"
       />
+
+    <section id="portafolio" className="port-section">
 
       {/* ── Left: title ── */}
       <div className="port-left">
@@ -299,6 +301,9 @@ export default function Portafolio() {
         </div>
       </div>
 
+    </section>
+
+      {/* Full-width wave — outside the constrained port-section */}
       <svg
         className="port-wave port-wave--bottom"
         xmlns="http://www.w3.org/2000/svg"
@@ -315,7 +320,7 @@ export default function Portafolio() {
           fill="var(--port-next-section)"
         />
       </svg>
-    </section>
+    </div>
     </>
   );
 }
