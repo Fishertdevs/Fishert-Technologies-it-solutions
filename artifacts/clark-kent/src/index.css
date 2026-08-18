@@ -1320,8 +1320,8 @@ body {
 .port-anchor-img {
   position: absolute;
   right: 0;
-  bottom: -12%;
-  height: 115%;
+  bottom: -8%;
+  height: 95%;
   width: auto;
   max-width: none;
   object-fit: contain;
