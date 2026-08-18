@@ -90,17 +90,6 @@ export default function Resenas() {
 
   return (
     <section id="resenas" className="resenas-section">
-      {/* Keep the transition transparent so the checkerboard continues uniformly. */}
-      <svg
-        className="resenas-wave resenas-wave--top"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path d="M0,0 L1440,0 L1440,30 C1200,72 960,2 720,30 C480,72 240,2 0,30 Z" fill="transparent" />
-      </svg>
-
       <div className="resenas-inner">
         <div className="resenas-layout">
           <div className="resenas-content">
