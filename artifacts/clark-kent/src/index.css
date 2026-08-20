@@ -4557,6 +4557,10 @@ body {
     letter-spacing: 0.06em;
   }
 
+  .navbar-logo-full {
+    display: none;
+  }
+
   .navbar-links {
     display: none;
   }
@@ -4703,6 +4707,7 @@ body {
     font-weight: 500;
     line-height: 1;
     text-decoration: none;
+    text-transform: uppercase;
     transition: color 0.25s ease, padding-left 0.25s ease;
   }
 

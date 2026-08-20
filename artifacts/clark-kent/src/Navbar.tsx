@@ -100,7 +100,8 @@ export default function Navbar() {
   return (
     <nav className={cls}>
       <a className="navbar-logo" href="#inicio" onClick={(e) => handleClick(e, "#inicio")}>
-        FISHERT STUDIO · SOFTWARE AGENCY
+        <span className="navbar-logo-short">FISHERT STUDIO</span>
+        <span className="navbar-logo-full"> · SOFTWARE AGENCY</span>
       </a>
       <ul className="navbar-links">
         {links.map((l) => (
@@ -150,7 +151,6 @@ export default function Navbar() {
             <li key={l.label}>
               <a className="navbar-mobile-link" href={l.href} onClick={(e) => handleClick(e, l.href)}>
                 <span>{l.label}</span>
-                <span className="navbar-mobile-link-arrow" aria-hidden="true">↗</span>
               </a>
             </li>
           ))}
