@@ -3569,31 +3569,38 @@ body {
   }
 
   .cookie-banner-inner {
-    padding: 9px 12px 8px;
-    gap: 5px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 9px 12px;
+    gap: 8px;
     border-radius: 10px;
   }
 
   .cookie-banner-text {
-    gap: 6px;
+    position: relative;
+    display: block;
     width: 100%;
   }
 
   .cookie-banner-text > svg {
+    position: absolute;
+    left: 0;
+    top: 1px;
     width: 16px;
     height: 16px;
-    margin-top: 1px;
   }
 
   .cookie-banner-text p {
+    width: 100%;
     font-size: 10px;
     line-height: 1.28;
+    text-align: center;
   }
 
   .cookie-banner-actions {
     width: 100%;
-    gap: 14px;
-    justify-content: flex-start;
+    gap: 8px;
+    justify-content: flex-end;
   }
 
   .cookie-btn {
