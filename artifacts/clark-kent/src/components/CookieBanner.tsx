@@ -40,7 +40,7 @@ export default function CookieBanner() {
           <CookieIcon />
           <p>
             {lang === "es"
-              ? "Utilizamos cookies esenciales para mejorar tu experiencia. Al hacer clic en «Aceptar», aceptas el uso de cookies según nuestra "
+              ? "Usamos cookies esenciales para mejorar tu experiencia. Al hacer clic en «Aceptar», aceptas nuestra "
               : "We use essential cookies to improve your experience. By clicking «Accept», you agree to our "}
             <a href="/cookies" className="cookie-banner-link">
               {lang === "es" ? "Política de Cookies" : "Cookie Policy"}

@@ -3564,14 +3564,14 @@ body {
 @media (max-width: 600px) {
   .cookie-banner {
     bottom: 10px;
-    left: 12px;
-    right: 12px;
+    left: 6px;
+    right: 6px;
   }
 
   .cookie-banner-inner {
     flex-direction: column;
     align-items: stretch;
-    padding: 9px 12px;
+    padding: 9px 8px;
     gap: 8px;
     border-radius: 10px;
   }
@@ -3587,7 +3587,7 @@ body {
 
   .cookie-banner-text p {
     width: 100%;
-    font-size: 10px;
+    font-size: 10.5px;
     line-height: 1.28;
     text-align: left;
   }
