@@ -145,21 +145,6 @@ export default function Navbar() {
         className={`navbar-mobile-panel ${menuOpen ? "navbar-mobile-panel--open" : ""}`}
         aria-hidden={!menuOpen}
       >
-        <div className="navbar-mobile-panel-head">
-          <span>{lang === "es" ? "NAVEGACIÓN" : "NAVIGATION"}</span>
-          <div className="navbar-mobile-panel-tools">
-            <span className="navbar-mobile-panel-mark">FS</span>
-            <button className="navbar-lang-toggle navbar-lang-toggle--mobile" onClick={toggle} aria-label="Toggle language">
-              <span
-                className="navbar-lang-slider"
-                style={{ transform: lang === "en" ? "translateX(calc(100% + 4px))" : "translateX(0)" }}
-              />
-              <span className={`navbar-lang-opt ${lang === "es" ? "navbar-lang-opt--active" : ""}`}>ES</span>
-              <span className={`navbar-lang-opt ${lang === "en" ? "navbar-lang-opt--active" : ""}`}>EN</span>
-            </button>
-          </div>
-        </div>
-
         <ul className="navbar-mobile-links">
           {links.map((l) => (
             <li key={l.label}>
