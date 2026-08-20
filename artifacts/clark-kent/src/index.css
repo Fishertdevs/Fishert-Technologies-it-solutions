@@ -3577,21 +3577,21 @@ body {
   }
 
   .cookie-banner-text {
-    position: relative;
-    display: block;
+    display: grid;
+    grid-template-columns: 19px minmax(0, 1fr);
+    align-items: start;
+    column-gap: 6px;
     width: 100%;
   }
 
   .cookie-banner-text > svg {
-    position: absolute;
-    left: 0;
-    top: 1px;
-    width: 16px;
-    height: 16px;
+    width: 19px;
+    height: 19px;
+    margin-top: 1px;
   }
 
   .cookie-banner-text p {
-    width: 100%;
+    width: auto;
     font-size: 10px;
     line-height: 1.28;
     text-align: center;
