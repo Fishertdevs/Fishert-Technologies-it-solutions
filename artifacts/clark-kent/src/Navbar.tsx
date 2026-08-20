@@ -28,6 +28,7 @@ const NAVBAR_H = 72; // px — approximate navbar height
 export default function Navbar() {
   const [pastHero, setPastHero] = useState(false);
   const [textOverlap, setTextOverlap] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { lang, toggle } = useLang();
   const [location] = useLocation();
   const links = navLinks[lang];
@@ -69,9 +70,26 @@ export default function Navbar() {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setMenuOpen(false);
     const target = document.querySelector(href);
     if (target) target.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   const cls = isPolicyPage || pastHero
     ? "navbar navbar--light"
@@ -93,6 +111,20 @@ export default function Navbar() {
           </li>
         ))}
       </ul>
+
+      <button
+        className={`navbar-menu-toggle ${menuOpen ? "navbar-menu-toggle--open" : ""}`}
+        type="button"
+        aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-navigation"
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        <span className="navbar-menu-line" />
+        <span className="navbar-menu-line" />
+        <span className="navbar-menu-line" />
+      </button>
+
       <button className="navbar-lang-toggle" onClick={toggle} aria-label="Toggle language">
         <span
           className="navbar-lang-slider"
@@ -101,6 +133,48 @@ export default function Navbar() {
         <span className={`navbar-lang-opt ${lang === "es" ? "navbar-lang-opt--active" : ""}`}>ES</span>
         <span className={`navbar-lang-opt ${lang === "en" ? "navbar-lang-opt--active" : ""}`}>EN</span>
       </button>
+
+      <div
+        className={`navbar-mobile-backdrop ${menuOpen ? "navbar-mobile-backdrop--open" : ""}`}
+        aria-hidden="true"
+        onClick={() => setMenuOpen(false)}
+      />
+
+      <aside
+        id="mobile-navigation"
+        className={`navbar-mobile-panel ${menuOpen ? "navbar-mobile-panel--open" : ""}`}
+        aria-hidden={!menuOpen}
+      >
+        <div className="navbar-mobile-panel-head">
+          <span>{lang === "es" ? "NAVEGACIÓN" : "NAVIGATION"}</span>
+          <span className="navbar-mobile-panel-mark">FS</span>
+        </div>
+
+        <ul className="navbar-mobile-links">
+          {links.map((l) => (
+            <li key={l.label}>
+              <a className="navbar-mobile-link" href={l.href} onClick={(e) => handleClick(e, l.href)}>
+                <span>{l.label}</span>
+                <span className="navbar-mobile-link-arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="navbar-mobile-footer">
+          <span className="navbar-mobile-language-label">
+            {lang === "es" ? "Idioma" : "Language"}
+          </span>
+          <button className="navbar-lang-toggle navbar-lang-toggle--mobile" onClick={toggle} aria-label="Toggle language">
+            <span
+              className="navbar-lang-slider"
+              style={{ transform: lang === "en" ? "translateX(calc(100% + 4px))" : "translateX(0)" }}
+            />
+            <span className={`navbar-lang-opt ${lang === "es" ? "navbar-lang-opt--active" : ""}`}>ES</span>
+            <span className={`navbar-lang-opt ${lang === "en" ? "navbar-lang-opt--active" : ""}`}>EN</span>
+          </button>
+        </div>
+      </aside>
     </nav>
   );
 }
