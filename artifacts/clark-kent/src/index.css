@@ -4541,6 +4541,95 @@ body {
   .case-body, .case-quote-section, .case-tech-section { padding-left: 5%; padding-right: 5%; }
 }
 
+/* ── Contacto — mobile single-column layout ─────────────── */
+@media (max-width: 768px) {
+  .contacto-section {
+    height: auto;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .contacto-layout {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  .contacto-content-col {
+    width: 100%;
+    height: auto;
+    padding: 88px 16px 32px;
+    align-items: stretch;
+    gap: 22px;
+  }
+
+  .contacto-section-title {
+    max-width: 100%;
+    font-size: clamp(24px, 7.5vw, 34px);
+    line-height: 1.05;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .contacto-wrap {
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    border-radius: 14px;
+  }
+
+  .contacto-info {
+    min-height: 420px;
+    padding: 20px 18px;
+  }
+
+  .cslider-track-wrap {
+    min-height: 300px;
+  }
+
+  .contacto-info-sub,
+  .cslider-booking-intro {
+    font-size: 12px;
+  }
+
+  .contacto-info-value {
+    font-size: 11px;
+    overflow-wrap: anywhere;
+  }
+
+  .contacto-map-col {
+    min-height: 220px;
+    height: 220px;
+    padding: 8px;
+  }
+
+  .contacto-map-col iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .contacto-img-col {
+    width: 100%;
+    height: 320px;
+    min-height: 320px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .contacto-pearl {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    transform: none;
+  }
+}
+
 /* ── Mobile hamburger navigation ───────────────────────── */
 @media (max-width: 768px) {
   .navbar,
