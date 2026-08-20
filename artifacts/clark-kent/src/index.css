@@ -3577,24 +3577,19 @@ body {
   }
 
   .cookie-banner-text {
-    display: grid;
-    grid-template-columns: 19px minmax(0, 1fr);
-    align-items: start;
-    column-gap: 6px;
+    display: block;
     width: 100%;
   }
 
   .cookie-banner-text > svg {
-    width: 19px;
-    height: 19px;
-    margin-top: 1px;
+    display: none;
   }
 
   .cookie-banner-text p {
-    width: auto;
+    width: 100%;
     font-size: 10px;
     line-height: 1.28;
-    text-align: center;
+    text-align: left;
   }
 
   .cookie-banner-actions {
