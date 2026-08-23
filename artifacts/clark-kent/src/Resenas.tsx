@@ -1,4 +1,9 @@
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { useLang } from "./LanguageContext";
 import ReviewForm from "./ReviewForm";
 import resenasBust from "@assets/resenas_bust.png";
@@ -107,6 +112,7 @@ function ReviewsCarousel({
 }) {
   const [start, setStart] = useState(0);
   const isMobile = useMobileReviewsLayout();
+  const swipeStartX = useRef<number | null>(null);
   const itemsPerPage = isMobile ? 1 : VISIBLE;
   const pages = Math.max(1, list.length - itemsPerPage + 1);
   const clamp = (n: number) => Math.max(0, Math.min(n, pages - 1));
@@ -118,9 +124,32 @@ function ReviewsCarousel({
     setStart(0);
   }, [isMobile, lang]);
 
+  const handleSwipeStart = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!isMobile || event.pointerType === "mouse") return;
+    swipeStartX.current = event.clientX;
+  };
+
+  const handleSwipeEnd = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (swipeStartX.current === null) return;
+
+    const delta = event.clientX - swipeStartX.current;
+    swipeStartX.current = null;
+
+    if (Math.abs(delta) < 40) return;
+    if (delta < 0) goNext();
+    else goPrev();
+  };
+
   return (
     <>
-      <div className={`resenas-grid${isMobile ? " resenas-grid--mobile" : ""}`}>
+      <div
+        className={`resenas-grid${isMobile ? " resenas-grid--mobile" : ""}`}
+        onPointerDown={handleSwipeStart}
+        onPointerUp={handleSwipeEnd}
+        onPointerCancel={() => {
+          swipeStartX.current = null;
+        }}
+      >
         <div
           className="resenas-track"
           style={isMobile ? { transform: `translateX(-${start * 100}%)` } : undefined}

@@ -1,4 +1,8 @@
-import { useState } from "react";
+import {
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { useLang } from "./LanguageContext";
 import faqPortrait from "@assets/faq_portrait.png";
 
@@ -61,11 +65,28 @@ export default function PreguntasFrecuentes() {
   const { lang } = useLang();
   const items = faqs[lang];
   const [active, setActive] = useState(0);
+  const swipeStartX = useRef<number | null>(null);
 
   const prev = () => setActive((a) => (a - 1 + items.length) % items.length);
   const next = () => setActive((a) => (a + 1) % items.length);
 
   const current = items[active];
+
+  const handleSwipeStart = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse") return;
+    swipeStartX.current = event.clientX;
+  };
+
+  const handleSwipeEnd = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (swipeStartX.current === null) return;
+
+    const delta = event.clientX - swipeStartX.current;
+    swipeStartX.current = null;
+
+    if (Math.abs(delta) < 40) return;
+    if (delta < 0) next();
+    else prev();
+  };
 
   return (
     <section className="faq2-section">
@@ -87,14 +108,22 @@ export default function PreguntasFrecuentes() {
             {lang === "es" ? "Preguntas Frecuentes" : "Frequently Asked Questions"}
           </h2>
 
-          <div className="faq2-card" key={active}>
+          <div
+            className="faq2-card"
+            key={active}
+            onPointerDown={handleSwipeStart}
+            onPointerUp={handleSwipeEnd}
+            onPointerCancel={() => {
+              swipeStartX.current = null;
+            }}
+          >
             <h3 className="faq2-question">{current.q}</h3>
             <p className="faq2-answer">{current.a}</p>
           </div>
 
           {/* Navigation — arrows in the same row as dots */}
           <div className="faq2-nav">
-            <button className="faq2-arrow" onClick={prev} aria-label={lang === "es" ? "anterior" : "previous"}>
+            <button type="button" className="faq2-arrow" onClick={prev} aria-label={lang === "es" ? "anterior" : "previous"}>
               <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
                 <path d="M11 4L6 9l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -103,6 +132,7 @@ export default function PreguntasFrecuentes() {
             <div className="faq2-dots">
               {items.map((_, i) => (
                 <button
+                  type="button"
                   key={i}
                   className={`faq2-dot${i === active ? " faq2-dot--active" : ""}`}
                   onClick={() => setActive(i)}
@@ -111,7 +141,7 @@ export default function PreguntasFrecuentes() {
               ))}
             </div>
 
-            <button className="faq2-arrow" onClick={next} aria-label={lang === "es" ? "siguiente" : "next"}>
+            <button type="button" className="faq2-arrow" onClick={next} aria-label={lang === "es" ? "siguiente" : "next"}>
               <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
                 <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
