@@ -5293,6 +5293,7 @@ body {
     width: max-content;
     max-width: 100%;
     white-space: nowrap;
+    overflow: visible;
   }
 
   .about-line-inner {
@@ -5344,20 +5345,24 @@ body {
   }
 
   .about-line-inner {
-    font-size: clamp(16px, 6.2vw, 22px);
+    font-size: clamp(15px, 6vw, 21px);
     letter-spacing: -0.02em;
     white-space: nowrap !important;
   }
 
   .about-cta-wrap {
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
     margin-top: 18px;
   }
 
   .about-cta-primary,
   .about-cta-secondary {
-    font-size: clamp(10px, 3.2vw, 13px);
-    letter-spacing: 0.06em;
+    justify-content: center;
+    font-size: clamp(10px, 4vw, 12px);
+    font-weight: 700;
+    letter-spacing: 0.01em;
     padding-bottom: 5px;
   }
 
