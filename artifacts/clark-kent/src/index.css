@@ -5346,7 +5346,7 @@ body {
   }
 
   .about-line-inner {
-    font-size: clamp(15px, 5.6vw, 21px);
+    font-size: clamp(14px, 5.2vw, 19px);
     letter-spacing: -0.02em;
     white-space: nowrap !important;
   }
@@ -5354,17 +5354,18 @@ body {
   .about-cta-wrap {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
+    gap: 8px;
     margin-top: 18px;
   }
 
   .about-cta-primary,
   .about-cta-secondary {
     justify-content: center;
-    font-size: clamp(10px, 4vw, 12px);
+    min-height: 28px;
+    font-size: clamp(11px, 4.4vw, 14px);
     font-weight: 700;
     letter-spacing: 0.01em;
-    padding-bottom: 5px;
+    padding: 5px 2px 7px;
   }
 
   .vapor-img {
