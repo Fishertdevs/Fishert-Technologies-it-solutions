@@ -88,6 +88,7 @@ export default function ComoTrabajamos() {
         </div>
       </div>
 
+      <div className="ctw-checker-seam" aria-hidden="true" />
       <div className="ctw-wave ctw-wave--bottom" aria-hidden="true" />
     </section>
   );

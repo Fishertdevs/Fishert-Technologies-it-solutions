@@ -4174,6 +4174,23 @@ body {
   overflow: visible;
   position: relative;
 }
+.ctw-checker-seam {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  z-index: 101;
+  pointer-events: none;
+  background-color: #d8d8d8;
+  background-image: conic-gradient(
+    #ffffff 0 25%,
+    #d8d8d8 0 50%,
+    #ffffff 0 75%,
+    #d8d8d8 0 100%
+  );
+  background-size: 72px 72px;
+}
 .ctw-inner {
   width: 100%;
   height: 100vh;
@@ -4198,7 +4215,7 @@ body {
   left: 0;
   width: 100%;
   height: calc(var(--ctw-wave-height) + 2px);
-  z-index: 100;
+  z-index: 102;
   isolation: isolate;
   pointer-events: none;
   display: block;
