@@ -31,10 +31,24 @@ type Slot = { size: number; height: number; x: number };
 export default function Servicios() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [slots, setSlots] = useState<Slot[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
   const { lang } = useLang();
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px)");
+    const syncMobile = () => setIsMobile(media.matches);
+    syncMobile();
+    media.addEventListener("change", syncMobile);
+    return () => media.removeEventListener("change", syncMobile);
+  }, []);
 
   // ── Slot sizes from actual section width ───────────────────────────────
   useEffect(() => {
+    if (isMobile) {
+      setSlots([]);
+      return;
+    }
+
     const compute = () => {
       const vw = sectionRef.current?.clientWidth ?? window.innerWidth;
       const vh = sectionRef.current?.clientHeight ?? window.innerHeight;
@@ -54,11 +68,11 @@ export default function Servicios() {
     compute();
     window.addEventListener("resize", compute);
     return () => window.removeEventListener("resize", compute);
-  }, []);
+  }, [isMobile]);
 
   // ── Scroll-driven 6-cycle carousel (user controls with scroll) ─────────
   useLayoutEffect(() => {
-    if (slots.length < VISIBLE || !sectionRef.current) return;
+    if (isMobile || slots.length < VISIBLE || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
       // 1. Hide all cards, then place the initial 5
@@ -128,7 +142,7 @@ export default function Servicios() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [slots]);
+  }, [slots, isMobile]);
 
   return (
     <section

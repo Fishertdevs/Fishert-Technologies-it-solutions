@@ -5423,10 +5423,68 @@ body {
 /* Mobile services transition: rounded corners instead of the desktop wave */
 @media (max-width: 768px) {
   #servicios {
+    height: auto !important;
+    min-height: 0;
     border-radius: 56px 56px 0 0 !important;
   }
 
   #servicios > svg {
     display: none !important;
+  }
+
+  #servicios > .works-text-block {
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 76px 20px 30px;
+    text-align: center;
+  }
+
+  #servicios .works-heading {
+    max-width: 100%;
+    font-size: clamp(40px, 14vw, 58px);
+    line-height: 0.88;
+    margin: 0 0 24px;
+    text-wrap: balance;
+  }
+
+  #servicios .works-tagline {
+    font-size: clamp(16px, 4.8vw, 21px);
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  #servicios > div[style] {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 16px 52px;
+    box-sizing: border-box;
+  }
+
+  #servicios .svc-item {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    flex: 0 0 auto;
+    width: 100% !important;
+    height: clamp(230px, 70vw, 310px) !important;
+    margin: 0 !important;
+    border-radius: 20px !important;
+    opacity: 1 !important;
+  }
+
+  #servicios .svc-label-overlay {
+    padding: 18px 16px;
+  }
+
+  #servicios .svc-label-title {
+    font-size: clamp(15px, 4.5vw, 20px);
+  }
+
+  #servicios .svc-ver-mas {
+    font-size: clamp(11px, 3.2vw, 14px);
   }
 }
