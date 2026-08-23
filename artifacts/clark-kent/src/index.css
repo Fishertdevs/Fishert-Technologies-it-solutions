@@ -970,12 +970,12 @@ body {
 
 /* Per-network hover colors */
 .footer-icon-github {
-  background: #ffffff;
-  color: #1b1f24;
+  background: rgba(80,80,80,0.85);
+  color: #ffffff;
 }
 .footer-icon-github:hover {
-  background: rgba(255,255,255,0.24);
-  color: #ffffff;
+  background: #ffffff;
+  color: #1b1f24;
 }
 .footer-icon-instagram:hover { background: #E1306C; color: #ffffff; }
 .footer-icon-whatsapp:hover  { background: #25D366; color: #ffffff; }
