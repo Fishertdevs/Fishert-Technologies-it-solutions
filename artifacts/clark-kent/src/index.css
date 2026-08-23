@@ -4184,7 +4184,7 @@ body {
   left: 0;
   z-index: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
 .ctw-section--pinned .ctw-inner {
   position: fixed;
@@ -4292,7 +4292,7 @@ body {
     position: absolute;
     left: 50%;
     right: auto;
-    bottom: -12%;
+    bottom: 0;
     width: auto;
     height: 115%;
     max-width: none;
