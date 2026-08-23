@@ -4164,34 +4164,24 @@ body {
    ══════════════════════════════════════���═══════════════════ */
  .ctw-section {
   --ctw-wave-height: 80px;
-  --ctw-stages: 4;
 
   background: #a8532f;
   width: 100%;
-  height: 400vh;
-  padding: 0 6%;
+   height: 100vh;
+   padding: 0;
   box-sizing: border-box;
-  overflow: visible;
+   overflow: hidden;
   position: relative;
 }
 .ctw-inner {
   width: 100%;
-  height: 100vh;
+   height: 100%;
   padding: 0 6%;
   box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
+   position: relative;
+   z-index: 1;
   display: flex;
   align-items: flex-end;
-}
-.ctw-section--pinned .ctw-inner {
-  position: fixed;
-}
-.ctw-section--end .ctw-inner {
-  top: auto;
-  bottom: 0;
 }
 .ctw-wave {
   position: absolute;
@@ -4303,14 +4293,15 @@ body {
   .ctw-imagination-quote { font-size: clamp(34px, 9vw, 52px); }
   .ctw-inner {
     align-items: flex-start;
-    padding: 96px 5% 0;
+    padding: 96px 5% 80px;
   }
-  .ctw-section { height: 400vh; padding: 0; }
+  .ctw-section { height: auto; min-height: 0; padding: 0; }
 }
 
 @media (max-width: 900px) and (max-height: 600px) {
   .ctw-inner {
-    padding-top: 74px;
+    padding-top: 96px;
+    padding-bottom: 80px;
   }
 
   .ctw-imagination {
