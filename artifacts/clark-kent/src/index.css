@@ -4977,17 +4977,17 @@ body {
   }
 
   .faq2-nav {
-    gap: 8px;
+    gap: 16px;
   }
 
   .faq2-arrow {
-    width: 44px;
-    height: 44px;
+    width: 26px;
+    height: 26px;
     touch-action: manipulation;
   }
 
   .faq2-dots {
-    gap: 4px;
+    gap: 8px;
   }
 
   .faq2-left {
@@ -5165,65 +5165,21 @@ body {
   }
 
   .resenas-dots {
-    gap: 2px;
+    gap: 6px;
   }
 
   .resenas-arrow {
-    width: 44px;
-    height: 44px;
+    width: 26px;
+    height: 26px;
     touch-action: manipulation;
   }
 
-  .resenas-dot,
-  .faq2-dot {
-    position: relative;
-    border: none;
-    padding: 0;
-    background: transparent;
-  }
-
   .resenas-dot {
-    flex: 0 0 28px;
-    width: 28px;
-    height: 28px;
-  }
-
-  .faq2-dot {
-    flex: 0 0 32px;
-    width: 32px;
-    height: 32px;
-  }
-
-  .resenas-dot::before,
-  .faq2-dot::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
     width: 7px;
     height: 7px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: background 0.22s, width 0.22s, border-radius 0.22s;
   }
 
-  .resenas-dot::before {
-    background: rgba(0, 0, 0, 0.25);
-  }
-
-  .faq2-dot::before {
-    background: rgba(255, 255, 255, 0.45);
-  }
-
-  .resenas-dot--active::before {
+  .resenas-dot--active {
     width: 20px;
-    border-radius: 4px;
-    background: #C0001A;
-  }
-
-  .faq2-dot--active::before {
-    width: 20px;
-    border-radius: 4px;
-    background: #ffffff;
   }
 }
