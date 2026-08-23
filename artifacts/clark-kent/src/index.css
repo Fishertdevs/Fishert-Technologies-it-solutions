@@ -5344,8 +5344,8 @@ body {
   }
 
   .about-line-inner {
-    font-size: clamp(20px, 7.6vw, 28px);
-    letter-spacing: -0.01em;
+    font-size: clamp(18px, 7vw, 26px);
+    letter-spacing: -0.02em;
     white-space: nowrap !important;
   }
 
