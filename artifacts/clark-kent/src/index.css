@@ -4164,23 +4164,36 @@ body {
    ══════════════════════════════════════���═══════════════════ */
  .ctw-section {
   --ctw-wave-height: 80px;
+  --ctw-stages: 4;
 
   background: #a8532f;
   width: 100%;
-  padding: 100px 6% var(--ctw-wave-height);
+  height: 400vh;
+  padding: 0 6%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: clip;
   position: relative;
-  }
-  .ctw-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-  .ctw-wave {
+}
+.ctw-inner {
+  max-width: 1200px;
+  height: 100vh;
+  margin: 0 auto;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+.ctw-wave {
   position: absolute;
   left: 0;
   width: 100%;
-  height: var(--ctw-wave-height);
+  height: calc(var(--ctw-wave-height) + 2px);
   z-index: 10;
   pointer-events: none;
   display: block;
+  border: 0;
+  box-shadow: none;
   background-color: #d8d8d8;
   background-image: conic-gradient(
     #ffffff 0 25%,
@@ -4196,40 +4209,41 @@ body {
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  }
-  .ctw-wave--bottom { bottom: -1px; }
+}
+.ctw-wave--bottom { bottom: -2px; }
   
-  /* Imagination block: statue image + quote (no container) */
-  .ctw-imagination {
+/* Imagination block: statue image + quote (no container) */
+.ctw-imagination {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
   align-items: end;
-  }
-  .ctw-imagination-media {
+  width: 100%;
+}
+.ctw-imagination-media {
   position: relative;
   height: calc(600px + var(--ctw-wave-height));
   margin-bottom: calc(var(--ctw-wave-height) * -1);
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  }
-  .ctw-imagination-img {
+}
+.ctw-imagination-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: bottom center;
   display: block;
   animation: ctwFade 0.6s ease;
-  }
-  @keyframes ctwFade {
+}
+@keyframes ctwFade {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
-  }
-  .ctw-imagination-copy {
+}
+.ctw-imagination-copy {
   padding: 0 0 108px;
-  }
-  .ctw-imagination-quote {
+}
+.ctw-imagination-quote {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 700;
   font-size: clamp(40px, 6vw, 80px);
@@ -4238,8 +4252,12 @@ body {
   text-transform: uppercase;
   color: #fdf3ec;
   margin: 0;
-  }
-  .ctw-imagination-quote.reveal { transition-delay: 0s; }
+  animation: ctwQuoteIn 0.38s ease both;
+}
+@keyframes ctwQuoteIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 @media (max-width: 900px) {
   .ctw-imagination {
@@ -4254,19 +4272,25 @@ body {
   .ctw-imagination-media {
     order: 2;
     width: 100%;
-    height: calc(350px + var(--ctw-wave-height));
-    margin-bottom: calc(var(--ctw-wave-height) * -1);
+    height: 350px;
+    margin-bottom: 0;
     overflow: hidden;
+    display: block;
   }
   .ctw-imagination-img {
+    position: absolute;
+    left: 50%;
+    right: auto;
+    bottom: -12%;
     width: auto;
     height: 115%;
     max-width: none;
     object-fit: contain;
     object-position: bottom center;
+    transform: translateX(-50%);
   }
   .ctw-imagination-quote { font-size: clamp(34px, 9vw, 52px); }
-  .ctw-section { padding: 72px 5% var(--ctw-wave-height); }
+  .ctw-section { height: 400vh; padding: 0 5%; }
 }
 
 /* ══════════════════════════════════════════════════════════
