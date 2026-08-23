@@ -34,14 +34,10 @@ export default function ComoTrabajamos() {
       const rect = section.getBoundingClientRect();
       const scrollDistance = Math.max(1, rect.height - window.innerHeight);
       const progress = Math.max(0, Math.min(1, -rect.top / scrollDistance));
-      const waveHeight =
-        Number.parseFloat(
-          window.getComputedStyle(section).getPropertyValue("--ctw-wave-height"),
-        ) || 0;
       const nextPinState =
         rect.top > 0
           ? "start"
-          : rect.bottom > window.innerHeight + waveHeight
+          : rect.bottom > 0
             ? "pinned"
             : "end";
       const nextIndex = Math.min(
@@ -88,8 +84,31 @@ export default function ComoTrabajamos() {
         </div>
       </div>
 
-      <div className="ctw-checker-seam" aria-hidden="true" />
-      <div className="ctw-wave ctw-wave--bottom" aria-hidden="true" />
+      <svg
+        className="ctw-wave ctw-wave--bottom"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="ctw-checker-pattern"
+            width="72"
+            height="72"
+            patternUnits="userSpaceOnUse"
+          >
+            <rect width="72" height="72" fill="#d8d8d8" />
+            <rect width="36" height="36" fill="#ffffff" />
+            <rect x="36" y="36" width="36" height="36" fill="#ffffff" />
+          </pattern>
+        </defs>
+        <path
+          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          fill="url(#ctw-checker-pattern)"
+          stroke="none"
+        />
+      </svg>
     </section>
   );
 }
