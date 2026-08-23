@@ -974,8 +974,8 @@ body {
   color: #1b1f24;
 }
 .footer-icon-github:hover {
-  background: #ffffff;
-  color: #1b1f24;
+  background: rgba(255,255,255,0.24);
+  color: #ffffff;
 }
 .footer-icon-instagram:hover { background: #E1306C; color: #ffffff; }
 .footer-icon-whatsapp:hover  { background: #25D366; color: #ffffff; }
