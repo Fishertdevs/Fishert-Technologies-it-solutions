@@ -4301,6 +4301,14 @@ body {
     object-position: bottom center;
     transform: translateX(-50%);
   }
+  .ctw-section--end .ctw-imagination-media {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 350' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V310C1200 270 960 350 720 310C480 270 240 350 0 310Z' fill='white'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 350' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V310C1200 270 960 350 720 310C480 270 240 350 0 310Z' fill='white'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
   .ctw-imagination-quote { font-size: clamp(34px, 9vw, 52px); }
   .ctw-inner { padding: 0 5%; }
   .ctw-section { height: 400vh; padding: 0; }

@@ -34,10 +34,14 @@ export default function ComoTrabajamos() {
       const rect = section.getBoundingClientRect();
       const scrollDistance = Math.max(1, rect.height - window.innerHeight);
       const progress = Math.max(0, Math.min(1, -rect.top / scrollDistance));
+      const waveHeight =
+        Number.parseFloat(
+          window.getComputedStyle(section).getPropertyValue("--ctw-wave-height"),
+        ) || 0;
       const nextPinState =
         rect.top > 0
           ? "start"
-          : rect.bottom > window.innerHeight
+          : rect.bottom > window.innerHeight + waveHeight
             ? "pinned"
             : "end";
       const nextIndex = Math.min(
