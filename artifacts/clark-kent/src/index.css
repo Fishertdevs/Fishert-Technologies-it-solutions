@@ -5419,3 +5419,14 @@ body {
     top: 52%;
   }
 }
+
+/* Mobile services transition: rounded corners instead of the desktop wave */
+@media (max-width: 768px) {
+  #servicios {
+    border-radius: 56px 56px 0 0 !important;
+  }
+
+  #servicios > svg {
+    display: none !important;
+  }
+}
