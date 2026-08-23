@@ -4982,3 +4982,127 @@ body {
     transform: translateX(-50%);
   }
 }
+
+/* ── Reseñas — mobile fluid layout ───────────────────────── */
+@media (max-width: 768px) {
+  .resenas-section {
+    height: auto;
+    min-height: auto;
+    padding: 0 5% 72px;
+  }
+
+  .resenas-inner {
+    height: auto;
+    padding: 88px 0 28px;
+  }
+
+  .resenas-layout {
+    display: block;
+    height: auto;
+  }
+
+  .resenas-content {
+    width: 100%;
+    gap: 24px;
+  }
+
+  .resenas-header {
+    top: 0;
+    gap: 8px;
+  }
+
+  .resenas-heading {
+    max-width: 100%;
+    font-size: clamp(30px, 9vw, 40px);
+    line-height: 1;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .resenas-sub {
+    max-width: 100%;
+    font-size: clamp(10px, 2.7vw, 13px);
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+  }
+
+  .resenas-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .resena-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 22px 18px;
+    border-radius: 14px;
+    gap: 18px;
+    box-sizing: border-box;
+  }
+
+  .resena-stars {
+    gap: 3px;
+  }
+
+  .resena-star {
+    font-size: 14px;
+  }
+
+  .resena-verified {
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    margin-left: 4px;
+  }
+
+  .resena-quote {
+    font-size: clamp(15px, 4.1vw, 17px);
+    line-height: 1.4;
+  }
+
+  .resena-name {
+    font-size: 12px;
+  }
+
+  .resena-company {
+    font-size: 11px;
+  }
+
+  .resenas-controls {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding-top: 2px;
+  }
+
+  .resenas-cta-btn {
+    grid-column: auto;
+    justify-self: auto;
+    flex: 0 1 auto;
+    min-width: 0;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .resenas-nav {
+    grid-column: auto;
+    justify-self: auto;
+    margin-left: auto;
+    gap: 10px;
+  }
+
+  .resenas-dots {
+    gap: 6px;
+  }
+
+  .resenas-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .resenas-dot--active {
+    width: 20px;
+  }
+}

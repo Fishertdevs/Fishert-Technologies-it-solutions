@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLang } from "./LanguageContext";
 import ReviewForm from "./ReviewForm";
 import resenasBust from "@assets/resenas_bust.png";
@@ -76,17 +76,120 @@ const Stars = ({ count, lang }: { count: number; lang: "es" | "en" }) => (
 
 const VISIBLE = 2;
 
-export default function Resenas() {
-  const { lang } = useLang();
-  const list = reviews[lang];
-  const [showForm, setShowForm] = useState(false);
-  const [start, setStart] = useState(0);
+type Review = (typeof reviews.es)[number];
 
+function useMobileReviewsLayout() {
+  const query = "(max-width: 768px)";
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia(query).matches
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const updateLayout = () => setIsMobile(mediaQuery.matches);
+
+    updateLayout();
+    mediaQuery.addEventListener("change", updateLayout);
+    return () => mediaQuery.removeEventListener("change", updateLayout);
+  }, []);
+
+  return isMobile;
+}
+
+function ReviewsCarousel({
+  list,
+  lang,
+  onAddReview,
+}: {
+  list: Review[];
+  lang: "es" | "en";
+  onAddReview: () => void;
+}) {
+  const [start, setStart] = useState(0);
+  const isMobile = useMobileReviewsLayout();
   const pages = Math.max(1, list.length - VISIBLE + 1);
   const clamp = (n: number) => Math.max(0, Math.min(n, pages - 1));
   const goPrev = () => setStart((s) => clamp(s - 1));
   const goNext = () => setStart((s) => clamp(s + 1));
-  const visible = list.slice(start, start + VISIBLE);
+  const visible = isMobile ? list : list.slice(start, start + VISIBLE);
+
+  useEffect(() => {
+    setStart(0);
+  }, [isMobile, lang]);
+
+  return (
+    <>
+      <div className="resenas-grid">
+        {visible.map((r, i) => (
+          <div key={`${start}-${i}`} className="resena-card">
+            <Stars count={r.stars} lang={lang} />
+            <blockquote className="resena-quote">"{r.quote}"</blockquote>
+            <div className="resena-author">
+              <span className="resena-name">{r.author}</span>
+              <span className="resena-company">{r.company}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="resenas-controls">
+        <button type="button" className="resenas-cta-btn" onClick={onAddReview}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 20h9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          {lang === "es" ? "Agregar reseña" : "Add a review"}
+        </button>
+
+        {!isMobile && (
+          <div className="resenas-nav">
+            <button
+              type="button"
+              className="resenas-arrow"
+              onClick={goPrev}
+              disabled={start === 0}
+              aria-label={lang === "es" ? "Anterior" : "Previous"}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <div className="resenas-dots">
+              {Array.from({ length: pages }).map((_, i) => (
+                <button
+                  type="button"
+                  key={i}
+                  className={`resenas-dot${i === start ? " resenas-dot--active" : ""}`}
+                  onClick={() => setStart(clamp(i))}
+                  aria-label={`${lang === "es" ? "Ir a" : "Go to"} ${i + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              className="resenas-arrow"
+              onClick={goNext}
+              disabled={start >= pages - 1}
+              aria-label={lang === "es" ? "Siguiente" : "Next"}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+export default function Resenas() {
+  const { lang } = useLang();
+  const list = reviews[lang];
+  const [showForm, setShowForm] = useState(false);
 
   return (
     <section id="resenas" className="resenas-section">
@@ -104,64 +207,11 @@ export default function Resenas() {
               </p>
             </div>
 
-            <div className="resenas-grid">
-              {visible.map((r, i) => (
-                <div key={start + i} className="resena-card">
-                  <Stars count={r.stars} lang={lang} />
-                  <blockquote className="resena-quote">"{r.quote}"</blockquote>
-                  <div className="resena-author">
-                    <span className="resena-name">{r.author}</span>
-                    <span className="resena-company">{r.company}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="resenas-controls">
-              <button className="resenas-cta-btn" onClick={() => setShowForm(true)}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 20h9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                {lang === "es" ? "Agregar reseña" : "Add a review"}
-              </button>
-
-              <div className="resenas-nav">
-                <button
-                  className="resenas-arrow"
-                  onClick={goPrev}
-                  disabled={start === 0}
-                  aria-label={lang === "es" ? "Anterior" : "Previous"}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2"
-                      strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-                <div className="resenas-dots">
-                  {Array.from({ length: pages }).map((_, i) => (
-                    <button
-                      key={i}
-                      className={`resenas-dot${i === start ? " resenas-dot--active" : ""}`}
-                      onClick={() => setStart(clamp(i))}
-                      aria-label={`${lang === "es" ? "Ir a" : "Go to"} ${i + 1}`}
-                    />
-                  ))}
-                </div>
-                <button
-                  className="resenas-arrow"
-                  onClick={goNext}
-                  disabled={start >= pages - 1}
-                  aria-label={lang === "es" ? "Siguiente" : "Next"}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2"
-                      strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
+            <ReviewsCarousel
+              list={list}
+              lang={lang}
+              onAddReview={() => setShowForm(true)}
+            />
           </div>
 
           <div className="resenas-bust" aria-hidden="true">
