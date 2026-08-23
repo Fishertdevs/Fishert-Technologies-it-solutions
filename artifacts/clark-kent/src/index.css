@@ -4242,9 +4242,29 @@ body {
   .ctw-imagination-quote.reveal { transition-delay: 0s; }
 
 @media (max-width: 900px) {
-  .ctw-imagination { grid-template-columns: 1fr; gap: 24px; }
-  .ctw-imagination-media { height: calc(380px + var(--ctw-wave-height)); }
-  .ctw-imagination-copy { padding: 0 0 72px; }
+  .ctw-imagination {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .ctw-imagination-copy {
+    order: 1;
+    padding: 0;
+  }
+  .ctw-imagination-media {
+    order: 2;
+    width: 100%;
+    height: calc(350px + var(--ctw-wave-height));
+    margin-bottom: calc(var(--ctw-wave-height) * -1);
+    overflow: hidden;
+  }
+  .ctw-imagination-img {
+    width: auto;
+    height: 115%;
+    max-width: none;
+    object-fit: contain;
+    object-position: bottom center;
+  }
   .ctw-imagination-quote { font-size: clamp(34px, 9vw, 52px); }
   .ctw-section { padding: 72px 5% var(--ctw-wave-height); }
 }
