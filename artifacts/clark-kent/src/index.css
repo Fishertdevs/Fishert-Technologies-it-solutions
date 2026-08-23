@@ -4931,10 +4931,27 @@ body {
 
 /* ── FAQ — mobile portrait grounded below the content ─────── */
 @media (max-width: 768px) {
+  .resenas-wave--bottom {
+    bottom: -2px;
+    height: 82px;
+  }
+
   .faq2-section {
     height: auto;
     min-height: 100svh;
     overflow: hidden;
+  }
+
+  .faq2-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: #E8621E;
+    z-index: 11;
+    pointer-events: none;
   }
 
   .faq2-inner {
