@@ -4928,3 +4928,58 @@ body {
     background: rgba(17, 17, 17, 0.1);
   }
 }
+
+/* ── FAQ — mobile portrait grounded below the content ─────── */
+@media (max-width: 768px) {
+  .faq2-section {
+    height: auto;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .faq2-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    height: auto;
+    padding: 90px 0 80px;
+  }
+
+  .faq2-right {
+    order: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 0 6%;
+    gap: 28px;
+  }
+
+  .faq2-heading {
+    width: 100%;
+    max-width: none;
+    font-size: clamp(19px, 6.2vw, 30px);
+    line-height: 1;
+    white-space: nowrap;
+    text-wrap: nowrap;
+  }
+
+  .faq2-left {
+    order: 2;
+    width: 100%;
+    height: 350px;
+    min-height: 350px;
+    overflow: hidden;
+  }
+
+  .faq2-portrait {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    transform: none;
+  }
+}
