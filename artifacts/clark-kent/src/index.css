@@ -4568,14 +4568,14 @@ body {
     height: auto;
     padding: 88px 16px 32px;
     align-items: stretch;
-    gap: 22px;
+    gap: 26px;
   }
 
   .contacto-section-title {
     max-width: 100%;
-    font-size: clamp(24px, 7.5vw, 34px);
+    font-size: clamp(27px, 8.5vw, 38px);
     line-height: 1.05;
-    text-align: left;
+    text-align: center;
     white-space: normal;
   }
 
@@ -4588,22 +4588,103 @@ body {
   }
 
   .contacto-info {
-    min-height: 420px;
-    padding: 20px 18px;
+    min-height: 450px;
+    padding: 22px 20px;
   }
 
   .cslider-track-wrap {
-    min-height: 300px;
+    width: 100%;
+    min-width: 0;
+    min-height: 320px;
+  }
+
+  .cslider-track {
+    min-width: 0;
+  }
+
+  .cslider-slide {
+    flex: 0 0 50%;
+    width: 50%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .cslide-contact-header,
+  .contacto-info-list,
+  .cslider-booking-intro,
+  .cslider-steps {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .contacto-info-text,
+  .cslider-step-body {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .contacto-info-sub,
   .cslider-booking-intro {
-    font-size: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .contacto-info-hours {
+    font-size: 10.5px;
+  }
+
+  .contacto-info-label {
+    font-size: 9px;
   }
 
   .contacto-info-value {
-    font-size: 11px;
+    font-size: 12px;
     overflow-wrap: anywhere;
+  }
+
+  .contacto-info-list {
+    gap: 12px;
+  }
+
+  .contacto-info-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .contacto-social-row {
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .contacto-social-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cslider-tabs .cslider-tab {
+    font-size: 11px;
+  }
+
+  .cslider-step-n {
+    font-size: 24px;
+  }
+
+  .cslider-step-title {
+    font-size: 14px;
+  }
+
+  .cslider-step-desc {
+    font-size: 12px;
+  }
+
+  .cslider-cta-text {
+    font-size: 13px;
+  }
+
+  .cslider-cta-text svg {
+    width: 17px;
+    height: 17px;
   }
 
   .contacto-map-col {
@@ -4619,8 +4700,8 @@ body {
 
   .contacto-img-col {
     width: 100%;
-    height: 320px;
-    min-height: 320px;
+    height: 350px;
+    min-height: 350px;
     overflow: hidden;
     background: #fff;
   }
