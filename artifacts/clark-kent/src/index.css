@@ -5287,6 +5287,7 @@ body {
   .about-lines {
     width: 100%;
     align-items: center;
+    overflow: visible;
   }
 
   .about-line {
@@ -5298,7 +5299,7 @@ body {
 
   .about-line-inner {
     max-width: 100%;
-    font-size: clamp(30px, 10.5vw, 46px);
+    font-size: clamp(30px, 10.1vw, 46px);
     line-height: 0.92;
     letter-spacing: 0;
     white-space: nowrap !important;
@@ -5345,7 +5346,7 @@ body {
   }
 
   .about-line-inner {
-    font-size: clamp(15px, 6vw, 21px);
+    font-size: clamp(15px, 5.6vw, 21px);
     letter-spacing: -0.02em;
     white-space: nowrap !important;
   }
