@@ -4573,10 +4573,10 @@ body {
 
   .contacto-section-title {
     max-width: 100%;
-    font-size: clamp(18px, 5.8vw, 28px);
+    font-size: clamp(22px, 7vw, 34px);
     line-height: 1.05;
     text-align: center;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.05em;
     white-space: nowrap;
   }
 
@@ -4932,27 +4932,11 @@ body {
 
 /* ── FAQ — mobile portrait grounded below the content ─────── */
 @media (max-width: 768px) {
-  .resenas-wave--bottom {
-    bottom: -2px;
-    height: 82px;
-  }
-
   .faq2-section {
     height: auto;
     min-height: 100svh;
     overflow: hidden;
-  }
-
-  .faq2-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 2px;
-    background: #E8621E;
-    z-index: 11;
-    pointer-events: none;
+    margin-top: -2px;
   }
 
   .faq2-inner {
