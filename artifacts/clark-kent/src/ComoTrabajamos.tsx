@@ -21,24 +21,32 @@ export default function ComoTrabajamos() {
   const { lang } = useLang();
   const sectionRef = useRef<HTMLElement>(null);
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [pinState, setPinState] = useState<"start" | "pinned" | "end">("start");
   const quotes = quoteStages[lang];
 
   useEffect(() => {
     setQuoteIndex(0);
 
-    const section = sectionRef.current?.closest<HTMLElement>(".ctw-section");
+    const section = sectionRef.current;
     if (!section) return;
 
     const updateQuote = () => {
       const rect = section.getBoundingClientRect();
       const scrollDistance = Math.max(1, rect.height - window.innerHeight);
       const progress = Math.max(0, Math.min(1, -rect.top / scrollDistance));
+      const nextPinState =
+        rect.top > 0
+          ? "start"
+          : rect.bottom > window.innerHeight
+            ? "pinned"
+            : "end";
       const nextIndex = Math.min(
         quotes.length - 1,
         Math.floor(progress * quotes.length),
       );
 
       setQuoteIndex((current) => (current === nextIndex ? current : nextIndex));
+      setPinState((current) => (current === nextPinState ? current : nextPinState));
     };
 
     updateQuote();
@@ -52,7 +60,7 @@ export default function ComoTrabajamos() {
   }, [lang, quotes.length, sectionRef]);
 
   return (
-    <section className="ctw-section" ref={sectionRef}>
+    <section className={`ctw-section ctw-section--${pinState}`} ref={sectionRef}>
       <div
         className="ctw-inner"
       >

@@ -4171,18 +4171,27 @@ body {
   height: 400vh;
   padding: 0 6%;
   box-sizing: border-box;
-  overflow: clip;
+  overflow: visible;
   position: relative;
 }
 .ctw-inner {
-  max-width: 1200px;
+  width: 100%;
   height: 100vh;
-  margin: 0 auto;
-  position: sticky;
+  padding: 0 6%;
+  box-sizing: border-box;
+  position: absolute;
   top: 0;
+  left: 0;
   z-index: 1;
   display: flex;
   align-items: center;
+}
+.ctw-section--pinned .ctw-inner {
+  position: fixed;
+}
+.ctw-section--end .ctw-inner {
+  top: auto;
+  bottom: 0;
 }
 .ctw-wave {
   position: absolute;
@@ -4219,6 +4228,8 @@ body {
   gap: 56px;
   align-items: end;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .ctw-imagination-media {
   position: relative;
@@ -4290,7 +4301,8 @@ body {
     transform: translateX(-50%);
   }
   .ctw-imagination-quote { font-size: clamp(34px, 9vw, 52px); }
-  .ctw-section { height: 400vh; padding: 0 5%; }
+  .ctw-inner { padding: 0 5%; }
+  .ctw-section { height: 400vh; padding: 0; }
 }
 
 /* ══════════════════════════════════════════════════════════
