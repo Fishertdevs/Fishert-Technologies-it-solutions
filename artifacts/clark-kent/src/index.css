@@ -5014,12 +5014,12 @@ body {
   .resenas-section {
     height: auto;
     min-height: auto;
-    padding: 0 5% 72px;
+    padding: 0 5% 0;
   }
 
   .resenas-inner {
     height: auto;
-    padding: 88px 0 28px;
+    padding: 88px 0 0;
   }
 
   .resenas-layout {
