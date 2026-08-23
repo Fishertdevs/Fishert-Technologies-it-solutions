@@ -4573,10 +4573,11 @@ body {
 
   .contacto-section-title {
     max-width: 100%;
-    font-size: clamp(27px, 8.5vw, 38px);
+    font-size: clamp(18px, 5.8vw, 28px);
     line-height: 1.05;
     text-align: center;
-    white-space: normal;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
   }
 
   .contacto-wrap {
