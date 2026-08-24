@@ -82,30 +82,32 @@ export default function Socios() {
 
       {/* ── Brand grid ── */}
       <div className="socios-grid">
-        {brands.map((b, i) => (
-          <div className="socios-cell" key={b.line1}>
-            <img
-              src={`${base}${b.fav}`}
-              alt={b.line1}
-              className="socios-fav"
-            />
-            <span
-              className="socios-brand-name"
-              style={{
-                fontFamily: b.font,
-                fontWeight: b.weight,
-                letterSpacing: b.letterSpacing,
-                textTransform: b.textTransform,
-                fontStyle: b.fontStyle,
-                color: b.color,
-              }}
-            >
-              {b.line1}
-              {b.line2 && <><br />{b.line2}</>}
-            </span>
-            {i < brands.length - 1 && <div className="socios-cell-divider" />}
-          </div>
-        ))}
+        <div className="socios-track">
+          {[...brands, ...brands].map((b, i) => (
+            <div className="socios-cell" key={`${b.line1}-${i}`}>
+              <img
+                src={`${base}${b.fav}`}
+                alt={b.line1}
+                className="socios-fav"
+              />
+              <span
+                className="socios-brand-name"
+                style={{
+                  fontFamily: b.font,
+                  fontWeight: b.weight,
+                  letterSpacing: b.letterSpacing,
+                  textTransform: b.textTransform,
+                  fontStyle: b.fontStyle,
+                  color: b.color,
+                }}
+              >
+                {b.line1}
+                {b.line2 && <><br />{b.line2}</>}
+              </span>
+              {i < brands.length * 2 - 1 && <div className="socios-cell-divider" />}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ── Divider ── */}
