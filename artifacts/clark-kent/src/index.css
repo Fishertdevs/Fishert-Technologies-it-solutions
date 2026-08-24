@@ -1456,6 +1456,7 @@ body {
   width: 100%;
   background: var(--port-surface);
   overflow: hidden;
+  border-radius: 0 0 32px 32px;
 }
 
 .port-section {
@@ -1510,7 +1511,7 @@ body {
   z-index: 10;
   color: var(--port-next-section);
   pointer-events: none;
-  display: block;
+  display: none;
 }
 
 .port-wave--bottom {
@@ -4471,7 +4472,7 @@ body {
    CÓMO TRABAJAMOS — process steps section
    ══════════════════════════════════════���═══════════════════ */
  .ctw-section {
-  --ctw-wave-height: 80px;
+   --ctw-wave-height: 0px;
 
   background: #a8532f;
   width: 100%;
@@ -4480,6 +4481,7 @@ body {
   box-sizing: border-box;
    overflow: hidden;
   position: relative;
+   border-radius: 0 0 32px 32px;
 }
 
 .ctw-section .ctw-imagination-media,
@@ -4528,7 +4530,7 @@ body {
   height: var(--ctw-wave-height);
   z-index: 102;
   pointer-events: none;
-  display: block;
+  display: none;
   border: 0;
   background-color: #d8d8d8;
   background-image: conic-gradient(
