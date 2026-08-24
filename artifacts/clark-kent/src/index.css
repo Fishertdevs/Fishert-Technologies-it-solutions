@@ -5429,8 +5429,10 @@ body {
   #servicios {
     height: auto !important;
     min-height: 0;
+    max-width: 100%;
     padding-bottom: 42px;
-    border-radius: 56px 56px 0 0 !important;
+    border-radius: 56px !important;
+    box-sizing: border-box;
   }
 
   #servicios > svg {
@@ -5471,6 +5473,7 @@ body {
 
   #servicios .svc-mobile-carousel {
     width: 100%;
+    max-width: 100%;
     padding: 0 16px;
     box-sizing: border-box;
     touch-action: pan-y;
@@ -5481,7 +5484,7 @@ body {
     width: 100%;
     height: clamp(230px, 70vw, 310px);
     overflow: hidden;
-    border-radius: 22px;
+    border-radius: 22px !important;
     background: #171717;
   }
 
@@ -5508,22 +5511,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    margin-top: 16px;
-  }
-
-  #servicios .svc-mobile-arrow {
-    display: grid;
-    width: 38px;
-    height: 38px;
-    place-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    color: #ffffff;
-    background: transparent;
-    font-size: 19px;
-    line-height: 1;
-    cursor: pointer;
+    margin-top: 18px;
   }
 
   #servicios .svc-mobile-dots {

@@ -197,15 +197,19 @@ export default function Servicios() {
       {isMobile ? (
         <div
           className="svc-mobile-carousel"
-          onTouchStart={(event) => {
-            mobileTouchStart.current = event.touches[0]?.clientX ?? null;
+          onPointerDown={(event) => {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            mobileTouchStart.current = event.clientX;
           }}
-          onTouchEnd={(event) => {
+          onPointerUp={(event) => {
             const start = mobileTouchStart.current;
-            const end = event.changedTouches[0]?.clientX;
+            const end = event.clientX;
             mobileTouchStart.current = null;
-            if (start === null || end === undefined || Math.abs(start - end) < 40) return;
+            if (start === null || Math.abs(start - end) < 40) return;
             changeMobileSlide(start > end ? 1 : -1);
+          }}
+          onPointerCancel={() => {
+            mobileTouchStart.current = null;
           }}
         >
           <article className="svc-mobile-card" key={activeMobileService.id}>
@@ -225,9 +229,6 @@ export default function Servicios() {
           </article>
 
           <div className="svc-mobile-nav" aria-label={lang === "es" ? "Navegación de servicios" : "Service navigation"}>
-            <button type="button" className="svc-mobile-arrow" onClick={() => changeMobileSlide(-1)} aria-label={lang === "es" ? "Servicio anterior" : "Previous service"}>
-              ←
-            </button>
             <div className="svc-mobile-dots">
               {galleryData.map((item, index) => (
                 <button
@@ -239,9 +240,6 @@ export default function Servicios() {
                 />
               ))}
             </div>
-            <button type="button" className="svc-mobile-arrow" onClick={() => changeMobileSlide(1)} aria-label={lang === "es" ? "Siguiente servicio" : "Next service"}>
-              →
-            </button>
           </div>
         </div>
       ) : (
