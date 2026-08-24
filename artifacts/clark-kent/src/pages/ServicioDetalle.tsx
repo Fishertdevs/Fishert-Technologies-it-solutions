@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "wouter";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
@@ -551,6 +551,8 @@ export default function ServicioDetalle() {
   const { lang } = useLang();
   const slug = params.slug ?? "";
   const service = data[slug];
+  const [billingMode, setBillingMode] = useState<"monthly" | "annual">("monthly");
+  const [activePlan, setActivePlan] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -629,7 +631,26 @@ export default function ServicioDetalle() {
   }
 
   const t = service[lang];
-  const base = import.meta.env.BASE_URL || "/";
+  const isRecurring = slug === "marketing-digital";
+  const serviceNumber = String(Object.keys(data).indexOf(slug) + 1).padStart(2, "0");
+
+  const formatPlanPrice = (plan: Plan) => {
+    if (plan.isCustom || !isRecurring || billingMode === "monthly") {
+      return plan.price;
+    }
+
+    const monthlyPrice = Number(plan.price.replace(/[^\d]/g, ""));
+    return new Intl.NumberFormat(lang === "es" ? "es-CO" : "en-US").format(monthlyPrice * 0.8);
+  };
+
+  const planPeriod = (plan: Plan) => {
+    if (plan.isCustom) return "";
+    if (!isRecurring) return lang === "es" ? "por proyecto" : "per project";
+    if (billingMode === "annual") {
+      return lang === "es" ? "/ mes, cobrado anual" : "/ mo, billed annually";
+    }
+    return plan.period || (lang === "es" ? "/ mes" : "/ mo");
+  };
 
   return (
     <>
@@ -637,9 +658,12 @@ export default function ServicioDetalle() {
       <main className="svc2-container">
         {/* ── Hero ── */}
         <header className="svc2-hero">
-          <div className="svc2-hero-img-wrap">
-            <img src={`${base}${t.hero}`} alt={t.title} className="svc2-hero-img" />
-            <div className="svc2-hero-gradient" />
+          <div className="svc2-hero-grid">
+            <div className="svc2-hero-index" aria-hidden="true">
+              <span>{serviceNumber}</span>
+              <span>/ 05</span>
+            </div>
+            <div className="svc2-hero-rule" aria-hidden="true" />
           </div>
           <div className="svc2-hero-content">
             <Link href="/" className="svc2-back-link">
@@ -651,10 +675,11 @@ export default function ServicioDetalle() {
             </Link>
 
             <div className="svc2-discount-pill">
-              <span className="svc2-discount-dot"></span>
-              {lang === "es"
-                ? "Oferta exclusiva: 20% de descuento en el primer servicio contratado este mes"
-                : "Exclusive offer: 20% off the first service contracted this month"}
+              <span className="svc2-discount-dot" />
+              <span className="svc2-discount-copy">
+                <strong>{lang === "es" ? "Oferta de este mes" : "This month's offer"}</strong>
+                <span>{lang === "es" ? "20% de descuento en tu primer servicio" : "20% off your first service"}</span>
+              </span>
             </div>
 
             <div className="svc2-title-wrap">
@@ -675,16 +700,56 @@ export default function ServicioDetalle() {
         {/* ── Pricing ── */}
         <section className="svc2-pricing-section">
           <div className="svc2-pricing-header">
-             <h3 className="svc2-pricing-title">
-               {lang === "es" ? "Inversión transparente." : "Transparent investment."}
-             </h3>
-             <p className="svc2-pricing-sub">
-               {lang === "es" ? "Precios en pesos colombianos (COP). Sin sorpresas." : "Prices in Colombian Pesos (COP). No surprises."}
-             </p>
+            <div className="svc2-pricing-kicker">
+              <span>{lang === "es" ? "02 / INVERSIÓN" : "02 / INVESTMENT"}</span>
+              <span>{lang === "es" ? "Precios en COP" : "Prices in COP"}</span>
+            </div>
+            <h3 className="svc2-pricing-title">
+              {lang === "es" ? "Elige cómo crecer." : "Choose how to grow."}
+            </h3>
+            <p className="svc2-pricing-sub">
+              {lang === "es" ? "Planes claros, alcance definido y cero sorpresas." : "Clear plans, defined scope, and no surprises."}
+            </p>
+            <div className="svc2-cycle-row">
+              {isRecurring ? (
+                <>
+                  <div className="svc2-cycle-toggle" role="group" aria-label={lang === "es" ? "Frecuencia de pago" : "Billing frequency"}>
+                    <button
+                      type="button"
+                      className={billingMode === "monthly" ? "svc2-cycle-option svc2-cycle-option--active" : "svc2-cycle-option"}
+                      aria-pressed={billingMode === "monthly"}
+                      onClick={() => setBillingMode("monthly")}
+                    >
+                      {lang === "es" ? "Mensual" : "Monthly"}
+                    </button>
+                    <button
+                      type="button"
+                      className={billingMode === "annual" ? "svc2-cycle-option svc2-cycle-option--active" : "svc2-cycle-option"}
+                      aria-pressed={billingMode === "annual"}
+                      onClick={() => setBillingMode("annual")}
+                    >
+                      {lang === "es" ? "Anual" : "Annual"}
+                    </button>
+                  </div>
+                  {billingMode === "annual" && (
+                    <span className="svc2-annual-note">
+                      {lang === "es" ? "20% OFF · 2 meses gratis" : "20% OFF · 2 months free"}
+                    </span>
+                  )}
+                </>
+              ) : (
+                <span className="svc2-cycle-static">
+                  {lang === "es" ? "Inversión por proyecto" : "Project investment"}
+                </span>
+              )}
+            </div>
           </div>
           <div className="svc2-plans-grid">
             {t.plans.map((plan, i) => (
-              <div key={i} className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""}`}>
+              <div
+                key={i}
+                className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""} ${activePlan === i ? "svc2-plan-card--active" : ""}`}
+              >
                 {plan.badge && (
                   <span className="svc2-plan-badge">{plan.badge}</span>
                 )}
@@ -696,11 +761,16 @@ export default function ServicioDetalle() {
                     <p className="svc2-plan-price">{plan.price}</p>
                   ) : (
                     <p className="svc2-plan-price">
-                      ${plan.price}
+                      ${formatPlanPrice(plan)}
                       <span className="svc2-plan-price-currency">
-                        {plan.currency} {plan.period || ""}
+                        {plan.currency} {planPeriod(plan)}
                       </span>
                     </p>
+                  )}
+                  {isRecurring && billingMode === "annual" && !plan.isCustom && (
+                    <span className="svc2-plan-saving">
+                      {lang === "es" ? "Ahorra 20% con pago anual" : "Save 20% with annual billing"}
+                    </span>
                   )}
                 </div>
 
@@ -721,6 +791,18 @@ export default function ServicioDetalle() {
                   {lang === "es" ? "Solicitar propuesta" : "Request proposal"}
                 </a>
               </div>
+            ))}
+          </div>
+          <div className="svc2-plan-dots" aria-label={lang === "es" ? "Navegación de planes" : "Plan navigation"}>
+            {t.plans.map((plan, index) => (
+              <button
+                key={plan.name}
+                type="button"
+                className={activePlan === index ? "svc2-plan-dot svc2-plan-dot--active" : "svc2-plan-dot"}
+                aria-label={`${lang === "es" ? "Ver plan" : "View plan"} ${plan.name}`}
+                aria-pressed={activePlan === index}
+                onClick={() => setActivePlan(index)}
+              />
             ))}
           </div>
         </section>
