@@ -217,7 +217,7 @@ export default function Portafolio() {
       <div className="port-right">
         <div className="port-blob-outer">
         <div
-          className="port-google-wrap"
+          className={`port-google-wrap${showImage ? " port-google-wrap--image" : ""}`}
           style={{ borderColor: hovered ? project.color : '#111111' }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}

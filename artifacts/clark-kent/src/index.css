@@ -4481,7 +4481,7 @@ body {
   box-sizing: border-box;
    overflow: hidden;
   position: relative;
-   border-radius: 0 0 32px 32px;
+   border-radius: 32px;
 }
 
 .ctw-section .ctw-imagination-media,
@@ -4673,7 +4673,7 @@ body {
     min-height: 0;
     overflow: hidden;
     border: 0;
-    border-radius: 0 0 32px 32px;
+     border-radius: 32px;
   }
 
   .ctw-inner {
@@ -5904,15 +5904,36 @@ body {
   .port-outer {
     width: 100%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   .port-section {
+    order: 1;
     width: 100%;
     max-width: none;
     min-width: 0;
     padding: 58px 14px 64px;
     gap: 24px;
     box-sizing: border-box;
+  }
+
+  .port-anchor-img {
+    order: 2;
+    display: block;
+    position: relative;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    align-self: flex-start;
+    width: auto;
+    height: clamp(300px, 100vw, 430px);
+    max-width: none;
+    object-fit: contain;
+    object-position: center bottom;
+    z-index: 0;
+    margin: 0;
+    transform: translateX(-50%);
   }
 
   .port-left {
@@ -5975,6 +5996,39 @@ body {
     object-fit: contain;
     object-position: center top;
     background: #ffffff;
+  }
+
+  .port-google-wrap--image {
+    height: auto;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .port-google-wrap--image .port-google-content {
+    display: none;
+  }
+
+  .port-google-wrap--image .port-full-overlay {
+    position: relative;
+    inset: auto;
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    border-radius: 12px;
+  }
+
+  .port-google-wrap--image .port-full-img {
+    width: 100%;
+    height: auto;
+    flex: none;
+    object-fit: contain;
+    object-position: top center;
+  }
+
+  .port-google-wrap--image .port-overlay-link {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
   }
 
   .port-nav {
