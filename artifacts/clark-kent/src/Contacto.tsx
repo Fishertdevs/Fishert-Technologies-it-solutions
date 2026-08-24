@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "./LanguageContext";
 import { buildInfoHref } from "./utils/whatsapp";
 
@@ -144,9 +144,37 @@ export default function Contacto() {
   const { lang } = useLang();
   const t = content[lang];
   const [slide, setSlide] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="contacto" className="contacto-section">
+    <section
+      id="contacto"
+      ref={sectionRef}
+      className={`contacto-section${isVisible ? " contacto-section--visible" : ""}`}
+    >
 
       {/* ── Top wave — same pattern as Nosotros ──────────────── */}
       <svg className="contacto-wave contacto-wave--top"

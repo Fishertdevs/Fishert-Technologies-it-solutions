@@ -1,4 +1,5 @@
 import { useLang } from "./LanguageContext";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { buildInfoHref } from "./utils/whatsapp";
 
@@ -26,9 +27,37 @@ const content = {
 export default function Footer() {
   const { lang } = useLang();
   const t = content[lang];
+  const [isVisible, setIsVisible] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <footer id="contacto" className="footer-section">
+    <footer
+      id="contacto"
+      ref={footerRef}
+      className={`footer-section${isVisible ? " footer-section--visible" : ""}`}
+    >
       <div className="footer-inner">
         {/* Brand */}
         <p className="footer-brand">Fishert Studio</p>
