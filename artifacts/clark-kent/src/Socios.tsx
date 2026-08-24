@@ -14,6 +14,7 @@ const brands = [
     textTransform: "uppercase" as const,
     fontStyle: "normal" as const,
     color: "#C0001A",
+    mobileLines: ["PICAPASTOS", "MOLINOS", "VILAR"],
   },
   {
     fav: "fav-alterego.png",
@@ -26,6 +27,7 @@ const brands = [
     textTransform: "uppercase" as const,
     fontStyle: "normal" as const,
     color: "#111111",
+    mobileLines: ["ALTEREGO"],
   },
   {
     fav: "fav-mitiendago.png",
@@ -38,6 +40,7 @@ const brands = [
     textTransform: "none" as const,
     fontStyle: "italic" as const,
     color: "#0053A0",
+    mobileLines: ["MI TIENDA", "GO"],
   },
   {
     fav: "fav-respira.png",
@@ -50,6 +53,7 @@ const brands = [
     textTransform: "none" as const,
     fontStyle: "normal" as const,
     color: "#1a3a6b",
+    mobileLines: ["DR. MARIO", "SANCHEZ", "TERAPIA", "RESPIRATORIA"],
   },
   {
     fav: "fav-sgc.png",
@@ -62,6 +66,7 @@ const brands = [
     textTransform: "uppercase" as const,
     fontStyle: "normal" as const,
     color: "#b5883a",
+    mobileLines: ["SGC", "ABOGADOS"],
   },
 ];
 
@@ -91,7 +96,7 @@ export default function Socios() {
                 className="socios-fav"
               />
               <span
-                className="socios-brand-name"
+                className="socios-brand-name socios-brand-name-desktop"
                 style={{
                   fontFamily: b.font,
                   fontWeight: b.weight,
@@ -103,6 +108,9 @@ export default function Socios() {
               >
                 {b.line1}
                 {b.line2 && <><br />{b.line2}</>}
+              </span>
+              <span className="socios-brand-name socios-brand-name-mobile">
+                {b.mobileLines.map((line) => <span key={line}>{line}</span>)}
               </span>
               {i < brands.length * 2 - 1 && <div className="socios-cell-divider" />}
             </div>

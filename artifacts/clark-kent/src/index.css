@@ -1946,6 +1946,10 @@ body {
   white-space: nowrap;
 }
 
+.socios-brand-name-mobile {
+  display: none;
+}
+
 /* Footer quote */
 .socios-footnote {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -5584,7 +5588,6 @@ body {
     height: 12px;
     flex-shrink: 0;
     background-size: 16px 16px;
-    animation: socios-checker-slide 1.8s linear infinite;
   }
 
   .socios-grid {
@@ -5628,6 +5631,16 @@ body {
     font-size: 14px;
     line-height: 1.25;
     white-space: normal;
+  }
+
+  .socios-brand-name-desktop {
+    display: none;
+  }
+
+  .socios-brand-name-mobile {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
   }
 
   .socios-footnote {
