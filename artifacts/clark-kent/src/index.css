@@ -5920,7 +5920,7 @@ body {
 
   .port-anchor-img {
     order: 2;
-    display: block;
+    display: none;
     position: relative;
     left: 50%;
     right: auto;
