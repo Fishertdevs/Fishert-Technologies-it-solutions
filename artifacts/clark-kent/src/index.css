@@ -318,6 +318,33 @@ body {
   outline: none;
 }
 
+.about-section .vapor-img {
+  animation: about-visual-in 1s ease-out both;
+}
+
+.about-section .about-lines {
+  animation: about-copy-in 0.8s 0.12s ease-out both;
+}
+
+.about-section .about-cta-wrap {
+  animation: about-cta-in 0.7s 0.55s ease-out both;
+}
+
+@keyframes about-visual-in {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes about-copy-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes about-cta-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .about-content {
   position: relative;
   z-index: 2;
@@ -475,6 +502,39 @@ body {
   padding: 16vh 0;
   background: #fff;
   box-sizing: border-box;
+}
+
+.welcome-section .wlc-title,
+.welcome-section .wlc-body {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.welcome-section .wlc-body {
+  transform: translateY(18px);
+}
+
+.welcome-section--visible .wlc-title,
+.welcome-section--visible .wlc-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.welcome-section--visible .wlc-title { transition-delay: 0.05s; }
+.welcome-section--visible .wlc-body { transition-delay: 0.17s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .about-section .vapor-img,
+  .about-section .about-lines,
+  .about-section .about-cta-wrap,
+  .welcome-section .wlc-title,
+  .welcome-section .wlc-body {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
 }
 
 .welcome-inner {
@@ -5970,15 +6030,24 @@ body {
   }
 
   .nos-title {
-    width: max-content;
-    max-width: none;
-    font-size: clamp(28px, 8.8vw, 40px);
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(22px, 7vw, 32px);
     line-height: 1.05;
-    letter-spacing: -0.04em;
-    white-space: nowrap;
+    letter-spacing: -0.02em;
+    white-space: normal;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
     text-align: center;
-    transform: scaleX(0.92);
     transform-origin: center;
+  }
+
+  .nos-section .nos-title {
+    transform: translateY(24px);
+  }
+
+  .nos-section--visible .nos-title {
+    transform: translateY(0);
   }
 
   .nos-card {

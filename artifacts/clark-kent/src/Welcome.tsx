@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "./LanguageContext";
 
 const content = {
@@ -14,9 +15,36 @@ const content = {
 export default function Welcome() {
   const { lang } = useLang();
   const t = content[lang];
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="welcome-section">
+    <section
+      ref={sectionRef}
+      className={`welcome-section${isVisible ? " welcome-section--visible" : ""}`}
+    >
       <div className="welcome-inner">
         <h2 className="wlc-title">{t.title}</h2>
         <p className="wlc-body">{t.body}</p>
