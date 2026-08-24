@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useRef,
   useState,
   type PointerEvent as ReactPointerEvent,
@@ -66,11 +67,35 @@ export default function PreguntasFrecuentes() {
   const items = faqs[lang];
   const [active, setActive] = useState(0);
   const swipeStartX = useRef<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const prev = () => setActive((a) => (a - 1 + items.length) % items.length);
   const next = () => setActive((a) => (a + 1) % items.length);
 
   const current = items[active];
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const handleSwipeStart = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (event.pointerType === "mouse") return;
@@ -89,7 +114,10 @@ export default function PreguntasFrecuentes() {
   };
 
   return (
-    <section className="faq2-section">
+    <section
+      ref={sectionRef}
+      className={`faq2-section${isVisible ? " faq2-section--visible" : ""}`}
+    >
 
       <div className="faq2-inner">
 

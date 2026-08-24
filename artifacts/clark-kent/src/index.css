@@ -3526,6 +3526,44 @@ body {
   box-sizing: border-box;
 }
 
+.faq2-section .faq2-left,
+.faq2-section .faq2-heading,
+.faq2-section .faq2-card,
+.faq2-section .faq2-nav {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.faq2-section .faq2-left {
+  transform: translateX(-26px);
+}
+
+.faq2-section--visible .faq2-left,
+.faq2-section--visible .faq2-heading,
+.faq2-section--visible .faq2-card,
+.faq2-section--visible .faq2-nav {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.faq2-section--visible .faq2-heading { transition-delay: 0.05s; }
+.faq2-section--visible .faq2-card { transition-delay: 0.16s; }
+.faq2-section--visible .faq2-nav { transition-delay: 0.27s; }
+.faq2-section--visible .faq2-left { transition-delay: 0.12s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .faq2-section .faq2-left,
+  .faq2-section .faq2-heading,
+  .faq2-section .faq2-card,
+  .faq2-section .faq2-nav {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+}
+
 /* SVG waves — anchored top and bottom, same as Nosotros */
 .faq2-wave {
   position: absolute;
@@ -5226,13 +5264,11 @@ body {
   }
 
   .faq2-nav {
-    gap: 16px;
+    gap: 0;
   }
 
   .faq2-arrow {
-    width: 26px;
-    height: 26px;
-    touch-action: manipulation;
+    display: none;
   }
 
   .faq2-dots {
