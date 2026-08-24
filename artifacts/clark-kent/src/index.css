@@ -5571,7 +5571,7 @@ body {
   }
 
   .nos-img-col {
-    order: 1;
+    order: 2;
     width: 100%;
     height: clamp(260px, 82vw, 360px);
     flex-shrink: 0;
@@ -5585,7 +5585,7 @@ body {
   }
 
   .nos-speech-col {
-    order: 2;
+    order: 1;
     width: 100%;
     height: auto;
     min-width: 0;
@@ -5597,10 +5597,11 @@ body {
   .nos-title {
     width: 100%;
     max-width: 100%;
-    font-size: clamp(28px, 8.8vw, 40px);
+    font-size: clamp(15px, 5.2vw, 24px);
     line-height: 1.05;
-    white-space: normal;
-    text-wrap: balance;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    text-align: center;
   }
 
   .nos-card {
@@ -5609,15 +5610,17 @@ body {
     padding: 24px 22px;
     box-sizing: border-box;
     border-radius: 26px;
+    align-items: center;
   }
 
   .nos-body {
     font-size: 14px;
     line-height: 1.65;
+    text-align: center;
   }
 
   .nos-wave {
-    height: 42px;
+    display: none;
   }
 
   .socios-section {
