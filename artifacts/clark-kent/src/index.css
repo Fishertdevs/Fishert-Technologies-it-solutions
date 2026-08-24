@@ -5427,7 +5427,9 @@ body {
 /* Mobile services transition: rounded corners instead of the desktop wave */
 @media (max-width: 768px) {
   #servicios {
-    height: 100vh !important;
+    height: auto !important;
+    min-height: 0;
+    padding-bottom: 42px;
     border-radius: 56px 56px 0 0 !important;
   }
 
@@ -5436,10 +5438,10 @@ body {
   }
 
   #servicios > .works-text-block {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 72px 20px 28px;
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 76px 20px 30px;
     text-align: center;
   }
 
@@ -5467,13 +5469,27 @@ body {
     display: inline;
   }
 
-  #servicios > div[style] {
-    width: 100% !important;
-    height: 100% !important;
+  #servicios .svc-mobile-carousel {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    touch-action: pan-y;
   }
 
-  #servicios .svc-item {
-    border-radius: 20px 20px 0 0 !important;
+  #servicios .svc-mobile-card {
+    position: relative;
+    width: 100%;
+    height: clamp(230px, 70vw, 310px);
+    overflow: hidden;
+    border-radius: 22px;
+    background: #171717;
+  }
+
+  #servicios .svc-mobile-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   #servicios .svc-label-overlay {
@@ -5486,5 +5502,49 @@ body {
 
   #servicios .svc-ver-mas {
     font-size: clamp(11px, 3.2vw, 14px);
+  }
+
+  #servicios .svc-mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  #servicios .svc-mobile-arrow {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    color: #ffffff;
+    background: transparent;
+    font-size: 19px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  #servicios .svc-mobile-dots {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  #servicios .svc-mobile-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+  }
+
+  #servicios .svc-mobile-dot--active {
+    width: 24px;
+    border-radius: 999px;
+    background: #ffffff;
   }
 }

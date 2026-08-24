@@ -30,8 +30,10 @@ type Slot = { size: number; height: number; x: number };
 
 export default function Servicios() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const mobileTouchStart = useRef<number | null>(null);
   const [slots, setSlots] = useState<Slot[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileIndex, setMobileIndex] = useState(0);
   const { lang } = useLang();
 
   useEffect(() => {
@@ -53,17 +55,14 @@ export default function Servicios() {
       const vw = sectionRef.current?.clientWidth ?? window.innerWidth;
       const vh = sectionRef.current?.clientHeight ?? window.innerHeight;
       // Widths must sum to 1.0 × vw so cards fill the section (carousel works)
-      const widths = isMobile
-        ? [vw * 0.84, vw * 0.84, vw * 0.84, vw * 0.84]
-        : [vw * 0.18, vw * 0.22, vw * 0.27, vw * 0.33];
+      const widths = [vw * 0.18, vw * 0.22, vw * 0.27, vw * 0.33];
       // Heights are capped at 60 vh so cards aren't overwhelmingly tall
-      const maxH = isMobile ? Math.min(vw * 0.84, vh * 0.50) : vh * 0.60;
-      const gap = isMobile ? vw * 0.06 : 0;
-      let x = isMobile ? vw * 0.06 : 0;
+      const maxH = vh * 0.60;
+      let x = 0;
       setSlots(
         widths.map((w) => {
-          const slot: Slot = { size: w, height: isMobile ? maxH : Math.min(w, maxH), x };
-          x += w + gap;
+          const slot: Slot = { size: w, height: Math.min(w, maxH), x };
+          x += w;
           return slot;
         })
       );
@@ -75,7 +74,7 @@ export default function Servicios() {
 
   // ── Scroll-driven 6-cycle carousel (user controls with scroll) ─────────
   useLayoutEffect(() => {
-    if (slots.length < VISIBLE || !sectionRef.current) return;
+    if (isMobile || slots.length < VISIBLE || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
       // 1. Hide all cards, then place the initial 5
@@ -147,6 +146,12 @@ export default function Servicios() {
     return () => ctx.revert();
   }, [slots, isMobile]);
 
+  const changeMobileSlide = (direction: number) => {
+    setMobileIndex((current) => (current + direction + galleryData.length) % galleryData.length);
+  };
+
+  const activeMobileService = galleryData[mobileIndex];
+
   return (
     <section
       id="servicios"
@@ -189,43 +194,95 @@ export default function Servicios() {
         </p>
       </div>
 
-      <div style={{ position: "relative", width: "100%", height: "100%" }}>
-        {galleryData.map((item) => (
-          <div
-            key={item.id}
-            className={`svc-item svc-item--${item.id}`}
-            style={{
-              overflow: "hidden",
-              position: "absolute",
-              bottom: 0, left: 0,
-              borderRadius: "16px 16px 0 0",
-            }}
-          >
+      {isMobile ? (
+        <div
+          className="svc-mobile-carousel"
+          onTouchStart={(event) => {
+            mobileTouchStart.current = event.touches[0]?.clientX ?? null;
+          }}
+          onTouchEnd={(event) => {
+            const start = mobileTouchStart.current;
+            const end = event.changedTouches[0]?.clientX;
+            mobileTouchStart.current = null;
+            if (start === null || end === undefined || Math.abs(start - end) < 40) return;
+            changeMobileSlide(start > end ? 1 : -1);
+          }}
+        >
+          <article className="svc-mobile-card" key={activeMobileService.id}>
             <img
-              src={/^(https?:)?\/\//.test(item.img) || item.img.startsWith("/") ? item.img : `${base}${item.img}`}
-              alt={lang === "es" ? item.es : item.en}
-              style={{
-                width: "100%", height: "100%",
-                objectFit: "cover", objectPosition: item.pos,
-                display: "block",
-              }}
+              src={/^(https?:)?\/\//.test(activeMobileService.img) || activeMobileService.img.startsWith("/") ? activeMobileService.img : `${base}${activeMobileService.img}`}
+              alt={lang === "es" ? activeMobileService.es : activeMobileService.en}
             />
             <div className="svc-label-overlay">
-              <span className="svc-label-num">{item.num}</span>
+              <span className="svc-label-num">{activeMobileService.num}</span>
               <div className="svc-label-bottom">
-                <span className="svc-label-title">{lang === "es" ? item.es : item.en}</span>
-                <Link
-                  href={`/servicios/${item.slug}`}
-                  className="svc-ver-mas"
-                  onClick={(e) => e.stopPropagation()}
-                >
+                <span className="svc-label-title">{lang === "es" ? activeMobileService.es : activeMobileService.en}</span>
+                <Link href={`/servicios/${activeMobileService.slug}`} className="svc-ver-mas">
                   {lang === "es" ? "Ver más" : "View more"}
                 </Link>
               </div>
             </div>
+          </article>
+
+          <div className="svc-mobile-nav" aria-label={lang === "es" ? "Navegación de servicios" : "Service navigation"}>
+            <button type="button" className="svc-mobile-arrow" onClick={() => changeMobileSlide(-1)} aria-label={lang === "es" ? "Servicio anterior" : "Previous service"}>
+              ←
+            </button>
+            <div className="svc-mobile-dots">
+              {galleryData.map((item, index) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`svc-mobile-dot${index === mobileIndex ? " svc-mobile-dot--active" : ""}`}
+                  onClick={() => setMobileIndex(index)}
+                  aria-label={`${lang === "es" ? "Ir al servicio" : "Go to service"} ${index + 1}`}
+                />
+              ))}
+            </div>
+            <button type="button" className="svc-mobile-arrow" onClick={() => changeMobileSlide(1)} aria-label={lang === "es" ? "Siguiente servicio" : "Next service"}>
+              →
+            </button>
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          {galleryData.map((item) => (
+            <div
+              key={item.id}
+              className={`svc-item svc-item--${item.id}`}
+              style={{
+                overflow: "hidden",
+                position: "absolute",
+                bottom: 0, left: 0,
+                borderRadius: "16px 16px 0 0",
+              }}
+            >
+              <img
+                src={/^(https?:)?\/\//.test(item.img) || item.img.startsWith("/") ? item.img : `${base}${item.img}`}
+                alt={lang === "es" ? item.es : item.en}
+                style={{
+                  width: "100%", height: "100%",
+                  objectFit: "cover", objectPosition: item.pos,
+                  display: "block",
+                }}
+              />
+              <div className="svc-label-overlay">
+                <span className="svc-label-num">{item.num}</span>
+                <div className="svc-label-bottom">
+                  <span className="svc-label-title">{lang === "es" ? item.es : item.en}</span>
+                  <Link
+                    href={`/servicios/${item.slug}`}
+                    className="svc-ver-mas"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {lang === "es" ? "Ver más" : "View more"}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
