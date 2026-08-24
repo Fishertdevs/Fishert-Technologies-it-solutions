@@ -677,6 +677,10 @@ body {
   text-shadow: 0 1px 8px rgba(0,0,0,0.7);
 }
 
+.works-tagline-mobile {
+  display: none;
+}
+
 .works-sub {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -5423,8 +5427,7 @@ body {
 /* Mobile services transition: rounded corners instead of the desktop wave */
 @media (max-width: 768px) {
   #servicios {
-    height: auto !important;
-    min-height: 0;
+    height: 100vh !important;
     border-radius: 56px 56px 0 0 !important;
   }
 
@@ -5433,47 +5436,44 @@ body {
   }
 
   #servicios > .works-text-block {
-    position: relative;
-    top: auto;
-    left: auto;
-    padding: 76px 20px 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 72px 20px 28px;
     text-align: center;
   }
 
   #servicios .works-heading {
     max-width: 100%;
-    font-size: clamp(40px, 14vw, 58px);
+    font-size: clamp(40px, 13.5vw, 56px);
     line-height: 0.88;
     margin: 0 0 24px;
     text-wrap: balance;
   }
 
   #servicios .works-tagline {
-    font-size: clamp(16px, 4.8vw, 21px);
-    line-height: 1.45;
+    font-size: clamp(15px, 4.4vw, 19px);
+    line-height: 1.42;
     text-align: center;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  #servicios .works-tagline-desktop {
+    display: none;
+  }
+
+  #servicios .works-tagline-mobile {
+    display: inline;
   }
 
   #servicios > div[style] {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
     width: 100% !important;
-    height: auto !important;
-    padding: 0 16px 52px;
-    box-sizing: border-box;
+    height: 100% !important;
   }
 
   #servicios .svc-item {
-    position: relative !important;
-    inset: auto !important;
-    transform: none !important;
-    flex: 0 0 auto;
-    width: 100% !important;
-    height: clamp(230px, 70vw, 310px) !important;
-    margin: 0 !important;
-    border-radius: 20px !important;
-    opacity: 1 !important;
+    border-radius: 20px 20px 0 0 !important;
   }
 
   #servicios .svc-label-overlay {

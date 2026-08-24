@@ -53,14 +53,17 @@ export default function Servicios() {
       const vw = sectionRef.current?.clientWidth ?? window.innerWidth;
       const vh = sectionRef.current?.clientHeight ?? window.innerHeight;
       // Widths must sum to 1.0 × vw so cards fill the section (carousel works)
-      const widths = [vw * 0.18, vw * 0.22, vw * 0.27, vw * 0.33];
+      const widths = isMobile
+        ? [vw * 0.84, vw * 0.84, vw * 0.84, vw * 0.84]
+        : [vw * 0.18, vw * 0.22, vw * 0.27, vw * 0.33];
       // Heights are capped at 60 vh so cards aren't overwhelmingly tall
-      const maxH = vh * 0.60;
-      let x = 0;
+      const maxH = isMobile ? Math.min(vw * 0.84, vh * 0.50) : vh * 0.60;
+      const gap = isMobile ? vw * 0.06 : 0;
+      let x = isMobile ? vw * 0.06 : 0;
       setSlots(
         widths.map((w) => {
-          const slot: Slot = { size: w, height: Math.min(w, maxH), x };
-          x += w;
+          const slot: Slot = { size: w, height: isMobile ? maxH : Math.min(w, maxH), x };
+          x += w + gap;
           return slot;
         })
       );
@@ -72,7 +75,7 @@ export default function Servicios() {
 
   // ── Scroll-driven 6-cycle carousel (user controls with scroll) ─────────
   useLayoutEffect(() => {
-    if (isMobile || slots.length < VISIBLE || !sectionRef.current) return;
+    if (slots.length < VISIBLE || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
       // 1. Hide all cards, then place the initial 5
@@ -173,9 +176,16 @@ export default function Servicios() {
           {lang === "es" ? "NUESTROS SERVICIOS." : "OUR SERVICES."}
         </h2>
         <p className="works-tagline">
-          {lang === "es"
-            ? <>Diseñamos, desarrollamos y escalamos<br />soluciones digitales para marcas<br />que buscan liderar.</>
-            : <>We design, build and scale digital<br />solutions for brands that aim to lead.</>}
+          <span className="works-tagline-desktop">
+            {lang === "es"
+              ? <>Diseñamos, desarrollamos y escalamos<br />soluciones digitales para marcas<br />que buscan liderar.</>
+              : <>We design, build and scale digital<br />solutions for brands that aim to lead.</>}
+          </span>
+          <span className="works-tagline-mobile">
+            {lang === "es"
+              ? <>Diseñamos, desarrollamos y<br />escalamos soluciones digitales<br />para marcas que buscan liderar.</>
+              : <>We design, build and scale<br />digital solutions for brands<br />that aim to lead.</>}
+          </span>
         </p>
       </div>
 
