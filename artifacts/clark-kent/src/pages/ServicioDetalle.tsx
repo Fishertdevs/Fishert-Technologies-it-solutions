@@ -3,12 +3,19 @@ import { Link, useParams } from "wouter";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import { buildInfoHref } from "../utils/whatsapp";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "./ServicioDetalle.css";
 
 type Plan = {
   name: string;
   price: string;
+  currency?: string;
+  period?: string;
   badge?: string;
   features: string[];
+  isCustom?: boolean;
 };
 
 type ServiceData = {
@@ -32,7 +39,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "Starter",
-          price: "$800",
+          price: "3.500.000",
+          currency: "COP",
           features: [
             "Landing page de alto impacto",
             "Diseño responsivo (mobile + desktop)",
@@ -44,7 +52,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Professional",
-          price: "$2.000",
+          price: "8.500.000",
+          currency: "COP",
           badge: "Más popular",
           features: [
             "Web corporativa multi-sección",
@@ -57,7 +66,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Enterprise",
-          price: "A medida",
+          price: "Desde $15.000.000 COP",
+          isCustom: true,
           features: [
             "Plataforma web de escala",
             "E-commerce o apps interactivas",
@@ -79,7 +89,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "Starter",
-          price: "$800",
+          price: "3,500,000",
+          currency: "COP",
           features: [
             "High-impact landing page",
             "Responsive design (mobile + desktop)",
@@ -91,7 +102,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Professional",
-          price: "$2,000",
+          price: "8,500,000",
+          currency: "COP",
           badge: "Most popular",
           features: [
             "Multi-section corporate website",
@@ -104,7 +116,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Enterprise",
-          price: "Custom",
+          price: "From $15,000,000 COP",
+          isCustom: true,
           features: [
             "Scalable web platform",
             "E-commerce or interactive apps",
@@ -128,7 +141,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "MVP",
-          price: "$3.000",
+          price: "15.000.000",
+          currency: "COP",
           features: [
             "App funcional con features core",
             "Backend + base de datos configurados",
@@ -140,7 +154,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Growth",
-          price: "$8.000",
+          price: "35.000.000",
+          currency: "COP",
           badge: "Más popular",
           features: [
             "Plataforma con features completas",
@@ -153,7 +168,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Enterprise",
-          price: "A medida",
+          price: "Desde $60.000.000 COP",
+          isCustom: true,
           features: [
             "Plataforma de escala empresarial",
             "Arquitectura de microservicios",
@@ -175,7 +191,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "MVP",
-          price: "$3,000",
+          price: "15,000,000",
+          currency: "COP",
           features: [
             "Functional app with core features",
             "Backend + database configured",
@@ -187,7 +204,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Growth",
-          price: "$8,000",
+          price: "35,000,000",
+          currency: "COP",
           badge: "Most popular",
           features: [
             "Platform with full feature set",
@@ -200,7 +218,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Enterprise",
-          price: "Custom",
+          price: "From $60,000,000 COP",
+          isCustom: true,
           features: [
             "Enterprise-scale platform",
             "Microservices architecture",
@@ -224,7 +243,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "Essentials",
-          price: "$1.200",
+          price: "5.000.000",
+          currency: "COP",
           features: [
             "Automatización de 2–3 procesos clave",
             "Chatbot básico con IA (WhatsApp o web)",
@@ -236,7 +256,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Advanced",
-          price: "$3.500",
+          price: "15.000.000",
+          currency: "COP",
           badge: "Más popular",
           features: [
             "Automatización end-to-end de operaciones",
@@ -249,7 +270,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Custom",
-          price: "A medida",
+          price: "Desde $30.000.000 COP",
+          isCustom: true,
           features: [
             "Modelos de IA entrenados con tus datos",
             "Solución de IA enterprise a escala",
@@ -271,7 +293,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "Essentials",
-          price: "$1,200",
+          price: "5,000,000",
+          currency: "COP",
           features: [
             "Automation of 2–3 key processes",
             "Basic AI chatbot (WhatsApp or web)",
@@ -283,7 +306,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Advanced",
-          price: "$3,500",
+          price: "15,000,000",
+          currency: "COP",
           badge: "Most popular",
           features: [
             "End-to-end operations automation",
@@ -296,7 +320,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Custom",
-          price: "Custom",
+          price: "From $30,000,000 COP",
+          isCustom: true,
           features: [
             "AI models trained on your data",
             "Enterprise-scale AI solution",
@@ -320,7 +345,9 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "Starter",
-          price: "$500 / mes",
+          price: "2.500.000",
+          currency: "COP",
+          period: "/ mes",
           features: [
             "Gestión de 2 redes sociales",
             "12 publicaciones mensuales",
@@ -332,7 +359,9 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Growth",
-          price: "$1.200 / mes",
+          price: "5.000.000",
+          currency: "COP",
+          period: "/ mes",
           badge: "Más popular",
           features: [
             "Gestión de 4 redes sociales",
@@ -345,7 +374,9 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Full",
-          price: "$2.500 / mes",
+          price: "10.000.000",
+          currency: "COP",
+          period: "/ mes",
           features: [
             "Estrategia de marketing 360°",
             "Performance marketing avanzado",
@@ -367,7 +398,9 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "Starter",
-          price: "$500 / mo",
+          price: "2,500,000",
+          currency: "COP",
+          period: "/ mo",
           features: [
             "Management of 2 social networks",
             "12 monthly posts",
@@ -379,7 +412,9 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Growth",
-          price: "$1,200 / mo",
+          price: "5,000,000",
+          currency: "COP",
+          period: "/ mo",
           badge: "Most popular",
           features: [
             "Management of 4 social networks",
@@ -392,7 +427,9 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Full",
-          price: "$2,500 / mo",
+          price: "10,000,000",
+          currency: "COP",
+          period: "/ mo",
           features: [
             "360° marketing strategy",
             "Advanced performance marketing",
@@ -416,7 +453,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "Essential",
-          price: "$800",
+          price: "3.500.000",
+          currency: "COP",
           features: [
             "Configuración de servidor en la nube",
             "Pipeline CI/CD básico",
@@ -428,7 +466,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Professional",
-          price: "$2.000",
+          price: "8.500.000",
+          currency: "COP",
           badge: "Más popular",
           features: [
             "Infraestructura cloud completa",
@@ -441,7 +480,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Enterprise",
-          price: "A medida",
+          price: "Desde $20.000.000 COP",
+          isCustom: true,
           features: [
             "Arquitectura multi-cloud o híbrida",
             "Alta disponibilidad y disaster recovery",
@@ -463,7 +503,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       plans: [
         {
           name: "Essential",
-          price: "$800",
+          price: "3,500,000",
+          currency: "COP",
           features: [
             "Cloud server configuration",
             "Basic CI/CD pipeline",
@@ -475,7 +516,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Professional",
-          price: "$2,000",
+          price: "8,500,000",
+          currency: "COP",
           badge: "Most popular",
           features: [
             "Complete cloud infrastructure",
@@ -488,7 +530,8 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         },
         {
           name: "Enterprise",
-          price: "Custom",
+          price: "From $20,000,000 COP",
+          isCustom: true,
           features: [
             "Multi-cloud or hybrid architecture",
             "High availability and disaster recovery",
@@ -509,15 +552,74 @@ export default function ServicioDetalle() {
   const slug = params.slug ?? "";
   const service = data[slug];
 
-  useEffect(() => { window.scrollTo(0, 0); }, [slug]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    if (!service) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    const ctx = gsap.context(() => {
+      const motionTargets = [
+        ".svc2-hero-content > *",
+        ".svc2-desc-text",
+        ".svc2-plan-card",
+      ];
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reduceMotion) {
+        gsap.set(motionTargets, { y: 0, opacity: 1 });
+        return;
+      }
+
+      gsap.set(".svc2-hero-content > *", { y: 30, opacity: 0 });
+      gsap.set(".svc2-desc-text", { y: 40, opacity: 0 });
+      gsap.set(".svc2-plan-card", { y: 50, opacity: 0 });
+
+      gsap.to(".svc2-hero-content > *", {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        delay: 0.2,
+      });
+
+      gsap.to(".svc2-desc-text", {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".svc2-desc-section",
+          start: "top 80%",
+        },
+      });
+
+      gsap.to(".svc2-plan-card", {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".svc2-pricing-section",
+          start: "top 75%",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, [slug, service]);
 
   if (!service) {
     return (
       <>
         <Navbar />
-        <div className="svc-page-notfound">
-          <p>{lang === "es" ? "Servicio no encontrado." : "Service not found."}</p>
-          <Link href="/" className="svc-back-link">
+        <div style={{ padding: "20vh 48px", textAlign: "center" }}>
+          <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "32px", color: "#111" }}>
+            {lang === "es" ? "Servicio no encontrado." : "Service not found."}
+          </p>
+          <Link href="/" style={{ color: "#C0001A", fontSize: "14px", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600, textDecoration: "none" }}>
             ← {lang === "es" ? "Volver al inicio" : "Back to home"}
           </Link>
         </div>
@@ -532,55 +634,91 @@ export default function ServicioDetalle() {
   return (
     <>
       <Navbar />
-      <main className="svc-page">
-
+      <main className="svc2-container">
         {/* ── Hero ── */}
-        <section className="svc-page-hero">
-          <img src={`${base}${t.hero}`} alt={t.title} className="svc-page-hero-img" />
-          <div className="svc-page-hero-overlay" />
-          <div className="svc-page-hero-content">
-            <Link href="/" className="svc-back-link">
-              ← {lang === "es" ? "Volver al inicio" : "Back to home"}
+        <header className="svc2-hero">
+          <div className="svc2-hero-img-wrap">
+            <img src={`${base}${t.hero}`} alt={t.title} className="svc2-hero-img" />
+            <div className="svc2-hero-gradient" />
+          </div>
+          <div className="svc2-hero-content">
+            <Link href="/" className="svc2-back-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              {lang === "es" ? "Volver al inicio" : "Back to home"}
             </Link>
-            <p className="svc-page-eyebrow">{t.eyebrow}</p>
-            <h1 className="svc-page-title">{t.title}</h1>
-            <p className="svc-page-intro">{t.intro}</p>
+
+            <div className="svc2-discount-pill">
+              <span className="svc2-discount-dot"></span>
+              {lang === "es"
+                ? "Oferta exclusiva: 20% de descuento en el primer servicio contratado este mes"
+                : "Exclusive offer: 20% off the first service contracted this month"}
+            </div>
+
+            <div className="svc2-title-wrap">
+              <span className="svc2-eyebrow">{t.eyebrow}</span>
+              <h1 className="svc2-title">{t.title}</h1>
+            </div>
+            <p className="svc2-intro">{t.intro}</p>
+          </div>
+        </header>
+
+        {/* ── Description ── */}
+        <section className="svc2-desc-section">
+          <div className="svc2-desc-inner">
+            <h2 className="svc2-desc-text">{t.description}</h2>
           </div>
         </section>
 
-        {/* ── Description ── */}
-        <section className="svc-page-desc">
-          <p>{t.description}</p>
-        </section>
-
-        {/* ── Plans ── */}
-        <section className="svc-page-plans">
-          <p className="svc-plans-eyebrow">
-            {lang === "es" ? "PLANES" : "PLANS"}
-          </p>
-          <h2 className="svc-plans-heading">
-            {lang === "es" ? "Elige tu plan." : "Choose your plan."}
-          </h2>
-          <div className="svc-plans-grid">
+        {/* ── Pricing ── */}
+        <section className="svc2-pricing-section">
+          <div className="svc2-pricing-header">
+             <h3 className="svc2-pricing-title">
+               {lang === "es" ? "Inversión transparente." : "Transparent investment."}
+             </h3>
+             <p className="svc2-pricing-sub">
+               {lang === "es" ? "Precios en pesos colombianos (COP). Sin sorpresas." : "Prices in Colombian Pesos (COP). No surprises."}
+             </p>
+          </div>
+          <div className="svc2-plans-grid">
             {t.plans.map((plan, i) => (
-              <div key={i} className={`svc-plan-card${plan.badge ? " svc-plan-card--featured" : ""}`}>
+              <div key={i} className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""}`}>
                 {plan.badge && (
-                  <span className="svc-plan-badge">{plan.badge}</span>
+                  <span className="svc2-plan-badge">{plan.badge}</span>
                 )}
-                <p className="svc-plan-name">{plan.name}</p>
-                <p className="svc-plan-price">{plan.price}</p>
-                <ul className="svc-plan-features">
+
+                <h4 className="svc2-plan-name">{plan.name}</h4>
+
+                <div className="svc2-plan-price-wrap">
+                  {plan.isCustom ? (
+                    <p className="svc2-plan-price">{plan.price}</p>
+                  ) : (
+                    <p className="svc2-plan-price">
+                      ${plan.price}
+                      <span className="svc2-plan-price-currency">
+                        {plan.currency} {plan.period || ""}
+                      </span>
+                    </p>
+                  )}
+                </div>
+
+                <div className="svc2-plan-divider"></div>
+
+                <ul className="svc2-plan-features">
                   {plan.features.map((f, j) => (
-                    <li key={j}>
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                        <path d="M2 7l3.5 3.5L12 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    <li key={j} className="svc2-plan-feature">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
-                      {f}
+                      <span>{f}</span>
                     </li>
                   ))}
                 </ul>
-                <a href="/#contacto" className="svc-plan-cta">
-                  {lang === "es" ? "Iniciar proyecto" : "Start project"}
+
+                <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-plan-cta">
+                  {lang === "es" ? "Solicitar propuesta" : "Request proposal"}
                 </a>
               </div>
             ))}
