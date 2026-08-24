@@ -658,17 +658,9 @@ export default function ServicioDetalle() {
         {/* ── Hero ── */}
         <header className="svc2-hero">
           <div className="svc2-hero-content">
-            <div className="svc2-discount-pill">
-              <span className="svc2-discount-dot" />
-              <span className="svc2-discount-copy">
-                <strong>{lang === "es" ? "Oferta de este mes" : "This month's offer"}</strong>
-                <span>{lang === "es" ? "20% de descuento en tu primer servicio" : "20% off your first service"}</span>
-              </span>
-            </div>
-
             <div className="svc2-title-wrap">
               <span className="svc2-eyebrow">{t.eyebrow}</span>
-              <h1 className="svc2-title">{t.title}</h1>
+              <h1 className={`svc2-title ${t.title.length > 18 ? "svc2-title--compact" : ""}`}>{t.title}</h1>
             </div>
             <p className="svc2-intro">{t.intro}</p>
           </div>
@@ -680,6 +672,24 @@ export default function ServicioDetalle() {
             <h2 className="svc2-desc-text">{t.description}</h2>
           </div>
         </section>
+
+        {slug === "desarrollo-web" && (
+          <section className="svc2-platforms-section" aria-label={lang === "es" ? "Tecnologías para desarrollo web" : "Web development technologies"}>
+            <p className="svc2-platforms-label">
+              {lang === "es" ? "La plataforma correcta para tu próxima etapa" : "The right platform for your next stage"}
+            </p>
+            <div className="svc2-platforms-list">
+              {(lang === "es"
+                ? ["WordPress", "Shopify", "WooCommerce", "Desarrollo a medida"]
+                : ["WordPress", "Shopify", "WooCommerce", "Custom development"]
+              ).map((platform) => (
+                <span key={platform} className="svc2-platform">
+                  {platform}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── Pricing ── */}
         <section className="svc2-pricing-section">
@@ -806,6 +816,38 @@ export default function ServicioDetalle() {
                 onClick={() => setActivePlan(index)}
               />
             ))}
+          </div>
+          <div className="svc2-month-offer">
+            <div className="svc2-month-offer-mark" aria-hidden="true">
+              <strong>20%</strong>
+              <span>OFF</span>
+            </div>
+            <div className="svc2-month-offer-copy">
+              <span className="svc2-month-offer-kicker">
+                {lang === "es" ? "Oferta de este mes" : "This month's offer"}
+              </span>
+              <h3>
+                {lang === "es"
+                  ? slug === "desarrollo-web"
+                    ? "Tu próxima versión empieza hoy."
+                    : "Hagamos que tu próxima idea avance."
+                  : slug === "desarrollo-web"
+                    ? "Your next version starts today."
+                    : "Let's move your next idea forward."}
+              </h3>
+              <p>
+                {lang === "es"
+                  ? "20% de descuento en tu primer servicio."
+                  : "20% off your first service."}
+              </p>
+            </div>
+            <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
+              {lang === "es" ? "Hablemos" : "Let's talk"}
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h13" />
+                <path d="m13 6 6 6-6 6" />
+              </svg>
+            </a>
           </div>
         </section>
 

@@ -65,7 +65,7 @@
   display: block;
   margin-bottom: 15px;
   color: #c0001a;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -76,7 +76,7 @@
   margin: 0 0 21px;
   color: #111111;
   font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(42px, 7vw, 94px);
+  font-size: clamp(58px, 7.5vw, 104px);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.92;
@@ -84,11 +84,15 @@
   white-space: nowrap;
 }
 
+.svc2-title--compact {
+  font-size: clamp(50px, 6.6vw, 88px);
+}
+
 .svc2-intro {
   max-width: 610px;
   margin: 0 auto;
   color: #555861;
-  font-size: clamp(16px, 1.55vw, 20px);
+  font-size: clamp(18px, 1.55vw, 22px);
   line-height: 1.45;
   text-align: center;
 }
@@ -109,11 +113,44 @@
   margin: 0;
   color: #171717;
   font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(28px, 3.8vw, 50px);
+  font-size: clamp(22px, 2.8vw, 36px);
   font-style: italic;
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.18;
+}
+
+.svc2-platforms-section {
+  width: min(100% - 96px, 1120px);
+  margin: 0 auto;
+  padding: 0 0 78px;
+  text-align: center;
+}
+
+.svc2-platforms-label {
+  margin: 0 0 20px;
+  color: #737782;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.svc2-platforms-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+}
+
+.svc2-platform {
+  padding: 11px 17px;
+  border: 1px solid #d8dbe1;
+  border-radius: 999px;
+  color: #222731;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .svc2-pricing-section {
@@ -262,6 +299,7 @@
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.2em;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -327,6 +365,7 @@
 }
 
 .svc2-plan-cta {
+  position: relative;
   display: flex;
   min-height: 51px;
   align-items: center;
@@ -342,6 +381,16 @@
   letter-spacing: 0.04em;
   text-decoration: none;
   transition: background 0.2s ease;
+}
+
+.svc2-plan-cta::after {
+  position: absolute;
+  right: 22%;
+  bottom: 9px;
+  left: 22%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.72);
+  content: "";
 }
 
 .svc2-plan-cta:hover {
@@ -372,6 +421,94 @@
   display: none;
 }
 
+.svc2-month-offer {
+  display: grid;
+  grid-template-columns: 112px 1fr auto;
+  align-items: center;
+  gap: 25px;
+  margin-top: 63px;
+  padding: 22px 27px 22px 22px;
+  border: 1px solid #d9dce2;
+  border-radius: 23px;
+  background: #ffffff;
+}
+
+.svc2-month-offer-mark {
+  display: flex;
+  min-height: 92px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 17px;
+  background: #c0001a;
+  color: #ffffff;
+  transform: rotate(-3deg);
+}
+
+.svc2-month-offer-mark strong {
+  font-size: 29px;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+}
+
+.svc2-month-offer-mark span {
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.svc2-month-offer-copy {
+  min-width: 0;
+}
+
+.svc2-month-offer-kicker {
+  display: block;
+  margin-bottom: 6px;
+  color: #c0001a;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.svc2-month-offer-copy h3 {
+  margin: 0 0 5px;
+  color: #17191e;
+  font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
+  font-size: clamp(25px, 3vw, 37px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.svc2-month-offer-copy p {
+  margin: 0;
+  color: #636772;
+  font-size: 13px;
+}
+
+.svc2-month-offer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #17191e;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-decoration: underline;
+  text-decoration-color: #c0001a;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.svc2-month-offer-link svg {
+  color: #c0001a;
+}
+
 @media (max-width: 768px) {
   .svc2-hero {
     min-height: 388px;
@@ -383,36 +520,27 @@
   }
 
   .svc2-hero-content {
-    padding: 116px 0 66px;
-  }
-
-  .svc2-discount-pill {
-    margin-bottom: 25px;
-    padding: 9px 13px;
-  }
-
-  .svc2-discount-copy {
-    font-size: 10px;
-  }
-
-  .svc2-discount-copy strong {
-    font-size: 9px;
+    padding: 125px 0 70px;
   }
 
   .svc2-eyebrow {
     margin-bottom: 13px;
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .svc2-title {
     margin-bottom: 17px;
-    font-size: clamp(27px, 8.2vw, 34px);
+    font-size: clamp(42px, 13vw, 54px);
     line-height: 0.96;
+  }
+
+  .svc2-title--compact {
+    font-size: clamp(30px, 8.6vw, 40px);
   }
 
   .svc2-intro {
     max-width: 310px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .svc2-desc-section {
@@ -420,8 +548,25 @@
   }
 
   .svc2-desc-text {
-    font-size: clamp(27px, 8.1vw, 36px);
-    line-height: 1.1;
+    font-size: clamp(21px, 6.1vw, 28px);
+    line-height: 1.16;
+  }
+
+  .svc2-platforms-section {
+    width: min(100% - 48px, 520px);
+    padding: 0 0 66px;
+  }
+
+  .svc2-platforms-label {
+    max-width: 270px;
+    margin: 0 auto 18px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .svc2-platform {
+    padding: 10px 13px;
+    font-size: 12px;
   }
 
   .svc2-pricing-header {
@@ -500,6 +645,39 @@
   .svc2-plan-dot--active {
     width: 25px;
     background: #c0001a;
+  }
+
+  .svc2-month-offer {
+    grid-template-columns: 72px 1fr;
+    gap: 17px;
+    margin-top: 50px;
+    padding: 17px;
+    border-radius: 19px;
+  }
+
+  .svc2-month-offer-mark {
+    min-height: 75px;
+    border-radius: 13px;
+  }
+
+  .svc2-month-offer-mark strong {
+    font-size: 23px;
+  }
+
+  .svc2-month-offer-copy h3 {
+    font-size: 27px;
+  }
+
+  .svc2-month-offer-copy p {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .svc2-month-offer-link {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 3px;
+    font-size: 10px;
   }
 }
 
