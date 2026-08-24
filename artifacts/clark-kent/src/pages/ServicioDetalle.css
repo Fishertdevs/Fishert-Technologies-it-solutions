@@ -2,102 +2,35 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: #f7f7f5;
-  color: #111111;
+  background: #ffffff;
+  color: #121212;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .svc2-hero {
-  position: relative;
-  min-height: 590px;
-  overflow: hidden;
-  background: #111111;
-}
-
-.svc2-hero::before {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, transparent 0, transparent calc(50% - 0.5px), rgba(255, 255, 255, 0.1) calc(50% - 0.5px), rgba(255, 255, 255, 0.1) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-    linear-gradient(180deg, transparent 0, transparent calc(100% - 122px), rgba(255, 255, 255, 0.1) calc(100% - 122px), rgba(255, 255, 255, 0.1) calc(100% - 121px), transparent calc(100% - 121px));
-  content: "";
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-.svc2-hero-grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.svc2-hero-index {
-  position: absolute;
-  top: 132px;
-  right: max(48px, calc((100% - 1200px) / 2));
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  color: rgba(255, 255, 255, 0.35);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-.svc2-hero-index span:first-child {
-  color: #c0001a;
-  font-size: clamp(48px, 7vw, 104px);
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.8;
-}
-
-.svc2-hero-rule {
-  position: absolute;
-  right: max(48px, calc((100% - 1200px) / 2));
-  bottom: 48px;
-  width: min(31vw, 370px);
-  height: 1px;
-  background: #c0001a;
+  min-height: 470px;
+  border-bottom: 1px solid #ececef;
+  background: #ffffff;
 }
 
 .svc2-hero-content {
-  position: relative;
-  z-index: 1;
-  width: min(100% - 96px, 1200px);
+  width: min(100% - 96px, 1120px);
   margin: 0 auto;
-  padding: 146px 0 92px;
-}
-
-.svc2-back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 54px;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: color 0.2s ease;
-}
-
-.svc2-back-link:hover {
-  color: #ffffff;
+  padding: 146px 0 84px;
+  text-align: center;
 }
 
 .svc2-discount-pill {
   display: inline-flex;
   align-items: center;
   gap: 11px;
-  max-width: min(100%, 360px);
-  margin-bottom: 30px;
-  padding: 11px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.06);
-  color: #ffffff;
+  margin: 0 auto 29px;
+  padding: 10px 17px;
+  border: 1px solid #d9dbe0;
+  border-radius: 13px;
+  background: #fafafb;
+  color: #111827;
+  text-align: left;
 }
 
 .svc2-discount-dot {
@@ -106,7 +39,6 @@
   flex: 0 0 auto;
   border-radius: 999px;
   background: #c0001a;
-  box-shadow: 0 0 0 5px rgba(192, 0, 26, 0.16);
 }
 
 .svc2-discount-copy {
@@ -118,20 +50,20 @@
 }
 
 .svc2-discount-copy strong {
-  color: #ffffff;
+  color: #111827;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .svc2-discount-copy span {
-  color: rgba(255, 255, 255, 0.72);
+  color: #4b5059;
 }
 
 .svc2-eyebrow {
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 15px;
   color: #c0001a;
   font-size: 10px;
   font-weight: 800;
@@ -140,30 +72,32 @@
 }
 
 .svc2-title {
-  max-width: 780px;
-  margin: 0 0 22px;
-  color: #ffffff;
+  width: 100%;
+  margin: 0 0 21px;
+  color: #111111;
   font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(54px, 8.4vw, 112px);
+  font-size: clamp(42px, 7vw, 94px);
   font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.86;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .svc2-intro {
-  max-width: 570px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: clamp(16px, 1.7vw, 22px);
-  font-weight: 400;
-  line-height: 1.42;
+  max-width: 610px;
+  margin: 0 auto;
+  color: #555861;
+  font-size: clamp(16px, 1.55vw, 20px);
+  line-height: 1.45;
+  text-align: center;
 }
 
 .svc2-desc-section {
   display: flex;
   justify-content: center;
-  padding: 112px 48px 96px;
-  background: #f7f7f5;
+  padding: 94px 48px 84px;
+  background: #ffffff;
 }
 
 .svc2-desc-inner {
@@ -175,7 +109,7 @@
   margin: 0;
   color: #171717;
   font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(28px, 4vw, 52px);
+  font-size: clamp(28px, 3.8vw, 50px);
   font-style: italic;
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -183,7 +117,7 @@
 }
 
 .svc2-pricing-section {
-  width: min(100% - 96px, 1200px);
+  width: min(100% - 96px, 1120px);
   margin: 0 auto;
   padding: 0 0 120px;
 }
@@ -192,40 +126,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 56px;
+  margin-bottom: 46px;
   text-align: center;
 }
 
-.svc2-pricing-kicker {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 18px;
-  color: rgba(17, 17, 17, 0.52);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.svc2-pricing-kicker span + span {
-  color: #c0001a;
-}
-
 .svc2-pricing-title {
+  max-width: 690px;
   margin: 0 0 12px;
   color: #111111;
   font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(40px, 5vw, 68px);
+  font-size: clamp(38px, 4.6vw, 62px);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 0.9;
+  line-height: 0.94;
 }
 
 .svc2-pricing-sub {
-  max-width: 430px;
+  max-width: 450px;
   margin: 0;
-  color: rgba(17, 17, 17, 0.62);
+  color: #636772;
   font-size: 15px;
   line-height: 1.5;
 }
@@ -235,15 +154,15 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
-  min-height: 44px;
-  margin-top: 28px;
+  min-height: 42px;
+  margin-top: 26px;
 }
 
 .svc2-cycle-toggle {
   display: inline-flex;
   padding: 4px;
   border-radius: 999px;
-  background: #e9e9eb;
+  background: #f0f0f2;
 }
 
 .svc2-cycle-option {
@@ -252,7 +171,7 @@
   border: 0;
   border-radius: 999px;
   background: transparent;
-  color: #6e7178;
+  color: #696d75;
   cursor: pointer;
   font: inherit;
   font-size: 12px;
@@ -270,49 +189,55 @@
   display: inline-flex;
   align-items: center;
   min-height: 32px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: #fff1f2;
   color: #c0001a;
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.svc2-annual-note::before {
+  margin-right: 7px;
+  content: "↙";
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .svc2-cycle-static {
-  border: 1px solid rgba(17, 17, 17, 0.12);
-  background: #ffffff;
-  color: #343434;
+  padding: 0 13px;
+  border: 1px solid #d8dade;
+  border-radius: 999px;
+  color: #3e424a;
+}
+
+.svc2-plans-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
 }
 
 .svc2-plans-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  align-items: stretch;
+  width: min(100%, 490px);
 }
 
 .svc2-plan-card {
   position: relative;
-  display: flex;
-  min-height: 560px;
+  display: none;
+  min-height: 545px;
   flex-direction: column;
-  padding: 40px 34px 32px;
-  border: 1.5px solid #1c2434;
-  border-radius: 26px;
+  padding: 42px 38px 33px;
+  border: 1.5px solid #1b2332;
+  border-radius: 25px;
   background: #ffffff;
-  box-shadow: 0 18px 34px rgba(17, 24, 39, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.svc2-plan-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 42px rgba(17, 24, 39, 0.11);
+.svc2-plan-card--active {
+  display: flex;
 }
 
 .svc2-plan-popular {
   border-color: #c0001a;
-  box-shadow: 0 20px 38px rgba(192, 0, 26, 0.12);
 }
 
 .svc2-plan-badge {
@@ -322,7 +247,6 @@
   padding: 7px 17px;
   border-radius: 999px;
   background: #c0001a;
-  box-shadow: 0 5px 14px rgba(192, 0, 26, 0.22);
   color: #ffffff;
   font-size: 10px;
   font-weight: 800;
@@ -333,8 +257,8 @@
 }
 
 .svc2-plan-name {
-  margin: 0 0 16px;
-  color: #767b86;
+  margin: 0 0 17px;
+  color: #777c86;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.2em;
@@ -342,13 +266,13 @@
 }
 
 .svc2-plan-price-wrap {
-  min-height: 79px;
+  min-height: 82px;
 }
 
 .svc2-plan-price {
   margin: 0;
   color: #111827;
-  font-size: clamp(30px, 3.1vw, 43px);
+  font-size: clamp(32px, 4vw, 46px);
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 1;
@@ -357,7 +281,7 @@
 .svc2-plan-price-currency {
   display: block;
   margin-top: 8px;
-  color: #7a7f89;
+  color: #747982;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0;
@@ -374,8 +298,8 @@
 .svc2-plan-divider {
   width: 100%;
   height: 1px;
-  margin: 27px 0;
-  background: #eaebed;
+  margin: 28px 0;
+  background: #e9eaec;
 }
 
 .svc2-plan-features {
@@ -417,48 +341,40 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .svc2-plan-cta:hover {
-  background: #980016;
-  transform: translateY(-1px);
+  background: #970015;
+}
+
+.svc2-plan-arrow {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #1b2332;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1b2332;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.svc2-plan-arrow:hover {
+  background: #1b2332;
+  color: #ffffff;
 }
 
 .svc2-plan-dots {
   display: none;
 }
 
-@media (max-width: 1024px) {
-  .svc2-hero-content,
-  .svc2-pricing-section {
-    width: min(100% - 64px, 900px);
-  }
-
-  .svc2-hero-index,
-  .svc2-hero-rule {
-    right: 32px;
-  }
-
-  .svc2-plans-grid {
-    gap: 16px;
-  }
-
-  .svc2-plan-card {
-    min-height: 590px;
-    padding: 38px 25px 28px;
-  }
-}
-
 @media (max-width: 768px) {
   .svc2-hero {
-    min-height: 600px;
-  }
-
-  .svc2-hero::before {
-    background:
-      linear-gradient(90deg, transparent 0, transparent calc(100% - 50px), rgba(255, 255, 255, 0.09) calc(100% - 50px), rgba(255, 255, 255, 0.09) calc(100% - 49px), transparent calc(100% - 49px)),
-      linear-gradient(180deg, transparent 0, transparent calc(100% - 80px), rgba(255, 255, 255, 0.09) calc(100% - 80px), rgba(255, 255, 255, 0.09) calc(100% - 79px), transparent calc(100% - 79px));
+    min-height: 388px;
   }
 
   .svc2-hero-content,
@@ -467,57 +383,44 @@
   }
 
   .svc2-hero-content {
-    padding: 126px 0 78px;
-  }
-
-  .svc2-hero-index {
-    top: 96px;
-    right: 24px;
-    font-size: 9px;
-  }
-
-  .svc2-hero-index span:first-child {
-    font-size: 62px;
-  }
-
-  .svc2-hero-rule {
-    right: 24px;
-    bottom: 31px;
-    width: 130px;
-  }
-
-  .svc2-back-link {
-    margin-bottom: 43px;
-    font-size: 10px;
+    padding: 116px 0 66px;
   }
 
   .svc2-discount-pill {
-    max-width: 290px;
-    margin-bottom: 27px;
-    padding: 10px 13px;
+    margin-bottom: 25px;
+    padding: 9px 13px;
   }
 
   .svc2-discount-copy {
     font-size: 10px;
   }
 
+  .svc2-discount-copy strong {
+    font-size: 9px;
+  }
+
+  .svc2-eyebrow {
+    margin-bottom: 13px;
+    font-size: 9px;
+  }
+
   .svc2-title {
-    max-width: 300px;
-    font-size: clamp(54px, 17vw, 71px);
-    line-height: 0.89;
+    margin-bottom: 17px;
+    font-size: clamp(27px, 8.2vw, 34px);
+    line-height: 0.96;
   }
 
   .svc2-intro {
-    max-width: 290px;
-    font-size: 16px;
+    max-width: 310px;
+    font-size: 14px;
   }
 
   .svc2-desc-section {
-    padding: 77px 24px 70px;
+    padding: 72px 24px 66px;
   }
 
   .svc2-desc-text {
-    font-size: clamp(27px, 8.2vw, 37px);
+    font-size: clamp(27px, 8.1vw, 36px);
     line-height: 1.1;
   }
 
@@ -526,48 +429,54 @@
   }
 
   .svc2-pricing-title {
-    font-size: clamp(42px, 13vw, 55px);
+    max-width: 320px;
+    font-size: clamp(38px, 11vw, 48px);
   }
 
   .svc2-pricing-sub {
+    max-width: 305px;
     font-size: 14px;
   }
 
   .svc2-cycle-row {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     margin-top: 23px;
+  }
+
+  .svc2-annual-note {
+    max-width: 205px;
+    justify-content: center;
   }
 
   .svc2-cycle-option {
     min-width: 105px;
   }
 
-  .svc2-plans-grid {
+  .svc2-plans-carousel {
     display: block;
   }
 
+  .svc2-plans-grid {
+    width: 100%;
+  }
+
   .svc2-plan-card {
-    display: none;
     min-height: 0;
     padding: 37px 28px 29px;
   }
 
-  .svc2-plan-card--active {
-    display: flex;
-  }
-
-  .svc2-plan-card:hover {
-    transform: none;
-  }
-
   .svc2-plan-price {
-    font-size: clamp(32px, 10vw, 39px);
+    font-size: clamp(31px, 9.8vw, 39px);
   }
 
   .svc2-plan-feature {
     margin-bottom: 13px;
     font-size: 14px;
+  }
+
+  .svc2-plan-arrow {
+    display: none;
   }
 
   .svc2-plan-dots {
@@ -595,9 +504,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .svc2-plan-card,
-  .svc2-plan-cta,
   .svc2-cycle-option,
+  .svc2-plan-cta,
+  .svc2-plan-arrow,
   .svc2-plan-dot {
     transition: none;
   }
