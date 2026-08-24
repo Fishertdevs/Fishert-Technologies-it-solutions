@@ -72,6 +72,7 @@ export default function Portafolio() {
   const [phase, setPhase] = useState<Phase>("typing");
   const [clicking, setClicking] = useState(false);
   const [hovered, setHovered]   = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const t1 = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -79,8 +80,31 @@ export default function Portafolio() {
   const t3 = useRef<ReturnType<typeof setTimeout> | null>(null);
   const t4 = useRef<ReturnType<typeof setTimeout> | null>(null);
   const touchStartX = useRef<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const { lang } = useLang();
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const clearAll = () => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -174,7 +198,11 @@ export default function Portafolio() {
         className="port-anchor-img"
       />
 
-    <section id="portafolio" className="port-section">
+    <section
+      id="portafolio"
+      ref={sectionRef}
+      className={`port-section${isVisible ? " port-section--visible" : ""}`}
+    >
 
       {/* ── Left: title ── */}
       <div className="port-left">

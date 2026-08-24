@@ -1227,6 +1227,43 @@ body {
   box-sizing: border-box;
 }
 
+.nos-section .nos-img-col,
+.nos-section .nos-title,
+.nos-section .nos-card,
+.nos-section .nos-cta-btn {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.nos-section .nos-img-col {
+  transform: translateX(-28px);
+}
+
+.nos-section--visible .nos-img-col,
+.nos-section--visible .nos-title,
+.nos-section--visible .nos-card,
+.nos-section--visible .nos-cta-btn {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.nos-section--visible .nos-img-col { transition-delay: 0.08s; }
+.nos-section--visible .nos-title { transition-delay: 0.12s; }
+.nos-section--visible .nos-card { transition-delay: 0.24s; }
+.nos-section--visible .nos-cta-btn { transition-delay: 0.36s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nos-section .nos-img-col,
+  .nos-section .nos-title,
+  .nos-section .nos-card,
+  .nos-section .nos-cta-btn {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* SVG waves — anchored top and bottom */
 .nos-wave {
   position: absolute;
@@ -1374,6 +1411,35 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
+}
+
+.port-section .port-left,
+.port-section .port-blob-outer,
+.port-section .port-nav {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.port-section--visible .port-left,
+.port-section--visible .port-blob-outer,
+.port-section--visible .port-nav {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.port-section--visible .port-left { transition-delay: 0.05s; }
+.port-section--visible .port-blob-outer { transition-delay: 0.17s; }
+.port-section--visible .port-nav { transition-delay: 0.29s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .port-section .port-left,
+  .port-section .port-blob-outer,
+  .port-section .port-nav {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .port-wave {
@@ -2011,6 +2077,43 @@ body {
   position: relative;
   height: 100vh;
   overflow: hidden;
+}
+
+.resenas-section .resenas-header,
+.resenas-section .resenas-grid,
+.resenas-section .resenas-controls,
+.resenas-section .resenas-bust {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.resenas-section .resenas-bust {
+  transform: translateX(28px);
+}
+
+.resenas-section--visible .resenas-header,
+.resenas-section--visible .resenas-grid,
+.resenas-section--visible .resenas-controls,
+.resenas-section--visible .resenas-bust {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.resenas-section--visible .resenas-header { transition-delay: 0.05s; }
+.resenas-section--visible .resenas-grid { transition-delay: 0.16s; }
+.resenas-section--visible .resenas-controls { transition-delay: 0.27s; }
+.resenas-section--visible .resenas-bust { transition-delay: 0.14s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .resenas-section .resenas-header,
+  .resenas-section .resenas-grid,
+  .resenas-section .resenas-controls,
+  .resenas-section .resenas-bust {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* SVG waves — anchored top and bottom, same pattern as FAQ */
@@ -4318,6 +4421,36 @@ body {
    overflow: hidden;
   position: relative;
 }
+
+.ctw-section .ctw-imagination-media,
+.ctw-section .ctw-imagination-copy {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.ctw-section .ctw-imagination-media {
+  transform: translateX(-28px);
+}
+
+.ctw-section--visible .ctw-imagination-media,
+.ctw-section--visible .ctw-imagination-copy {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.ctw-section--visible .ctw-imagination-copy { transition-delay: 0.08s; }
+.ctw-section--visible .ctw-imagination-media { transition-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ctw-section .ctw-imagination-media,
+  .ctw-section .ctw-imagination-copy {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .ctw-inner {
   width: 100%;
    height: 100%;
@@ -5456,9 +5589,7 @@ body {
   }
 
   .resenas-arrow {
-    width: 26px;
-    height: 26px;
-    touch-action: manipulation;
+    display: none;
   }
 
   .resenas-dot {

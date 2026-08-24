@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "./LanguageContext";
 
 const content = {
@@ -20,9 +21,37 @@ const content = {
 export default function Nosotros() {
   const { lang } = useLang();
   const t = content[lang];
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="nosotros" className="nos-section">
+    <section
+      id="nosotros"
+      ref={sectionRef}
+      className={`nos-section${isVisible ? " nos-section--visible" : ""}`}
+    >
 
       {/* Top wave */}
       <svg className="nos-wave nos-wave--top" xmlns="http://www.w3.org/2000/svg"

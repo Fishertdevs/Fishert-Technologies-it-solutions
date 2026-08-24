@@ -223,9 +223,37 @@ export default function Resenas() {
   const { lang } = useLang();
   const list = reviews[lang];
   const [showForm, setShowForm] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="resenas" className="resenas-section">
+    <section
+      id="resenas"
+      ref={sectionRef}
+      className={`resenas-section${isVisible ? " resenas-section--visible" : ""}`}
+    >
       <div className="resenas-inner">
         <div className="resenas-layout">
           <div className="resenas-content">
