@@ -4381,6 +4381,68 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .ctw-section {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+    border: 0;
+  }
+
+  .ctw-inner {
+    width: 100%;
+    height: auto;
+    padding: 56px 16px 0;
+    box-sizing: border-box;
+  }
+
+  .ctw-imagination {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    width: 100%;
+  }
+
+  .ctw-imagination-copy {
+    order: 1;
+    padding: 0;
+    text-align: center;
+  }
+
+  .ctw-imagination-quote {
+    font-size: clamp(30px, 9vw, 44px);
+    line-height: 1.02;
+    text-align: center;
+  }
+
+  .ctw-imagination-media {
+    order: 2;
+    width: 100%;
+    height: clamp(300px, 100vw, 430px);
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .ctw-imagination-img {
+    position: static;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    transform: none;
+  }
+
+  .ctw-wave {
+    display: none;
+  }
+}
+
 /* ══════════════════════════════════════════════════════════
    CTA PAISAJE — after contact section
    ══════════════════════════════════════════════════════════ */
