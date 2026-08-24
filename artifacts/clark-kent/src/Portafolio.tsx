@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type PointerEvent } from "react";
 import { Link } from "wouter";
 import { useLang } from "./LanguageContext";
 
@@ -78,6 +78,7 @@ export default function Portafolio() {
   const t2 = useRef<ReturnType<typeof setTimeout> | null>(null);
   const t3 = useRef<ReturnType<typeof setTimeout> | null>(null);
   const t4 = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const { lang } = useLang();
 
@@ -124,6 +125,17 @@ export default function Portafolio() {
   const goTo = (i: number) => setCurrent(i);
   const prev = () => setCurrent((c) => (c - 1 + projects.length) % projects.length);
   const next = () => setCurrent((c) => (c + 1) % projects.length);
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    touchStartX.current = event.clientX;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    const start = touchStartX.current;
+    touchStartX.current = null;
+    if (start === null || Math.abs(start - event.clientX) < 45) return;
+    start > event.clientX ? next() : prev();
+  };
   const project = projects[current];
 
   const showResults = phase === "results" || phase === "cursor" || phase === "image";
@@ -181,6 +193,9 @@ export default function Portafolio() {
           style={{ borderColor: hovered ? project.color : '#111111' }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={() => { touchStartX.current = null; }}
         >
 
           {/* Search UI (fades out when image shows) */}
