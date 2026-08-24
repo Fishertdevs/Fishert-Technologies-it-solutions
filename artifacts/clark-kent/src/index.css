@@ -5589,7 +5589,7 @@ body {
     width: 100%;
     height: auto;
     min-width: 0;
-    padding: 42px 18px 78px;
+    padding: 42px 18px 18px;
     gap: 22px;
     box-sizing: border-box;
   }
@@ -5625,9 +5625,10 @@ body {
     min-width: 132px;
     min-height: 44px;
     justify-content: center;
-    padding: 9px 18px 8px;
-    border: 1.5px solid rgba(255, 255, 255, 0.7);
-    border-radius: 999px;
+    padding: 9px 0 8px;
+    border: none;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.7);
+    border-radius: 0;
     font-size: 13px;
     letter-spacing: 0.12em;
     box-sizing: border-box;
