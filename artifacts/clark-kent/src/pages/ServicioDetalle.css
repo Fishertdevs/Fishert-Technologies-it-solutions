@@ -273,9 +273,17 @@
   min-height: 545px;
   flex-direction: column;
   padding: 42px 38px 33px;
-  border: 1.5px solid #1b2332;
+  border: 1.5px solid #555555;
   border-radius: 25px;
-  background: #ffffff;
+  background-color: #242424;
+  background-image: conic-gradient(
+    #171717 0 25%,
+    #333333 0 50%,
+    #171717 0 75%,
+    #333333 0 100%
+  );
+  background-size: 52px 52px;
+  color: #ffffff;
 }
 
 .svc2-plan-card--active {
@@ -304,7 +312,7 @@
 
 .svc2-plan-name {
   margin: 0 0 17px;
-  color: #777c86;
+  color: rgba(255, 255, 255, 0.68);
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.2em;
@@ -318,7 +326,7 @@
 
 .svc2-plan-price {
   margin: 0;
-  color: #111827;
+  color: #ffffff;
   font-size: clamp(32px, 4vw, 46px);
   font-weight: 800;
   letter-spacing: -0.05em;
@@ -328,7 +336,7 @@
 .svc2-plan-price-currency {
   display: block;
   margin-top: 8px;
-  color: #747982;
+  color: rgba(255, 255, 255, 0.66);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0;
@@ -346,7 +354,7 @@
   width: 100%;
   height: 1px;
   margin: 28px 0;
-  background: #e9eaec;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .svc2-plan-features {
@@ -360,7 +368,7 @@
   display: flex;
   gap: 11px;
   margin-bottom: 14px;
-  color: #3d424c;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 14px;
   line-height: 1.42;
 }
@@ -390,16 +398,6 @@
   letter-spacing: 0.04em;
   text-decoration: none;
   transition: background 0.2s ease;
-}
-
-.svc2-plan-cta::after {
-  position: absolute;
-  right: 22%;
-  bottom: 9px;
-  left: 22%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.72);
-  content: "";
 }
 
 .svc2-plan-cta:hover {

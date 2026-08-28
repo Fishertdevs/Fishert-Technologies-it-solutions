@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { Link, useParams } from "wouter";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
@@ -682,6 +682,7 @@ export default function ServicioDetalle() {
   const service = data[slug];
   const [billingMode, setBillingMode] = useState<"monthly" | "annual">("monthly");
   const [activePlan, setActivePlan] = useState(0);
+  const planTouchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -693,7 +694,6 @@ export default function ServicioDetalle() {
       const motionTargets = [
         ".svc2-hero-content > *",
         ".svc2-desc-text",
-        ".svc2-plan-card",
       ];
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -704,7 +704,6 @@ export default function ServicioDetalle() {
 
       gsap.set(".svc2-hero-content > *", { y: 30, opacity: 0 });
       gsap.set(".svc2-desc-text", { y: 40, opacity: 0 });
-      gsap.set(".svc2-plan-card", { y: 50, opacity: 0 });
 
       gsap.to(".svc2-hero-content > *", {
         y: 0,
@@ -726,17 +725,6 @@ export default function ServicioDetalle() {
         },
       });
 
-      gsap.to(".svc2-plan-card", {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".svc2-pricing-section",
-          start: "top 75%",
-        },
-      });
     });
 
     return () => ctx.revert();
@@ -779,6 +767,26 @@ export default function ServicioDetalle() {
       return lang === "es" ? "/ mes, cobrado anual" : "/ mo, billed annually";
     }
     return plan.period || (lang === "es" ? "/ mes" : "/ mo");
+  };
+
+  const handlePlanPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse") return;
+    planTouchStartX.current = event.clientX;
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  };
+
+  const handlePlanPointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const startX = planTouchStartX.current;
+    planTouchStartX.current = null;
+    if (startX === null) return;
+
+    const deltaX = startX - event.clientX;
+    if (Math.abs(deltaX) < 40) return;
+    setActivePlan((current) => (
+      deltaX > 0
+        ? (current + 1) % t.plans.length
+        : (current - 1 + t.plans.length) % t.plans.length
+    ));
   };
 
   return (
@@ -850,11 +858,7 @@ export default function ServicioDetalle() {
                     </span>
                   )}
                 </>
-              ) : (
-                <span className="svc2-cycle-static">
-                  {lang === "es" ? "Inversión por proyecto" : "Project investment"}
-                </span>
-              )}
+              ) : null}
             </div>
           </div>
           <div className="svc2-plans-carousel">
@@ -868,7 +872,14 @@ export default function ServicioDetalle() {
                 <path d="M15 18l-6-6 6-6" />
               </svg>
             </button>
-            <div className="svc2-plans-grid">
+            <div
+              className="svc2-plans-grid"
+              onPointerDown={handlePlanPointerDown}
+              onPointerUp={handlePlanPointerUp}
+              onPointerCancel={() => {
+                planTouchStartX.current = null;
+              }}
+            >
               {t.plans.map((plan, i) => (
                 <div
                   key={i}
