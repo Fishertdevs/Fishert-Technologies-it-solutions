@@ -10,7 +10,14 @@
 .svc2-hero {
   min-height: 470px;
   border-bottom: 1px solid #ececef;
-  background: #ffffff;
+  background-color: #d8d8d8;
+  background-image: conic-gradient(
+    #ffffff 0 25%,
+    #d8d8d8 0 50%,
+    #ffffff 0 75%,
+    #d8d8d8 0 100%
+  );
+  background-size: 72px 72px;
 }
 
 .svc2-hero-content {

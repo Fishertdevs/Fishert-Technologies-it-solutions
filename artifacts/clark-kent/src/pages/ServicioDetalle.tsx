@@ -162,7 +162,7 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       title: "Desarrollo Web",
       eyebrow: "SERVICIO",
       hero: "svc1_2.jpg",
-      intro: "Sitios y aplicaciones web que convierten.",
+      intro: "Diseño, desarrollo y estrategia para que tu negocio venda mejor en digital.",
       description:
         "Diseñamos y desarrollamos experiencias web con identidad propia — rápidas, responsivas y construidas para posicionarse. Desde landing pages de alto impacto hasta plataformas web complejas con integraciones, cada proyecto es único.",
       plans: [
@@ -212,7 +212,7 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       title: "Web Development",
       eyebrow: "SERVICE",
       hero: "svc1_2.jpg",
-      intro: "Websites and web apps that convert.",
+      intro: "Design, development, and strategy to help your business sell better online.",
       description:
         "We design and develop web experiences with their own identity — fast, responsive, and built to rank. From high-impact landing pages to complex web platforms with integrations, every project is unique.",
       plans: [
