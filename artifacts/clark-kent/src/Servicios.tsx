@@ -30,7 +30,9 @@ type Slot = { size: number; height: number; x: number };
 
 export default function Servicios() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const mobileTouchStart = useRef<number | null>(null);
+  const mobileTouchStart = useRef<{ x: number; y: number } | null>(null);
+  const mobileSwipeMoved = useRef(false);
+  const mobileJustSwiped = useRef(false);
   const [slots, setSlots] = useState<Slot[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const [mobileIndex, setMobileIndex] = useState(0);
@@ -150,6 +152,18 @@ export default function Servicios() {
     setMobileIndex((current) => (current + direction + galleryData.length) % galleryData.length);
   };
 
+  const finishMobileSwipe = (endX: number, endY: number) => {
+    const start = mobileTouchStart.current;
+    mobileTouchStart.current = null;
+    mobileSwipeMoved.current = false;
+    if (!start) return;
+
+    const deltaX = start.x - endX;
+    const deltaY = start.y - endY;
+    if (Math.abs(deltaX) < 40 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+    changeMobileSlide(deltaX > 0 ? 1 : -1);
+  };
+
   const activeMobileService = galleryData[mobileIndex];
 
   return (
@@ -199,18 +213,39 @@ export default function Servicios() {
           className="svc-mobile-carousel"
           onPointerDown={(event) => {
             if (event.pointerType === "mouse" && event.button !== 0) return;
-            mobileTouchStart.current = event.clientX;
+             mobileTouchStart.current = { x: event.clientX, y: event.clientY };
+             mobileSwipeMoved.current = false;
+             event.currentTarget.setPointerCapture?.(event.pointerId);
+           }}
+           onPointerMove={(event) => {
+             const start = mobileTouchStart.current;
+             if (!start) return;
+             const deltaX = Math.abs(start.x - event.clientX);
+             const deltaY = Math.abs(start.y - event.clientY);
+             if (deltaX > 12 && deltaX > deltaY) {
+               mobileSwipeMoved.current = true;
+               event.preventDefault();
+             }
           }}
           onPointerUp={(event) => {
-            const start = mobileTouchStart.current;
-            const end = event.clientX;
-            mobileTouchStart.current = null;
-            if (start === null || Math.abs(start - end) < 40) return;
-            changeMobileSlide(start > end ? 1 : -1);
+             const didSwipe = mobileSwipeMoved.current;
+             finishMobileSwipe(event.clientX, event.clientY);
+             if (didSwipe) {
+               mobileJustSwiped.current = true;
+               event.preventDefault();
+             }
           }}
           onPointerCancel={() => {
             mobileTouchStart.current = null;
+             mobileSwipeMoved.current = false;
+             mobileJustSwiped.current = false;
           }}
+           onClick={(event) => {
+             if (mobileJustSwiped.current) {
+               event.preventDefault();
+               mobileJustSwiped.current = false;
+             }
+           }}
         >
           <article className="svc-mobile-card" key={activeMobileService.id}>
             <img

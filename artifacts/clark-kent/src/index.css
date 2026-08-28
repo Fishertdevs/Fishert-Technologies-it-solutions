@@ -5839,6 +5839,8 @@ body {
     padding: 0 16px;
     box-sizing: border-box;
     touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   #servicios .svc-mobile-card {
@@ -5855,6 +5857,8 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none;
+    -webkit-user-drag: none;
   }
 
   #servicios .svc-label-overlay {
