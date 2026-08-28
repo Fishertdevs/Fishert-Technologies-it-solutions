@@ -27,6 +27,135 @@ type ServiceData = {
   plans: Plan[];
 };
 
+type LocalizedCopy = {
+  es: string;
+  en: string;
+};
+
+type ServiceContext = {
+  contextLabel: LocalizedCopy;
+  items: {
+    es: string[];
+    en: string[];
+  };
+  pricingTitle: LocalizedCopy;
+  pricingSub: LocalizedCopy;
+  offerHeadline: LocalizedCopy;
+};
+
+const serviceContexts: Record<string, ServiceContext> = {
+  "desarrollo-web": {
+    contextLabel: {
+      es: "La plataforma correcta para tu próxima etapa",
+      en: "The right platform for your next stage",
+    },
+    items: {
+      es: ["WordPress", "Shopify", "WooCommerce", "Desarrollo a medida"],
+      en: ["WordPress", "Shopify", "WooCommerce", "Custom development"],
+    },
+    pricingTitle: {
+      es: "Tu próxima versión empieza aquí.",
+      en: "Your next version starts here.",
+    },
+    pricingSub: {
+      es: "Cuéntanos qué quieres construir y te recomendamos el camino correcto.",
+      en: "Tell us what you want to build and we'll recommend the right path.",
+    },
+    offerHeadline: {
+      es: "Tu próxima versión empieza hoy.",
+      en: "Your next version starts today.",
+    },
+  },
+  "desarrollo-software": {
+    contextLabel: {
+      es: "De una idea a un producto que escala",
+      en: "From an idea to a product that scales",
+    },
+    items: {
+      es: ["MVPs", "SaaS", "APIs e integraciones", "Apps móviles"],
+      en: ["MVPs", "SaaS", "APIs & integrations", "Mobile apps"],
+    },
+    pricingTitle: {
+      es: "Construye el producto que tu negocio necesita.",
+      en: "Build the product your business needs.",
+    },
+    pricingSub: {
+      es: "Un equipo de producto para convertir una oportunidad en tecnología real.",
+      en: "A product team to turn an opportunity into real technology.",
+    },
+    offerHeadline: {
+      es: "De la idea al primer release.",
+      en: "From idea to your first release.",
+    },
+  },
+  "automatizacion-ia": {
+    contextLabel: {
+      es: "Inteligencia que trabaja a favor de tu equipo",
+      en: "Intelligence that works for your team",
+    },
+    items: {
+      es: ["Agentes IA", "RPA y workflows", "CRM y ERP", "Datos inteligentes"],
+      en: ["AI agents", "RPA & workflows", "CRM & ERP", "Intelligent data"],
+    },
+    pricingTitle: {
+      es: "Haz que tu operación piense mejor.",
+      en: "Make your operations think smarter.",
+    },
+    pricingSub: {
+      es: "Detectamos dónde se pierde tiempo y diseñamos una automatización que sí se usa.",
+      en: "We find where time is lost and design automation your team will actually use.",
+    },
+    offerHeadline: {
+      es: "Menos tareas repetitivas. Más espacio para crecer.",
+      en: "Less repetition. More room to grow.",
+    },
+  },
+  "marketing-digital": {
+    contextLabel: {
+      es: "Una presencia digital con dirección",
+      en: "A digital presence with direction",
+    },
+    items: {
+      es: ["Estrategia", "Contenido", "Paid media", "Analítica"],
+      en: ["Strategy", "Content", "Paid media", "Analytics"],
+    },
+    pricingTitle: {
+      es: "Haz que tu marca se note y convierta.",
+      en: "Make your brand stand out and convert.",
+    },
+    pricingSub: {
+      es: "Creatividad, distribución y datos trabajando juntos para mover tu negocio.",
+      en: "Creativity, distribution, and data working together to move your business.",
+    },
+    offerHeadline: {
+      es: "Tu marca merece una campaña que se recuerde.",
+      en: "Your brand deserves a campaign people remember.",
+    },
+  },
+  "cloud-devops": {
+    contextLabel: {
+      es: "La infraestructura detrás de cada gran lanzamiento",
+      en: "The infrastructure behind every great launch",
+    },
+    items: {
+      es: ["Cloud", "CI/CD", "Observabilidad", "Seguridad"],
+      en: ["Cloud", "CI/CD", "Observability", "Security"],
+    },
+    pricingTitle: {
+      es: "Entrega más rápido. Opera con confianza.",
+      en: "Ship faster. Operate with confidence.",
+    },
+    pricingSub: {
+      es: "Diseñamos la base técnica para que tu producto crezca sin fricción.",
+      en: "We design the technical foundation for your product to grow without friction.",
+    },
+    offerHeadline: {
+      es: "Tu próximo lanzamiento no debería esperar.",
+      en: "Your next launch should not have to wait.",
+    },
+  },
+};
+
 const data: Record<string, { es: ServiceData; en: ServiceData }> = {
   "desarrollo-web": {
     es: {
@@ -631,6 +760,7 @@ export default function ServicioDetalle() {
   }
 
   const t = service[lang];
+  const context = serviceContexts[slug];
   const isRecurring = slug === "marketing-digital";
 
   const formatPlanPrice = (plan: Plan) => {
@@ -673,32 +803,25 @@ export default function ServicioDetalle() {
           </div>
         </section>
 
-        {slug === "desarrollo-web" && (
-          <section className="svc2-platforms-section" aria-label={lang === "es" ? "Tecnologías para desarrollo web" : "Web development technologies"}>
-            <p className="svc2-platforms-label">
-              {lang === "es" ? "La plataforma correcta para tu próxima etapa" : "The right platform for your next stage"}
-            </p>
-            <div className="svc2-platforms-list">
-              {(lang === "es"
-                ? ["WordPress", "Shopify", "WooCommerce", "Desarrollo a medida"]
-                : ["WordPress", "Shopify", "WooCommerce", "Custom development"]
-              ).map((platform) => (
-                <span key={platform} className="svc2-platform">
-                  {platform}
-                </span>
-              ))}
-            </div>
-          </section>
-        )}
+        <section className="svc2-platforms-section" aria-label={context.contextLabel[lang]}>
+          <p className="svc2-platforms-label">{context.contextLabel[lang]}</p>
+          <div className="svc2-platforms-list">
+            {context.items[lang].map((platform) => (
+              <span key={platform} className="svc2-platform">
+                {platform}
+              </span>
+            ))}
+          </div>
+        </section>
 
         {/* ── Pricing ── */}
         <section className="svc2-pricing-section">
           <div className="svc2-pricing-header">
             <h3 className="svc2-pricing-title">
-              {lang === "es" ? "Tu próximo paso empieza aquí." : "Your next step starts here."}
+              {context.pricingTitle[lang]}
             </h3>
             <p className="svc2-pricing-sub">
-              {lang === "es" ? "Cuéntanos qué quieres lograr y te recomendamos el plan adecuado." : "Tell us what you want to achieve and we'll recommend the right plan."}
+              {context.pricingSub[lang]}
             </p>
             <div className="svc2-cycle-row">
               {isRecurring ? (
@@ -826,15 +949,7 @@ export default function ServicioDetalle() {
               <span className="svc2-month-offer-kicker">
                 {lang === "es" ? "Oferta de este mes" : "This month's offer"}
               </span>
-              <h3>
-                {lang === "es"
-                  ? slug === "desarrollo-web"
-                    ? "Tu próxima versión empieza hoy."
-                    : "Hagamos que tu próxima idea avance."
-                  : slug === "desarrollo-web"
-                    ? "Your next version starts today."
-                    : "Let's move your next idea forward."}
-              </h3>
+              <h3>{context.offerHeadline[lang]}</h3>
               <p>
                 {lang === "es"
                   ? "20% de descuento en tu primer servicio."
