@@ -32,6 +32,34 @@ type LocalizedCopy = {
   en: string;
 };
 
+type PlatformIconName =
+  | "wordpress"
+  | "shopify"
+  | "woocommerce"
+  | "custom"
+  | "mvp"
+  | "saas"
+  | "api"
+  | "mobile"
+  | "ai"
+  | "automation"
+  | "crm"
+  | "data"
+  | "strategy"
+  | "content"
+  | "ads"
+  | "analytics"
+  | "cloud"
+  | "pipeline"
+  | "observability"
+  | "security";
+
+type PlatformDetail = {
+  icon: PlatformIconName;
+  es: string;
+  en: string;
+};
+
 type ServiceContext = {
   contextLabel: LocalizedCopy;
   items: {
@@ -46,8 +74,8 @@ type ServiceContext = {
 const serviceContexts: Record<string, ServiceContext> = {
   "desarrollo-web": {
     contextLabel: {
-      es: "La plataforma correcta para tu próxima etapa",
-      en: "The right platform for your next stage",
+      es: "Un stack pensado para hacer crecer tu negocio",
+      en: "A stack designed to grow your business",
     },
     items: {
       es: ["WordPress", "Shopify", "WooCommerce", "Desarrollo a medida"],
@@ -68,8 +96,8 @@ const serviceContexts: Record<string, ServiceContext> = {
   },
   "desarrollo-software": {
     contextLabel: {
-      es: "De una idea a un producto que escala",
-      en: "From an idea to a product that scales",
+      es: "Tecnología de producto para convertir visión en escala",
+      en: "Product technology that turns vision into scale",
     },
     items: {
       es: ["MVPs", "SaaS", "APIs e integraciones", "Apps móviles"],
@@ -90,8 +118,8 @@ const serviceContexts: Record<string, ServiceContext> = {
   },
   "automatizacion-ia": {
     contextLabel: {
-      es: "Inteligencia que trabaja a favor de tu equipo",
-      en: "Intelligence that works for your team",
+      es: "Sistemas inteligentes que multiplican el trabajo de tu equipo",
+      en: "Intelligent systems that multiply your team's capacity",
     },
     items: {
       es: ["Agentes IA", "RPA y workflows", "CRM y ERP", "Datos inteligentes"],
@@ -112,8 +140,8 @@ const serviceContexts: Record<string, ServiceContext> = {
   },
   "marketing-digital": {
     contextLabel: {
-      es: "Una presencia digital con dirección",
-      en: "A digital presence with direction",
+      es: "Creatividad, distribución y datos en un mismo sistema",
+      en: "Creativity, distribution, and data in one system",
     },
     items: {
       es: ["Estrategia", "Contenido", "Paid media", "Analítica"],
@@ -134,8 +162,8 @@ const serviceContexts: Record<string, ServiceContext> = {
   },
   "cloud-devops": {
     contextLabel: {
-      es: "La infraestructura detrás de cada gran lanzamiento",
-      en: "The infrastructure behind every great launch",
+      es: "La infraestructura que hace confiable cada lanzamiento",
+      en: "The infrastructure behind every reliable launch",
     },
     items: {
       es: ["Cloud", "CI/CD", "Observabilidad", "Seguridad"],
@@ -155,6 +183,224 @@ const serviceContexts: Record<string, ServiceContext> = {
     },
   },
 };
+
+const platformDetails: Record<string, PlatformDetail> = {
+  WordPress: {
+    icon: "wordpress",
+    es: "Contenido flexible y una presencia editorial lista para evolucionar.",
+    en: "Flexible content and an editorial presence built to evolve.",
+  },
+  Shopify: {
+    icon: "shopify",
+    es: "E-commerce ágil para vender mejor, sin fricción operativa.",
+    en: "Agile e-commerce built to sell better, without operational friction.",
+  },
+  WooCommerce: {
+    icon: "woocommerce",
+    es: "Comercio conectado a tu marca, catálogo y forma de trabajar.",
+    en: "Commerce connected to your brand, catalog, and way of working.",
+  },
+  "Desarrollo a medida": {
+    icon: "custom",
+    es: "Producto digital diseñado alrededor de tus procesos y objetivos.",
+    en: "A digital product designed around your processes and goals.",
+  },
+  "Custom development": {
+    icon: "custom",
+    es: "A digital product designed around your processes and goals.",
+    en: "A digital product designed around your processes and goals.",
+  },
+  MVPs: {
+    icon: "mvp",
+    es: "La versión esencial para validar una oportunidad con velocidad.",
+    en: "The essential version to validate an opportunity with speed.",
+  },
+  SaaS: {
+    icon: "saas",
+    es: "Productos escalables con una experiencia pensada para retener.",
+    en: "Scalable products with an experience designed for retention.",
+  },
+  "APIs e integraciones": {
+    icon: "api",
+    es: "Sistemas que se conectan para que el negocio fluya mejor.",
+    en: "Systems that connect so your business can move better.",
+  },
+  "APIs & integrations": {
+    icon: "api",
+    es: "Sistemas que se conectan para que el negocio fluya mejor.",
+    en: "Connected systems that keep your business moving better.",
+  },
+  "Apps móviles": {
+    icon: "mobile",
+    es: "Experiencias móviles útiles, rápidas y hechas para el uso real.",
+    en: "Useful, fast mobile experiences made for real-world use.",
+  },
+  "Mobile apps": {
+    icon: "mobile",
+    es: "Experiencias móviles útiles, rápidas y hechas para el uso real.",
+    en: "Useful, fast mobile experiences made for real-world use.",
+  },
+  "Agentes IA": {
+    icon: "ai",
+    es: "Asistentes que entienden el contexto y actúan por tu equipo.",
+    en: "Assistants that understand context and act for your team.",
+  },
+  "AI agents": {
+    icon: "ai",
+    es: "Asistentes que entienden el contexto y actúan por tu equipo.",
+    en: "Context-aware assistants that act for your team.",
+  },
+  "RPA y workflows": {
+    icon: "automation",
+    es: "Flujos automáticos para eliminar trabajo repetitivo y errores.",
+    en: "Automated workflows that remove repetitive work and errors.",
+  },
+  "RPA & workflows": {
+    icon: "automation",
+    es: "Flujos automáticos para eliminar trabajo repetitivo y errores.",
+    en: "Automated workflows that remove repetitive work and errors.",
+  },
+  "CRM y ERP": {
+    icon: "crm",
+    es: "Operaciones conectadas para tomar decisiones con una sola verdad.",
+    en: "Connected operations with one source of truth for decisions.",
+  },
+  "CRM & ERP": {
+    icon: "crm",
+    es: "Operaciones conectadas para tomar decisiones con una sola verdad.",
+    en: "Connected operations with one source of truth for decisions.",
+  },
+  "Datos inteligentes": {
+    icon: "data",
+    es: "Datos convertidos en señales claras para actuar a tiempo.",
+    en: "Data turned into clear signals so you can act in time.",
+  },
+  "Intelligent data": {
+    icon: "data",
+    es: "Datos convertidos en señales claras para actuar a tiempo.",
+    en: "Data turned into clear signals so you can act in time.",
+  },
+  Estrategia: {
+    icon: "strategy",
+    es: "Una dirección clara para que cada acción tenga propósito.",
+    en: "A clear direction so every action has a purpose.",
+  },
+  Strategy: {
+    icon: "strategy",
+    es: "Una dirección clara para que cada acción tenga propósito.",
+    en: "A clear direction so every action has a purpose.",
+  },
+  Contenido: {
+    icon: "content",
+    es: "Ideas que construyen reconocimiento y conversación alrededor de tu marca.",
+    en: "Ideas that build recognition and conversation around your brand.",
+  },
+  Content: {
+    icon: "content",
+    es: "Ideas que construyen reconocimiento y conversación alrededor de tu marca.",
+    en: "Ideas that build recognition and conversation around your brand.",
+  },
+  "Paid media": {
+    icon: "ads",
+    es: "Inversión distribuida con intención, medición y aprendizaje continuo.",
+    en: "Intentional media investment powered by measurement and learning.",
+  },
+  Analítica: {
+    icon: "analytics",
+    es: "Métricas que revelan qué mover para crecer con criterio.",
+    en: "Metrics that reveal what to move to grow with intention.",
+  },
+  Analytics: {
+    icon: "analytics",
+    es: "Métricas que revelan qué mover para crecer con criterio.",
+    en: "Metrics that reveal what to move to grow with intention.",
+  },
+  Cloud: {
+    icon: "cloud",
+    es: "Una base flexible para operar con velocidad y confianza.",
+    en: "A flexible foundation to operate with speed and confidence.",
+  },
+  "CI/CD": {
+    icon: "pipeline",
+    es: "Entregas frecuentes y seguras, desde el commit hasta producción.",
+    en: "Frequent, safer releases from commit to production.",
+  },
+  Observabilidad: {
+    icon: "observability",
+    es: "Visibilidad real para detectar y resolver antes de afectar al usuario.",
+    en: "Real visibility to detect and resolve issues before users feel them.",
+  },
+  Observability: {
+    icon: "observability",
+    es: "Visibilidad real para detectar y resolver antes de afectar al usuario.",
+    en: "Real visibility to detect and resolve issues before users feel them.",
+  },
+  Seguridad: {
+    icon: "security",
+    es: "Protección integrada para que cada lanzamiento nazca preparado.",
+    en: "Built-in protection so every launch starts prepared.",
+  },
+  Security: {
+    icon: "security",
+    es: "Protección integrada para que cada lanzamiento nazca preparado.",
+    en: "Built-in protection so every launch starts prepared.",
+  },
+};
+
+function PlatformIcon({ name }: { name: PlatformIconName }) {
+  const commonProps = {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.6,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+
+  switch (name) {
+    case "wordpress":
+      return <svg {...commonProps}><circle cx="12" cy="12" r="8.5" /><path d="m6.3 8.2 2.8 8.1 1.8-5.3 1.9 5.3 3-8.1M8.2 8.2h2.1M14.2 8.2h1.9" /></svg>;
+    case "shopify":
+      return <svg {...commonProps}><path d="M6.8 8.5h10.4l-1 10.2H7.8L6.8 8.5Z" /><path d="M9.2 8.5C9.2 5.2 14.8 5.2 14.8 8.5M11.1 12.1c.6-.7 2.1-.6 2.4.3.3 1-1.2 1.1-1.2 2.2 0 .6.5 1 .9 1.2" /></svg>;
+    case "woocommerce":
+      return <svg {...commonProps}><rect x="4.2" y="5" width="15.6" height="14" rx="3" /><path d="M7.4 10.2c.4 3.2 1.1 5 2.2 5 .9 0 1.5-2.4 2.2-4.2.7 1.8 1.3 4.2 2.2 4.2 1.1 0 1.8-1.8 2.3-5" /></svg>;
+    case "custom":
+      return <svg {...commonProps}><path d="m8.5 5-4 7 4 7M15.5 5l4 7-4 7M13.5 4.5l-3 15" /></svg>;
+    case "mvp":
+      return <svg {...commonProps}><path d="M8.5 4.5h7M9 4.5v3l-3.8 8.2a2.3 2.3 0 0 0 2.1 3.3h9.4a2.3 2.3 0 0 0 2.1-3.3L15 7.5v-3M7.5 14h9" /><path d="m12 10 .7 1.4 1.5.2-1.1 1.1.3 1.5-1.4-.7-1.4.7.3-1.5-1.1-1.1 1.5-.2L12 10Z" /></svg>;
+    case "saas":
+      return <svg {...commonProps}><path d="m12 4 7 3.5-7 3.5-7-3.5L12 4Z" /><path d="m5 11 7 3.5 7-3.5M5 14.5l7 3.5 7-3.5" /></svg>;
+    case "api":
+      return <svg {...commonProps}><circle cx="6" cy="12" r="2" /><circle cx="18" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><path d="m7.8 11 8.4-4M7.8 13l8.4 4" /></svg>;
+    case "mobile":
+      return <svg {...commonProps}><rect x="7" y="3.5" width="10" height="17" rx="2" /><path d="M10.5 6h3M11 17.5h2" /></svg>;
+    case "ai":
+      return <svg {...commonProps}><path d="m12 3 1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5L12 3ZM18 15l.7 2.3L21 18l-2.3.7L18 21l-.7-2.3L15 18l2.3-.7L18 15Z" /></svg>;
+    case "automation":
+      return <svg {...commonProps}><rect x="4" y="5" width="5" height="4" rx="1" /><rect x="15" y="5" width="5" height="4" rx="1" /><rect x="9.5" y="15" width="5" height="4" rx="1" /><path d="M6.5 9v2.5h11V9M12 11.5V15" /></svg>;
+    case "crm":
+      return <svg {...commonProps}><circle cx="9" cy="8" r="2.5" /><circle cx="16.5" cy="9" r="2" /><path d="M4.5 18c.5-3 2.2-4.5 4.5-4.5s4 1.5 4.5 4.5M14.5 14.5c2.8-.4 4.3.9 5 3.5" /></svg>;
+    case "data":
+      return <svg {...commonProps}><ellipse cx="12" cy="6" rx="6.5" ry="2.5" /><path d="M5.5 6v6c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5V6M5.5 12v6c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-6" /></svg>;
+    case "strategy":
+      return <svg {...commonProps}><circle cx="12" cy="12" r="8" /><path d="m14.8 9.2-2 4.2-4.2 2 2-4.2 4.2-2ZM12 4v2M20 12h-2M12 20v-2M4 12h2" /></svg>;
+    case "content":
+      return <svg {...commonProps}><path d="m5 17.8-.8 2.2 2.2-.8L18.7 7a2.1 2.1 0 0 0-3-3L5 15.8v2Z" /><path d="m13.8 5.8 3 3" /></svg>;
+    case "ads":
+      return <svg {...commonProps}><path d="M4 10.2a2 2 0 0 1 2-2h4l7-3v13l-7-3H6a2 2 0 0 1-2-2v-3Z" /><path d="M7 15.2 8.3 20h2.2l-1.2-4.8M20 9a3 3 0 0 1 0 6" /></svg>;
+    case "analytics":
+      return <svg {...commonProps}><path d="M5 19V5M5 19h15" /><path d="m8 15 3-3 2.2 1.5L18.5 8" /></svg>;
+    case "cloud":
+      return <svg {...commonProps}><path d="M7.3 18.5h9.8a3.7 3.7 0 0 0 .5-7.4A5.8 5.8 0 0 0 6.5 9.7a4.4 4.4 0 0 0 .8 8.8Z" /></svg>;
+    case "pipeline":
+      return <svg {...commonProps}><circle cx="6" cy="6" r="2" /><circle cx="18" cy="12" r="2" /><circle cx="6" cy="18" r="2" /><path d="M8 6h4a3 3 0 0 1 3 3v1M8 18h4a3 3 0 0 0 3-3v-1" /></svg>;
+    case "observability":
+      return <svg {...commonProps}><path d="M3.5 12s3-5 8.5-5 8.5 5 8.5 5-3 5-8.5 5-8.5-5-8.5-5Z" /><circle cx="12" cy="12" r="2.3" /></svg>;
+    case "security":
+      return <svg {...commonProps}><path d="M12 3.5 19 6v5.3c0 4.5-2.8 7.8-7 9.2-4.2-1.4-7-4.7-7-9.2V6l7-2.5Z" /><path d="m9 12 2 2 4-4" /></svg>;
+  }
+}
 
 const data: Record<string, { es: ServiceData; en: ServiceData }> = {
   "desarrollo-web": {
@@ -848,11 +1094,25 @@ export default function ServicioDetalle() {
         <section className="svc2-platforms-section" aria-label={context.contextLabel[lang]}>
           <p className="svc2-platforms-label">{context.contextLabel[lang]}</p>
           <div className="svc2-platforms-list">
-            {context.items[lang].map((platform) => (
-              <span key={platform} className="svc2-platform">
-                {platform}
-              </span>
-            ))}
+            {context.items[lang].map((platform) => {
+              const detail = platformDetails[platform];
+              return (
+                <article key={platform} className="svc2-platform">
+                  <div className="svc2-platform-icon">
+                    <PlatformIcon name={detail?.icon ?? "custom"} />
+                  </div>
+                  <div className="svc2-platform-copy">
+                    <h3>{platform}</h3>
+                    <p>
+                      {detail?.[lang] ??
+                        (lang === "es"
+                          ? "Herramientas seleccionadas para construir mejor."
+                          : "Selected tools to build better.")}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 
