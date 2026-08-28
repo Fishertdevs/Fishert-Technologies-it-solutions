@@ -10,6 +10,8 @@
 .svc2-hero {
   min-height: 470px;
   border-bottom: 1px solid #ececef;
+  border-radius: 0 0 32px 32px;
+  overflow: hidden;
   background-color: #d8d8d8;
   background-image: conic-gradient(
     #ffffff 0 25%,
