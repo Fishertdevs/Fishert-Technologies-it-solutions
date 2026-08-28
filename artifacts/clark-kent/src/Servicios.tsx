@@ -96,6 +96,7 @@ export default function Servicios() {
           className="svc-mobile-carousel"
           onPointerDown={(event) => {
             if (event.pointerType === "mouse" && event.button !== 0) return;
+             if ((event.target as HTMLElement).closest("a, button")) return;
              mobileTouchStart.current = { x: event.clientX, y: event.clientY };
              mobileSwipeMoved.current = false;
              event.currentTarget.setPointerCapture?.(event.pointerId);
@@ -139,7 +140,11 @@ export default function Servicios() {
               <span className="svc-label-num">{activeMobileService.num}</span>
               <div className="svc-label-bottom">
                 <span className="svc-label-title">{lang === "es" ? activeMobileService.es : activeMobileService.en}</span>
-                <Link href={`/servicios/${activeMobileService.slug}`} className="svc-ver-mas">
+                <Link
+                  href={`/servicios/${activeMobileService.slug}`}
+                  className="svc-ver-mas"
+                  onClick={(event) => event.stopPropagation()}
+                >
                   {lang === "es" ? "Ver más" : "View more"}
                 </Link>
               </div>
