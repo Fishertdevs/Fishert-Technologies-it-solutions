@@ -772,28 +772,28 @@ export default function ServicioDetalle() {
   const planTagline = (plan: Plan) => {
     const taglines = lang === "es"
       ? {
-          Starter: "Una base sólida para lanzar con confianza.",
-          Professional: "La opción equilibrada para crecer con claridad.",
-          Enterprise: "Una solución a medida para escalar sin límites.",
-          MVP: "Convierte tu idea en un producto funcional.",
-          Growth: "Más capacidad para crecer y optimizar.",
-          Essentials: "Automatiza lo esencial y gana tiempo.",
-          Advanced: "Potencia tu operación con inteligencia.",
-          Custom: "Tecnología diseñada alrededor de tu negocio.",
-          Full: "Una estrategia integral para crecer de forma sostenida.",
-          Essential: "Una infraestructura estable para operar mejor.",
+          Starter: "Una solución enfocada para lanzar tu presencia digital con una base sólida, clara y lista para crecer.",
+          Professional: "Una experiencia digital completa para posicionar tu marca, conectar con tus clientes y convertir mejor.",
+          Enterprise: "Una plataforma diseñada alrededor de tus procesos para resolver retos complejos y escalar con control.",
+          MVP: "Valida tu oportunidad con un producto funcional, enfocado en aprender rápido y construir sobre bases firmes.",
+          Growth: "La capacidad de producto que necesitas para consolidar operaciones, integrar herramientas y acelerar tu crecimiento.",
+          Essentials: "Empieza a automatizar los procesos que más tiempo consumen y libera a tu equipo para tareas de mayor valor.",
+          Advanced: "Una capa inteligente para coordinar operaciones, reducir fricción y convertir datos en decisiones más rápidas.",
+          Custom: "Ingeniería especializada para diseñar una solución alineada con tus procesos, objetivos y visión de largo plazo.",
+          Full: "Una estrategia conectada de contenido, medios y analítica para construir demanda y convertir atención en resultados.",
+          Essential: "Una base cloud confiable para desplegar con seguridad, monitorear tu operación y mantenerla siempre disponible.",
         }
       : {
-          Starter: "A solid foundation to launch with confidence.",
-          Professional: "The balanced choice to grow with clarity.",
-          Enterprise: "A tailored solution built to scale without limits.",
-          MVP: "Turn your idea into a functional product.",
-          Growth: "More capacity to grow and optimize.",
-          Essentials: "Automate the essentials and gain time.",
-          Advanced: "Power your operations with intelligence.",
-          Custom: "Technology designed around your business.",
-          Full: "A complete strategy for sustainable growth.",
-          Essential: "A stable infrastructure to operate better.",
+          Starter: "A focused solution to launch your digital presence on a clear, solid foundation built to grow.",
+          Professional: "A complete digital experience to position your brand, connect with customers, and convert better.",
+          Enterprise: "A platform designed around your processes to solve complex challenges and scale with control.",
+          MVP: "Validate your opportunity with a functional product built to learn quickly and grow on solid foundations.",
+          Growth: "The product capacity you need to consolidate operations, integrate tools, and accelerate growth.",
+          Essentials: "Start automating the processes that consume the most time and free your team for higher-value work.",
+          Advanced: "An intelligent layer to coordinate operations, reduce friction, and turn data into faster decisions.",
+          Custom: "Specialized engineering for a solution aligned with your processes, goals, and long-term vision.",
+          Full: "A connected strategy across content, media, and analytics to build demand and turn attention into results.",
+          Essential: "A reliable cloud foundation to deploy securely, monitor operations, and stay consistently available.",
         };
 
     return taglines[plan.name as keyof typeof taglines] ?? (
