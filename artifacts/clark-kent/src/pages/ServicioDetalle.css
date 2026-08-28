@@ -322,7 +322,7 @@
 }
 
 .svc2-plan-price-wrap {
-  min-height: 82px;
+  min-height: 60px;
   text-align: center;
 }
 
@@ -348,7 +348,7 @@
 .svc2-plan-tagline {
   min-height: 52px;
   max-width: 360px;
-  margin: 12px auto 0;
+  margin: 6px auto 0;
   color: rgba(255, 255, 255, 0.72);
   font-size: 12px;
   line-height: 1.35;
@@ -634,6 +634,14 @@
 
   .svc2-plan-price {
     font-size: clamp(31px, 9.8vw, 39px);
+  }
+
+  .svc2-plan-price-wrap {
+    min-height: 54px;
+  }
+
+  .svc2-plan-tagline {
+    margin-top: 5px;
   }
 
   .svc2-plan-feature {
