@@ -520,7 +520,7 @@
 
 @media (max-width: 768px) {
   .svc2-hero {
-    min-height: 388px;
+    min-height: 360px;
   }
 
   .svc2-hero-content,
@@ -529,27 +529,28 @@
   }
 
   .svc2-hero-content {
-    padding: 125px 0 70px;
+    padding: 110px 0 58px;
   }
 
   .svc2-eyebrow {
-    margin-bottom: 13px;
-    font-size: 10px;
+    margin-bottom: 14px;
+    font-size: 11px;
   }
 
   .svc2-title {
-    margin-bottom: 17px;
-    font-size: clamp(42px, 13vw, 54px);
+    margin-bottom: 18px;
+    font-size: clamp(48px, 14vw, 60px);
     line-height: 0.96;
   }
 
   .svc2-title--compact {
-    font-size: clamp(30px, 8.6vw, 40px);
+    font-size: clamp(36px, 9.6vw, 46px);
   }
 
   .svc2-intro {
-    max-width: 310px;
-    font-size: 16px;
+    max-width: 330px;
+    font-size: 17px;
+    line-height: 1.35;
   }
 
   .svc2-desc-section {
