@@ -762,11 +762,45 @@ export default function ServicioDetalle() {
 
   const planPeriod = (plan: Plan) => {
     if (plan.isCustom) return "";
-    if (!isRecurring) return lang === "es" ? "por proyecto" : "per project";
+    if (!isRecurring) return "";
     if (billingMode === "annual") {
       return lang === "es" ? "/ mes, cobrado anual" : "/ mo, billed annually";
     }
     return plan.period || (lang === "es" ? "/ mes" : "/ mo");
+  };
+
+  const planTagline = (plan: Plan) => {
+    const taglines = lang === "es"
+      ? {
+          Starter: "Una base sólida para lanzar con confianza.",
+          Professional: "La opción equilibrada para crecer con claridad.",
+          Enterprise: "Una solución a medida para escalar sin límites.",
+          MVP: "Convierte tu idea en un producto funcional.",
+          Growth: "Más capacidad para crecer y optimizar.",
+          Essentials: "Automatiza lo esencial y gana tiempo.",
+          Advanced: "Potencia tu operación con inteligencia.",
+          Custom: "Tecnología diseñada alrededor de tu negocio.",
+          Full: "Una estrategia integral para crecer de forma sostenida.",
+          Essential: "Una infraestructura estable para operar mejor.",
+        }
+      : {
+          Starter: "A solid foundation to launch with confidence.",
+          Professional: "The balanced choice to grow with clarity.",
+          Enterprise: "A tailored solution built to scale without limits.",
+          MVP: "Turn your idea into a functional product.",
+          Growth: "More capacity to grow and optimize.",
+          Essentials: "Automate the essentials and gain time.",
+          Advanced: "Power your operations with intelligence.",
+          Custom: "Technology designed around your business.",
+          Full: "A complete strategy for sustainable growth.",
+          Essential: "A stable infrastructure to operate better.",
+        };
+
+    return taglines[plan.name as keyof typeof taglines] ?? (
+      lang === "es"
+        ? "Una solución profesional diseñada para tu siguiente etapa."
+        : "A professional solution designed for your next stage."
+    );
   };
 
   const handlePlanPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -908,6 +942,7 @@ export default function ServicioDetalle() {
                       </span>
                     )}
                   </div>
+                  <p className="svc2-plan-tagline">{planTagline(plan)}</p>
 
                   <div className="svc2-plan-divider"></div>
 
