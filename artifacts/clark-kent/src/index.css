@@ -318,21 +318,12 @@ body {
   outline: none;
 }
 
-.about-section .vapor-img {
-  animation: about-visual-in 1s ease-out both;
-}
-
 .about-section .about-lines {
   animation: about-copy-in 0.8s 0.12s ease-out both;
 }
 
 .about-section .about-cta-wrap {
   animation: about-cta-in 0.7s 0.55s ease-out both;
-}
-
-@keyframes about-visual-in {
-  from { opacity: 0; transform: scale(1.04); }
-  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes about-copy-in {
@@ -360,7 +351,6 @@ body {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  will-change: transform, opacity;
   z-index: 1;
 }
 
@@ -525,7 +515,6 @@ body {
 .welcome-section--visible .wlc-body { transition-delay: 0.17s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-section .vapor-img,
   .about-section .about-lines,
   .about-section .about-cta-wrap,
   .welcome-section .wlc-title,
@@ -1287,7 +1276,6 @@ body {
   box-sizing: border-box;
 }
 
-.nos-section .nos-img-col,
 .nos-section .nos-title,
 .nos-section .nos-card,
 .nos-section .nos-cta-btn {
@@ -1296,11 +1284,6 @@ body {
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.nos-section .nos-img-col {
-  transform: translateX(-28px);
-}
-
-.nos-section--visible .nos-img-col,
 .nos-section--visible .nos-title,
 .nos-section--visible .nos-card,
 .nos-section--visible .nos-cta-btn {
@@ -1308,13 +1291,11 @@ body {
   transform: translate(0, 0);
 }
 
-.nos-section--visible .nos-img-col { transition-delay: 0.08s; }
 .nos-section--visible .nos-title { transition-delay: 0.12s; }
 .nos-section--visible .nos-card { transition-delay: 0.24s; }
 .nos-section--visible .nos-cta-btn { transition-delay: 0.36s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .nos-section .nos-img-col,
   .nos-section .nos-title,
   .nos-section .nos-card,
   .nos-section .nos-cta-btn {
@@ -1475,7 +1456,6 @@ body {
 }
 
 .port-section .port-left,
-.port-section .port-blob-outer,
 .port-section .port-nav {
   opacity: 0;
   transform: translateY(24px);
@@ -1483,19 +1463,22 @@ body {
 }
 
 .port-section--visible .port-left,
-.port-section--visible .port-blob-outer,
 .port-section--visible .port-nav {
   opacity: 1;
   transform: translateY(0);
 }
 
 .port-section--visible .port-left { transition-delay: 0.05s; }
-.port-section--visible .port-blob-outer { transition-delay: 0.17s; }
 .port-section--visible .port-nav { transition-delay: 0.29s; }
+
+.port-section .port-blob-outer {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .port-section .port-left,
-  .port-section .port-blob-outer,
   .port-section .port-nav {
     opacity: 1;
     transform: none;
@@ -2167,21 +2150,15 @@ body {
 
 .resenas-section .resenas-header,
 .resenas-section .resenas-grid,
-.resenas-section .resenas-controls,
-.resenas-section .resenas-bust {
+.resenas-section .resenas-controls {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.resenas-section .resenas-bust {
-  transform: translateX(28px);
-}
-
 .resenas-section--visible .resenas-header,
 .resenas-section--visible .resenas-grid,
-.resenas-section--visible .resenas-controls,
-.resenas-section--visible .resenas-bust {
+.resenas-section--visible .resenas-controls {
   opacity: 1;
   transform: translate(0, 0);
 }
@@ -2189,13 +2166,11 @@ body {
 .resenas-section--visible .resenas-header { transition-delay: 0.05s; }
 .resenas-section--visible .resenas-grid { transition-delay: 0.16s; }
 .resenas-section--visible .resenas-controls { transition-delay: 0.27s; }
-.resenas-section--visible .resenas-bust { transition-delay: 0.14s; }
 
 @media (prefers-reduced-motion: reduce) {
   .resenas-section .resenas-header,
   .resenas-section .resenas-grid,
-  .resenas-section .resenas-controls,
-  .resenas-section .resenas-bust {
+  .resenas-section .resenas-controls {
     opacity: 1;
     transform: none;
     transition: none;
@@ -3020,32 +2995,24 @@ body {
 }
 
 .contacto-section .contacto-section-title,
-.contacto-section .contacto-wrap,
-.contacto-section .contacto-img-col {
+.contacto-section .contacto-wrap {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.contacto-section .contacto-img-col {
-  transform: translateX(30px);
-}
-
 .contacto-section--visible .contacto-section-title,
-.contacto-section--visible .contacto-wrap,
-.contacto-section--visible .contacto-img-col {
+.contacto-section--visible .contacto-wrap {
   opacity: 1;
   transform: translate(0, 0);
 }
 
 .contacto-section--visible .contacto-section-title { transition-delay: 0.05s; }
 .contacto-section--visible .contacto-wrap { transition-delay: 0.16s; }
-.contacto-section--visible .contacto-img-col { transition-delay: 0.28s; }
 
 @media (prefers-reduced-motion: reduce) {
   .contacto-section .contacto-section-title,
   .contacto-section .contacto-wrap,
-  .contacto-section .contacto-img-col,
   .footer-section .footer-inner > * {
     opacity: 1;
     transform: none;
@@ -3715,7 +3682,6 @@ body {
   box-sizing: border-box;
 }
 
-.faq2-section .faq2-left,
 .faq2-section .faq2-heading,
 .faq2-section .faq2-card,
 .faq2-section .faq2-nav {
@@ -3724,11 +3690,6 @@ body {
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.faq2-section .faq2-left {
-  transform: translateX(-26px);
-}
-
-.faq2-section--visible .faq2-left,
 .faq2-section--visible .faq2-heading,
 .faq2-section--visible .faq2-card,
 .faq2-section--visible .faq2-nav {
@@ -3739,10 +3700,8 @@ body {
 .faq2-section--visible .faq2-heading { transition-delay: 0.05s; }
 .faq2-section--visible .faq2-card { transition-delay: 0.16s; }
 .faq2-section--visible .faq2-nav { transition-delay: 0.27s; }
-.faq2-section--visible .faq2-left { transition-delay: 0.12s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .faq2-section .faq2-left,
   .faq2-section .faq2-heading,
   .faq2-section .faq2-card,
   .faq2-section .faq2-nav {
@@ -4509,28 +4468,20 @@ body {
    border-radius: 32px;
 }
 
-.ctw-section .ctw-imagination-media,
 .ctw-section .ctw-imagination-copy {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.75s ease, transform 0.75s ease;
 }
 
-.ctw-section .ctw-imagination-media {
-  transform: translateX(-28px);
-}
-
-.ctw-section--visible .ctw-imagination-media,
 .ctw-section--visible .ctw-imagination-copy {
   opacity: 1;
   transform: translate(0, 0);
 }
 
 .ctw-section--visible .ctw-imagination-copy { transition-delay: 0.08s; }
-.ctw-section--visible .ctw-imagination-media { transition-delay: 0.2s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .ctw-section .ctw-imagination-media,
   .ctw-section .ctw-imagination-copy {
     opacity: 1;
     transform: none;
@@ -4599,11 +4550,6 @@ body {
   object-fit: contain;
   object-position: bottom center;
   display: block;
-  animation: ctwFade 0.6s ease;
-}
-@keyframes ctwFade {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 .ctw-imagination-copy {
   padding: 0 0 108px;
