@@ -444,11 +444,13 @@
 }
 
 .svc2-annual-note::before {
-  margin-right: 0;
-  content: "⤵";
-  font-size: 25px;
+  display: inline-block;
+  width: 39px;
+  margin-right: 3px;
+  content: "⤶";
+  font-size: 38px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 0.8;
 }
 
 .svc2-annual-note-copy {
@@ -843,6 +845,7 @@
   letter-spacing: -0.035em;
   line-height: 0.98;
   overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .svc2-month-offer-copy p {
@@ -1367,8 +1370,9 @@
   }
 
   .svc2-month-offer-copy h3 {
-    font-size: clamp(23px, 7vw, 27px);
+    font-size: clamp(21px, 6.5vw, 25px);
     line-height: 1.04;
+    text-wrap: balance;
   }
 
   .svc2-month-offer-copy p {

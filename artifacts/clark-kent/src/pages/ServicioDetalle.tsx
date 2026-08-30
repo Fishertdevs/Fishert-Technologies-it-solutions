@@ -405,8 +405,8 @@ const serviceContexts: Record<string, ServiceContext> = {
       en: "Ship faster. Operate with confidence.",
     },
     pricingSub: {
-      es: "Diseñamos la base técnica para que tu producto crezca sin fricción.",
-      en: "We design the technical foundation for your product to grow without friction.",
+      es: "Diseñamos una arquitectura cloud segura, automatizada y observable para que tu equipo despliegue con velocidad, reduzca riesgos y escale cuando el negocio lo necesite.",
+      en: "We design a secure, automated, observable cloud architecture so your team can ship faster, reduce risk, and scale when the business needs it.",
     },
     offerHeadline: {
       es: "Tu próximo lanzamiento no debería esperar.",
@@ -1269,7 +1269,7 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       title: "Cloud y DevOps",
       eyebrow: "SERVICIO",
       hero: "svc5_2.jpg",
-      intro: "Infraestructura sólida. Deploys sin fricción.",
+      intro: "Infraestructura sólida. Deploys sin fricción. Escala con control y mantén tu operación lista para crecer.",
       description:
         "Diseñamos, migramos y gestionamos infraestructuras cloud que escalan sin sorpresas. Implementamos pipelines CI/CD, monitoreo proactivo y prácticas DevOps para que tu equipo entregue software más rápido y con más confianza.",
       planDetails: {
@@ -1345,7 +1345,7 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       title: "Cloud & DevOps",
       eyebrow: "SERVICE",
       hero: "svc5_2.jpg",
-      intro: "Solid infrastructure. Frictionless deploys.",
+      intro: "Solid infrastructure. Frictionless deploys. Scale with control and keep your operation ready to grow.",
       description:
         "We design, migrate, and manage cloud infrastructures that scale without surprises. We implement CI/CD pipelines, proactive monitoring, and DevOps practices so your team ships software faster and with more confidence.",
       planDetails: {
@@ -1798,11 +1798,15 @@ export default function ServicioDetalle() {
         {/* ── Pricing ── */}
         <section className="svc2-pricing-section">
           <div className="svc2-pricing-header">
-            <h3 className={`svc2-pricing-title ${slug === "desarrollo-software" ? "svc2-pricing-title--single-line" : ""} ${slug === "automatizacion-ia" ? "svc2-pricing-title--two-line" : ""}`}>
+            <h3 className={`svc2-pricing-title ${slug === "desarrollo-software" ? "svc2-pricing-title--single-line" : ""} ${slug === "automatizacion-ia" || slug === "cloud-devops" ? "svc2-pricing-title--two-line" : ""}`}>
               {slug === "automatizacion-ia" ? (
                 lang === "es"
                   ? <>Comienza a automatizar<br />tus procesos.</>
                   : <>Start automating your<br />processes.</>
+              ) : slug === "cloud-devops" ? (
+                lang === "es"
+                  ? <>Entrega más rápido.<br />Opera con confianza.</>
+                  : <>Ship faster.<br />Operate with confidence.</>
               ) : context.pricingTitle[lang]}
             </h3>
             <p className="svc2-pricing-sub">
