@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
@@ -65,7 +64,6 @@ const values = {
 export default function QuienesSomos() {
   const { lang } = useLang();
   const v = values[lang];
-  const base = import.meta.env.BASE_URL || "/";
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -74,19 +72,14 @@ export default function QuienesSomos() {
       <Navbar />
       <main className="qs-page">
 
-        {/* ── Hero ── */}
+        {/* ── Intro ── */}
         <section className="qs-hero">
-          <img src={`${base}mona-lisa.png`} alt="Fishert Studio" className="qs-hero-img" />
-          <div className="qs-hero-overlay" />
           <div className="qs-hero-content">
-            <Link href="/" className="svc-back-link">
-              ← {lang === "es" ? "Volver al inicio" : "Back to home"}
-            </Link>
             <p className="svc-page-eyebrow">
-              {lang === "es" ? "QUIÉNES SOMOS" : "ABOUT US"}
+              {lang === "es" ? "FISHERT STUDIO" : "FISHERT STUDIO"}
             </p>
             <h1 className="qs-hero-title">
-              {lang === "es" ? "Rompemos con lo\nconvencional." : "We break with\nthe conventional."}
+              {lang === "es" ? "¿Qué es Fishert Studio?" : "What is Fishert Studio?"}
             </h1>
           </div>
         </section>
@@ -103,13 +96,13 @@ export default function QuienesSomos() {
             <div className="qs-story-body">
               <p>
                 {lang === "es"
-                  ? "Fishert Studio comenzó con una idea de Harry Fishert, nuestro fundador y líder de desarrollo. Lo que empezó como un hobby entre amigos pronto se convirtió en una visión compartida: construir una agencia de software capaz de romper con lo convencional y crear soluciones digitales que realmente marcaran la diferencia."
-                  : "Fishert Studio began with an idea from Harry Fishert, our founder and lead developer. What started as a hobby among friends quickly became a shared vision: to build a software agency capable of breaking with convention and creating digital solutions that truly make a difference."}
+                  ? "Fishert Studio es un estudio de software para ideas ambiciosas. Unimos estrategia, diseño e ingeniería para convertir oportunidades en experiencias digitales claras, útiles y preparadas para crecer."
+                  : "Fishert Studio is a software studio for ambitious ideas. We combine strategy, design, and engineering to turn opportunities into clear, useful digital experiences built to grow."}
               </p>
               <p>
                 {lang === "es"
-                  ? "Desde el primer día, nuestro objetivo ha sido explorar nuevas ideas, expandirnos hacia diferentes áreas de la tecnología y desarrollar proyectos que inspiren. No creemos en las soluciones genéricas ni en los sitios web que se parecen entre sí. Diseñamos experiencias digitales con identidad propia, combinando ingeniería, diseño y estrategia."
-                  : "From day one, our goal has been to explore new ideas, expand into different areas of technology, and develop projects that inspire. We don't believe in generic solutions or websites that all look the same. We design digital experiences with their own identity, combining engineering, design, and strategy."}
+                  ? "Trabajamos junto a marcas y equipos que buscan más que una solución estándar: una identidad propia, decisiones bien pensadas y tecnología que haga avanzar su negocio. Cada proyecto empieza escuchando, explorando y encontrando la forma más directa de hacerlo realidad."
+                  : "We work with brands and teams looking for more than a standard solution: a distinct identity, thoughtful decisions, and technology that moves the business forward. Every project starts by listening, exploring, and finding the clearest way to make it real."}
               </p>
             </div>
           </div>

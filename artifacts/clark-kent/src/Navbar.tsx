@@ -36,6 +36,7 @@ export default function Navbar() {
   // On policy pages there is no dark hero — force light style immediately
   const isPolicyPage = ["/terminos", "/cookies", "/privacidad"].includes(location);
   const isServiceDetail = location.startsWith("/servicios/");
+  const isAboutPage = location === "/quienes-somos";
 
 
   useEffect(() => {
@@ -92,7 +93,7 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  const cls = isPolicyPage || isServiceDetail || pastHero
+  const cls = isPolicyPage || isServiceDetail || isAboutPage || pastHero
     ? "navbar navbar--light"
     : textOverlap
     ? "navbar navbar--text-overlap"
