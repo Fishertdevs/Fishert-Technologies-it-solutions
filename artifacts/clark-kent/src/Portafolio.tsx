@@ -146,9 +146,27 @@ export default function Portafolio() {
     return clearAll;
   }, [current]);
 
-  const goTo = (i: number) => setCurrent(i);
-  const prev = () => setCurrent((c) => (c - 1 + projects.length) % projects.length);
-  const next = () => setCurrent((c) => (c + 1) % projects.length);
+  const resetBeforeNavigation = () => {
+    clearAll();
+    setTypedUrl("");
+    setPhase("typing");
+    setClicking(false);
+  };
+
+  const goTo = (i: number) => {
+    resetBeforeNavigation();
+    setCurrent(i);
+  };
+
+  const prev = () => {
+    resetBeforeNavigation();
+    setCurrent((c) => (c - 1 + projects.length) % projects.length);
+  };
+
+  const next = () => {
+    resetBeforeNavigation();
+    setCurrent((c) => (c + 1) % projects.length);
+  };
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
     touchStartX.current = event.clientX;
