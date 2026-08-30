@@ -24,14 +24,14 @@ const team: TeamMember[] = [
     },
     bioLines: {
       es: [
-        "Transformo ideas ambiciosas en productos claros,",
-        "combinando estrategia, diseño y desarrollo",
-        "para crear experiencias digitales con propósito.",
+        "Transformo ideas en productos claros,",
+        "con estrategia, diseño y desarrollo",
+        "para crear experiencias con propósito.",
       ],
       en: [
-        "I turn ambitious ideas into clear products,",
-        "combining strategy, design, and development",
-        "to create digital experiences with purpose.",
+        "I turn ideas into clear products,",
+        "with strategy, design, and development",
+        "to create experiences with purpose.",
       ],
     },
   },
