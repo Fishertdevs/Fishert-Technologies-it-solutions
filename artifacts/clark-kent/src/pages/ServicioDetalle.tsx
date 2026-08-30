@@ -319,8 +319,8 @@ const serviceContexts: Record<string, ServiceContext> = {
       en: "We design and build MVPs, SaaS products, and custom platforms that turn your opportunity into scalable software.",
     },
     offerHeadline: {
-      es: "De la idea al primer release.",
-      en: "From idea to your first release.",
+      es: "De la idea al primer lanzamiento.",
+      en: "From idea to your first launch.",
     },
     closingTitle: {
       es: "Tu próxima versión merece un equipo a la altura.",
@@ -822,7 +822,7 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         { number: "01", title: "Diagnóstico", description: "Alineamos la oportunidad, el modelo de negocio y las necesidades de quienes usarán el producto." },
         { number: "02", title: "Estrategia", description: "Definimos el alcance correcto, la experiencia y las decisiones de producto que reducen riesgo antes de construir." },
         { number: "03", title: "Construcción", description: "Iteramos en ciclos cortos para convertir la visión en software probado, usable y listo para aprender." },
-        { number: "04", title: "Lanzamiento y optimización", description: "Acompañamos el release, observamos el uso y priorizamos la siguiente versión con datos reales." },
+        { number: "04", title: "Lanzamiento y optimización", description: "Acompañamos el lanzamiento, observamos el uso y priorizamos la siguiente versión con datos reales." },
       ],
       faqs: [
         { question: "¿El producto queda a nombre de mi empresa?", answer: "Sí. Entregamos a tu empresa los diseños y el código creado para el producto, junto con la documentación necesaria para continuar." },
@@ -898,7 +898,7 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
         { number: "01", title: "Diagnosis", description: "We align the opportunity, business model, and needs of the people who will use the product." },
         { number: "02", title: "Strategy", description: "We define the right scope, experience, and product decisions to reduce risk before building." },
         { number: "03", title: "Build", description: "We work in short cycles to turn the vision into tested, usable software ready to learn from." },
-        { number: "04", title: "Launch and optimize", description: "We support the release, observe usage, and prioritize the next version with real data." },
+        { number: "04", title: "Launch and optimize", description: "We support the launch, observe usage, and prioritize the next version with real data." },
       ],
       faqs: [
         { question: "Does my company own the final product?", answer: "Yes. We deliver the designs and code created for the product, together with the documentation needed to keep moving." },
@@ -1714,7 +1714,11 @@ export default function ServicioDetalle() {
           <div className="svc2-hero-content">
             <div className="svc2-title-wrap">
               <span className="svc2-eyebrow">{t.eyebrow}</span>
-              <h1 className="svc2-title">{t.title}</h1>
+              <h1 className="svc2-title">
+                {slug === "desarrollo-software" ? (
+                  lang === "es" ? <>Desarrollo de<br />Software</> : <>Software<br />Development</>
+                ) : t.title}
+              </h1>
             </div>
             <p className="svc2-intro">{t.intro}</p>
           </div>
@@ -1794,7 +1798,7 @@ export default function ServicioDetalle() {
         {/* ── Pricing ── */}
         <section className="svc2-pricing-section">
           <div className="svc2-pricing-header">
-            <h3 className="svc2-pricing-title">
+            <h3 className={`svc2-pricing-title ${slug === "desarrollo-software" ? "svc2-pricing-title--single-line" : ""}`}>
               {context.pricingTitle[lang]}
             </h3>
             <p className="svc2-pricing-sub">

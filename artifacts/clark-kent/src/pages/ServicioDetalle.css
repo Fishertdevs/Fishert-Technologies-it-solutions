@@ -380,6 +380,10 @@
   line-height: 0.94;
 }
 
+.svc2-pricing-title--single-line {
+  white-space: nowrap;
+}
+
 .svc2-pricing-sub {
   max-width: 450px;
   margin: 0;
@@ -755,6 +759,7 @@
   width: min(100% - 96px, 1120px);
   margin: 0 auto;
   padding: 64px 0 96px;
+  box-sizing: border-box;
 }
 
 .svc2-offer-section .svc2-month-offer {
@@ -812,7 +817,7 @@
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 0.98;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .svc2-month-offer-copy p {
@@ -1187,6 +1192,11 @@
   .svc2-pricing-title {
     max-width: 320px;
     font-size: clamp(38px, 11vw, 48px);
+  }
+
+  .svc2-pricing-title--single-line {
+    max-width: none;
+    font-size: clamp(30px, 8.5vw, 42px);
   }
 
   .svc2-pricing-sub {
