@@ -117,21 +117,29 @@ function ReviewsCarousel({
           swipeStartX.current = null;
         }}
       >
-        <div
-          className="resenas-track"
-          style={isMobile ? { transform: `translateX(-${start * 100}%)` } : undefined}
-        >
-          {visible.map((r, i) => (
-            <div key={`${isMobile ? "mobile" : start}-${r.author}-${i}`} className="resena-card">
-              <Stars count={r.stars} lang={lang} />
-              <blockquote className="resena-quote">"{r.quote}"</blockquote>
-              <div className="resena-author">
-                <span className="resena-name">{r.author}</span>
-                <span className="resena-company">{r.company}</span>
+        {list.length === 0 ? (
+          <p className="resenas-empty">
+            {lang === "es"
+              ? "Aún no se tienen reseñas disponibles."
+              : "No reviews are available yet."}
+          </p>
+        ) : (
+          <div
+            className="resenas-track"
+            style={isMobile ? { transform: `translateX(-${start * 100}%)` } : undefined}
+          >
+            {visible.map((r, i) => (
+              <div key={`${isMobile ? "mobile" : start}-${r.author}-${i}`} className="resena-card">
+                <Stars count={r.stars} lang={lang} />
+                <blockquote className="resena-quote">"{r.quote}"</blockquote>
+                <div className="resena-author">
+                  <span className="resena-name">{r.author}</span>
+                  <span className="resena-company">{r.company}</span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="resenas-controls">
@@ -144,7 +152,7 @@ function ReviewsCarousel({
           {lang === "es" ? "Agregar reseña" : "Add a review"}
         </button>
 
-        <div className="resenas-nav">
+        {list.length > 0 && <div className="resenas-nav">
           <button
             type="button"
             className="resenas-arrow"
@@ -180,7 +188,7 @@ function ReviewsCarousel({
                 strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-        </div>
+        </div>}
       </div>
     </>
   );

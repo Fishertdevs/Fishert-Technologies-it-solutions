@@ -10,7 +10,7 @@ const copy = {
     tabs: ["Calificación", "Tus datos", "Tu reseña"],
     step1: {
       title: "¿Cómo fue tu experiencia?",
-      sub: "Selecciona una calificación para continuar.",
+      sub: "Califica tu experiencia de 1 a 5 estrellas para continuar.",
       labels: ["", "Muy malo", "Regular", "Bueno", "Muy bueno", "Excelente"],
     },
     step2: {
@@ -41,7 +41,7 @@ const copy = {
     tabs: ["Rating", "Your info", "Your review"],
     step1: {
       title: "How was your experience?",
-      sub: "Select a rating to continue.",
+      sub: "Rate your experience from 1 to 5 stars to continue.",
       labels: ["", "Very bad", "Poor", "Good", "Very good", "Excellent"],
     },
     step2: {

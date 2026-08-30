@@ -2255,6 +2255,26 @@ body {
   gap: 24px;
 }
 
+.resenas-empty {
+  grid-column: 1 / -1;
+  min-height: 150px;
+  margin: 0;
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ebebeb;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #555555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .resenas-track {
   display: contents;
 }
@@ -5519,6 +5539,14 @@ body {
   .resenas-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 18px;
+  }
+
+  .resenas-empty {
+    min-height: 120px;
+    padding: 24px 18px;
+    border-radius: 14px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
   }
 
   .resenas-grid--mobile {
