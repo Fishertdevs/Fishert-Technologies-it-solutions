@@ -72,6 +72,26 @@ function useMobileReviewsLayout() {
   return isMobile;
 }
 
+function RatingSummary({ list, lang }: { list: Review[]; lang: "es" | "en" }) {
+  if (list.length === 0) return null;
+
+  const average = list.reduce((total, review) => total + review.stars, 0) / list.length;
+  const formattedAverage = average.toFixed(1);
+
+  return (
+    <div
+      className="resenas-rating-summary"
+      aria-label={`${lang === "es" ? "Calificación promedio" : "Average rating"}: ${formattedAverage} ${lang === "es" ? "de 5" : "out of 5"}, ${list.length} ${lang === "es" ? "reseñas" : "reviews"}`}
+    >
+      <span>{formattedAverage}</span>
+      <span className="resenas-rating-summary-star" aria-hidden="true">★</span>
+      <span>({list.length})</span>
+      <span aria-hidden="true">·</span>
+      <span>{lang === "es" ? "Agencia de software" : "Software agency"}</span>
+    </div>
+  );
+}
+
 function ReviewsCarousel({
   list,
   lang,
@@ -250,6 +270,7 @@ export default function Resenas() {
                   ? "Clientes satisfechos que hablan de nuestro trabajo."
                   : "Satisfied clients who speak about our work."}
               </p>
+              <RatingSummary list={list} lang={lang} />
             </div>
 
             <ReviewsCarousel
