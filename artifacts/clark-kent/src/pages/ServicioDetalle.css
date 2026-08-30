@@ -130,9 +130,11 @@
 }
 
 .svc2-process-section {
-  width: min(100% - 96px, 1120px);
-  margin: 0 auto;
-  padding: 0 0 104px;
+  width: 100%;
+  margin: 0;
+  padding: 96px max(48px, calc((100% - 1120px) / 2)) 104px;
+  box-sizing: border-box;
+  background: #e8621e;
 }
 
 .svc2-process-header {
@@ -156,6 +158,7 @@
 
 .svc2-process-header .svc2-section-eyebrow {
   grid-column: 1 / -1;
+  color: #7d0009;
 }
 
 .svc2-process-header h2,
@@ -171,6 +174,10 @@
 }
 
 .svc2-process-header h2 {
+  color: #fdf3ec;
+}
+
+.svc2-process-header h2 {
   grid-column: 1;
 }
 
@@ -178,56 +185,106 @@
   grid-column: 2;
   max-width: 420px;
   margin: 0 0 2px;
-  color: #636772;
+  color: rgba(253, 243, 236, 0.8);
   font-size: 14px;
   line-height: 1.5;
 }
 
-.svc2-process-grid {
+.svc2-process-carousel {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid #d8dbe1;
-  border-bottom: 1px solid #d8dbe1;
+  grid-template-columns: 48px minmax(0, 720px) 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.svc2-process-viewport {
+  min-width: 0;
+  min-height: 270px;
+  touch-action: pan-y;
 }
 
 .svc2-process-stage {
-  min-height: 210px;
-  padding: 24px 22px 25px;
-  border-right: 1px solid #d8dbe1;
-}
-
-.svc2-process-stage:first-child {
-  padding-left: 0;
-}
-
-.svc2-process-stage:last-child {
-  padding-right: 0;
-  border-right: 0;
+  display: flex;
+  min-height: 270px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 48px;
+  border: 1px solid rgba(253, 243, 236, 0.72);
+  border-radius: 24px;
+  background: rgba(125, 0, 9, 0.12);
+  text-align: center;
 }
 
 .svc2-process-number {
   display: block;
-  margin-bottom: 42px;
-  color: #c0001a;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.13em;
+  margin-bottom: 16px;
+  color: #7d0009;
+  font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
 }
 
 .svc2-process-stage h3 {
-  margin: 0 0 9px;
-  color: #17191e;
-  font-size: 15px;
+  margin: 0 0 12px;
+  color: #fdf3ec;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 .svc2-process-stage p {
-  max-width: 220px;
+  max-width: 490px;
   margin: 0;
-  color: #696d75;
-  font-size: 12px;
-  line-height: 1.5;
+  color: rgba(253, 243, 236, 0.82);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.svc2-process-arrow {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #7d0009;
+  border-radius: 999px;
+  background: transparent;
+  color: #7d0009;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.svc2-process-arrow:hover {
+  background: #7d0009;
+  color: #fdf3ec;
+}
+
+.svc2-process-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 25px;
+}
+
+.svc2-process-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(253, 243, 236, 0.48);
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.svc2-process-dot--active {
+  width: 25px;
+  background: #7d0009;
 }
 
 .svc2-platforms-section {
@@ -520,6 +577,24 @@
   border-top: 1px solid rgba(255, 255, 255, 0.13);
 }
 
+.svc2-plan-duration {
+  display: flex;
+  min-height: 53px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 13px;
+  padding: 13px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.svc2-plan-duration strong {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+}
+
 .svc2-plan-detail {
   min-width: 0;
 }
@@ -741,26 +816,35 @@
   display: grid;
   grid-template-columns: minmax(240px, 0.8fr) minmax(420px, 1.2fr);
   gap: 72px;
-  width: min(100% - 96px, 920px);
+  width: 100%;
   margin: 0 auto;
-  padding: 108px 0 115px;
-  border-top: 1px solid #d8dbe1;
+  padding: 108px max(48px, calc((100% - 920px) / 2)) 115px;
+  box-sizing: border-box;
+  background: #a8532f;
+}
+
+.svc2-faq-section .svc2-section-eyebrow {
+  color: #f7c8ae;
+}
+
+.svc2-faq-section .svc2-faq-header h2 {
+  color: #fdf3ec;
 }
 
 .svc2-faq-header p {
   max-width: 260px;
   margin: 17px 0 0;
-  color: #636772;
+  color: rgba(253, 243, 236, 0.78);
   font-size: 14px;
   line-height: 1.5;
 }
 
 .svc2-faq-list {
-  border-top: 1px solid #171717;
+  border-top: 1px solid rgba(253, 243, 236, 0.72);
 }
 
 .svc2-faq-item {
-  border-bottom: 1px solid #d8dbe1;
+  border-bottom: 1px solid rgba(253, 243, 236, 0.38);
 }
 
 .svc2-faq-question {
@@ -773,7 +857,7 @@
   padding: 18px 0;
   border: 0;
   background: transparent;
-  color: #17191e;
+  color: #fdf3ec;
   cursor: pointer;
   font: inherit;
   font-size: 14px;
@@ -789,7 +873,7 @@
   flex: 0 0 25px;
   align-items: center;
   justify-content: center;
-  border: 1px solid #171717;
+  border: 1px solid #fdf3ec;
   border-radius: 999px;
   font-size: 19px;
   font-weight: 400;
@@ -798,8 +882,8 @@
 }
 
 .svc2-faq-item--open .svc2-faq-icon {
-  background: #171717;
-  color: #ffffff;
+  background: #fdf3ec;
+  color: #a8532f;
   transform: rotate(45deg);
 }
 
@@ -810,7 +894,7 @@
 .svc2-faq-answer p {
   max-width: 530px;
   margin: 0;
-  color: #696d75;
+  color: rgba(253, 243, 236, 0.82);
   font-size: 13px;
   line-height: 1.55;
 }
@@ -920,8 +1004,7 @@
   }
 
   .svc2-process-section {
-    width: min(100% - 48px, 520px);
-    padding-bottom: 72px;
+    padding: 64px 24px 70px;
   }
 
   .svc2-process-header {
@@ -937,39 +1020,45 @@
   .svc2-process-header > p {
     max-width: 310px;
     margin-top: 16px;
+    color: rgba(253, 243, 236, 0.8);
     font-size: 13px;
   }
 
-  .svc2-process-grid {
-    grid-template-columns: 1fr 1fr;
+  .svc2-process-carousel {
+    display: block;
   }
 
-  .svc2-process-stage,
-  .svc2-process-stage:first-child,
-  .svc2-process-stage:last-child {
-    min-height: 190px;
-    padding: 20px 15px 22px;
-    border-right: 1px solid #d8dbe1;
+  .svc2-process-viewport {
+    min-height: 238px;
   }
 
-  .svc2-process-stage:nth-child(2n) {
-    border-right: 0;
-  }
-
-  .svc2-process-stage:nth-child(n + 3) {
-    border-top: 1px solid #d8dbe1;
+  .svc2-process-stage {
+    min-height: 238px;
+    padding: 32px 24px;
+    border-radius: 21px;
   }
 
   .svc2-process-number {
-    margin-bottom: 28px;
+    margin-bottom: 15px;
+    font-size: 58px;
   }
 
   .svc2-process-stage h3 {
-    font-size: 14px;
+    font-size: 18px;
   }
 
   .svc2-process-stage p {
-    font-size: 11px;
+    max-width: 290px;
+    color: rgba(253, 243, 236, 0.82);
+    font-size: 12px;
+  }
+
+  .svc2-process-arrow {
+    display: none;
+  }
+
+  .svc2-process-dots {
+    margin-top: 19px;
   }
 
   .svc2-platforms-section {
@@ -1088,23 +1177,21 @@
   }
 
   .svc2-plan-details {
-    gap: 12px;
-    min-height: 0;
+    display: none;
+  }
+
+  .svc2-plan-duration {
+    min-height: 47px;
     margin-top: 12px;
     padding-top: 12px;
   }
 
-  .svc2-plan-detail--duration {
-    min-width: 83px;
-  }
-
-  .svc2-plan-detail-label {
+  .svc2-plan-duration .svc2-plan-detail-label {
     font-size: 8px;
   }
 
-  .svc2-plan-detail li,
-  .svc2-plan-detail p {
-    font-size: 9px;
+  .svc2-plan-duration strong {
+    font-size: 10px;
   }
 
   .svc2-plan-feature {
@@ -1174,8 +1261,8 @@
 
   .svc2-faq-section {
     display: block;
-    width: min(100% - 48px, 520px);
-    padding: 72px 0 78px;
+    width: 100%;
+    padding: 72px 24px 78px;
   }
 
   .svc2-faq-header {
@@ -1200,33 +1287,17 @@
   }
 
   .svc2-faq-answer p {
+    color: rgba(253, 243, 236, 0.82);
     font-size: 12px;
-  }
-
-  .svc2-closing-cta {
-    padding: 0 24px 80px;
-  }
-
-  .svc2-closing-inner {
-    padding: 54px 24px 57px;
-    border-radius: 21px;
-  }
-
-  .svc2-closing-inner h2 {
-    font-size: clamp(39px, 12vw, 54px);
-  }
-
-  .svc2-closing-inner p {
-    max-width: 300px;
-    font-size: 13px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .svc2-cycle-option,
-  .svc2-plan-cta,
   .svc2-plan-arrow,
   .svc2-plan-dot,
+  .svc2-process-arrow,
+  .svc2-process-dot,
   .svc2-faq-icon,
   .svc2-closing-link {
     transition: none;

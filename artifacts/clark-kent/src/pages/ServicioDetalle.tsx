@@ -1249,8 +1249,16 @@ export default function ServicioDetalle() {
   const service = data[slug];
   const [billingMode, setBillingMode] = useState<"monthly" | "annual">("monthly");
   const [activePlan, setActivePlan] = useState(0);
+  const [activeProcess, setActiveProcess] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const planTouchStartX = useRef<number | null>(null);
+  const processTouchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    setActivePlan(0);
+    setActiveProcess(0);
+    setOpenFaq(0);
+  }, [slug]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -1340,7 +1348,7 @@ export default function ServicioDetalle() {
     if (!activeCard) return;
 
     const textTargets = activeCard.querySelectorAll<HTMLElement>(
-      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-divider, .svc2-plan-feature, .svc2-plan-cta",
+      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-duration, .svc2-plan-divider, .svc2-plan-feature",
     );
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1458,6 +1466,27 @@ export default function ServicioDetalle() {
     ));
   };
 
+  const handleProcessTouchStart = (event: ReactTouchEvent<HTMLDivElement>) => {
+    processTouchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleProcessTouchEnd = (event: ReactTouchEvent<HTMLDivElement>) => {
+    const startX = processTouchStartX.current;
+    processTouchStartX.current = null;
+    const endX = event.changedTouches[0]?.clientX;
+    if (startX === null || endX === undefined) return;
+
+    const deltaX = startX - endX;
+    if (Math.abs(deltaX) < 40) return;
+    setActiveProcess((current) => (
+      deltaX > 0
+        ? (current + 1) % t.process.length
+        : (current - 1 + t.process.length) % t.process.length
+    ));
+  };
+
+  const activeStage = t.process[activeProcess] ?? t.process[0];
+
   return (
     <>
       <Navbar />
@@ -1497,13 +1526,53 @@ export default function ServicioDetalle() {
                 : "A clear process for making better decisions, building with intention, and continuing to improve."}
             </p>
           </div>
-          <div className="svc2-process-grid">
-            {t.process.map((stage) => (
-              <article className="svc2-process-stage" key={stage.number}>
-                <span className="svc2-process-number">{stage.number}</span>
-                <h3>{stage.title}</h3>
-                <p>{stage.description}</p>
+          <div className="svc2-process-carousel" aria-roledescription="carousel">
+            <button
+              type="button"
+              className="svc2-process-arrow"
+              aria-label={lang === "es" ? "Etapa anterior" : "Previous stage"}
+              onClick={() => setActiveProcess((current) => (current - 1 + t.process.length) % t.process.length)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <div
+              className="svc2-process-viewport"
+              onTouchStart={handleProcessTouchStart}
+              onTouchEnd={handleProcessTouchEnd}
+              onTouchCancel={() => {
+                processTouchStartX.current = null;
+              }}
+              aria-live="polite"
+            >
+              <article className="svc2-process-stage" key={activeStage.number}>
+                <span className="svc2-process-number">{activeStage.number}</span>
+                <h3>{activeStage.title}</h3>
+                <p>{activeStage.description}</p>
               </article>
+            </div>
+            <button
+              type="button"
+              className="svc2-process-arrow"
+              aria-label={lang === "es" ? "Siguiente etapa" : "Next stage"}
+              onClick={() => setActiveProcess((current) => (current + 1) % t.process.length)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+          <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de metodología" : "Methodology navigation"}>
+            {t.process.map((stage, index) => (
+              <button
+                key={stage.number}
+                type="button"
+                className={activeProcess === index ? "svc2-process-dot svc2-process-dot--active" : "svc2-process-dot"}
+                aria-label={`${lang === "es" ? "Ver etapa" : "View stage"} ${index + 1}: ${stage.title}`}
+                aria-pressed={activeProcess === index}
+                onClick={() => setActiveProcess(index)}
+              />
             ))}
           </div>
         </section>
@@ -1596,23 +1665,11 @@ export default function ServicioDetalle() {
                   </div>
                   <p className="svc2-plan-tagline">{planTagline(plan)}</p>
 
-                  <div className="svc2-plan-details">
-                    <div className="svc2-plan-detail">
-                      <span className="svc2-plan-detail-label">
-                        {lang === "es" ? "Entregables" : "Deliverables"}
-                      </span>
-                      <ul>
-                        {t.planDetails[plan.name].deliverables.map((deliverable) => (
-                          <li key={deliverable}>{deliverable}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="svc2-plan-detail svc2-plan-detail--duration">
-                      <span className="svc2-plan-detail-label">
-                        {lang === "es" ? "Tiempo estimado" : "Estimated timing"}
-                      </span>
-                      <p>{t.planDetails[plan.name].duration}</p>
-                    </div>
+                  <div className="svc2-plan-duration">
+                    <span className="svc2-plan-detail-label">
+                      {lang === "es" ? "Tiempo estimado" : "Estimated timing"}
+                    </span>
+                    <strong>{lang === "es" ? "3–4 semanas" : "3–4 weeks"}</strong>
                   </div>
 
                   <div className="svc2-plan-divider"></div>
@@ -1628,9 +1685,6 @@ export default function ServicioDetalle() {
                     ))}
                   </ul>
 
-                  <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-plan-cta">
-                    {lang === "es" ? "Solicitar propuesta" : "Request proposal"}
-                  </a>
                 </div>
               ))}
             </div>
@@ -1723,20 +1777,6 @@ export default function ServicioDetalle() {
                 </div>
               );
             })}
-          </div>
-        </section>
-
-        {/* ── Closing CTA ── */}
-        <section className="svc2-closing-cta" aria-labelledby="svc2-closing-title">
-          <div className="svc2-closing-inner">
-            <span className="svc2-section-eyebrow">
-              {lang === "es" ? "Siguiente paso" : "Next step"}
-            </span>
-            <h2 id="svc2-closing-title">{context.closingTitle[lang]}</h2>
-            <p>{context.closingText[lang]}</p>
-            <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-closing-link">
-              {lang === "es" ? "Agendar diagnóstico" : "Book a discovery call"}
-            </a>
           </div>
         </section>
 
