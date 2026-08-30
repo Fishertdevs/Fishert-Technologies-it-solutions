@@ -444,17 +444,31 @@
 }
 
 .svc2-annual-note::before {
-  margin-right: 7px;
-  content: "↓";
-  font-size: 26px;
+  margin-right: 0;
+  content: "⤵";
+  font-size: 25px;
   font-weight: 700;
-  line-height: 0.8;
+  line-height: 1;
 }
 
-.svc2-annual-note strong {
+.svc2-annual-note-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.05;
+}
+
+.svc2-annual-note-copy strong {
   font-size: 13px;
   font-weight: 900;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.svc2-annual-note-copy span {
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .svc2-cycle-static {

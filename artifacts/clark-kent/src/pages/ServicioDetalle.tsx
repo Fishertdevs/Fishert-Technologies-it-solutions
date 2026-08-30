@@ -371,8 +371,8 @@ const serviceContexts: Record<string, ServiceContext> = {
       en: ["Strategy", "Content", "Paid media", "Analytics"],
     },
     pricingTitle: {
-      es: "Convierte atención en crecimiento medible.",
-      en: "Turn attention into measurable growth.",
+      es: "Convierte atención en crecimiento.",
+      en: "Turn attention into growth.",
     },
     pricingSub: {
       es: "Creatividad, distribución y datos trabajando juntos para mover tu negocio.",
@@ -1109,7 +1109,7 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       title: "Marketing Digital",
       eyebrow: "SERVICIO",
       hero: "svc4_2.jpg",
-      intro: "Presencia digital que genera resultados medibles.",
+      intro: "Presencia digital que genera resultados medibles para atraer, conectar y convertir mejor.",
       description:
         "Creamos estrategias de marketing digital orientadas a datos — no a vanity metrics. Desde la gestión de redes hasta campañas de pauta con ROI claro, combinamos creatividad y análisis para hacer crecer tu marca.",
       planDetails: {
@@ -1831,8 +1831,12 @@ export default function ServicioDetalle() {
                   </div>
                   {billingMode === "annual" && (
                     <span className="svc2-annual-note">
-                      <strong>20% OFF</strong>
-                      {lang === "es" ? ", eso es 2 meses GRATIS" : ", that's 2 months FREE"}
+                      <span className="svc2-annual-note-copy">
+                        <strong>20% OFF</strong>
+                        <span>
+                          {lang === "es" ? "Eso es 2 meses GRATIS" : "That's 2 months FREE"}
+                        </span>
+                      </span>
                     </span>
                   )}
                 </>
