@@ -37,10 +37,14 @@ function BlueBadge() {
 }
 
 const Stars = ({ count, lang }: { count: number; lang: "es" | "en" }) => (
-  <div className="resena-stars">
+  <div
+    className="resena-stars"
+    aria-label={`${lang === "es" ? "Calificación" : "Rating"}: ${count} de 5`}
+  >
     {Array.from({ length: count }).map((_, i) => (
       <span key={i} className="resena-star">★</span>
     ))}
+    <span className="resena-rating-score">{count}/5</span>
     <span className="resena-verified">
       {lang === "es" ? "Usuario verificado" : "Verified user"}
       <BlueBadge />

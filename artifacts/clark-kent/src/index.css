@@ -2257,15 +2257,7 @@ body {
 
 .resenas-empty {
   grid-column: 1 / -1;
-  min-height: 150px;
   margin: 0;
-  padding: 32px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ebebeb;
-  border-radius: 16px;
-  background: #ffffff;
   color: #555555;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
@@ -2304,6 +2296,14 @@ body {
 
 .resena-stars { display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; }
 .resena-star  { font-size: 16px; color: #C0001A; line-height: 1; }
+.resena-rating-score {
+  margin-left: 4px;
+  color: #555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
 .resena-verified {
   display: inline-flex;
   align-items: center;
@@ -5542,9 +5542,6 @@ body {
   }
 
   .resenas-empty {
-    min-height: 120px;
-    padding: 24px 18px;
-    border-radius: 14px;
     font-size: 10px;
     letter-spacing: 0.1em;
   }
@@ -5584,6 +5581,10 @@ body {
 
   .resena-star {
     font-size: 14px;
+  }
+
+  .resena-rating-score {
+    font-size: 10px;
   }
 
   .resena-verified {
