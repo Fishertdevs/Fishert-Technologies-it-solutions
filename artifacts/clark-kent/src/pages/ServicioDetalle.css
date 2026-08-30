@@ -1182,7 +1182,10 @@
   }
 
   .svc2-plans-carousel {
-    display: block;
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr) 30px;
+    align-items: center;
+    gap: 8px;
   }
 
   .svc2-plans-grid {
@@ -1230,7 +1233,11 @@
   }
 
   .svc2-plan-arrow {
-    display: none;
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    padding: 0;
   }
 
   .svc2-plan-dots {
