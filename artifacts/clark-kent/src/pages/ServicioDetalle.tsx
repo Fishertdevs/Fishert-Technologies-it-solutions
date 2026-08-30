@@ -32,6 +32,17 @@ type LocalizedCopy = {
   en: string;
 };
 
+type ProcessStep = {
+  number: string;
+  title: LocalizedCopy;
+  description: LocalizedCopy;
+};
+
+type ServiceFaq = {
+  question: LocalizedCopy;
+  answer: LocalizedCopy;
+};
+
 type PlatformIconName =
   | "wordpress"
   | "shopify"
@@ -69,7 +80,92 @@ type ServiceContext = {
   pricingTitle: LocalizedCopy;
   pricingSub: LocalizedCopy;
   offerHeadline: LocalizedCopy;
+  processTitle: LocalizedCopy;
+  processIntro: LocalizedCopy;
+  processSteps: ProcessStep[];
+  faqs: ServiceFaq[];
+  ctaEyebrow: LocalizedCopy;
+  ctaTitle: LocalizedCopy;
+  ctaBody: LocalizedCopy;
 };
+
+const processSteps: ProcessStep[] = [
+  {
+    number: "01",
+    title: { es: "Diagnóstico", en: "Discovery" },
+    description: {
+      es: "Entendemos tu negocio, tus usuarios y la oportunidad que quieres desbloquear.",
+      en: "We understand your business, your users, and the opportunity you want to unlock.",
+    },
+  },
+  {
+    number: "02",
+    title: { es: "Estrategia", en: "Strategy" },
+    description: {
+      es: "Convertimos los hallazgos en una dirección clara, prioridades y un plan accionable.",
+      en: "We turn the findings into a clear direction, priorities, and an actionable plan.",
+    },
+  },
+  {
+    number: "03",
+    title: { es: "Construcción", en: "Build" },
+    description: {
+      es: "Diseñamos y desarrollamos con entregas visibles para que siempre sepas qué está avanzando.",
+      en: "We design and build in visible increments so you always know what is moving forward.",
+    },
+  },
+  {
+    number: "04",
+    title: { es: "Lanzamiento y evolución", en: "Launch & evolve" },
+    description: {
+      es: "Lanzamos, medimos y refinamos la solución para que siga generando valor después del estreno.",
+      en: "We launch, measure, and refine the solution so it keeps creating value after release.",
+    },
+  },
+];
+
+const serviceFaqs: ServiceFaq[] = [
+  {
+    question: {
+      es: "¿Quién es dueño del producto o sitio que desarrollan?",
+      en: "Who owns the product or website you develop?",
+    },
+    answer: {
+      es: "Definimos la propiedad de los entregables, licencias y activos de tu proyecto por escrito en la propuesta y el contrato, antes de comenzar.",
+      en: "We define ownership of your project deliverables, licenses, and assets in writing in the proposal and agreement before we begin.",
+    },
+  },
+  {
+    question: {
+      es: "¿Qué incluye el soporte?",
+      en: "What does support include?",
+    },
+    answer: {
+      es: "Incluye acompañamiento para resolver dudas, corregir incidencias relacionadas con el alcance y ayudarte a operar la solución durante el periodo acordado.",
+      en: "It includes guidance, resolution of scope-related issues, and help operating the solution during the agreed support period.",
+    },
+  },
+  {
+    question: {
+      es: "¿Pueden acompañarnos después del lanzamiento?",
+      en: "Can you keep supporting us after launch?",
+    },
+    answer: {
+      es: "Sí. Podemos continuar con mantenimiento, mejoras, optimización y acompañamiento mensual según las necesidades de tu equipo.",
+      en: "Yes. We can continue with maintenance, improvements, optimization, and monthly support based on your team's needs.",
+    },
+  },
+  {
+    question: {
+      es: "¿Qué tecnología utilizan?",
+      en: "What technology do you use?",
+    },
+    answer: {
+      es: "Elegimos la tecnología según el problema, el presupuesto y la evolución esperada del proyecto. Priorizamos soluciones mantenibles, seguras y fáciles de escalar.",
+      en: "We choose technology based on the problem, budget, and expected evolution of the project. We prioritize solutions that are maintainable, secure, and easy to scale.",
+    },
+  },
+];
 
 const serviceContexts: Record<string, ServiceContext> = {
   "desarrollo-web": {
@@ -93,6 +189,28 @@ const serviceContexts: Record<string, ServiceContext> = {
       es: "Tu próxima versión empieza hoy.",
       en: "Your next version starts today.",
     },
+    processTitle: {
+      es: "Así convertimos una necesidad en una experiencia digital.",
+      en: "How we turn a need into a digital experience.",
+    },
+    processIntro: {
+      es: "Un proceso claro para tomar mejores decisiones antes, durante y después de construir.",
+      en: "A clear process for making better decisions before, during, and after building.",
+    },
+    processSteps,
+    faqs: serviceFaqs,
+    ctaEyebrow: {
+      es: "DIAGNÓSTICO ESTRATÉGICO",
+      en: "STRATEGIC DISCOVERY",
+    },
+    ctaTitle: {
+      es: "Hablemos de tu próxima versión.",
+      en: "Let's talk about your next version.",
+    },
+    ctaBody: {
+      es: "Cuéntanos dónde estás y qué quieres lograr. Te ayudaremos a encontrar el siguiente paso correcto.",
+      en: "Tell us where you are and what you want to achieve. We'll help you find the right next step.",
+    },
   },
   "desarrollo-software": {
     contextLabel: {
@@ -114,6 +232,28 @@ const serviceContexts: Record<string, ServiceContext> = {
     offerHeadline: {
       es: "De la idea al primer release.",
       en: "From idea to your first release.",
+    },
+    processTitle: {
+      es: "De una oportunidad a software que funciona.",
+      en: "From an opportunity to software that works.",
+    },
+    processIntro: {
+      es: "Construimos con foco en lo esencial, visibilidad constante y una base lista para crecer.",
+      en: "We build with focus on what matters, constant visibility, and a foundation ready to grow.",
+    },
+    processSteps,
+    faqs: serviceFaqs,
+    ctaEyebrow: {
+      es: "SESIÓN DE DESCUBRIMIENTO",
+      en: "DISCOVERY SESSION",
+    },
+    ctaTitle: {
+      es: "Tu próxima idea merece una conversación.",
+      en: "Your next idea deserves a conversation.",
+    },
+    ctaBody: {
+      es: "Revisemos la oportunidad, el alcance y la ruta técnica antes de invertir en construirla.",
+      en: "Let's review the opportunity, scope, and technical path before you invest in building it.",
     },
   },
   "automatizacion-ia": {
@@ -137,6 +277,28 @@ const serviceContexts: Record<string, ServiceContext> = {
       es: "Menos tareas repetitivas. Más espacio para crecer.",
       en: "Less repetition. More room to grow.",
     },
+    processTitle: {
+      es: "Automatizamos con criterio, no por moda.",
+      en: "We automate with judgment, not hype.",
+    },
+    processIntro: {
+      es: "Diseñamos soluciones inteligentes que tu equipo puede entender, usar y mejorar.",
+      en: "We design intelligent solutions your team can understand, use, and improve.",
+    },
+    processSteps,
+    faqs: serviceFaqs,
+    ctaEyebrow: {
+      es: "DIAGNÓSTICO DE OPERACIÓN",
+      en: "OPERATIONS DISCOVERY",
+    },
+    ctaTitle: {
+      es: "Descubre dónde puede avanzar tu equipo.",
+      en: "Discover where your team can move faster.",
+    },
+    ctaBody: {
+      es: "Identifiquemos el proceso correcto para automatizar y la tecnología que realmente tiene sentido.",
+      en: "Let's identify the right process to automate and the technology that truly makes sense.",
+    },
   },
   "marketing-digital": {
     contextLabel: {
@@ -159,6 +321,28 @@ const serviceContexts: Record<string, ServiceContext> = {
       es: "Tu marca merece una campaña que se recuerde.",
       en: "Your brand deserves a campaign people remember.",
     },
+    processTitle: {
+      es: "De la intuición a una estrategia que se puede medir.",
+      en: "From intuition to a strategy you can measure.",
+    },
+    processIntro: {
+      es: "Alineamos creatividad, distribución y datos para que cada acción tenga una razón.",
+      en: "We align creativity, distribution, and data so every action has a reason.",
+    },
+    processSteps,
+    faqs: serviceFaqs,
+    ctaEyebrow: {
+      es: "SESIÓN DE ESTRATEGIA",
+      en: "STRATEGY SESSION",
+    },
+    ctaTitle: {
+      es: "Hagamos que tu marca avance con intención.",
+      en: "Let's move your brand forward with intention.",
+    },
+    ctaBody: {
+      es: "Revisemos tu presencia actual, tus objetivos y la oportunidad que quieres convertir en resultados.",
+      en: "Let's review your current presence, goals, and the opportunity you want to turn into results.",
+    },
   },
   "cloud-devops": {
     contextLabel: {
@@ -180,6 +364,28 @@ const serviceContexts: Record<string, ServiceContext> = {
     offerHeadline: {
       es: "Tu próximo lanzamiento no debería esperar.",
       en: "Your next launch should not have to wait.",
+    },
+    processTitle: {
+      es: "Una infraestructura sólida para entregar con confianza.",
+      en: "Solid infrastructure for shipping with confidence.",
+    },
+    processIntro: {
+      es: "Diseñamos una operación técnica que reduce fricción y prepara cada lanzamiento para lo que sigue.",
+      en: "We design a technical operation that reduces friction and prepares every launch for what comes next.",
+    },
+    processSteps,
+    faqs: serviceFaqs,
+    ctaEyebrow: {
+      es: "DIAGNÓSTICO TÉCNICO",
+      en: "TECHNICAL DISCOVERY",
+    },
+    ctaTitle: {
+      es: "Preparemos tu próximo lanzamiento.",
+      en: "Let's prepare your next launch.",
+    },
+    ctaBody: {
+      es: "Revisamos tu infraestructura actual y definimos una ruta confiable para operar y escalar.",
+      en: "We'll review your current infrastructure and define a reliable path to operate and scale.",
     },
   },
 };
@@ -921,6 +1127,150 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
   },
 };
 
+type PlanMeta = {
+  deliverables: LocalizedCopy;
+  timeline: LocalizedCopy;
+};
+
+const planMeta: Record<string, Record<string, PlanMeta>> = {
+  "desarrollo-web": {
+    Starter: {
+      deliverables: {
+        es: "Landing page, diseño responsive y configuración técnica",
+        en: "Landing page, responsive design, and technical setup",
+      },
+      timeline: { es: "2–3 semanas", en: "2–3 weeks" },
+    },
+    Professional: {
+      deliverables: {
+        es: "Sitio corporativo, CMS, SEO e integraciones",
+        en: "Corporate site, CMS, SEO, and integrations",
+      },
+      timeline: { es: "4–6 semanas", en: "4–6 weeks" },
+    },
+    Enterprise: {
+      deliverables: {
+        es: "Plataforma a medida, e-commerce e integraciones avanzadas",
+        en: "Custom platform, e-commerce, and advanced integrations",
+      },
+      timeline: {
+        es: "8–12 semanas según alcance",
+        en: "8–12 weeks depending on scope",
+      },
+    },
+  },
+  "desarrollo-software": {
+    MVP: {
+      deliverables: {
+        es: "Producto funcional, backend, autenticación y deploy",
+        en: "Functional product, backend, authentication, and deploy",
+      },
+      timeline: { es: "8–10 semanas", en: "8–10 weeks" },
+    },
+    Growth: {
+      deliverables: {
+        es: "Plataforma completa, integraciones y analítica",
+        en: "Full platform, integrations, and analytics",
+      },
+      timeline: { es: "4–5 meses", en: "4–5 months" },
+    },
+    Enterprise: {
+      deliverables: {
+        es: "Arquitectura escalable, seguridad y equipo dedicado",
+        en: "Scalable architecture, security, and dedicated team",
+      },
+      timeline: {
+        es: "6+ meses según alcance",
+        en: "6+ months depending on scope",
+      },
+    },
+  },
+  "automatizacion-ia": {
+    Essentials: {
+      deliverables: {
+        es: "2–3 automatizaciones, chatbot y documentación",
+        en: "2–3 automations, chatbot, and documentation",
+      },
+      timeline: { es: "3–5 semanas", en: "3–5 weeks" },
+    },
+    Advanced: {
+      deliverables: {
+        es: "Agente IA, automatización end-to-end y dashboard",
+        en: "AI agent, end-to-end automation, and dashboard",
+      },
+      timeline: { es: "6–10 semanas", en: "6–10 weeks" },
+    },
+    Custom: {
+      deliverables: {
+        es: "Modelos con tus datos, integraciones y equipo dedicado",
+        en: "Models trained on your data, integrations, and dedicated team",
+      },
+      timeline: {
+        es: "3+ meses según alcance",
+        en: "3+ months depending on scope",
+      },
+    },
+  },
+  "marketing-digital": {
+    Starter: {
+      deliverables: {
+        es: "Calendario, piezas visuales y reporte mensual",
+        en: "Content calendar, visual assets, and monthly report",
+      },
+      timeline: {
+        es: "Inicio en 2 semanas · gestión mensual",
+        en: "Starts in 2 weeks · monthly management",
+      },
+    },
+    Growth: {
+      deliverables: {
+        es: "Contenido, pauta, SEO y reportes quincenales",
+        en: "Content, paid media, SEO, and bi-weekly reports",
+      },
+      timeline: {
+        es: "Inicio en 2 semanas · gestión mensual",
+        en: "Starts in 2 weeks · monthly management",
+      },
+    },
+    Full: {
+      deliverables: {
+        es: "Estrategia 360°, producción y account manager",
+        en: "360° strategy, production, and account manager",
+      },
+      timeline: {
+        es: "Inicio en 3 semanas · gestión mensual",
+        en: "Starts in 3 weeks · monthly management",
+      },
+    },
+  },
+  "cloud-devops": {
+    Essential: {
+      deliverables: {
+        es: "Servidor, CI/CD, monitoreo y backups",
+        en: "Server, CI/CD, monitoring, and backups",
+      },
+      timeline: { es: "2–3 semanas", en: "2–3 weeks" },
+    },
+    Professional: {
+      deliverables: {
+        es: "Infraestructura completa, auto-scaling y observabilidad",
+        en: "Complete infrastructure, auto-scaling, and observability",
+      },
+      timeline: { es: "4–6 semanas", en: "4–6 weeks" },
+    },
+    Enterprise: {
+      deliverables: {
+        es: "Multi-cloud, alta disponibilidad, seguridad y operación continua",
+        en: "Multi-cloud, high availability, security, and continuous operations",
+      },
+      timeline: {
+        es: "8+ semanas según arquitectura",
+        en: "8+ weeks depending on architecture",
+      },
+    },
+  },
+};
+
 export default function ServicioDetalle() {
   const params = useParams<{ slug: string }>();
   const { lang } = useLang();
@@ -945,6 +1295,11 @@ export default function ServicioDetalle() {
         ".svc2-cycle-row",
         ".svc2-month-offer-copy > *",
         ".svc2-month-offer-link",
+        ".svc2-process-heading > *",
+        ".svc2-process-step",
+        ".svc2-faq-heading > *",
+        ".svc2-faq-item",
+        ".svc2-final-cta-inner > *",
       ];
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -962,6 +1317,11 @@ export default function ServicioDetalle() {
           ".svc2-cycle-row",
           ".svc2-month-offer-copy > *",
           ".svc2-month-offer-link",
+          ".svc2-process-heading > *",
+          ".svc2-process-step",
+          ".svc2-faq-heading > *",
+          ".svc2-faq-item",
+          ".svc2-final-cta-inner > *",
         ],
         { y: 26, opacity: 0 },
       );
@@ -1006,6 +1366,33 @@ export default function ServicioDetalle() {
           },
         },
       );
+
+      [
+        {
+          targets: ".svc2-process-heading > *, .svc2-process-step",
+          trigger: ".svc2-process-section",
+        },
+        {
+          targets: ".svc2-faq-heading > *, .svc2-faq-item",
+          trigger: ".svc2-faq-section",
+        },
+        {
+          targets: ".svc2-final-cta-inner > *",
+          trigger: ".svc2-final-cta",
+        },
+      ].forEach(({ targets, trigger }) => {
+        gsap.to(targets, {
+          y: 0,
+          opacity: 1,
+          duration: 0.75,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger,
+            start: "top 80%",
+          },
+        });
+      });
     });
 
     return () => ctx.revert();
@@ -1018,7 +1405,7 @@ export default function ServicioDetalle() {
     if (!activeCard) return;
 
     const textTargets = activeCard.querySelectorAll<HTMLElement>(
-      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-divider, .svc2-plan-feature, .svc2-plan-cta",
+      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-meta, .svc2-plan-divider, .svc2-plan-feature, .svc2-plan-cta",
     );
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1158,6 +1545,26 @@ export default function ServicioDetalle() {
           </div>
         </section>
 
+        {/* ── Process ── */}
+        <section className="svc2-process-section" aria-labelledby="svc2-process-title">
+          <div className="svc2-process-heading">
+            <span className="svc2-section-kicker">
+              {lang === "es" ? "NUESTRA METODOLOGÍA" : "OUR METHOD"}
+            </span>
+            <h2 id="svc2-process-title">{context.processTitle[lang]}</h2>
+            <p>{context.processIntro[lang]}</p>
+          </div>
+          <div className="svc2-process-grid">
+            {context.processSteps.map((step) => (
+              <article key={step.number} className="svc2-process-step">
+                <span className="svc2-process-number">{step.number}</span>
+                <h3>{step.title[lang]}</h3>
+                <p>{step.description[lang]}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* ── Pricing ── */}
         <section className="svc2-pricing-section">
           <div className="svc2-pricing-header">
@@ -1246,6 +1653,19 @@ export default function ServicioDetalle() {
                   </div>
                   <p className="svc2-plan-tagline">{planTagline(plan)}</p>
 
+                   {planMeta[slug]?.[plan.name] && (
+                     <div className="svc2-plan-meta">
+                       <div className="svc2-plan-meta-item">
+                         <span>{lang === "es" ? "Entregables" : "Deliverables"}</span>
+                         <strong>{planMeta[slug][plan.name].deliverables[lang]}</strong>
+                       </div>
+                       <div className="svc2-plan-meta-item">
+                         <span>{lang === "es" ? "Tiempo estimado" : "Estimated timeline"}</span>
+                         <strong>{planMeta[slug][plan.name].timeline[lang]}</strong>
+                       </div>
+                     </div>
+                   )}
+
                   <div className="svc2-plan-divider"></div>
 
                   <ul className="svc2-plan-features">
@@ -1305,11 +1725,42 @@ export default function ServicioDetalle() {
               </p>
             </div>
             <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
-              {lang === "es" ? "Hablemos" : "Let's talk"}
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h13" />
-                <path d="m13 6 6 6-6 6" />
-              </svg>
+              {lang === "es" ? "Solicitar descuento" : "Request discount"}
+            </a>
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section className="svc2-faq-section" aria-labelledby="svc2-faq-title">
+          <div className="svc2-faq-heading">
+            <span className="svc2-section-kicker">
+              {lang === "es" ? "PREGUNTAS FRECUENTES" : "FREQUENTLY ASKED"}
+            </span>
+            <h2 id="svc2-faq-title">
+              {lang === "es" ? "Lo importante, claro desde el principio." : "The important things, clear from the start."}
+            </h2>
+          </div>
+          <div className="svc2-faq-list">
+            {context.faqs.map((faq) => (
+              <details key={faq.question.es} className="svc2-faq-item">
+                <summary>
+                  <span>{faq.question[lang]}</span>
+                  <span className="svc2-faq-plus" aria-hidden="true">+</span>
+                </summary>
+                <p>{faq.answer[lang]}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Final CTA ── */}
+        <section className="svc2-final-cta" aria-labelledby="svc2-final-cta-title">
+          <div className="svc2-final-cta-inner">
+            <span className="svc2-section-kicker">{context.ctaEyebrow[lang]}</span>
+            <h2 id="svc2-final-cta-title">{context.ctaTitle[lang]}</h2>
+            <p>{context.ctaBody[lang]}</p>
+            <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-final-cta-button">
+              {lang === "es" ? "Agendar diagnóstico" : "Book discovery call"}
             </a>
           </div>
         </section>
