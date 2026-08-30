@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "./LanguageContext";
+import { useTheme } from "./ThemeContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,6 +31,7 @@ export default function Navbar() {
   const [textOverlap, setTextOverlap] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { lang, toggle } = useLang();
+  const { theme, toggle: toggleTheme } = useTheme();
   const [location] = useLocation();
   const links = navLinks[lang];
 
@@ -135,6 +137,18 @@ export default function Navbar() {
         />
         <span className={`navbar-lang-opt ${lang === "es" ? "navbar-lang-opt--active" : ""}`}>ES</span>
         <span className={`navbar-lang-opt ${lang === "en" ? "navbar-lang-opt--active" : ""}`}>EN</span>
+      </button>
+
+      <button
+        className="navbar-theme-toggle"
+        type="button"
+        onClick={toggleTheme}
+        aria-label={lang === "es"
+          ? `Activar tema ${theme === "light" ? "oscuro" : "claro"}`
+          : `Enable ${theme === "light" ? "dark" : "light"} theme`}
+        aria-pressed={theme === "dark"}
+      >
+        <span aria-hidden="true">{theme === "dark" ? "☀" : "☾"}</span>
       </button>
 
       <div

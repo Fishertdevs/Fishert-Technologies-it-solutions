@@ -4,7 +4,14 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import footerPortrait from "@assets/image_(6)-Photoroom_1788126926994.png";
 
-const team = [
+type TeamMember = {
+  name: string;
+  role: { es: string; en: string };
+  bio: { es: string; en: string };
+  bioLines?: { es: string[]; en: string[] };
+};
+
+const team: TeamMember[] = [
   {
     name: "Harry Fishert",
     role: {
@@ -14,6 +21,18 @@ const team = [
     bio: {
       es: "Transformo ideas ambiciosas en productos digitales claros, combinando estrategia, desarrollo y diseño para que cada decisión tenga propósito.",
       en: "I turn ambitious ideas into clear digital products, combining strategy, development, and design so every decision has purpose.",
+    },
+    bioLines: {
+      es: [
+        "Transformo ideas ambiciosas en productos digitales",
+        "claros, combinando estrategia, desarrollo y diseño",
+        "para que cada decisión tenga propósito.",
+      ],
+      en: [
+        "I turn ambitious ideas into clear digital products,",
+        "combining strategy and design with development",
+        "so every decision has purpose.",
+      ],
     },
   },
   {
@@ -91,11 +110,19 @@ export default function QuienesSomos() {
   const { lang } = useLang();
   const v = values[lang];
   const [activeTeamMember, setActiveTeamMember] = useState(0);
+  const [teamSlideDirection, setTeamSlideDirection] = useState<1 | -1>(1);
   const teamTouchStartX = useRef<number | null>(null);
   const currentTeamMember = team[activeTeamMember];
 
   const changeTeamMember = (direction: number) => {
+    setTeamSlideDirection(direction < 0 ? -1 : 1);
     setActiveTeamMember((current) => (current + direction + team.length) % team.length);
+  };
+
+  const selectTeamMember = (index: number) => {
+    if (index === activeTeamMember) return;
+    setTeamSlideDirection(index > activeTeamMember ? 1 : -1);
+    setActiveTeamMember(index);
   };
 
   const handleTeamTouchStart = (event: ReactTouchEvent<HTMLDivElement>) => {
@@ -226,13 +253,25 @@ export default function QuienesSomos() {
                 onTouchEnd={handleTeamTouchEnd}
                 aria-live="polite"
               >
-                <article className="qs-team-card" key={currentTeamMember.name}>
+                <article
+                  className={`qs-team-card ${teamSlideDirection > 0 ? "qs-team-card--next" : "qs-team-card--previous"}`}
+                  key={currentTeamMember.name}
+                >
                   <div className="qs-team-avatar">
                     {currentTeamMember.name.charAt(0)}
                   </div>
                   <h3 className="qs-team-name">{currentTeamMember.name}</h3>
                   <p className="qs-team-role">{currentTeamMember.role[lang]}</p>
-                  <p className="qs-team-bio">{currentTeamMember.bio[lang]}</p>
+                  <p className="qs-team-bio">
+                    {currentTeamMember.bioLines?.[lang]
+                      ? currentTeamMember.bioLines[lang].map((line, index) => (
+                          <span key={line}>
+                            {index > 0 && <br />}
+                            {line}
+                          </span>
+                        ))
+                      : currentTeamMember.bio[lang]}
+                  </p>
                 </article>
               </div>
               <button
@@ -253,7 +292,7 @@ export default function QuienesSomos() {
                   className={index === activeTeamMember ? "qs-team-dot qs-team-dot--active" : "qs-team-dot"}
                   aria-label={`${lang === "es" ? "Ver a" : "View"} ${member.name}`}
                   aria-selected={index === activeTeamMember}
-                  onClick={() => setActiveTeamMember(index)}
+                  onClick={() => selectTeamMember(index)}
                 />
               ))}
             </div>

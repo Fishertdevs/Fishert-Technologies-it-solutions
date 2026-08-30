@@ -7346,3 +7346,170 @@ body {
     max-height: 350px;
   }
 }
+
+/* ── Theme toggle ───────────────────────────────────────── */
+.navbar-theme-toggle {
+  display: inline-flex;
+  width: 31px;
+  height: 28px;
+  flex: 0 0 31px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.navbar-theme-toggle:hover {
+  border-color: #c0001a;
+  background: rgba(192, 0, 26, 0.1);
+  transform: translateY(-1px);
+}
+
+.navbar-theme-toggle span {
+  display: block;
+  transform: translateY(-1px);
+}
+
+.navbar--light .navbar-theme-toggle {
+  border-color: rgba(17, 17, 17, 0.25);
+  color: #111111;
+}
+
+.navbar--scrolled .navbar-theme-toggle {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+/* ── Smoother team carousel motion ─────────────────────── */
+.qs-team-card {
+  will-change: opacity, transform;
+}
+
+.qs-team-card--next {
+  animation: qs-team-card-in-next 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.qs-team-card--previous {
+  animation: qs-team-card-in-previous 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes qs-team-card-in-next {
+  from {
+    opacity: 0;
+    transform: translate3d(34px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes qs-team-card-in-previous {
+  from {
+    opacity: 0;
+    transform: translate3d(-34px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ── Dark theme surfaces ───────────────────────────────── */
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+html[data-theme="dark"] #root {
+  background: #111111;
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .navbar--light {
+  background: rgba(17, 17, 17, 0.9);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] .navbar--light .navbar-logo,
+html[data-theme="dark"] .navbar--light .navbar-link,
+html[data-theme="dark"] .navbar--light .navbar-lang-opt--active,
+html[data-theme="dark"] .navbar--light .navbar-theme-toggle {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .navbar--light .navbar-link {
+  opacity: 0.82;
+}
+
+html[data-theme="dark"] .navbar--light .navbar-lang-toggle,
+html[data-theme="dark"] .navbar--light .navbar-theme-toggle {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+html[data-theme="dark"] .navbar--light .navbar-lang-slider {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+html[data-theme="dark"] .navbar--light .navbar-lang-opt {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+html[data-theme="dark"] .navbar--light .navbar-menu-line {
+  background: #f5f5f5;
+}
+
+html[data-theme="dark"] .qs-story,
+html[data-theme="dark"] .qs-team,
+html[data-theme="dark"] .qs-footer-art,
+html[data-theme="dark"] .policy-page,
+html[data-theme="dark"] .case-page,
+html[data-theme="dark"] .svc2-container,
+html[data-theme="dark"] .svc2-desc-section {
+  background-color: #111111;
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .qs-story-heading,
+html[data-theme="dark"] .qs-team-heading,
+html[data-theme="dark"] .svc2-desc-text,
+html[data-theme="dark"] .policy-title {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .qs-story-body p,
+html[data-theme="dark"] .qs-team-bio,
+html[data-theme="dark"] .svc2-intro,
+html[data-theme="dark"] .policy-body,
+html[data-theme="dark"] .case-body {
+  color: #b9bbc2;
+}
+
+html[data-theme="dark"] .svc2-pricing-section,
+html[data-theme="dark"] .svc2-faq-section {
+  background-color: #111111;
+  color: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  .navbar > .navbar-theme-toggle {
+    order: 2;
+    width: 29px;
+    height: 26px;
+    flex-basis: 29px;
+    margin: 0 8px 0 0;
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qs-team-card--next,
+  .qs-team-card--previous {
+    animation: none;
+  }
+}
