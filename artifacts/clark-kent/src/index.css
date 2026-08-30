@@ -7290,6 +7290,7 @@ body {
 
 .qs-team-heading {
   font-size: clamp(42px, 5vw, 68px);
+  text-align: center;
 }
 
 .qs-team-card {
