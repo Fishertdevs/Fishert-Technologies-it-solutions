@@ -940,6 +940,11 @@ export default function ServicioDetalle() {
       const motionTargets = [
         ".svc2-hero-content > *",
         ".svc2-desc-text",
+        ".svc2-pricing-title",
+        ".svc2-pricing-sub",
+        ".svc2-cycle-row",
+        ".svc2-month-offer-copy > *",
+        ".svc2-month-offer-link",
       ];
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -950,6 +955,16 @@ export default function ServicioDetalle() {
 
       gsap.set(".svc2-hero-content > *", { y: 30, opacity: 0 });
       gsap.set(".svc2-desc-text", { y: 40, opacity: 0 });
+      gsap.set(
+        [
+          ".svc2-pricing-title",
+          ".svc2-pricing-sub",
+          ".svc2-cycle-row",
+          ".svc2-month-offer-copy > *",
+          ".svc2-month-offer-link",
+        ],
+        { y: 26, opacity: 0 },
+      );
 
       gsap.to(".svc2-hero-content > *", {
         y: 0,
@@ -971,10 +986,63 @@ export default function ServicioDetalle() {
         },
       });
 
+      gsap.to(
+        [
+          ".svc2-pricing-title",
+          ".svc2-pricing-sub",
+          ".svc2-cycle-row",
+          ".svc2-month-offer-copy > *",
+          ".svc2-month-offer-link",
+        ],
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.75,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".svc2-pricing-section",
+            start: "top 78%",
+          },
+        },
+      );
     });
 
     return () => ctx.revert();
   }, [slug, service]);
+
+  useEffect(() => {
+    if (!service) return;
+
+    const activeCard = document.querySelector(".svc2-plan-card--active");
+    if (!activeCard) return;
+
+    const textTargets = activeCard.querySelectorAll<HTMLElement>(
+      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-divider, .svc2-plan-feature, .svc2-plan-cta",
+    );
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      gsap.set(textTargets, { y: 0, opacity: 1 });
+      return;
+    }
+
+    const tween = gsap.fromTo(
+      textTargets,
+      { y: 16, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.55,
+        stagger: 0.045,
+        ease: "power3.out",
+      },
+    );
+
+    return () => {
+      tween.kill();
+    };
+  }, [activePlan, service]);
 
   if (!service) {
     return (
@@ -1087,32 +1155,6 @@ export default function ServicioDetalle() {
         <section className="svc2-desc-section">
           <div className="svc2-desc-inner">
             <h2 className="svc2-desc-text">{t.description}</h2>
-          </div>
-        </section>
-
-        <section className="svc2-platforms-section" aria-label={context.contextLabel[lang]}>
-          <p className="svc2-platforms-label">{context.contextLabel[lang]}</p>
-          <div className="svc2-platforms-list">
-            {context.items[lang].map((platform, index) => {
-              const detail = platformDetails[platform];
-              return (
-                <article key={platform} className="svc2-platform">
-                  <span className="svc2-platform-index">{String(index + 1).padStart(2, "0")}</span>
-                  <div className="svc2-platform-icon">
-                    <PlatformIcon name={detail?.icon ?? "custom"} />
-                  </div>
-                  <div className="svc2-platform-copy">
-                    <h3>{platform}</h3>
-                    <p>
-                      {detail?.[lang] ??
-                        (lang === "es"
-                          ? "Herramientas seleccionadas para construir mejor."
-                          : "Selected tools to build better.")}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
           </div>
         </section>
 

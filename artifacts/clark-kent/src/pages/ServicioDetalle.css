@@ -500,11 +500,14 @@
   grid-template-columns: 112px 1fr auto;
   align-items: center;
   gap: 25px;
+  width: min(100%, 920px);
   margin-top: 63px;
-  padding: 22px 27px 22px 22px;
-  border: 1px solid #d9dce2;
-  border-radius: 23px;
-  background: #ffffff;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 28px 0;
+  border-top: 1px solid #171717;
+  border-bottom: 1px solid #171717;
+  background: transparent;
 }
 
 .svc2-month-offer-mark {
@@ -778,8 +781,8 @@
     grid-template-columns: 72px 1fr;
     gap: 17px;
     margin-top: 50px;
-    padding: 17px;
-    border-radius: 19px;
+    padding: 22px 0;
+    border-radius: 0;
   }
 
   .svc2-month-offer-mark {

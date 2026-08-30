@@ -1,3 +1,4 @@
 - [Vercel static builds](vercel-static-builds.md) — Vite config must tolerate missing Replit-only PORT and BASE_PATH during external static builds.
 - [Vercel root directory](vercel-root-directory.md) — when Vercel roots at an artifact subdirectory, keep a local config with output paths relative to that directory.
 - [Mobile oversized portraits](mobile-oversized-portraits.md) — center intentionally oversized transparent portraits geometrically, not with automatic margins.
+- [Mobile touch carousels](mobile-touch-carousels.md) — direct touch handlers plus `touch-action: pan-y` are more reliable than pointer-only swipes in mobile previews.
