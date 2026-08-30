@@ -67,6 +67,29 @@ export default function QuienesSomos() {
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
+  useEffect(() => {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".qs-value-card"));
+    if (!("IntersectionObserver" in window)) {
+      cards.forEach((card) => card.classList.add("qs-value-card--visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("qs-value-card--visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 },
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -75,12 +98,14 @@ export default function QuienesSomos() {
         {/* ── Intro ── */}
         <section className="qs-hero">
           <div className="qs-hero-content">
-            <p className="svc-page-eyebrow">
-              {lang === "es" ? "FISHERT STUDIO" : "FISHERT STUDIO"}
-            </p>
             <h1 className="qs-hero-title">
-              {lang === "es" ? "¿Qué es Fishert Studio?" : "What is Fishert Studio?"}
+              {lang === "es" ? "Fishert Studio" : "Fishert Studio"}
             </h1>
+            <p className="qs-hero-sub">
+              {lang === "es"
+                ? "Un estudio de software que convierte ideas ambiciosas en experiencias digitales con identidad."
+                : "A software studio turning ambitious ideas into digital experiences with identity."}
+            </p>
           </div>
         </section>
 
@@ -112,14 +137,17 @@ export default function QuienesSomos() {
         <section className="qs-values">
           <div className="qs-values-inner">
             <p className="svc-plans-eyebrow">
-              {lang === "es" ? "NUESTROS VALORES" : "OUR VALUES"}
+              {lang === "es" ? "QUÉ NOS DIFERENCIA" : "WHAT SETS US APART"}
             </p>
             <h2 className="qs-values-heading">
-              {lang === "es" ? "Lo que nos define." : "What defines us."}
+              {lang === "es" ? "Más que una agencia digital." : "More than a digital agency."}
             </h2>
             <div className="qs-values-grid">
               {v.map((val, i) => (
-                <div key={i} className="qs-value-card">
+                <div
+                  key={i}
+                  className={`qs-value-card ${i % 2 === 0 ? "qs-value-card--from-right" : "qs-value-card--from-left"}`}
+                >
                   <span className="qs-value-icon" aria-hidden="true">{val.icon}</span>
                   <h3 className="qs-value-title">{val.title}</h3>
                   <p className="qs-value-body">{val.body}</p>

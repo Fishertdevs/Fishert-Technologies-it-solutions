@@ -6823,3 +6823,145 @@ body {
     line-height: 1.65;
   }
 }
+
+/* Final about-page refinements */
+.qs-hero-title {
+  color: #c0001a;
+  font-size: clamp(64px, 8vw, 112px);
+}
+
+.qs-hero-sub {
+  max-width: 520px;
+  margin: 23px auto 0;
+  color: #4f2a21;
+  font-size: clamp(15px, 1.4vw, 19px);
+  line-height: 1.45;
+  text-align: center;
+}
+
+.qs-values {
+  background-color: #f3b083;
+  background-image: conic-gradient(
+    #ffdcc1 0 25%,
+    #f3b083 0 50%,
+    #ffdcc1 0 75%,
+    #f3b083 0 100%
+  );
+  background-size: 72px 72px;
+}
+
+.qs-values-inner > .svc-plans-eyebrow {
+  color: #c0001a;
+}
+
+.qs-values-heading {
+  max-width: 700px;
+  color: #5a281e;
+}
+
+.qs-values-grid {
+  gap: 0 38px;
+}
+
+.qs-value-card {
+  min-height: 0;
+  padding: 28px 24px 31px 0;
+  border: 0;
+  border-top: 1px solid rgba(90, 40, 30, 0.34);
+  border-radius: 0;
+  background: transparent;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateX(76px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.qs-value-card:nth-child(-n + 2) {
+  border-top: 1px solid rgba(90, 40, 30, 0.34);
+}
+
+.qs-value-card--from-left {
+  transform: translateX(-76px);
+}
+
+.qs-value-card--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.qs-value-icon {
+  display: none;
+}
+
+.qs-value-title {
+  margin: 0 0 12px;
+  color: #6f241b;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.qs-value-body {
+  max-width: 480px;
+  color: #684b40;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .qs-hero-title {
+    max-width: 350px;
+    font-size: clamp(52px, 15vw, 68px);
+  }
+
+  .qs-hero-sub {
+    max-width: 300px;
+    margin-top: 18px;
+    color: #4f2a21;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .qs-values {
+    background-size: 60px 60px;
+  }
+
+  .qs-values-heading {
+    max-width: 340px;
+  }
+
+  .qs-values-grid {
+    display: block;
+  }
+
+  .qs-value-card,
+  .qs-value-card:nth-child(-n + 2) {
+    padding: 27px 0 29px;
+    border-top: 1px solid rgba(90, 40, 30, 0.34);
+  }
+
+  .qs-value-card--from-left {
+    transform: translateX(-54px);
+  }
+
+  .qs-value-card:not(.qs-value-card--visible) {
+    transition-delay: 0s;
+  }
+
+  .qs-value-title {
+    font-size: 12px;
+  }
+
+  .qs-value-body {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qs-value-card,
+  .qs-value-card--from-left {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
