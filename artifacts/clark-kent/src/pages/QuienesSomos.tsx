@@ -69,12 +69,14 @@ export default function QuienesSomos() {
 
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".qs-value-card"));
+    const valuesSection = document.querySelector<HTMLElement>(".qs-values");
     if (!("IntersectionObserver" in window)) {
       cards.forEach((card) => card.classList.add("qs-value-card--visible"));
+      valuesSection?.classList.add("qs-values--visible");
       return;
     }
 
-    const observer = new IntersectionObserver(
+    const cardsObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           entry.target.classList.toggle("qs-value-card--visible", entry.isIntersecting);
@@ -83,8 +85,21 @@ export default function QuienesSomos() {
       { threshold: 0.28 },
     );
 
-    cards.forEach((card) => observer.observe(card));
-    return () => observer.disconnect();
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("qs-values--visible", entry.isIntersecting);
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    cards.forEach((card) => cardsObserver.observe(card));
+    if (valuesSection) sectionObserver.observe(valuesSection);
+    return () => {
+      cardsObserver.disconnect();
+      sectionObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -134,7 +149,7 @@ export default function QuienesSomos() {
         <section className="qs-values">
           <div className="qs-values-inner">
             <h2 className="qs-values-heading">
-              {lang === "es" ? "Qué nos diferencia." : "What sets us apart."}
+              {lang === "es" ? "QUÉ NOS DIFERENCIA." : "WHAT SETS US APART."}
             </h2>
             <div className="qs-values-grid">
               {v.map((val, i) => (
