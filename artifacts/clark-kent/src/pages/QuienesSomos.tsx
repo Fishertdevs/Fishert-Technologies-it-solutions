@@ -69,9 +69,13 @@ export default function QuienesSomos() {
 
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".qs-value-card"));
+    const heroSection = document.querySelector<HTMLElement>(".qs-hero");
+    const storySection = document.querySelector<HTMLElement>(".qs-story");
     const valuesSection = document.querySelector<HTMLElement>(".qs-values");
     if (!("IntersectionObserver" in window)) {
       cards.forEach((card) => card.classList.add("qs-value-card--visible"));
+      heroSection?.classList.add("qs-hero--visible");
+      storySection?.classList.add("qs-story--visible");
       valuesSection?.classList.add("qs-values--visible");
       return;
     }
@@ -88,13 +92,21 @@ export default function QuienesSomos() {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle("qs-values--visible", entry.isIntersecting);
+          const target = entry.target as HTMLElement;
+          const visibleClass = target.classList.contains("qs-hero")
+            ? "qs-hero--visible"
+            : target.classList.contains("qs-story")
+              ? "qs-story--visible"
+              : "qs-values--visible";
+          target.classList.toggle(visibleClass, entry.isIntersecting);
         });
       },
       { threshold: 0.12 },
     );
 
     cards.forEach((card) => cardsObserver.observe(card));
+    if (heroSection) sectionObserver.observe(heroSection);
+    if (storySection) sectionObserver.observe(storySection);
     if (valuesSection) sectionObserver.observe(valuesSection);
     return () => {
       cardsObserver.disconnect();
@@ -174,10 +186,10 @@ export default function QuienesSomos() {
         <section className="qs-team">
           <div className="qs-team-inner">
             <p className="svc-plans-eyebrow">
-              {lang === "es" ? "EQUIPO" : "TEAM"}
+              {lang === "es" ? "CONOCE" : "MEET US"}
             </p>
             <h2 className="qs-team-heading">
-              {lang === "es" ? "Las personas detrás del estudio." : "The people behind the studio."}
+              {lang === "es" ? "Nuestro equipo." : "Our team."}
             </h2>
             <div className="qs-team-grid">
               {team.map((member, i) => (
