@@ -7284,6 +7284,14 @@ body {
   padding-top: 56px;
 }
 
+.qs-values {
+  border-radius: 0 0 32px 32px;
+}
+
+.qs-team-heading {
+  font-size: clamp(42px, 5vw, 68px);
+}
+
 .qs-team-card {
   border-color: #d1d1d1;
   background-color: #ffffff;
@@ -7306,11 +7314,12 @@ body {
 
 .qs-team-bio {
   color: #555861;
+  text-align: center;
 }
 
 .qs-footer-art img {
-  width: min(100%, 460px);
-  max-height: 530px;
+  width: min(100%, 400px);
+  max-height: 500px;
   margin-inline: auto;
 }
 
@@ -7323,8 +7332,16 @@ body {
     padding-top: 28px;
   }
 
+  .qs-values {
+    border-radius: 0 0 24px 24px;
+  }
+
+  .qs-team-heading {
+    font-size: clamp(22px, 7.5vw, 32px);
+  }
+
   .qs-footer-art img {
-    width: min(100%, 330px);
-    max-height: 430px;
+    width: min(100%, 270px);
+    max-height: 350px;
   }
 }
