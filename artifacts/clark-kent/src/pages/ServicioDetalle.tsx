@@ -1835,6 +1835,10 @@ export default function ServicioDetalle() {
                   </div>
                   {billingMode === "annual" && (
                     <span className="svc2-annual-note">
+                      <svg className="svc2-annual-note-arrow" viewBox="0 0 64 52" fill="none" aria-hidden="true">
+                        <path d="M7 7C7 31 22 43 54 43" />
+                        <path d="M43 32L54 43L40 47" />
+                      </svg>
                       <span className="svc2-annual-note-copy">
                         <strong>20% OFF</strong>
                         <span>

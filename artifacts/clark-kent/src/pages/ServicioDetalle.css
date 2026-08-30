@@ -443,14 +443,20 @@
   text-align: left;
 }
 
-.svc2-annual-note::before {
+.svc2-annual-note {
+  gap: 5px;
+}
+
+.svc2-annual-note-arrow {
   display: inline-block;
-  width: 39px;
-  margin-right: 3px;
-  content: "⤶";
-  font-size: 38px;
-  font-weight: 700;
-  line-height: 0.8;
+  width: 52px;
+  height: 43px;
+  flex: 0 0 52px;
+  overflow: visible;
+  stroke: #c0001a;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.2;
 }
 
 .svc2-annual-note-copy {
@@ -1248,7 +1254,7 @@
   }
 
   .svc2-annual-note {
-    max-width: 205px;
+    max-width: 245px;
     justify-content: center;
   }
 
