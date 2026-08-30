@@ -1199,6 +1199,11 @@
     font-size: clamp(38px, 10vw, 50px);
   }
 
+  .svc2-pricing-title--two-line {
+    max-width: 340px;
+    font-size: clamp(32px, 8.5vw, 42px);
+  }
+
   .svc2-pricing-sub {
     max-width: 305px;
     font-size: 14px;
