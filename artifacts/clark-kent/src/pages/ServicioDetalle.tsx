@@ -1250,14 +1250,15 @@ export default function ServicioDetalle() {
   const [billingMode, setBillingMode] = useState<"monthly" | "annual">("monthly");
   const [activePlan, setActivePlan] = useState(0);
   const [activeProcess, setActiveProcess] = useState(0);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [activeFaq, setActiveFaq] = useState(0);
   const planTouchStartX = useRef<number | null>(null);
   const processTouchStartX = useRef<number | null>(null);
+  const faqTouchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     setActivePlan(0);
     setActiveProcess(0);
-    setOpenFaq(0);
+    setActiveFaq(0);
   }, [slug]);
 
   useEffect(() => {
@@ -1485,7 +1486,27 @@ export default function ServicioDetalle() {
     ));
   };
 
+  const handleFaqTouchStart = (event: ReactTouchEvent<HTMLDivElement>) => {
+    faqTouchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleFaqTouchEnd = (event: ReactTouchEvent<HTMLDivElement>) => {
+    const startX = faqTouchStartX.current;
+    faqTouchStartX.current = null;
+    const endX = event.changedTouches[0]?.clientX;
+    if (startX === null || endX === undefined) return;
+
+    const deltaX = startX - endX;
+    if (Math.abs(deltaX) < 40) return;
+    setActiveFaq((current) => (
+      deltaX > 0
+        ? (current + 1) % t.faqs.length
+        : (current - 1 + t.faqs.length) % t.faqs.length
+    ));
+  };
+
   const activeStage = t.process[activeProcess] ?? t.process[0];
+  const activeFaqItem = t.faqs[activeFaq] ?? t.faqs[0];
 
   return (
     <>
@@ -1716,11 +1737,10 @@ export default function ServicioDetalle() {
         </section>
 
         {/* ── FAQ ── */}
-        <section className="svc2-faq-section" aria-labelledby="svc2-faq-title">
-          <div className="svc2-faq-header">
-            <span className="svc2-section-eyebrow">FAQ</span>
+        <section className="svc2-faq-section svc2-faq-section--carousel" aria-labelledby="svc2-faq-title">
+          <div className="svc2-process-header">
             <h2 id="svc2-faq-title">
-              {lang === "es" ? "Lo importante, antes de empezar." : "The important questions, answered."}
+              {lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}
             </h2>
             <p>
               {lang === "es"
@@ -1728,37 +1748,53 @@ export default function ServicioDetalle() {
                 : "Clarity on the relationship, the product, and what comes next."}
             </p>
           </div>
-          <div className="svc2-faq-list">
-            {t.faqs.map((faq, index) => {
-              const questionId = `svc2-faq-question-${slug}-${index}`;
-              const answerId = `svc2-faq-answer-${slug}-${index}`;
-              const isOpen = openFaq === index;
-
-              return (
-                <div className={`svc2-faq-item ${isOpen ? "svc2-faq-item--open" : ""}`} key={faq.question}>
-                  <button
-                    type="button"
-                    id={questionId}
-                    className="svc2-faq-question"
-                    aria-expanded={isOpen}
-                    aria-controls={answerId}
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                  >
-                    <span>{faq.question}</span>
-                    <span className="svc2-faq-icon" aria-hidden="true">+</span>
-                  </button>
-                  <div
-                    id={answerId}
-                    className="svc2-faq-answer"
-                    role="region"
-                    aria-labelledby={questionId}
-                    hidden={!isOpen}
-                  >
-                    <p>{faq.answer}</p>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="svc2-process-carousel svc2-faq-carousel" aria-roledescription="carousel">
+            <button
+              type="button"
+              className="svc2-process-arrow"
+              aria-label={lang === "es" ? "Pregunta anterior" : "Previous question"}
+              onClick={() => setActiveFaq((current) => (current - 1 + t.faqs.length) % t.faqs.length)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <div
+              className="svc2-process-viewport"
+              onTouchStart={handleFaqTouchStart}
+              onTouchEnd={handleFaqTouchEnd}
+              onTouchCancel={() => {
+                faqTouchStartX.current = null;
+              }}
+              aria-live="polite"
+            >
+              <article className="svc2-process-stage" key={activeFaq}>
+                <h3>{activeFaqItem.question}</h3>
+                <p>{activeFaqItem.answer}</p>
+              </article>
+            </div>
+            <button
+              type="button"
+              className="svc2-process-arrow"
+              aria-label={lang === "es" ? "Siguiente pregunta" : "Next question"}
+              onClick={() => setActiveFaq((current) => (current + 1) % t.faqs.length)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+          <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de preguntas frecuentes" : "FAQ navigation"}>
+            {t.faqs.map((faq, index) => (
+              <button
+                key={faq.question}
+                type="button"
+                className={activeFaq === index ? "svc2-process-dot svc2-process-dot--active" : "svc2-process-dot"}
+                aria-label={`${lang === "es" ? "Ver pregunta" : "View question"} ${index + 1}`}
+                aria-pressed={activeFaq === index}
+                onClick={() => setActiveFaq(index)}
+              />
+            ))}
           </div>
         </section>
 
