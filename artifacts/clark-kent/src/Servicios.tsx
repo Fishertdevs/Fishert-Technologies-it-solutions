@@ -9,8 +9,8 @@ import marketingCover from "@assets/image_1786122274168.png";
 const base = import.meta.env.BASE_URL || "/";
 
 const galleryData = [
-  { id: 1, img: webDevelopmentCover, num: "I",    pos: "center center", es: "Desarrollo Web",         en: "Web Development",       slug: "desarrollo-web" },
-  { id: 2, img: softwareDevelopmentCover, num: "II",   pos: "center bottom", es: "Desarrollo de Software", en: "Software Development",  slug: "desarrollo-software" },
+  { id: 1, img: softwareDevelopmentCover, num: "I",   pos: "center center", es: "Desarrollo Web",         en: "Web Development",       slug: "desarrollo-web" },
+  { id: 2, img: webDevelopmentCover, num: "II",   pos: "center bottom", es: "Desarrollo de Software", en: "Software Development",  slug: "desarrollo-software" },
   { id: 3, img: automationCover, num: "III",  pos: "center center", es: "Automatización e IA",    en: "Automation & AI",       slug: "automatizacion-ia" },
   { id: 4, img: marketingCover, num: "IV",   pos: "center center", es: "Marketing Digital",      en: "Digital Marketing",     slug: "marketing-digital" },
   { id: 5, img: "svc5_2.jpg", num: "V",    pos: "center bottom", es: "Cloud y DevOps",         en: "Cloud & DevOps",        slug: "cloud-devops" },
