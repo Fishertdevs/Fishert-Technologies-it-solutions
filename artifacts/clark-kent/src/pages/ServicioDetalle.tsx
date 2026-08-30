@@ -1405,6 +1405,13 @@ export default function ServicioDetalle() {
     return new Intl.NumberFormat(lang === "es" ? "es-CO" : "en-US").format(monthlyPrice * 0.8);
   };
 
+  const formatCustomPlanPrice = (price: string) => {
+    const match = price.match(/^(.+?)\s+(\$[\d.,]+)\s+([A-Z]{3})$/);
+    return match
+      ? { prefix: match[1], value: match[2], currency: match[3] }
+      : { prefix: "", value: price, currency: "" };
+  };
+
   const planPeriod = (plan: Plan) => {
     if (plan.isCustom) return "";
     if (!isRecurring) return "";
@@ -1634,16 +1641,6 @@ export default function ServicioDetalle() {
             </div>
           </div>
           <div className="svc2-plans-carousel">
-            <button
-              type="button"
-              className="svc2-plan-arrow svc2-plan-arrow--previous"
-              aria-label={lang === "es" ? "Plan anterior" : "Previous plan"}
-              onClick={() => setActivePlan((current) => (current - 1 + t.plans.length) % t.plans.length)}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
             <div
               className="svc2-plans-grid"
               onTouchStart={handlePlanTouchStart}
@@ -1665,7 +1662,18 @@ export default function ServicioDetalle() {
 
                   <div className="svc2-plan-price-wrap">
                     {plan.isCustom ? (
-                      <p className="svc2-plan-price">{plan.price}</p>
+                      (() => {
+                        const customPrice = formatCustomPlanPrice(plan.price);
+                        return (
+                          <p className="svc2-plan-price svc2-plan-price--custom">
+                            <span className="svc2-plan-price-prefix">{customPrice.prefix}</span>
+                            <span className="svc2-plan-price-value">{customPrice.value}</span>
+                            {customPrice.currency && (
+                              <span className="svc2-plan-price-currency">{customPrice.currency}</span>
+                            )}
+                          </p>
+                        );
+                      })()
                     ) : (
                       <p className="svc2-plan-price">
                         ${formatPlanPrice(plan)}
@@ -1711,16 +1719,28 @@ export default function ServicioDetalle() {
                 </div>
               ))}
             </div>
-            <button
-              type="button"
-              className="svc2-plan-arrow svc2-plan-arrow--next"
-              aria-label={lang === "es" ? "Siguiente plan" : "Next plan"}
-              onClick={() => setActivePlan((current) => (current + 1) % t.plans.length)}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
+            <div className="svc2-plans-arrows">
+              <button
+                type="button"
+                className="svc2-plan-arrow svc2-plan-arrow--previous"
+                aria-label={lang === "es" ? "Plan anterior" : "Previous plan"}
+                onClick={() => setActivePlan((current) => (current - 1 + t.plans.length) % t.plans.length)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="svc2-plan-arrow svc2-plan-arrow--next"
+                aria-label={lang === "es" ? "Siguiente plan" : "Next plan"}
+                onClick={() => setActivePlan((current) => (current + 1) % t.plans.length)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
           </div>
           <div className="svc2-plan-dots" aria-label={lang === "es" ? "Navegación de planes" : "Plan navigation"}>
             {t.plans.map((plan, index) => (

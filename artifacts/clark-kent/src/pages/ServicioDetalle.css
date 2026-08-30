@@ -451,9 +451,17 @@
 
 .svc2-plans-carousel {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 34px;
+  gap: 18px;
+}
+
+.svc2-plans-arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 }
 
 .svc2-plans-grid {
@@ -528,6 +536,29 @@
   letter-spacing: -0.05em;
   line-height: 1;
   text-align: center;
+}
+
+.svc2-plan-price--custom {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0 7px;
+  white-space: nowrap;
+}
+
+.svc2-plan-price--custom .svc2-plan-price-currency {
+  margin-left: 0;
+}
+
+.svc2-plan-price-prefix {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.svc2-plan-price-value {
+  font-size: inherit;
 }
 
 .svc2-plan-price-currency {
@@ -1182,14 +1213,19 @@
   }
 
   .svc2-plans-carousel {
-    display: grid;
-    grid-template-columns: 30px minmax(0, 1fr) 30px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0;
   }
 
   .svc2-plans-grid {
     width: 100%;
+  }
+
+  .svc2-plans-arrows {
+    gap: 16px;
+    margin-top: 14px;
   }
 
   .svc2-plan-card {
@@ -1199,6 +1235,10 @@
 
   .svc2-plan-price {
     font-size: clamp(31px, 9.8vw, 39px);
+  }
+
+  .svc2-plan-price-prefix {
+    font-size: 12px;
   }
 
   .svc2-plan-price-wrap {
