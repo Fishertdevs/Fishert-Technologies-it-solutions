@@ -4644,7 +4644,7 @@ body {
     min-height: 0;
     overflow: hidden;
     border: 0;
-    border-radius: 0 0 32px 32px;
+    border-radius: 32px;
   }
 
   .ctw-inner {
@@ -5397,6 +5397,7 @@ body {
     min-height: 100svh;
     overflow: hidden;
     margin-top: -2px;
+    border-radius: 0 0 32px 32px;
   }
 
   .faq2-inner {
@@ -5457,6 +5458,10 @@ body {
     height: 115%;
     max-width: none;
     transform: translateX(-50%);
+  }
+
+  .faq2-wave--bottom {
+    display: none;
   }
 }
 
