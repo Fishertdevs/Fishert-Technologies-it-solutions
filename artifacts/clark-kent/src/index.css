@@ -1925,30 +1925,23 @@ body {
 .port-nav {
   display: flex;
   align-items: center;
-  gap: 16px;
-  justify-content: flex-end;
+  gap: 12px;
+  justify-content: center;
 }
 
 .port-arrow {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0,0,0,0.6);
-  background: transparent;
-  color: #111;
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+  transition: color 0.18s;
+  border-radius: 4px;
 }
-.port-arrow:hover {
-  background: #C0001A;
-  border-color: #C0001A;
-  color: #fff;
-}
+.port-arrow:hover { color: #C0001A; }
 
 .port-pips {
   display: flex;
