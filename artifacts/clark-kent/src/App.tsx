@@ -1,6 +1,5 @@
 import { Router, Route, Switch } from "wouter";
 import { LanguageProvider } from "./LanguageContext";
-import { ThemeProvider } from "./ThemeContext";
 import Navbar from "./Navbar";
 import About from "./About";
 import Welcome from "./Welcome";
@@ -46,23 +45,21 @@ function MainPage() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <Router base={base}>
-          <Switch>
-            <Route path="/" component={MainPage} />
-            <Route path="/terminos" component={TerminosCondiciones} />
-            <Route path="/cookies" component={PoliticaCookies} />
-            <Route path="/privacidad" component={PoliticaPrivacidad} />
-            <Route path="/servicios/:slug" component={ServicioDetalle} />
-            <Route path="/quienes-somos" component={QuienesSomos} />
-            <Route path="/portafolio/:slug" component={CasoEstudio} />
-            <Route component={NotFound} />
-          </Switch>
-        </Router>
-        <WhatsAppButton />
-        <CookieBanner />
-      </LanguageProvider>
-    </ThemeProvider>
+    <LanguageProvider>
+      <Router base={base}>
+        <Switch>
+          <Route path="/" component={MainPage} />
+          <Route path="/terminos" component={TerminosCondiciones} />
+          <Route path="/cookies" component={PoliticaCookies} />
+          <Route path="/privacidad" component={PoliticaPrivacidad} />
+          <Route path="/servicios/:slug" component={ServicioDetalle} />
+          <Route path="/quienes-somos" component={QuienesSomos} />
+          <Route path="/portafolio/:slug" component={CasoEstudio} />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
+      <WhatsAppButton />
+      <CookieBanner />
+    </LanguageProvider>
   );
 }
