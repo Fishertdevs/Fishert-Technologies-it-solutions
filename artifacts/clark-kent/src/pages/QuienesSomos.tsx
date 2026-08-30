@@ -137,7 +137,7 @@ export default function QuienesSomos() {
               {lang === "es" ? "QUÉ NOS DIFERENCIA" : "WHAT SETS US APART"}
             </p>
             <h2 className="qs-values-heading">
-              {lang === "es" ? "Más que una agencia digital." : "More than a digital agency."}
+              {lang === "es" ? "Qué nos diferencia." : "What sets us apart."}
             </h2>
             <div className="qs-values-grid">
               {v.map((val, i) => (
@@ -146,7 +146,6 @@ export default function QuienesSomos() {
                   className={`qs-value-card ${i % 2 === 0 ? "qs-value-card--from-right" : "qs-value-card--from-left"}`}
                   style={{ transitionDelay: `${i * 0.16}s` }}
                 >
-                  <span className="qs-value-icon" aria-hidden="true">{val.icon}</span>
                   <h3 className="qs-value-title">{val.title}</h3>
                   <p className="qs-value-body">{val.body}</p>
                 </div>

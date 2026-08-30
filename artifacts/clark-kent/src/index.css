@@ -6833,20 +6833,22 @@ body {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-size: clamp(48px, 7vw, 110px);
   font-weight: 700;
-  font-style: italic;
-  letter-spacing: -0.01em;
+  font-style: normal;
+  letter-spacing: -0.05em;
   color: #111111;
-  line-height: 1.05;
+  line-height: 0.92;
   margin: 0 0 20px;
 }
 
 .qs-hero-sub {
   max-width: 700px;
   margin: 0 auto;
-  color: #4f2a21;
-  font-size: clamp(18px, 1.55vw, 22px);
+  color: #111111;
+  font-size: clamp(19px, 1.6vw, 23px);
+  font-weight: 500;
   line-height: 1.45;
   text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .qs-values {
@@ -6886,8 +6888,8 @@ body {
   background: transparent;
   box-sizing: border-box;
   opacity: 0;
-  transform: translateX(76px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  clip-path: inset(0 100% 0 0);
+  transition: opacity 0.7s ease, clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .qs-value-card:nth-child(odd) {
@@ -6901,12 +6903,16 @@ body {
 }
 
 .qs-value-card--from-left {
-  transform: translateX(-76px);
+  clip-path: inset(0 100% 0 0);
+}
+
+.qs-value-card--from-right {
+  clip-path: inset(0 0 0 100%);
 }
 
 .qs-value-card--visible {
   opacity: 1;
-  transform: translateX(0);
+  clip-path: inset(0 0 0 0);
 }
 
 .qs-value-icon {
@@ -6915,7 +6921,7 @@ body {
 
 .qs-value-title {
   margin: 0 0 12px;
-  color: #ffffff;
+  color: #c0001a;
   font-size: 14px;
   letter-spacing: 0.08em;
 }
@@ -6923,7 +6929,7 @@ body {
 .qs-value-body {
   max-width: 480px;
   margin: 0;
-  color: rgba(255, 255, 255, 0.74);
+  color: #ffffff;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -6941,8 +6947,9 @@ body {
   .qs-hero-sub {
     max-width: 340px;
     margin-top: 0;
-    color: #4f2a21;
-    font-size: 16px;
+    color: #111111;
+    font-size: 18px;
+    font-weight: 500;
     line-height: 1.4;
   }
 
@@ -6964,11 +6971,22 @@ body {
   .qs-value-card:nth-child(even) {
     width: 100%;
     padding: 27px 0 29px;
+  }
+
+  .qs-value-card:nth-child(odd) {
     text-align: left;
   }
 
+  .qs-value-card:nth-child(even) {
+    text-align: right;
+  }
+
   .qs-value-card--from-left {
-    transform: translateX(-54px);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .qs-value-card--from-right {
+    clip-path: inset(0 0 0 100%);
   }
 
   .qs-value-card:not(.qs-value-card--visible) {
@@ -6987,9 +7005,10 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .qs-value-card,
-  .qs-value-card--from-left {
+  .qs-value-card--from-left,
+  .qs-value-card--from-right {
     opacity: 1;
-    transform: none;
+    clip-path: inset(0 0 0 0);
     transition: none;
   }
 }
