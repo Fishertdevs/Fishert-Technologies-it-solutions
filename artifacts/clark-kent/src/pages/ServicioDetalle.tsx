@@ -371,8 +371,8 @@ const serviceContexts: Record<string, ServiceContext> = {
       en: ["Strategy", "Content", "Paid media", "Analytics"],
     },
     pricingTitle: {
-      es: "Haz que tu marca se note y convierta.",
-      en: "Make your brand stand out and convert.",
+      es: "Convierte atención en crecimiento medible.",
+      en: "Turn attention into measurable growth.",
     },
     pricingSub: {
       es: "Creatividad, distribución y datos trabajando juntos para mover tu negocio.",
@@ -1714,7 +1714,7 @@ export default function ServicioDetalle() {
           <div className="svc2-hero-content">
             <div className="svc2-title-wrap">
               <span className="svc2-eyebrow">{t.eyebrow}</span>
-              <h1 className="svc2-title">
+              <h1 className={`svc2-title ${slug === "marketing-digital" ? "svc2-title--single-line" : ""}`}>
                 {slug === "desarrollo-software" ? (
                   lang === "es" ? <>Desarrollo de<br />Software</> : <>Software<br />Development</>
                 ) : t.title}
@@ -1831,7 +1831,8 @@ export default function ServicioDetalle() {
                   </div>
                   {billingMode === "annual" && (
                     <span className="svc2-annual-note">
-                      {lang === "es" ? "20% OFF, eso es 2 meses GRATIS" : "20% OFF, that's 2 months FREE"}
+                      <strong>20% OFF</strong>
+                      {lang === "es" ? ", eso es 2 meses GRATIS" : ", that's 2 months FREE"}
                     </span>
                   )}
                 </>

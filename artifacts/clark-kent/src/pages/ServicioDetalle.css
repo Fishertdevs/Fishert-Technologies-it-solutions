@@ -97,6 +97,10 @@
   font-size: clamp(50px, 6.6vw, 88px);
 }
 
+.svc2-title--single-line {
+  white-space: nowrap;
+}
+
 .svc2-intro {
   max-width: 610px;
   margin: 0 auto;
@@ -441,9 +445,16 @@
 
 .svc2-annual-note::before {
   margin-right: 7px;
-  content: "↙";
-  font-size: 18px;
-  font-weight: 400;
+  content: "↓";
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 0.8;
+}
+
+.svc2-annual-note strong {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 
 .svc2-cycle-static {
@@ -1049,6 +1060,10 @@
     margin-bottom: 18px;
     font-size: clamp(48px, 14vw, 60px);
     line-height: 0.96;
+  }
+
+  .svc2-title--single-line {
+    font-size: clamp(36px, 10.5vw, 48px);
   }
 
   .svc2-intro {
