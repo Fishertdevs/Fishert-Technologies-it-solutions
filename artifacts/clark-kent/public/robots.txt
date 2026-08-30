@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://fishertstudio.vercel.app/sitemap.xml
