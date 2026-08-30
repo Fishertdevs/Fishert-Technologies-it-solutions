@@ -723,12 +723,14 @@
 .svc2-offer-section {
   width: min(100% - 96px, 1120px);
   margin: 0 auto;
-  padding: 0 0 96px;
+  padding: 64px 0 96px;
 }
 
 .svc2-offer-section .svc2-month-offer {
   width: min(100%, 920px);
   margin-top: 0;
+  border-top: 0;
+  border-bottom: 0;
 }
 
 .svc2-month-offer-mark {
@@ -900,7 +902,7 @@
   padding: 72px max(48px, calc((100% - 1120px) / 2)) 72px;
   box-sizing: border-box;
   border: 0;
-  border-radius: 32px;
+  border-radius: 0;
   background: #a8532f;
   overflow: hidden;
 }
@@ -910,16 +912,17 @@
 }
 
 .svc2-faq-section--carousel .svc2-process-header h2 {
-  color: #fdf3ec;
+  color: #1a0f04;
+  white-space: nowrap;
 }
 
 .svc2-faq-section--carousel .svc2-process-header > p {
-  color: rgba(253, 243, 236, 0.8);
+  color: #1a0f04;
 }
 
 .svc2-faq-section--carousel .svc2-process-stage h3,
 .svc2-faq-section--carousel .svc2-process-stage p {
-  color: #fdf3ec;
+  color: #1a0f04;
 }
 
 .svc2-faq-section--carousel .svc2-process-dot--active {
@@ -1263,7 +1266,7 @@
 
   .svc2-offer-section {
     width: 100%;
-    padding: 0 24px 70px;
+    padding: 44px 24px 70px;
   }
 
   .svc2-month-offer-mark {
@@ -1299,7 +1302,7 @@
 
   .svc2-faq-section--carousel {
     padding: 44px 20px 42px;
-    border-radius: 24px;
+    border-radius: 0;
   }
 
   .svc2-faq-header {
@@ -1330,6 +1333,13 @@
 
   .svc2-faq-section--carousel .svc2-process-header {
     margin-bottom: 8px;
+  }
+
+  .svc2-faq-section--carousel .svc2-process-header h2 {
+    max-width: none;
+    font-size: clamp(26px, 7vw, 32px);
+    letter-spacing: -0.055em;
+    white-space: nowrap;
   }
 
   .svc2-faq-section--carousel .svc2-process-viewport {
