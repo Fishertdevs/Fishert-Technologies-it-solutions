@@ -51,6 +51,184 @@ type LocalizedCopy = {
   en: string;
 };
 
+type CalendarDate = {
+  year: number;
+  month: number;
+  day: number;
+};
+
+type OfferCampaign = {
+  id: string;
+  priority: number;
+  discount: number;
+  getEventDate: (year: number) => CalendarDate;
+  kicker: LocalizedCopy;
+  headline: LocalizedCopy;
+};
+
+const BOGOTA_TIME_ZONE = "America/Bogota";
+
+const getBogotaDate = (): CalendarDate => {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: BOGOTA_TIME_ZONE,
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  }).formatToParts(new Date());
+
+  const valueFor = (type: string) => Number(parts.find((part) => part.type === type)?.value ?? 0);
+
+  return {
+    year: valueFor("year"),
+    month: valueFor("month"),
+    day: valueFor("day"),
+  };
+};
+
+const fixedDate = (month: number, day: number) => (year: number): CalendarDate => ({
+  year,
+  month,
+  day,
+});
+
+const nthWeekdayOfMonth = (
+  year: number,
+  month: number,
+  weekday: number,
+  occurrence: number,
+): CalendarDate => {
+  const firstDay = new Date(Date.UTC(year, month - 1, 1));
+  const offset = (weekday - firstDay.getUTCDay() + 7) % 7;
+
+  return {
+    year,
+    month,
+    day: 1 + offset + (occurrence - 1) * 7,
+  };
+};
+
+const lastWeekdayOfMonth = (year: number, month: number, weekday: number): CalendarDate => {
+  const lastDay = new Date(Date.UTC(year, month, 0));
+  const offset = (lastDay.getUTCDay() - weekday + 7) % 7;
+
+  return {
+    year,
+    month,
+    day: lastDay.getUTCDate() - offset,
+  };
+};
+
+const offerCampaigns: OfferCampaign[] = [
+  {
+    id: "new-year",
+    priority: 10,
+    discount: 15,
+    getEventDate: fixedDate(1, 1),
+    kicker: { es: "Oferta de Año Nuevo", en: "New Year offer" },
+    headline: {
+      es: "Empieza el año con una idea más grande.",
+      en: "Start the year with a bigger idea.",
+    },
+  },
+  {
+    id: "valentines-day",
+    priority: 10,
+    discount: 12,
+    getEventDate: fixedDate(2, 14),
+    kicker: { es: "Oferta de San Valentín", en: "Valentine's offer" },
+    headline: {
+      es: "Enamórate de la próxima versión de tu negocio.",
+      en: "Fall in love with the next version of your business.",
+    },
+  },
+  {
+    id: "womens-day",
+    priority: 10,
+    discount: 18,
+    getEventDate: fixedDate(3, 8),
+    kicker: { es: "Oferta del Día de la Mujer", en: "Women's Day offer" },
+    headline: {
+      es: "Haz que tu negocio avance con intención.",
+      en: "Move your business forward with intention.",
+    },
+  },
+  {
+    id: "mothers-day",
+    priority: 20,
+    discount: 25,
+    getEventDate: (year) => nthWeekdayOfMonth(year, 5, 0, 2),
+    kicker: { es: "Oferta del Día de la Madre", en: "Mother's Day offer" },
+    headline: {
+      es: "Celebra a mamá haciendo crecer su negocio.",
+      en: "Celebrate mom by helping her business grow.",
+    },
+  },
+  {
+    id: "fathers-day",
+    priority: 20,
+    discount: 20,
+    getEventDate: (year) => nthWeekdayOfMonth(year, 6, 0, 3),
+    kicker: { es: "Oferta del Día del Padre", en: "Father's Day offer" },
+    headline: {
+      es: "El mejor regalo para su negocio es avanzar.",
+      en: "The best gift for his business is moving forward.",
+    },
+  },
+  {
+    id: "halloween",
+    priority: 10,
+    discount: 22,
+    getEventDate: fixedDate(10, 31),
+    kicker: { es: "Oferta de Halloween", en: "Halloween offer" },
+    headline: {
+      es: "Dale vida a una idea que parecía imposible.",
+      en: "Bring an idea that seemed impossible to life.",
+    },
+  },
+  {
+    id: "black-friday",
+    priority: 30,
+    discount: 30,
+    getEventDate: (year) => lastWeekdayOfMonth(year, 11, 5),
+    kicker: { es: "Oferta de Black Friday", en: "Black Friday offer" },
+    headline: {
+      es: "La oferta más potente del año empieza aquí.",
+      en: "The biggest offer of the year starts here.",
+    },
+  },
+  {
+    id: "christmas",
+    priority: 10,
+    discount: 28,
+    getEventDate: fixedDate(12, 25),
+    kicker: { es: "Oferta de Navidad", en: "Christmas offer" },
+    headline: {
+      es: "Regala a tu negocio una nueva versión.",
+      en: "Give your business a new version.",
+    },
+  },
+];
+
+const defaultOffer: OfferCampaign = {
+  id: "monthly-default",
+  priority: 0,
+  discount: 20,
+  getEventDate: fixedDate(1, 1),
+  kicker: { es: "Oferta de este mes", en: "This month's offer" },
+  headline: {
+    es: "Tu próxima versión empieza hoy.",
+    en: "Your next version starts today.",
+  },
+};
+
+const getOfferCampaign = (date: CalendarDate): OfferCampaign => {
+  const matchingCampaign = offerCampaigns
+    .filter((campaign) => campaign.getEventDate(date.year).month === date.month)
+    .sort((a, b) => b.priority - a.priority)[0];
+
+  return matchingCampaign ?? defaultOffer;
+};
+
 type PlatformIconName =
   | "wordpress"
   | "shopify"
@@ -1251,6 +1429,7 @@ export default function ServicioDetalle() {
   const [activePlan, setActivePlan] = useState(0);
   const [activeProcess, setActiveProcess] = useState(0);
   const [activeFaq, setActiveFaq] = useState(0);
+  const [currentDate, setCurrentDate] = useState<CalendarDate>(() => getBogotaDate());
   const planTouchStartX = useRef<number | null>(null);
   const processTouchStartX = useRef<number | null>(null);
   const faqTouchStartX = useRef<number | null>(null);
@@ -1260,6 +1439,13 @@ export default function ServicioDetalle() {
     setActiveProcess(0);
     setActiveFaq(0);
   }, [slug]);
+
+  useEffect(() => {
+    const refreshDate = () => setCurrentDate(getBogotaDate());
+    const intervalId = window.setInterval(refreshDate, 60_000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -1395,6 +1581,10 @@ export default function ServicioDetalle() {
   const t = service[lang];
   const context = serviceContexts[slug];
   const isRecurring = slug === "marketing-digital";
+  const activeOffer = getOfferCampaign(currentDate);
+  const offerHeadline = activeOffer.id === "monthly-default"
+    ? context.offerHeadline[lang]
+    : activeOffer.headline[lang];
 
   const formatPlanPrice = (plan: Plan) => {
     if (plan.isCustom || !isRecurring || billingMode === "monthly") {
@@ -1818,21 +2008,21 @@ export default function ServicioDetalle() {
           </div>
         </section>
 
-        <section className="svc2-offer-section" aria-label={lang === "es" ? "Oferta del mes" : "Monthly offer"}>
+        <section className="svc2-offer-section" aria-label={activeOffer.kicker[lang]}>
           <div className="svc2-month-offer">
             <div className="svc2-month-offer-mark" aria-hidden="true">
-              <strong>20%</strong>
+              <strong>{activeOffer.discount}%</strong>
               <span>OFF</span>
             </div>
             <div className="svc2-month-offer-copy">
               <span className="svc2-month-offer-kicker">
-                {lang === "es" ? "Oferta de este mes" : "This month's offer"}
+                {activeOffer.kicker[lang]}
               </span>
-              <h3>{context.offerHeadline[lang]}</h3>
+              <h3>{offerHeadline}</h3>
               <p>
                 {lang === "es"
-                  ? "20% de descuento en tu primer servicio."
-                  : "20% off your first service."}
+                  ? `${activeOffer.discount}% de descuento en tu primer servicio.`
+                  : `${activeOffer.discount}% off your first service.`}
               </p>
             </div>
             <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
