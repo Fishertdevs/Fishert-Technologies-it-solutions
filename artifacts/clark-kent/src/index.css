@@ -6825,49 +6825,63 @@ body {
 }
 
 /* Final about-page refinements */
+.qs-hero {
+  height: 390px;
+}
+
 .qs-hero-title {
-  color: #c0001a;
-  font-size: clamp(64px, 8vw, 112px);
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(48px, 7vw, 110px);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: #111111;
+  line-height: 1.05;
+  margin: 0 0 20px;
 }
 
 .qs-hero-sub {
-  max-width: 520px;
-  margin: 23px auto 0;
+  max-width: 700px;
+  margin: 0 auto;
   color: #4f2a21;
-  font-size: clamp(15px, 1.4vw, 19px);
+  font-size: clamp(18px, 1.55vw, 22px);
   line-height: 1.45;
   text-align: center;
 }
 
 .qs-values {
-  background-color: #f3b083;
+  background-color: #1a1a1a;
   background-image: conic-gradient(
-    #ffdcc1 0 25%,
-    #f3b083 0 50%,
-    #ffdcc1 0 75%,
-    #f3b083 0 100%
+    #121212 0 25%,
+    #343434 0 50%,
+    #121212 0 75%,
+    #343434 0 100%
   );
   background-size: 72px 72px;
 }
 
 .qs-values-inner > .svc-plans-eyebrow {
-  color: #c0001a;
+  color: #f04456;
+  text-align: center;
 }
 
 .qs-values-heading {
   max-width: 700px;
-  color: #5a281e;
+  margin-right: auto;
+  margin-left: auto;
+  color: #ffffff;
+  text-align: center;
 }
 
 .qs-values-grid {
-  gap: 0 38px;
+  gap: 0 70px;
 }
 
 .qs-value-card {
   min-height: 0;
-  padding: 28px 24px 31px 0;
+  width: min(100%, 500px);
+  padding: 28px 0 31px;
   border: 0;
-  border-top: 1px solid rgba(90, 40, 30, 0.34);
   border-radius: 0;
   background: transparent;
   box-sizing: border-box;
@@ -6876,8 +6890,14 @@ body {
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.qs-value-card:nth-child(-n + 2) {
-  border-top: 1px solid rgba(90, 40, 30, 0.34);
+.qs-value-card:nth-child(odd) {
+  justify-self: start;
+  text-align: left;
+}
+
+.qs-value-card:nth-child(even) {
+  justify-self: end;
+  text-align: right;
 }
 
 .qs-value-card--from-left {
@@ -6895,29 +6915,34 @@ body {
 
 .qs-value-title {
   margin: 0 0 12px;
-  color: #6f241b;
+  color: #ffffff;
   font-size: 14px;
   letter-spacing: 0.08em;
 }
 
 .qs-value-body {
   max-width: 480px;
-  color: #684b40;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
   font-size: 14px;
   line-height: 1.6;
 }
 
 @media (max-width: 768px) {
+  .qs-hero {
+    height: 300px;
+  }
+
   .qs-hero-title {
     max-width: 350px;
-    font-size: clamp(52px, 15vw, 68px);
+    font-size: clamp(48px, 14vw, 62px);
   }
 
   .qs-hero-sub {
-    max-width: 300px;
-    margin-top: 18px;
+    max-width: 340px;
+    margin-top: 0;
     color: #4f2a21;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.4;
   }
 
@@ -6927,6 +6952,7 @@ body {
 
   .qs-values-heading {
     max-width: 340px;
+    text-align: center;
   }
 
   .qs-values-grid {
@@ -6934,9 +6960,11 @@ body {
   }
 
   .qs-value-card,
-  .qs-value-card:nth-child(-n + 2) {
+  .qs-value-card:nth-child(odd),
+  .qs-value-card:nth-child(even) {
+    width: 100%;
     padding: 27px 0 29px;
-    border-top: 1px solid rgba(90, 40, 30, 0.34);
+    text-align: left;
   }
 
   .qs-value-card--from-left {

@@ -77,13 +77,10 @@ export default function QuienesSomos() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("qs-value-card--visible");
-            observer.unobserve(entry.target);
-          }
+          entry.target.classList.toggle("qs-value-card--visible", entry.isIntersecting);
         });
       },
-      { threshold: 0.18 },
+      { threshold: 0.28 },
     );
 
     cards.forEach((card) => observer.observe(card));
@@ -147,6 +144,7 @@ export default function QuienesSomos() {
                 <div
                   key={i}
                   className={`qs-value-card ${i % 2 === 0 ? "qs-value-card--from-right" : "qs-value-card--from-left"}`}
+                  style={{ transitionDelay: `${i * 0.16}s` }}
                 >
                   <span className="qs-value-icon" aria-hidden="true">{val.icon}</span>
                   <h3 className="qs-value-title">{val.title}</h3>
