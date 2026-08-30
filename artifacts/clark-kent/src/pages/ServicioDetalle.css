@@ -129,41 +129,56 @@
   line-height: 1.18;
 }
 
-.svc2-section-kicker {
+.svc2-process-section {
+  width: min(100% - 96px, 1120px);
+  margin: 0 auto;
+  padding: 0 0 104px;
+}
+
+.svc2-process-header {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.82fr) minmax(360px, 1.18fr);
+  column-gap: 80px;
+  align-items: end;
+  margin-bottom: 41px;
+}
+
+.svc2-section-eyebrow {
   display: block;
+  margin-bottom: 14px;
   color: #c0001a;
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.18em;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
-.svc2-process-section {
-  width: min(100% - 96px, 1120px);
-  margin: 0 auto;
-  padding: 0 0 120px;
+.svc2-process-header .svc2-section-eyebrow {
+  grid-column: 1 / -1;
 }
 
-.svc2-process-heading {
-  max-width: 640px;
-  margin: 0 auto 54px;
-  text-align: center;
-}
-
-.svc2-process-heading h2 {
-  margin: 14px 0 13px;
+.svc2-process-header h2,
+.svc2-faq-header h2,
+.svc2-closing-inner h2 {
+  margin: 0;
   color: #171717;
   font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(39px, 4.8vw, 62px);
+  font-size: clamp(36px, 4.5vw, 60px);
   font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 0.94;
 }
 
-.svc2-process-heading p {
-  max-width: 440px;
-  margin: 0 auto;
-  color: #656a73;
+.svc2-process-header h2 {
+  grid-column: 1;
+}
+
+.svc2-process-header > p {
+  grid-column: 2;
+  max-width: 420px;
+  margin: 0 0 2px;
+  color: #636772;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -175,30 +190,31 @@
   border-bottom: 1px solid #d8dbe1;
 }
 
-.svc2-process-step {
-  min-height: 205px;
-  padding: 25px 24px 28px;
+.svc2-process-stage {
+  min-height: 210px;
+  padding: 24px 22px 25px;
   border-right: 1px solid #d8dbe1;
 }
 
-.svc2-process-step:first-child {
-  border-left: 1px solid #d8dbe1;
+.svc2-process-stage:first-child {
+  padding-left: 0;
 }
 
-.svc2-process-step:last-child {
+.svc2-process-stage:last-child {
+  padding-right: 0;
   border-right: 0;
 }
 
 .svc2-process-number {
   display: block;
-  margin-bottom: 36px;
+  margin-bottom: 42px;
   color: #c0001a;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 900;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
 }
 
-.svc2-process-step h3 {
+.svc2-process-stage h3 {
   margin: 0 0 9px;
   color: #17191e;
   font-size: 15px;
@@ -206,11 +222,12 @@
   letter-spacing: -0.02em;
 }
 
-.svc2-process-step p {
+.svc2-process-stage p {
+  max-width: 220px;
   margin: 0;
   color: #696d75;
   font-size: 12px;
-  line-height: 1.48;
+  line-height: 1.5;
 }
 
 .svc2-platforms-section {
@@ -493,35 +510,56 @@
   text-align: center;
 }
 
-.svc2-plan-meta {
+.svc2-plan-details {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
-  gap: 15px;
-  margin: 18px 0 0;
-  padding-top: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  min-height: 79px;
+  margin-top: 13px;
+  padding: 13px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
 }
 
-.svc2-plan-meta-item {
-  display: flex;
+.svc2-plan-detail {
   min-width: 0;
-  flex-direction: column;
-  gap: 5px;
 }
 
-.svc2-plan-meta-item span {
-  color: rgba(255, 255, 255, 0.5);
+.svc2-plan-detail--duration {
+  min-width: 96px;
+  text-align: right;
+}
+
+.svc2-plan-detail-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #c0001a;
   font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
-.svc2-plan-meta-item strong {
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 1.35;
+.svc2-plan-detail ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.svc2-plan-detail li,
+.svc2-plan-detail p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.svc2-plan-detail li::before {
+  margin-right: 5px;
+  color: rgba(255, 255, 255, 0.42);
+  content: "·";
 }
 
 .svc2-plan-saving {
@@ -684,9 +722,9 @@
 .svc2-month-offer-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   grid-column: 1 / -1;
   justify-self: center;
+  margin-top: 5px;
   color: #17191e;
   font-size: 11px;
   font-weight: 900;
@@ -699,28 +737,22 @@
   white-space: nowrap;
 }
 
-.svc2-month-offer-link svg {
-  color: #c0001a;
-}
-
 .svc2-faq-section {
   display: grid;
-  width: min(100% - 96px, 1120px);
-  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
-  gap: 90px;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(420px, 1.2fr);
+  gap: 72px;
+  width: min(100% - 96px, 920px);
   margin: 0 auto;
-  padding: 0 0 128px;
+  padding: 108px 0 115px;
+  border-top: 1px solid #d8dbe1;
 }
 
-.svc2-faq-heading h2 {
-  max-width: 410px;
-  margin: 15px 0 0;
-  color: #171717;
-  font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(38px, 4.2vw, 58px);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.95;
+.svc2-faq-header p {
+  max-width: 260px;
+  margin: 17px 0 0;
+  color: #636772;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .svc2-faq-list {
@@ -731,105 +763,116 @@
   border-bottom: 1px solid #d8dbe1;
 }
 
-.svc2-faq-item summary {
+.svc2-faq-question {
   display: flex;
-  min-height: 70px;
+  width: 100%;
+  min-height: 66px;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
+  padding: 18px 0;
+  border: 0;
+  background: transparent;
   color: #17191e;
   cursor: pointer;
+  font: inherit;
   font-size: 14px;
-  font-weight: 700;
-  list-style: none;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: left;
 }
 
-.svc2-faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.svc2-faq-plus {
-  flex: 0 0 auto;
-  color: #c0001a;
-  font-size: 23px;
+.svc2-faq-icon {
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  flex: 0 0 25px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #171717;
+  border-radius: 999px;
+  font-size: 19px;
   font-weight: 400;
   line-height: 1;
-  transition: transform 0.25s ease;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-.svc2-faq-item[open] .svc2-faq-plus {
+.svc2-faq-item--open .svc2-faq-icon {
+  background: #171717;
+  color: #ffffff;
   transform: rotate(45deg);
 }
 
-.svc2-faq-item p {
-  max-width: 580px;
-  margin: -3px 35px 23px 0;
+.svc2-faq-answer {
+  padding: 0 49px 22px 0;
+}
+
+.svc2-faq-answer p {
+  max-width: 530px;
+  margin: 0;
   color: #696d75;
   font-size: 13px;
   line-height: 1.55;
 }
 
-.svc2-final-cta {
-  margin: 0 0 120px;
-  padding: 96px 48px 102px;
-  background-color: #242424;
-  background-image: conic-gradient(
-    #171717 0 25%,
-    #333333 0 50%,
-    #171717 0 75%,
-    #333333 0 100%
-  );
-  background-size: 52px 52px;
-  color: #ffffff;
+.svc2-closing-cta {
+  padding: 0 48px 120px;
 }
 
-.svc2-final-cta-inner {
-  max-width: 680px;
+.svc2-closing-inner {
+  max-width: 920px;
   margin: 0 auto;
+  padding: 72px 72px 76px;
+  border-radius: 25px;
+  background-color: #171717;
+  background-image: conic-gradient(
+    #171717 0 25%,
+    #303030 0 50%,
+    #171717 0 75%,
+    #303030 0 100%
+  );
+  background-size: 52px 52px;
   text-align: center;
 }
 
-.svc2-final-cta-inner .svc2-section-kicker {
-  color: #ef5367;
-}
-
-.svc2-final-cta-inner h2 {
-  margin: 15px auto 14px;
+.svc2-closing-inner h2 {
+  max-width: 650px;
+  margin: 0 auto;
   color: #ffffff;
-  font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(43px, 5.3vw, 72px);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 0.92;
+  font-size: clamp(40px, 5.5vw, 72px);
 }
 
-.svc2-final-cta-inner p {
-  max-width: 460px;
-  margin: 0 auto 29px;
-  color: rgba(255, 255, 255, 0.72);
+.svc2-closing-inner .svc2-section-eyebrow {
+  margin-bottom: 17px;
+}
+
+.svc2-closing-inner p {
+  max-width: 470px;
+  margin: 18px auto 28px;
+  color: rgba(255, 255, 255, 0.68);
   font-size: 14px;
   line-height: 1.5;
 }
 
-.svc2-final-cta-button {
+.svc2-closing-link {
   display: inline-flex;
-  min-height: 52px;
+  min-height: 49px;
   align-items: center;
   justify-content: center;
-  padding: 0 26px;
+  padding: 0 24px;
   border-radius: 999px;
   background: #c0001a;
   color: #ffffff;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  text-transform: uppercase;
+  transition: background 0.2s ease;
 }
 
-.svc2-final-cta-button:hover {
+.svc2-closing-link:hover {
   background: #970015;
-  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -878,56 +921,55 @@
 
   .svc2-process-section {
     width: min(100% - 48px, 520px);
-    padding-bottom: 78px;
+    padding-bottom: 72px;
   }
 
-  .svc2-process-heading {
-    margin-bottom: 35px;
+  .svc2-process-header {
+    display: block;
+    margin-bottom: 30px;
   }
 
-  .svc2-process-heading h2 {
-    margin-top: 13px;
-    font-size: clamp(38px, 11vw, 48px);
+  .svc2-process-header h2,
+  .svc2-faq-header h2 {
+    font-size: clamp(38px, 11vw, 49px);
   }
 
-  .svc2-process-heading p {
+  .svc2-process-header > p {
     max-width: 310px;
+    margin-top: 16px;
     font-size: 13px;
   }
 
   .svc2-process-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .svc2-process-step {
-    display: grid;
-    min-height: 0;
-    grid-template-columns: 38px 1fr;
-    column-gap: 14px;
-    padding: 20px 0 21px;
+  .svc2-process-stage,
+  .svc2-process-stage:first-child,
+  .svc2-process-stage:last-child {
+    min-height: 190px;
+    padding: 20px 15px 22px;
+    border-right: 1px solid #d8dbe1;
+  }
+
+  .svc2-process-stage:nth-child(2n) {
     border-right: 0;
-    border-bottom: 1px solid #d8dbe1;
   }
 
-  .svc2-process-step:first-child {
-    border-left: 0;
-  }
-
-  .svc2-process-step:last-child {
-    border-bottom: 0;
+  .svc2-process-stage:nth-child(n + 3) {
+    border-top: 1px solid #d8dbe1;
   }
 
   .svc2-process-number {
-    grid-row: 1 / span 2;
-    margin: 2px 0 0;
+    margin-bottom: 28px;
   }
 
-  .svc2-process-step h3 {
-    margin-bottom: 6px;
+  .svc2-process-stage h3 {
+    font-size: 14px;
   }
 
-  .svc2-process-step p {
-    font-size: 12px;
+  .svc2-process-stage p {
+    font-size: 11px;
   }
 
   .svc2-platforms-section {
@@ -1045,11 +1087,24 @@
     margin-top: 5px;
   }
 
-  .svc2-plan-meta {
-    grid-template-columns: 1fr;
-    gap: 11px;
-    margin-top: 15px;
-    padding-top: 14px;
+  .svc2-plan-details {
+    gap: 12px;
+    min-height: 0;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .svc2-plan-detail--duration {
+    min-width: 83px;
+  }
+
+  .svc2-plan-detail-label {
+    font-size: 8px;
+  }
+
+  .svc2-plan-detail li,
+  .svc2-plan-detail p {
+    font-size: 9px;
   }
 
   .svc2-plan-feature {
@@ -1111,49 +1166,58 @@
   }
 
   .svc2-month-offer-link {
-    grid-column: 2;
     grid-column: 1 / -1;
     justify-self: center;
-    margin-top: 8px;
+    margin-top: 5px;
     font-size: 10px;
   }
 
   .svc2-faq-section {
+    display: block;
     width: min(100% - 48px, 520px);
-    grid-template-columns: 1fr;
-    gap: 38px;
-    padding-bottom: 78px;
+    padding: 72px 0 78px;
   }
 
-  .svc2-faq-heading h2 {
-    max-width: 320px;
-    margin-top: 13px;
-    font-size: clamp(38px, 11vw, 48px);
+  .svc2-faq-header {
+    margin-bottom: 30px;
   }
 
-  .svc2-faq-item summary {
-    min-height: 64px;
+  .svc2-faq-header p {
+    max-width: 300px;
+    margin-top: 14px;
     font-size: 13px;
   }
 
-  .svc2-faq-item p {
-    margin-right: 22px;
-    margin-bottom: 20px;
+  .svc2-faq-question {
+    min-height: 62px;
+    padding: 16px 0;
+    font-size: 13px;
+  }
+
+  .svc2-faq-answer {
+    padding-right: 32px;
+    padding-bottom: 19px;
+  }
+
+  .svc2-faq-answer p {
     font-size: 12px;
   }
 
-  .svc2-final-cta {
-    margin-bottom: 72px;
-    padding: 75px 24px 80px;
+  .svc2-closing-cta {
+    padding: 0 24px 80px;
   }
 
-  .svc2-final-cta-inner h2 {
-    max-width: 330px;
-    font-size: clamp(42px, 12vw, 54px);
+  .svc2-closing-inner {
+    padding: 54px 24px 57px;
+    border-radius: 21px;
   }
 
-  .svc2-final-cta-inner p {
-    max-width: 310px;
+  .svc2-closing-inner h2 {
+    font-size: clamp(39px, 12vw, 54px);
+  }
+
+  .svc2-closing-inner p {
+    max-width: 300px;
     font-size: 13px;
   }
 }
@@ -1162,12 +1226,9 @@
   .svc2-cycle-option,
   .svc2-plan-cta,
   .svc2-plan-arrow,
-  .svc2-plan-dot {
-    transition: none;
-  }
-
-  .svc2-faq-plus,
-  .svc2-final-cta-button {
+  .svc2-plan-dot,
+  .svc2-faq-icon,
+  .svc2-closing-link {
     transition: none;
   }
 }

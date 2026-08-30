@@ -18,6 +18,22 @@ type Plan = {
   isCustom?: boolean;
 };
 
+type PlanDetail = {
+  deliverables: string[];
+  duration: string;
+};
+
+type ProcessStage = {
+  number: string;
+  title: string;
+  description: string;
+};
+
+type FAQItem = {
+  question: string;
+  answer: string;
+};
+
 type ServiceData = {
   title: string;
   eyebrow: string;
@@ -25,22 +41,14 @@ type ServiceData = {
   intro: string;
   description: string;
   plans: Plan[];
+  planDetails: Record<string, PlanDetail>;
+  process: ProcessStage[];
+  faqs: FAQItem[];
 };
 
 type LocalizedCopy = {
   es: string;
   en: string;
-};
-
-type ProcessStep = {
-  number: string;
-  title: LocalizedCopy;
-  description: LocalizedCopy;
-};
-
-type ServiceFaq = {
-  question: LocalizedCopy;
-  answer: LocalizedCopy;
 };
 
 type PlatformIconName =
@@ -80,92 +88,9 @@ type ServiceContext = {
   pricingTitle: LocalizedCopy;
   pricingSub: LocalizedCopy;
   offerHeadline: LocalizedCopy;
-  processTitle: LocalizedCopy;
-  processIntro: LocalizedCopy;
-  processSteps: ProcessStep[];
-  faqs: ServiceFaq[];
-  ctaEyebrow: LocalizedCopy;
-  ctaTitle: LocalizedCopy;
-  ctaBody: LocalizedCopy;
+  closingTitle: LocalizedCopy;
+  closingText: LocalizedCopy;
 };
-
-const processSteps: ProcessStep[] = [
-  {
-    number: "01",
-    title: { es: "Diagnóstico", en: "Discovery" },
-    description: {
-      es: "Entendemos tu negocio, tus usuarios y la oportunidad que quieres desbloquear.",
-      en: "We understand your business, your users, and the opportunity you want to unlock.",
-    },
-  },
-  {
-    number: "02",
-    title: { es: "Estrategia", en: "Strategy" },
-    description: {
-      es: "Convertimos los hallazgos en una dirección clara, prioridades y un plan accionable.",
-      en: "We turn the findings into a clear direction, priorities, and an actionable plan.",
-    },
-  },
-  {
-    number: "03",
-    title: { es: "Construcción", en: "Build" },
-    description: {
-      es: "Diseñamos y desarrollamos con entregas visibles para que siempre sepas qué está avanzando.",
-      en: "We design and build in visible increments so you always know what is moving forward.",
-    },
-  },
-  {
-    number: "04",
-    title: { es: "Lanzamiento y evolución", en: "Launch & evolve" },
-    description: {
-      es: "Lanzamos, medimos y refinamos la solución para que siga generando valor después del estreno.",
-      en: "We launch, measure, and refine the solution so it keeps creating value after release.",
-    },
-  },
-];
-
-const serviceFaqs: ServiceFaq[] = [
-  {
-    question: {
-      es: "¿Quién es dueño del producto o sitio que desarrollan?",
-      en: "Who owns the product or website you develop?",
-    },
-    answer: {
-      es: "Definimos la propiedad de los entregables, licencias y activos de tu proyecto por escrito en la propuesta y el contrato, antes de comenzar.",
-      en: "We define ownership of your project deliverables, licenses, and assets in writing in the proposal and agreement before we begin.",
-    },
-  },
-  {
-    question: {
-      es: "¿Qué incluye el soporte?",
-      en: "What does support include?",
-    },
-    answer: {
-      es: "Incluye acompañamiento para resolver dudas, corregir incidencias relacionadas con el alcance y ayudarte a operar la solución durante el periodo acordado.",
-      en: "It includes guidance, resolution of scope-related issues, and help operating the solution during the agreed support period.",
-    },
-  },
-  {
-    question: {
-      es: "¿Pueden acompañarnos después del lanzamiento?",
-      en: "Can you keep supporting us after launch?",
-    },
-    answer: {
-      es: "Sí. Podemos continuar con mantenimiento, mejoras, optimización y acompañamiento mensual según las necesidades de tu equipo.",
-      en: "Yes. We can continue with maintenance, improvements, optimization, and monthly support based on your team's needs.",
-    },
-  },
-  {
-    question: {
-      es: "¿Qué tecnología utilizan?",
-      en: "What technology do you use?",
-    },
-    answer: {
-      es: "Elegimos la tecnología según el problema, el presupuesto y la evolución esperada del proyecto. Priorizamos soluciones mantenibles, seguras y fáciles de escalar.",
-      en: "We choose technology based on the problem, budget, and expected evolution of the project. We prioritize solutions that are maintainable, secure, and easy to scale.",
-    },
-  },
-];
 
 const serviceContexts: Record<string, ServiceContext> = {
   "desarrollo-web": {
@@ -189,27 +114,13 @@ const serviceContexts: Record<string, ServiceContext> = {
       es: "Tu próxima versión empieza hoy.",
       en: "Your next version starts today.",
     },
-    processTitle: {
-      es: "Así convertimos una necesidad en una experiencia digital.",
-      en: "How we turn a need into a digital experience.",
+    closingTitle: {
+      es: "Hagamos que tu presencia digital trabaje más.",
+      en: "Let's make your digital presence work harder.",
     },
-    processIntro: {
-      es: "Un proceso claro para tomar mejores decisiones antes, durante y después de construir.",
-      en: "A clear process for making better decisions before, during, and after building.",
-    },
-    processSteps,
-    faqs: serviceFaqs,
-    ctaEyebrow: {
-      es: "DIAGNÓSTICO ESTRATÉGICO",
-      en: "STRATEGIC DISCOVERY",
-    },
-    ctaTitle: {
-      es: "Hablemos de tu próxima versión.",
-      en: "Let's talk about your next version.",
-    },
-    ctaBody: {
-      es: "Cuéntanos dónde estás y qué quieres lograr. Te ayudaremos a encontrar el siguiente paso correcto.",
-      en: "Tell us where you are and what you want to achieve. We'll help you find the right next step.",
+    closingText: {
+      es: "Cuéntanos qué quieres mejorar y recibe una primera orientación para elegir el alcance correcto.",
+      en: "Tell us what you want to improve and get initial guidance on the right scope.",
     },
   },
   "desarrollo-software": {
@@ -233,27 +144,13 @@ const serviceContexts: Record<string, ServiceContext> = {
       es: "De la idea al primer release.",
       en: "From idea to your first release.",
     },
-    processTitle: {
-      es: "De una oportunidad a software que funciona.",
-      en: "From an opportunity to software that works.",
+    closingTitle: {
+      es: "Tu próxima versión merece un equipo a la altura.",
+      en: "Your next version deserves the right team.",
     },
-    processIntro: {
-      es: "Construimos con foco en lo esencial, visibilidad constante y una base lista para crecer.",
-      en: "We build with focus on what matters, constant visibility, and a foundation ready to grow.",
-    },
-    processSteps,
-    faqs: serviceFaqs,
-    ctaEyebrow: {
-      es: "SESIÓN DE DESCUBRIMIENTO",
-      en: "DISCOVERY SESSION",
-    },
-    ctaTitle: {
-      es: "Tu próxima idea merece una conversación.",
-      en: "Your next idea deserves a conversation.",
-    },
-    ctaBody: {
-      es: "Revisemos la oportunidad, el alcance y la ruta técnica antes de invertir en construirla.",
-      en: "Let's review the opportunity, scope, and technical path before you invest in building it.",
+    closingText: {
+      es: "Agenda una discovery call y convierte una oportunidad de negocio en un producto que pueda crecer.",
+      en: "Book a discovery call and turn a business opportunity into a product that can grow.",
     },
   },
   "automatizacion-ia": {
@@ -277,27 +174,13 @@ const serviceContexts: Record<string, ServiceContext> = {
       es: "Menos tareas repetitivas. Más espacio para crecer.",
       en: "Less repetition. More room to grow.",
     },
-    processTitle: {
-      es: "Automatizamos con criterio, no por moda.",
-      en: "We automate with judgment, not hype.",
+    closingTitle: {
+      es: "Encuentra el proceso que podemos liberar.",
+      en: "Find the process we can set free.",
     },
-    processIntro: {
-      es: "Diseñamos soluciones inteligentes que tu equipo puede entender, usar y mejorar.",
-      en: "We design intelligent solutions your team can understand, use, and improve.",
-    },
-    processSteps,
-    faqs: serviceFaqs,
-    ctaEyebrow: {
-      es: "DIAGNÓSTICO DE OPERACIÓN",
-      en: "OPERATIONS DISCOVERY",
-    },
-    ctaTitle: {
-      es: "Descubre dónde puede avanzar tu equipo.",
-      en: "Discover where your team can move faster.",
-    },
-    ctaBody: {
-      es: "Identifiquemos el proceso correcto para automatizar y la tecnología que realmente tiene sentido.",
-      en: "Let's identify the right process to automate and the technology that truly makes sense.",
+    closingText: {
+      es: "Hablemos de tu operación, tus cuellos de botella y el siguiente automatismo que sí tendrá impacto.",
+      en: "Let's talk about your operation, bottlenecks, and the next automation that will make an impact.",
     },
   },
   "marketing-digital": {
@@ -321,27 +204,13 @@ const serviceContexts: Record<string, ServiceContext> = {
       es: "Tu marca merece una campaña que se recuerde.",
       en: "Your brand deserves a campaign people remember.",
     },
-    processTitle: {
-      es: "De la intuición a una estrategia que se puede medir.",
-      en: "From intuition to a strategy you can measure.",
+    closingTitle: {
+      es: "Convirtamos atención en crecimiento.",
+      en: "Let's turn attention into growth.",
     },
-    processIntro: {
-      es: "Alineamos creatividad, distribución y datos para que cada acción tenga una razón.",
-      en: "We align creativity, distribution, and data so every action has a reason.",
-    },
-    processSteps,
-    faqs: serviceFaqs,
-    ctaEyebrow: {
-      es: "SESIÓN DE ESTRATEGIA",
-      en: "STRATEGY SESSION",
-    },
-    ctaTitle: {
-      es: "Hagamos que tu marca avance con intención.",
-      en: "Let's move your brand forward with intention.",
-    },
-    ctaBody: {
-      es: "Revisemos tu presencia actual, tus objetivos y la oportunidad que quieres convertir en resultados.",
-      en: "Let's review your current presence, goals, and the opportunity you want to turn into results.",
+    closingText: {
+      es: "Comparte tus objetivos y diseñemos una estrategia que conecte creatividad, distribución y resultados.",
+      en: "Share your goals and let's design a strategy connecting creativity, distribution, and results.",
     },
   },
   "cloud-devops": {
@@ -365,27 +234,13 @@ const serviceContexts: Record<string, ServiceContext> = {
       es: "Tu próximo lanzamiento no debería esperar.",
       en: "Your next launch should not have to wait.",
     },
-    processTitle: {
-      es: "Una infraestructura sólida para entregar con confianza.",
-      en: "Solid infrastructure for shipping with confidence.",
+    closingTitle: {
+      es: "Prepara la infraestructura para lo que viene.",
+      en: "Prepare the infrastructure for what's next.",
     },
-    processIntro: {
-      es: "Diseñamos una operación técnica que reduce fricción y prepara cada lanzamiento para lo que sigue.",
-      en: "We design a technical operation that reduces friction and prepares every launch for what comes next.",
-    },
-    processSteps,
-    faqs: serviceFaqs,
-    ctaEyebrow: {
-      es: "DIAGNÓSTICO TÉCNICO",
-      en: "TECHNICAL DISCOVERY",
-    },
-    ctaTitle: {
-      es: "Preparemos tu próximo lanzamiento.",
-      en: "Let's prepare your next launch.",
-    },
-    ctaBody: {
-      es: "Revisamos tu infraestructura actual y definimos una ruta confiable para operar y escalar.",
-      en: "We'll review your current infrastructure and define a reliable path to operate and scale.",
+    closingText: {
+      es: "Revisemos tu operación actual y construyamos una base más segura, observable y lista para escalar.",
+      en: "Let's review your current operation and build a safer, observable foundation ready to scale.",
     },
   },
 };
@@ -617,6 +472,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Diseño, desarrollo y estrategia para que tu negocio venda mejor en digital.",
       description:
         "Diseñamos y desarrollamos experiencias web con identidad propia — rápidas, responsivas y construidas para posicionarse. Desde landing pages de alto impacto hasta plataformas web complejas con integraciones, cada proyecto es único.",
+      planDetails: {
+        Starter: {
+          deliverables: ["Landing page publicada", "Sistema visual responsive", "SEO técnico y formularios"],
+          duration: "3–4 semanas",
+        },
+        Professional: {
+          deliverables: ["Arquitectura de contenidos", "CMS y analítica conectada", "Optimización SEO y conversión"],
+          duration: "6–8 semanas",
+        },
+        Enterprise: {
+          deliverables: ["Arquitectura a medida", "Integraciones y panel operativo", "Plan de evolución y soporte"],
+          duration: "A definir según alcance",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnóstico", description: "Entendemos tu negocio, tus usuarios y las oportunidades que tu presencia digital todavía no está capturando." },
+        { number: "02", title: "Estrategia", description: "Convertimos los hallazgos en una arquitectura, una experiencia y un plan de contenido orientados a objetivos reales." },
+        { number: "03", title: "Construcción", description: "Diseñamos y desarrollamos una web rápida, clara y preparada para evolucionar contigo." },
+        { number: "04", title: "Lanzamiento y optimización", description: "Publicamos con control, medimos el comportamiento y priorizamos mejoras para seguir convirtiendo." },
+      ],
+      faqs: [
+        { question: "¿El producto queda a nombre de mi empresa?", answer: "Sí. Al finalizar el proyecto, tu empresa recibe la propiedad de los diseños, contenidos y código producido para la web." },
+        { question: "¿Qué soporte recibo después del lanzamiento?", answer: "Incluimos el soporte indicado en el plan para resolver ajustes, dudas y aprendizajes iniciales sin dejarte solo después de publicar." },
+        { question: "¿Pueden mantener y evolucionar mi web?", answer: "Sí. Podemos acompañarte con mantenimiento continuo, nuevas funcionalidades, contenido y optimización según las prioridades del negocio." },
+        { question: "¿Cómo eligen la tecnología adecuada?", answer: "Partimos de tus objetivos, equipo y operación. Elegimos la solución que mantenga el proyecto útil, sostenible y fácil de hacer crecer." },
+      ],
       plans: [
         {
           name: "Starter",
@@ -667,6 +548,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Design, development, and strategy to help your business sell better online.",
       description:
         "We design and develop web experiences with their own identity — fast, responsive, and built to rank. From high-impact landing pages to complex web platforms with integrations, every project is unique.",
+      planDetails: {
+        Starter: {
+          deliverables: ["Published landing page", "Responsive visual system", "Technical SEO and forms"],
+          duration: "3–4 weeks",
+        },
+        Professional: {
+          deliverables: ["Content architecture", "Connected CMS and analytics", "SEO and conversion optimization"],
+          duration: "6–8 weeks",
+        },
+        Enterprise: {
+          deliverables: ["Custom architecture", "Integrations and operations panel", "Evolution and support plan"],
+          duration: "Scoped to the project",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnosis", description: "We understand your business, your users, and the opportunities your digital presence is not capturing yet." },
+        { number: "02", title: "Strategy", description: "We turn those findings into architecture, experience, and content priorities tied to real goals." },
+        { number: "03", title: "Build", description: "We design and develop a fast, clear website ready to evolve with your business." },
+        { number: "04", title: "Launch and optimize", description: "We publish with control, measure behavior, and prioritize improvements that keep conversion moving." },
+      ],
+      faqs: [
+        { question: "Does my company own the final product?", answer: "Yes. Once the project is complete, your company receives ownership of the designs, content, and code produced for the website." },
+        { question: "What support do I receive after launch?", answer: "We include the support described in your plan to handle adjustments, questions, and early learnings after going live." },
+        { question: "Can you maintain and evolve my website?", answer: "Yes. We can stay involved with ongoing maintenance, new features, content, and optimization as business priorities change." },
+        { question: "How do you choose the right technology?", answer: "We start with your goals, team, and operation, then choose a solution that stays useful, sustainable, and easy to grow." },
+      ],
       plans: [
         {
           name: "Starter",
@@ -719,6 +626,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Software a medida que escala con tu negocio.",
       description:
         "Construimos soluciones de software desde cero, adaptadas exactamente a tu modelo de negocio. Plataformas SaaS, sistemas de gestión, aplicaciones móviles — diseñadas para crecer contigo y no limitarte.",
+      planDetails: {
+        MVP: {
+          deliverables: ["Alcance priorizado y prototipo funcional", "Producto core con backend", "Base para validar con usuarios"],
+          duration: "8–10 semanas",
+        },
+        Growth: {
+          deliverables: ["Producto completo y escalable", "Integraciones y panel avanzado", "Analítica para decisiones de producto"],
+          duration: "4–5 meses",
+        },
+        Enterprise: {
+          deliverables: ["Arquitectura de alta escala", "Seguridad, disponibilidad y gobierno", "Equipo dedicado y evolución continua"],
+          duration: "A definir según alcance",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnóstico", description: "Alineamos la oportunidad, el modelo de negocio y las necesidades de quienes usarán el producto." },
+        { number: "02", title: "Estrategia", description: "Definimos el alcance correcto, la experiencia y las decisiones de producto que reducen riesgo antes de construir." },
+        { number: "03", title: "Construcción", description: "Iteramos en ciclos cortos para convertir la visión en software probado, usable y listo para aprender." },
+        { number: "04", title: "Lanzamiento y optimización", description: "Acompañamos el release, observamos el uso y priorizamos la siguiente versión con datos reales." },
+      ],
+      faqs: [
+        { question: "¿El producto queda a nombre de mi empresa?", answer: "Sí. Entregamos a tu empresa los diseños y el código creado para el producto, junto con la documentación necesaria para continuar." },
+        { question: "¿Qué soporte recibo después del lanzamiento?", answer: "El plan incluye acompañamiento durante la salida y el período indicado para estabilizar el producto y resolver aprendizajes iniciales." },
+        { question: "¿Pueden mantener y evolucionar el software?", answer: "Sí. Podemos continuar como equipo de producto para mantenimiento, nuevas versiones, mejoras y soporte de largo plazo." },
+        { question: "¿Cómo eligen la tecnología adecuada?", answer: "Evaluamos el problema, la escala esperada, el equipo y la velocidad necesaria para recomendar una base técnica sostenible, sin imponer herramientas por moda." },
+      ],
       plans: [
         {
           name: "MVP",
@@ -769,6 +702,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Custom software that scales with your business.",
       description:
         "We build software solutions from scratch, tailored exactly to your business model. SaaS platforms, management systems, mobile apps — designed to grow with you and never hold you back.",
+      planDetails: {
+        MVP: {
+          deliverables: ["Prioritized scope and functional prototype", "Core product with backend", "Foundation for user validation"],
+          duration: "8–10 weeks",
+        },
+        Growth: {
+          deliverables: ["Complete, scalable product", "Integrations and advanced admin panel", "Analytics for product decisions"],
+          duration: "4–5 months",
+        },
+        Enterprise: {
+          deliverables: ["High-scale architecture", "Security, availability, and governance", "Dedicated team and continuous evolution"],
+          duration: "Scoped to the project",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnosis", description: "We align the opportunity, business model, and needs of the people who will use the product." },
+        { number: "02", title: "Strategy", description: "We define the right scope, experience, and product decisions to reduce risk before building." },
+        { number: "03", title: "Build", description: "We work in short cycles to turn the vision into tested, usable software ready to learn from." },
+        { number: "04", title: "Launch and optimize", description: "We support the release, observe usage, and prioritize the next version with real data." },
+      ],
+      faqs: [
+        { question: "Does my company own the final product?", answer: "Yes. We deliver the designs and code created for the product, together with the documentation needed to keep moving." },
+        { question: "What support do I receive after launch?", answer: "Your plan includes launch support and the stated period to stabilize the product and address early learnings." },
+        { question: "Can you maintain and evolve the software?", answer: "Yes. We can continue as your product team for maintenance, new versions, improvements, and long-term support." },
+        { question: "How do you choose the right technology?", answer: "We assess the problem, expected scale, team, and required speed to recommend a sustainable foundation rather than imposing tools for their own sake." },
+      ],
       plans: [
         {
           name: "MVP",
@@ -821,6 +780,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Elimina tareas repetitivas. Activa inteligencia real.",
       description:
         "Implementamos automatizaciones y soluciones de inteligencia artificial que liberan tiempo, reducen errores y permiten que tu equipo enfoque su energía en lo que realmente importa. Desde chatbots hasta modelos entrenados para tu industria.",
+      planDetails: {
+        Essentials: {
+          deliverables: ["Mapa de procesos prioritarios", "2–3 automatizaciones activas", "Documentación para el equipo"],
+          duration: "4–6 semanas",
+        },
+        Advanced: {
+          deliverables: ["Sistema operativo end-to-end", "Agente IA e integraciones", "Métricas para medir impacto"],
+          duration: "8–12 semanas",
+        },
+        Custom: {
+          deliverables: ["Solución IA diseñada a medida", "Automatización de flujos completos", "Plan de mantenimiento y evolución"],
+          duration: "A definir según alcance",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnóstico", description: "Mapeamos cómo trabaja tu equipo, dónde se repite el esfuerzo y qué decisiones necesitan mejor información." },
+        { number: "02", title: "Estrategia", description: "Priorizamos oportunidades y diseñamos una solución que equilibre impacto, adopción y control humano." },
+        { number: "03", title: "Construcción", description: "Conectamos tus sistemas, configuramos los flujos y entrenamos la solución con casos reales." },
+        { number: "04", title: "Lanzamiento y optimización", description: "Ponemos la automatización en manos del equipo, medimos resultados y mejoramos lo que aprende." },
+      ],
+      faqs: [
+        { question: "¿El producto queda a nombre de mi empresa?", answer: "Sí. Los flujos, configuraciones y entregables creados para tu operación quedan disponibles para tu empresa al terminar el proyecto." },
+        { question: "¿Qué soporte recibo después del lanzamiento?", answer: "Incluimos soporte para acompañar la adopción, resolver ajustes y asegurar que el equipo pueda usar la solución con confianza." },
+        { question: "¿Pueden mantener y mejorar la automatización?", answer: "Sí. Podemos monitorear los flujos, incorporar nuevos casos de uso y ajustar la solución cuando cambien tus procesos." },
+        { question: "¿Cómo eligen la tecnología adecuada?", answer: "Partimos del proceso y del nivel de control que necesitas. Seleccionamos una solución segura, comprensible y compatible con tu operación actual." },
+      ],
       plans: [
         {
           name: "Essentials",
@@ -871,6 +856,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Eliminate repetitive tasks. Activate real intelligence.",
       description:
         "We implement automations and AI solutions that free up time, reduce errors, and let your team focus their energy on what truly matters. From chatbots to models trained for your industry.",
+      planDetails: {
+        Essentials: {
+          deliverables: ["Priority process map", "2–3 active automations", "Documentation for your team"],
+          duration: "4–6 weeks",
+        },
+        Advanced: {
+          deliverables: ["End-to-end operating system", "AI agent and integrations", "Impact measurement metrics"],
+          duration: "8–12 weeks",
+        },
+        Custom: {
+          deliverables: ["Purpose-built AI solution", "Full workflow automation", "Maintenance and evolution plan"],
+          duration: "Scoped to the project",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnosis", description: "We map how your team works, where effort repeats, and which decisions need better information." },
+        { number: "02", title: "Strategy", description: "We prioritize opportunities and design a solution balancing impact, adoption, and human control." },
+        { number: "03", title: "Build", description: "We connect your systems, configure the workflows, and train the solution on real cases." },
+        { number: "04", title: "Launch and optimize", description: "We put the automation in your team's hands, measure outcomes, and improve what it learns." },
+      ],
+      faqs: [
+        { question: "Does my company own the final product?", answer: "Yes. The workflows, configurations, and deliverables created for your operation remain available to your company when the project ends." },
+        { question: "What support do I receive after launch?", answer: "We include support for adoption, adjustments, and making sure your team can use the solution with confidence." },
+        { question: "Can you maintain and improve the automation?", answer: "Yes. We can monitor workflows, add new use cases, and adjust the solution as your processes change." },
+        { question: "How do you choose the right technology?", answer: "We start with the process and level of control you need, then select a secure, understandable solution compatible with your current operation." },
+      ],
       plans: [
         {
           name: "Essentials",
@@ -923,6 +934,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Presencia digital que genera resultados medibles.",
       description:
         "Creamos estrategias de marketing digital orientadas a datos — no a vanity metrics. Desde la gestión de redes hasta campañas de pauta con ROI claro, combinamos creatividad y análisis para hacer crecer tu marca.",
+      planDetails: {
+        Starter: {
+          deliverables: ["Calendario editorial mensual", "Contenido para dos canales", "Reporte de aprendizajes y resultados"],
+          duration: "Primer ciclo de 4 semanas",
+        },
+        Growth: {
+          deliverables: ["Estrategia multicanal", "Campañas y contenido de performance", "Reporte quincenal con próximos pasos"],
+          duration: "Ciclos mensuales",
+        },
+        Full: {
+          deliverables: ["Estrategia integral de marca", "Producción y distribución de contenido", "Dirección dedicada de crecimiento"],
+          duration: "Ciclos mensuales",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnóstico", description: "Leemos tu marca, audiencia y datos para entender qué está funcionando y dónde se está perdiendo atención." },
+        { number: "02", title: "Estrategia", description: "Definimos mensajes, canales y una ruta de experimentación conectada a tus objetivos de negocio." },
+        { number: "03", title: "Construcción", description: "Producimos contenido y campañas con una idea clara, una ejecución consistente y medición desde el inicio." },
+        { number: "04", title: "Lanzamiento y optimización", description: "Publicamos, aprendemos del comportamiento de la audiencia y redistribuimos esfuerzos hacia lo que sí mueve resultados." },
+      ],
+      faqs: [
+        { question: "¿El producto queda a nombre de mi empresa?", answer: "Sí. Tu empresa conserva los materiales finales producidos para la marca y recibe los reportes y aprendizajes de cada ciclo." },
+        { question: "¿Qué soporte recibo después del lanzamiento?", answer: "El acompañamiento es continuo dentro del ciclo contratado: revisamos resultados, resolvemos dudas y ajustamos el plan con tu equipo." },
+        { question: "¿Pueden mantener y evolucionar la estrategia?", answer: "Sí. La estrategia se revisa con frecuencia para incorporar aprendizajes, nuevas campañas y cambios en el negocio o la audiencia." },
+        { question: "¿Cómo eligen la tecnología adecuada?", answer: "Usamos las herramientas que mejor conecten contenido, distribución y medición, siempre priorizando claridad y resultados sobre la cantidad de plataformas." },
+      ],
       plans: [
         {
           name: "Starter",
@@ -976,6 +1013,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Digital presence that generates measurable results.",
       description:
         "We build data-driven digital marketing strategies — not vanity metrics. From social media management to ad campaigns with clear ROI, we combine creativity and analysis to grow your brand.",
+      planDetails: {
+        Starter: {
+          deliverables: ["Monthly editorial calendar", "Content for two channels", "Results and learning report"],
+          duration: "First 4-week cycle",
+        },
+        Growth: {
+          deliverables: ["Multichannel strategy", "Performance content and campaigns", "Bi-weekly report with next steps"],
+          duration: "Monthly cycles",
+        },
+        Full: {
+          deliverables: ["Integrated brand strategy", "Content production and distribution", "Dedicated growth direction"],
+          duration: "Monthly cycles",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnosis", description: "We read your brand, audience, and data to understand what is working and where attention is being lost." },
+        { number: "02", title: "Strategy", description: "We define messages, channels, and an experimentation path connected to your business goals." },
+        { number: "03", title: "Build", description: "We produce content and campaigns with a clear idea, consistent execution, and measurement from day one." },
+        { number: "04", title: "Launch and optimize", description: "We publish, learn from audience behavior, and shift effort toward what moves results." },
+      ],
+      faqs: [
+        { question: "Does my company own the final product?", answer: "Yes. Your company keeps the final materials produced for the brand and receives the reports and learnings from each cycle." },
+        { question: "What support do I receive after launch?", answer: "Support is continuous within the contracted cycle: we review results, answer questions, and adjust the plan with your team." },
+        { question: "Can you maintain and evolve the strategy?", answer: "Yes. We revisit the strategy regularly to incorporate learnings, new campaigns, and changes in the business or audience." },
+        { question: "How do you choose the right technology?", answer: "We use the tools that best connect content, distribution, and measurement, prioritizing clarity and results over the number of platforms." },
+      ],
       plans: [
         {
           name: "Starter",
@@ -1031,6 +1094,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Infraestructura sólida. Deploys sin fricción.",
       description:
         "Diseñamos, migramos y gestionamos infraestructuras cloud que escalan sin sorpresas. Implementamos pipelines CI/CD, monitoreo proactivo y prácticas DevOps para que tu equipo entregue software más rápido y con más confianza.",
+      planDetails: {
+        Essential: {
+          deliverables: ["Base cloud configurada", "Pipeline de entrega inicial", "Monitoreo, backups y seguridad base"],
+          duration: "3–4 semanas",
+        },
+        Professional: {
+          deliverables: ["Infraestructura cloud completa", "Entrega automatizada con pruebas", "Observabilidad y escalado controlado"],
+          duration: "6–8 semanas",
+        },
+        Enterprise: {
+          deliverables: ["Arquitectura híbrida o multi-cloud", "Alta disponibilidad y recuperación", "Operación continua con equipo dedicado"],
+          duration: "A definir según alcance",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnóstico", description: "Revisamos tu infraestructura, riesgos y forma de entregar para encontrar los puntos que frenan la operación." },
+        { number: "02", title: "Estrategia", description: "Diseñamos una ruta técnica con prioridades claras para ganar confiabilidad sin sobredimensionar la solución." },
+        { number: "03", title: "Construcción", description: "Configuramos la base, automatizamos los despliegues y hacemos visible el estado real de tus servicios." },
+        { number: "04", title: "Lanzamiento y optimización", description: "Ponemos la operación en marcha, verificamos cada transición y optimizamos con datos de uso y rendimiento." },
+      ],
+      faqs: [
+        { question: "¿El producto queda a nombre de mi empresa?", answer: "Sí. La configuración y documentación creada para tu infraestructura quedan bajo el control de tu empresa al finalizar el proyecto." },
+        { question: "¿Qué soporte recibo después del lanzamiento?", answer: "El soporte incluido ayuda a estabilizar la operación, resolver incidencias iniciales y transferir conocimiento a tu equipo." },
+        { question: "¿Pueden mantener y evolucionar la infraestructura?", answer: "Sí. Podemos acompañar la operación continua, el crecimiento de capacidad, la seguridad y las mejoras de entrega." },
+        { question: "¿Cómo eligen la tecnología adecuada?", answer: "Elegimos la base según tus necesidades de disponibilidad, seguridad, presupuesto y equipo, evitando complejidad que no aporte valor." },
+      ],
       plans: [
         {
           name: "Essential",
@@ -1081,6 +1170,32 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
       intro: "Solid infrastructure. Frictionless deploys.",
       description:
         "We design, migrate, and manage cloud infrastructures that scale without surprises. We implement CI/CD pipelines, proactive monitoring, and DevOps practices so your team ships software faster and with more confidence.",
+      planDetails: {
+        Essential: {
+          deliverables: ["Configured cloud foundation", "Initial delivery pipeline", "Monitoring, backups, and base security"],
+          duration: "3–4 weeks",
+        },
+        Professional: {
+          deliverables: ["Complete cloud infrastructure", "Automated delivery with testing", "Observability and controlled scaling"],
+          duration: "6–8 weeks",
+        },
+        Enterprise: {
+          deliverables: ["Hybrid or multi-cloud architecture", "High availability and recovery", "Continuous operations with a dedicated team"],
+          duration: "Scoped to the project",
+        },
+      },
+      process: [
+        { number: "01", title: "Diagnosis", description: "We review your infrastructure, risks, and delivery habits to find what is slowing the operation down." },
+        { number: "02", title: "Strategy", description: "We design a technical path with clear priorities to increase reliability without overbuilding." },
+        { number: "03", title: "Build", description: "We configure the foundation, automate deployments, and make the real state of your services visible." },
+        { number: "04", title: "Launch and optimize", description: "We put operations in motion, verify every transition, and optimize with usage and performance data." },
+      ],
+      faqs: [
+        { question: "Does my company own the final product?", answer: "Yes. The configuration and documentation created for your infrastructure remain under your company's control when the project ends." },
+        { question: "What support do I receive after launch?", answer: "Included support helps stabilize operations, resolve early incidents, and transfer knowledge to your team." },
+        { question: "Can you maintain and evolve the infrastructure?", answer: "Yes. We can support ongoing operations, capacity growth, security, and delivery improvements." },
+        { question: "How do you choose the right technology?", answer: "We choose the foundation based on your availability, security, budget, and team needs, avoiding complexity that adds no value." },
+      ],
       plans: [
         {
           name: "Essential",
@@ -1127,150 +1242,6 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
   },
 };
 
-type PlanMeta = {
-  deliverables: LocalizedCopy;
-  timeline: LocalizedCopy;
-};
-
-const planMeta: Record<string, Record<string, PlanMeta>> = {
-  "desarrollo-web": {
-    Starter: {
-      deliverables: {
-        es: "Landing page, diseño responsive y configuración técnica",
-        en: "Landing page, responsive design, and technical setup",
-      },
-      timeline: { es: "2–3 semanas", en: "2–3 weeks" },
-    },
-    Professional: {
-      deliverables: {
-        es: "Sitio corporativo, CMS, SEO e integraciones",
-        en: "Corporate site, CMS, SEO, and integrations",
-      },
-      timeline: { es: "4–6 semanas", en: "4–6 weeks" },
-    },
-    Enterprise: {
-      deliverables: {
-        es: "Plataforma a medida, e-commerce e integraciones avanzadas",
-        en: "Custom platform, e-commerce, and advanced integrations",
-      },
-      timeline: {
-        es: "8–12 semanas según alcance",
-        en: "8–12 weeks depending on scope",
-      },
-    },
-  },
-  "desarrollo-software": {
-    MVP: {
-      deliverables: {
-        es: "Producto funcional, backend, autenticación y deploy",
-        en: "Functional product, backend, authentication, and deploy",
-      },
-      timeline: { es: "8–10 semanas", en: "8–10 weeks" },
-    },
-    Growth: {
-      deliverables: {
-        es: "Plataforma completa, integraciones y analítica",
-        en: "Full platform, integrations, and analytics",
-      },
-      timeline: { es: "4–5 meses", en: "4–5 months" },
-    },
-    Enterprise: {
-      deliverables: {
-        es: "Arquitectura escalable, seguridad y equipo dedicado",
-        en: "Scalable architecture, security, and dedicated team",
-      },
-      timeline: {
-        es: "6+ meses según alcance",
-        en: "6+ months depending on scope",
-      },
-    },
-  },
-  "automatizacion-ia": {
-    Essentials: {
-      deliverables: {
-        es: "2–3 automatizaciones, chatbot y documentación",
-        en: "2–3 automations, chatbot, and documentation",
-      },
-      timeline: { es: "3–5 semanas", en: "3–5 weeks" },
-    },
-    Advanced: {
-      deliverables: {
-        es: "Agente IA, automatización end-to-end y dashboard",
-        en: "AI agent, end-to-end automation, and dashboard",
-      },
-      timeline: { es: "6–10 semanas", en: "6–10 weeks" },
-    },
-    Custom: {
-      deliverables: {
-        es: "Modelos con tus datos, integraciones y equipo dedicado",
-        en: "Models trained on your data, integrations, and dedicated team",
-      },
-      timeline: {
-        es: "3+ meses según alcance",
-        en: "3+ months depending on scope",
-      },
-    },
-  },
-  "marketing-digital": {
-    Starter: {
-      deliverables: {
-        es: "Calendario, piezas visuales y reporte mensual",
-        en: "Content calendar, visual assets, and monthly report",
-      },
-      timeline: {
-        es: "Inicio en 2 semanas · gestión mensual",
-        en: "Starts in 2 weeks · monthly management",
-      },
-    },
-    Growth: {
-      deliverables: {
-        es: "Contenido, pauta, SEO y reportes quincenales",
-        en: "Content, paid media, SEO, and bi-weekly reports",
-      },
-      timeline: {
-        es: "Inicio en 2 semanas · gestión mensual",
-        en: "Starts in 2 weeks · monthly management",
-      },
-    },
-    Full: {
-      deliverables: {
-        es: "Estrategia 360°, producción y account manager",
-        en: "360° strategy, production, and account manager",
-      },
-      timeline: {
-        es: "Inicio en 3 semanas · gestión mensual",
-        en: "Starts in 3 weeks · monthly management",
-      },
-    },
-  },
-  "cloud-devops": {
-    Essential: {
-      deliverables: {
-        es: "Servidor, CI/CD, monitoreo y backups",
-        en: "Server, CI/CD, monitoring, and backups",
-      },
-      timeline: { es: "2–3 semanas", en: "2–3 weeks" },
-    },
-    Professional: {
-      deliverables: {
-        es: "Infraestructura completa, auto-scaling y observabilidad",
-        en: "Complete infrastructure, auto-scaling, and observability",
-      },
-      timeline: { es: "4–6 semanas", en: "4–6 weeks" },
-    },
-    Enterprise: {
-      deliverables: {
-        es: "Multi-cloud, alta disponibilidad, seguridad y operación continua",
-        en: "Multi-cloud, high availability, security, and continuous operations",
-      },
-      timeline: {
-        es: "8+ semanas según arquitectura",
-        en: "8+ weeks depending on architecture",
-      },
-    },
-  },
-};
-
 export default function ServicioDetalle() {
   const params = useParams<{ slug: string }>();
   const { lang } = useLang();
@@ -1278,6 +1249,7 @@ export default function ServicioDetalle() {
   const service = data[slug];
   const [billingMode, setBillingMode] = useState<"monthly" | "annual">("monthly");
   const [activePlan, setActivePlan] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const planTouchStartX = useRef<number | null>(null);
 
   useEffect(() => {
@@ -1295,11 +1267,6 @@ export default function ServicioDetalle() {
         ".svc2-cycle-row",
         ".svc2-month-offer-copy > *",
         ".svc2-month-offer-link",
-        ".svc2-process-heading > *",
-        ".svc2-process-step",
-        ".svc2-faq-heading > *",
-        ".svc2-faq-item",
-        ".svc2-final-cta-inner > *",
       ];
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1317,11 +1284,6 @@ export default function ServicioDetalle() {
           ".svc2-cycle-row",
           ".svc2-month-offer-copy > *",
           ".svc2-month-offer-link",
-          ".svc2-process-heading > *",
-          ".svc2-process-step",
-          ".svc2-faq-heading > *",
-          ".svc2-faq-item",
-          ".svc2-final-cta-inner > *",
         ],
         { y: 26, opacity: 0 },
       );
@@ -1366,33 +1328,6 @@ export default function ServicioDetalle() {
           },
         },
       );
-
-      [
-        {
-          targets: ".svc2-process-heading > *, .svc2-process-step",
-          trigger: ".svc2-process-section",
-        },
-        {
-          targets: ".svc2-faq-heading > *, .svc2-faq-item",
-          trigger: ".svc2-faq-section",
-        },
-        {
-          targets: ".svc2-final-cta-inner > *",
-          trigger: ".svc2-final-cta",
-        },
-      ].forEach(({ targets, trigger }) => {
-        gsap.to(targets, {
-          y: 0,
-          opacity: 1,
-          duration: 0.75,
-          stagger: 0.08,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger,
-            start: "top 80%",
-          },
-        });
-      });
     });
 
     return () => ctx.revert();
@@ -1405,7 +1340,7 @@ export default function ServicioDetalle() {
     if (!activeCard) return;
 
     const textTargets = activeCard.querySelectorAll<HTMLElement>(
-      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-meta, .svc2-plan-divider, .svc2-plan-feature, .svc2-plan-cta",
+      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-divider, .svc2-plan-feature, .svc2-plan-cta",
     );
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1547,19 +1482,27 @@ export default function ServicioDetalle() {
 
         {/* ── Process ── */}
         <section className="svc2-process-section" aria-labelledby="svc2-process-title">
-          <div className="svc2-process-heading">
-            <span className="svc2-section-kicker">
-              {lang === "es" ? "NUESTRA METODOLOGÍA" : "OUR METHOD"}
+          <div className="svc2-process-header">
+            <span className="svc2-section-eyebrow">
+              {lang === "es" ? "Cómo trabajamos" : "How we work"}
             </span>
-            <h2 id="svc2-process-title">{context.processTitle[lang]}</h2>
-            <p>{context.processIntro[lang]}</p>
+            <h2 id="svc2-process-title">
+              {lang === "es"
+                ? "De una oportunidad a algo que funciona."
+                : "From an opportunity to something that works."}
+            </h2>
+            <p>
+              {lang === "es"
+                ? "Un proceso claro para tomar mejores decisiones, construir con intención y seguir mejorando."
+                : "A clear process for making better decisions, building with intention, and continuing to improve."}
+            </p>
           </div>
           <div className="svc2-process-grid">
-            {context.processSteps.map((step) => (
-              <article key={step.number} className="svc2-process-step">
-                <span className="svc2-process-number">{step.number}</span>
-                <h3>{step.title[lang]}</h3>
-                <p>{step.description[lang]}</p>
+            {t.process.map((stage) => (
+              <article className="svc2-process-stage" key={stage.number}>
+                <span className="svc2-process-number">{stage.number}</span>
+                <h3>{stage.title}</h3>
+                <p>{stage.description}</p>
               </article>
             ))}
           </div>
@@ -1653,18 +1596,24 @@ export default function ServicioDetalle() {
                   </div>
                   <p className="svc2-plan-tagline">{planTagline(plan)}</p>
 
-                   {planMeta[slug]?.[plan.name] && (
-                     <div className="svc2-plan-meta">
-                       <div className="svc2-plan-meta-item">
-                         <span>{lang === "es" ? "Entregables" : "Deliverables"}</span>
-                         <strong>{planMeta[slug][plan.name].deliverables[lang]}</strong>
-                       </div>
-                       <div className="svc2-plan-meta-item">
-                         <span>{lang === "es" ? "Tiempo estimado" : "Estimated timeline"}</span>
-                         <strong>{planMeta[slug][plan.name].timeline[lang]}</strong>
-                       </div>
-                     </div>
-                   )}
+                  <div className="svc2-plan-details">
+                    <div className="svc2-plan-detail">
+                      <span className="svc2-plan-detail-label">
+                        {lang === "es" ? "Entregables" : "Deliverables"}
+                      </span>
+                      <ul>
+                        {t.planDetails[plan.name].deliverables.map((deliverable) => (
+                          <li key={deliverable}>{deliverable}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="svc2-plan-detail svc2-plan-detail--duration">
+                      <span className="svc2-plan-detail-label">
+                        {lang === "es" ? "Tiempo estimado" : "Estimated timing"}
+                      </span>
+                      <p>{t.planDetails[plan.name].duration}</p>
+                    </div>
+                  </div>
 
                   <div className="svc2-plan-divider"></div>
 
@@ -1732,35 +1681,61 @@ export default function ServicioDetalle() {
 
         {/* ── FAQ ── */}
         <section className="svc2-faq-section" aria-labelledby="svc2-faq-title">
-          <div className="svc2-faq-heading">
-            <span className="svc2-section-kicker">
-              {lang === "es" ? "PREGUNTAS FRECUENTES" : "FREQUENTLY ASKED"}
-            </span>
+          <div className="svc2-faq-header">
+            <span className="svc2-section-eyebrow">FAQ</span>
             <h2 id="svc2-faq-title">
-              {lang === "es" ? "Lo importante, claro desde el principio." : "The important things, clear from the start."}
+              {lang === "es" ? "Lo importante, antes de empezar." : "The important questions, answered."}
             </h2>
+            <p>
+              {lang === "es"
+                ? "Claridad sobre la relación, el producto y lo que viene después."
+                : "Clarity on the relationship, the product, and what comes next."}
+            </p>
           </div>
           <div className="svc2-faq-list">
-            {context.faqs.map((faq) => (
-              <details key={faq.question.es} className="svc2-faq-item">
-                <summary>
-                  <span>{faq.question[lang]}</span>
-                  <span className="svc2-faq-plus" aria-hidden="true">+</span>
-                </summary>
-                <p>{faq.answer[lang]}</p>
-              </details>
-            ))}
+            {t.faqs.map((faq, index) => {
+              const questionId = `svc2-faq-question-${slug}-${index}`;
+              const answerId = `svc2-faq-answer-${slug}-${index}`;
+              const isOpen = openFaq === index;
+
+              return (
+                <div className={`svc2-faq-item ${isOpen ? "svc2-faq-item--open" : ""}`} key={faq.question}>
+                  <button
+                    type="button"
+                    id={questionId}
+                    className="svc2-faq-question"
+                    aria-expanded={isOpen}
+                    aria-controls={answerId}
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                  >
+                    <span>{faq.question}</span>
+                    <span className="svc2-faq-icon" aria-hidden="true">+</span>
+                  </button>
+                  <div
+                    id={answerId}
+                    className="svc2-faq-answer"
+                    role="region"
+                    aria-labelledby={questionId}
+                    hidden={!isOpen}
+                  >
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
-        {/* ── Final CTA ── */}
-        <section className="svc2-final-cta" aria-labelledby="svc2-final-cta-title">
-          <div className="svc2-final-cta-inner">
-            <span className="svc2-section-kicker">{context.ctaEyebrow[lang]}</span>
-            <h2 id="svc2-final-cta-title">{context.ctaTitle[lang]}</h2>
-            <p>{context.ctaBody[lang]}</p>
-            <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-final-cta-button">
-              {lang === "es" ? "Agendar diagnóstico" : "Book discovery call"}
+        {/* ── Closing CTA ── */}
+        <section className="svc2-closing-cta" aria-labelledby="svc2-closing-title">
+          <div className="svc2-closing-inner">
+            <span className="svc2-section-eyebrow">
+              {lang === "es" ? "Siguiente paso" : "Next step"}
+            </span>
+            <h2 id="svc2-closing-title">{context.closingTitle[lang]}</h2>
+            <p>{context.closingText[lang]}</p>
+            <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-closing-link">
+              {lang === "es" ? "Agendar diagnóstico" : "Book a discovery call"}
             </a>
           </div>
         </section>
