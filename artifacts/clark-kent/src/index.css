@@ -6827,6 +6827,14 @@ body {
 /* Final about-page refinements */
 .qs-hero {
   height: 390px;
+  background-color: #ffffff;
+  background-image: conic-gradient(
+    #ffffff 0 25%,
+    #e2e2e2 0 50%,
+    #ffffff 0 75%,
+    #e2e2e2 0 100%
+  );
+  background-size: 72px 72px;
 }
 
 .qs-hero-title {
@@ -6868,6 +6876,11 @@ body {
 }
 
 .qs-values-heading {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  line-height: 1;
   max-width: 700px;
   margin-right: auto;
   margin-left: auto;
@@ -6887,9 +6900,8 @@ body {
   border-radius: 0;
   background: transparent;
   box-sizing: border-box;
-  opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  transition: opacity 0.7s ease, clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  clip-path: none;
 }
 
 .qs-value-card:nth-child(odd) {
@@ -6903,14 +6915,29 @@ body {
 }
 
 .qs-value-card--from-left {
-  clip-path: inset(0 100% 0 0);
+  clip-path: none;
 }
 
 .qs-value-card--from-right {
-  clip-path: inset(0 0 0 100%);
+  clip-path: none;
 }
 
 .qs-value-card--visible {
+  opacity: 1;
+  clip-path: none;
+}
+
+.qs-value-card-content {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: opacity 0.7s ease, clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.qs-value-card--from-right .qs-value-card-content {
+  clip-path: inset(0 0 0 100%);
+}
+
+.qs-value-card--visible .qs-value-card-content {
   opacity: 1;
   clip-path: inset(0 0 0 0);
 }
@@ -6937,6 +6964,7 @@ body {
 @media (max-width: 768px) {
   .qs-hero {
     height: 300px;
+    background-size: 60px 60px;
   }
 
   .qs-hero-title {
@@ -6981,18 +7009,6 @@ body {
     text-align: right;
   }
 
-  .qs-value-card--from-left {
-    clip-path: inset(0 100% 0 0);
-  }
-
-  .qs-value-card--from-right {
-    clip-path: inset(0 0 0 100%);
-  }
-
-  .qs-value-card:not(.qs-value-card--visible) {
-    transition-delay: 0s;
-  }
-
   .qs-value-title {
     font-size: 12px;
   }
@@ -7007,6 +7023,13 @@ body {
   .qs-value-card,
   .qs-value-card--from-left,
   .qs-value-card--from-right {
+    opacity: 1;
+    clip-path: none;
+  }
+
+  .qs-value-card-content,
+  .qs-value-card--from-left .qs-value-card-content,
+  .qs-value-card--from-right .qs-value-card-content {
     opacity: 1;
     clip-path: inset(0 0 0 0);
     transition: none;

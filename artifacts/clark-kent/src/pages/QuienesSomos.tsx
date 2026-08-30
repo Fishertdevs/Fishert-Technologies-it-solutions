@@ -133,9 +133,6 @@ export default function QuienesSomos() {
         {/* ── Values ── */}
         <section className="qs-values">
           <div className="qs-values-inner">
-            <p className="svc-plans-eyebrow">
-              {lang === "es" ? "QUÉ NOS DIFERENCIA" : "WHAT SETS US APART"}
-            </p>
             <h2 className="qs-values-heading">
               {lang === "es" ? "Qué nos diferencia." : "What sets us apart."}
             </h2>
@@ -144,10 +141,14 @@ export default function QuienesSomos() {
                 <div
                   key={i}
                   className={`qs-value-card ${i % 2 === 0 ? "qs-value-card--from-right" : "qs-value-card--from-left"}`}
-                  style={{ transitionDelay: `${i * 0.16}s` }}
                 >
-                  <h3 className="qs-value-title">{val.title}</h3>
-                  <p className="qs-value-body">{val.body}</p>
+                  <div
+                    className="qs-value-card-content"
+                    style={{ transitionDelay: `${i * 0.16}s` }}
+                  >
+                    <h3 className="qs-value-title">{val.title}</h3>
+                    <p className="qs-value-body">{val.body}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -176,24 +177,6 @@ export default function QuienesSomos() {
               ))}
             </div>
           </div>
-        </section>
-
-        {/* ── CTA ── */}
-        <section className="qs-cta">
-          <h2 className="qs-cta-heading">
-            {lang === "es" ? "¿Listo para trabajar juntos?" : "Ready to work together?"}
-          </h2>
-          <p className="qs-cta-sub">
-            {lang === "es"
-              ? "Cuéntanos tu proyecto. La primera llamada es sin costo."
-              : "Tell us about your project. The first call is free."}
-          </p>
-          <a href="/#contacto" className="qs-cta-btn">
-            {lang === "es" ? "Iniciar proyecto" : "Start a project"}
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
         </section>
 
       </main>
