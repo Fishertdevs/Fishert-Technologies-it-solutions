@@ -152,17 +152,6 @@ export default function Servicios() {
           </article>
 
           <div className="svc-mobile-nav" aria-label={lang === "es" ? "Navegación de servicios" : "Service navigation"}>
-            <button
-              type="button"
-              className="svc-mobile-arrow"
-              onClick={() => changeMobileSlide(-1)}
-              aria-label={lang === "es" ? "Servicio anterior" : "Previous service"}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
             <div className="svc-mobile-dots">
               {galleryData.map((item, index) => (
                 <button
@@ -174,17 +163,6 @@ export default function Servicios() {
                 />
               ))}
             </div>
-
-            <button
-              type="button"
-              className="svc-mobile-arrow"
-              onClick={() => changeMobileSlide(1)}
-              aria-label={lang === "es" ? "Siguiente servicio" : "Next service"}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
           </div>
         </div>
       ) : (

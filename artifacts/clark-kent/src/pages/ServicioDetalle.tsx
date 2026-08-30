@@ -1949,28 +1949,6 @@ export default function ServicioDetalle() {
                 </div>
               ))}
             </div>
-            <div className="svc2-plans-arrows">
-              <button
-                type="button"
-                className="svc2-plan-arrow svc2-plan-arrow--previous"
-                aria-label={lang === "es" ? "Plan anterior" : "Previous plan"}
-                onClick={() => setActivePlan((current) => (current - 1 + t.plans.length) % t.plans.length)}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                className="svc2-plan-arrow svc2-plan-arrow--next"
-                aria-label={lang === "es" ? "Siguiente plan" : "Next plan"}
-                onClick={() => setActivePlan((current) => (current + 1) % t.plans.length)}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-            </div>
           </div>
           <div className="svc2-plan-dots" aria-label={lang === "es" ? "Navegación de planes" : "Plan navigation"}>
             {t.plans.map((plan, index) => (
