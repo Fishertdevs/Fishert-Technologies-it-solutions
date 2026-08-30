@@ -148,27 +148,30 @@
 .svc2-platforms-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  border-top: 1px solid #d8dbe1;
+  border-bottom: 1px solid #d8dbe1;
 }
 
 .svc2-platform {
-  display: flex;
+  position: relative;
+  display: grid;
   min-height: 174px;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 22px;
-  padding: 20px 18px;
-  border: 1px solid #d8dbe1;
-  border-radius: 21px;
-  background: #ffffff;
+  grid-template-columns: 43px 1fr;
+  align-content: start;
+  gap: 16px;
+  padding: 23px 18px 24px;
+  border-right: 1px solid #d8dbe1;
+  background: transparent;
   text-align: left;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .svc2-platform:hover {
-  border-color: #c0001a;
-  box-shadow: 0 12px 26px rgba(16, 18, 24, 0.08);
-  transform: translateY(-3px);
+  background: #fafafa;
+}
+
+.svc2-platform:first-child {
+  border-left: 1px solid #d8dbe1;
 }
 
 .svc2-platform-icon {
@@ -180,6 +183,16 @@
   border-radius: 14px;
   background: #171717;
   color: #ffffff;
+}
+
+.svc2-platform-index {
+  position: absolute;
+  top: 26px;
+  right: 18px;
+  color: #c0001a;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
 }
 
 .svc2-platform-icon svg {
@@ -305,6 +318,7 @@
 
 .svc2-plans-grid {
   width: min(100%, 490px);
+  touch-action: pan-y;
 }
 
 .svc2-plan-card {
@@ -571,7 +585,7 @@
 
 @media (max-width: 768px) {
   .svc2-hero {
-    min-height: 360px;
+    min-height: 300px;
   }
 
   .svc2-hero-content,
@@ -580,7 +594,7 @@
   }
 
   .svc2-hero-content {
-    padding: 110px 0 58px;
+    padding: 100px 0 35px;
   }
 
   .svc2-eyebrow {
@@ -626,15 +640,26 @@
   }
 
   .svc2-platforms-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: 1fr;
   }
 
   .svc2-platform {
-    min-height: 165px;
-    gap: 16px;
-    padding: 15px 14px;
-    border-radius: 18px;
+    min-height: 0;
+    grid-template-columns: 37px 1fr;
+    gap: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #d8dbe1;
+    border-right: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .svc2-platform:first-child {
+    border-left: 0;
+  }
+
+  .svc2-platform:last-child {
+    border-bottom: 0;
   }
 
   .svc2-platform-icon {
@@ -646,6 +671,11 @@
   .svc2-platform-icon svg {
     width: 21px;
     height: 21px;
+  }
+
+  .svc2-platform-index {
+    top: 23px;
+    right: 0;
   }
 
   .svc2-platform-copy h3 {

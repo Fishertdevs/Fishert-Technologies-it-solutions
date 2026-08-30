@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef, useState, type TouchEvent as ReactTouchEvent } from "react";
 import { Link, useParams } from "wouter";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
@@ -1049,18 +1049,17 @@ export default function ServicioDetalle() {
     );
   };
 
-  const handlePlanPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse") return;
-    planTouchStartX.current = event.clientX;
-    event.currentTarget.setPointerCapture?.(event.pointerId);
+  const handlePlanTouchStart = (event: ReactTouchEvent<HTMLDivElement>) => {
+    planTouchStartX.current = event.touches[0]?.clientX ?? null;
   };
 
-  const handlePlanPointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handlePlanTouchEnd = (event: ReactTouchEvent<HTMLDivElement>) => {
     const startX = planTouchStartX.current;
     planTouchStartX.current = null;
-    if (startX === null) return;
+    const endX = event.changedTouches[0]?.clientX;
+    if (startX === null || endX === undefined) return;
 
-    const deltaX = startX - event.clientX;
+    const deltaX = startX - endX;
     if (Math.abs(deltaX) < 40) return;
     setActivePlan((current) => (
       deltaX > 0
@@ -1094,10 +1093,11 @@ export default function ServicioDetalle() {
         <section className="svc2-platforms-section" aria-label={context.contextLabel[lang]}>
           <p className="svc2-platforms-label">{context.contextLabel[lang]}</p>
           <div className="svc2-platforms-list">
-            {context.items[lang].map((platform) => {
+            {context.items[lang].map((platform, index) => {
               const detail = platformDetails[platform];
               return (
                 <article key={platform} className="svc2-platform">
+                  <span className="svc2-platform-index">{String(index + 1).padStart(2, "0")}</span>
                   <div className="svc2-platform-icon">
                     <PlatformIcon name={detail?.icon ?? "custom"} />
                   </div>
@@ -1168,9 +1168,9 @@ export default function ServicioDetalle() {
             </button>
             <div
               className="svc2-plans-grid"
-              onPointerDown={handlePlanPointerDown}
-              onPointerUp={handlePlanPointerUp}
-              onPointerCancel={() => {
+              onTouchStart={handlePlanTouchStart}
+              onTouchEnd={handlePlanTouchEnd}
+              onTouchCancel={() => {
                 planTouchStartX.current = null;
               }}
             >
