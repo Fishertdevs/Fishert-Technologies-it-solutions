@@ -1713,26 +1713,6 @@ export default function ServicioDetalle() {
               />
             ))}
           </div>
-          <div className="svc2-month-offer">
-            <div className="svc2-month-offer-mark" aria-hidden="true">
-              <strong>20%</strong>
-              <span>OFF</span>
-            </div>
-            <div className="svc2-month-offer-copy">
-              <span className="svc2-month-offer-kicker">
-                {lang === "es" ? "Oferta de este mes" : "This month's offer"}
-              </span>
-              <h3>{context.offerHeadline[lang]}</h3>
-              <p>
-                {lang === "es"
-                  ? "20% de descuento en tu primer servicio."
-                  : "20% off your first service."}
-              </p>
-            </div>
-            <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
-              {lang === "es" ? "Solicitar descuento" : "Request discount"}
-            </a>
-          </div>
         </section>
 
         {/* ── FAQ ── */}
@@ -1779,6 +1759,29 @@ export default function ServicioDetalle() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        <section className="svc2-offer-section" aria-label={lang === "es" ? "Oferta del mes" : "Monthly offer"}>
+          <div className="svc2-month-offer">
+            <div className="svc2-month-offer-mark" aria-hidden="true">
+              <strong>20%</strong>
+              <span>OFF</span>
+            </div>
+            <div className="svc2-month-offer-copy">
+              <span className="svc2-month-offer-kicker">
+                {lang === "es" ? "Oferta de este mes" : "This month's offer"}
+              </span>
+              <h3>{context.offerHeadline[lang]}</h3>
+              <p>
+                {lang === "es"
+                  ? "20% de descuento en tu primer servicio."
+                  : "20% off your first service."}
+              </p>
+            </div>
+            <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
+              {lang === "es" ? "Solicitar descuento" : "Request discount"}
+            </a>
           </div>
         </section>
 

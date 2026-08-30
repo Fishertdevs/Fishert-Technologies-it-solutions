@@ -720,6 +720,17 @@
   background: transparent;
 }
 
+.svc2-offer-section {
+  width: min(100% - 96px, 1120px);
+  margin: 0 auto;
+  padding: 0 0 96px;
+}
+
+.svc2-offer-section .svc2-month-offer {
+  width: min(100%, 920px);
+  margin-top: 0;
+}
+
 .svc2-month-offer-mark {
   display: flex;
   min-height: 92px;
@@ -803,6 +814,8 @@
   padding: 108px max(48px, calc((100% - 920px) / 2)) 115px;
   box-sizing: border-box;
   background: #a8532f;
+  border-radius: 32px;
+  overflow: hidden;
 }
 
 .svc2-faq-section .svc2-section-eyebrow {
@@ -1214,6 +1227,11 @@
     margin-top: 50px;
     padding: 22px 0;
     border-radius: 0;
+  }
+
+  .svc2-offer-section {
+    width: 100%;
+    padding: 0 24px 70px;
   }
 
   .svc2-month-offer-mark {
