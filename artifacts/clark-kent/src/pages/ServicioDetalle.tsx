@@ -1348,7 +1348,7 @@ export default function ServicioDetalle() {
     if (!activeCard) return;
 
     const textTargets = activeCard.querySelectorAll<HTMLElement>(
-      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-duration, .svc2-plan-divider, .svc2-plan-feature",
+      ".svc2-plan-name, .svc2-plan-price-wrap, .svc2-plan-tagline, .svc2-plan-divider, .svc2-plan-feature, .svc2-plan-cta",
     );
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1661,16 +1661,19 @@ export default function ServicioDetalle() {
                   </div>
                   <p className="svc2-plan-tagline">{planTagline(plan)}</p>
 
-                  <div className="svc2-plan-duration">
-                    <span className="svc2-plan-detail-label">
-                      {lang === "es" ? "Tiempo estimado" : "Estimated timing"}
-                    </span>
-                    <strong>{lang === "es" ? "3–4 semanas" : "3–4 weeks"}</strong>
-                  </div>
-
                   <div className="svc2-plan-divider"></div>
 
                   <ul className="svc2-plan-features">
+                    <li className="svc2-plan-feature">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>
+                        {lang === "es"
+                          ? "Tiempo estimado: 3–4 semanas"
+                          : "Estimated timing: 3–4 weeks"}
+                      </span>
+                    </li>
                     {plan.features.map((f, j) => (
                       <li key={j} className="svc2-plan-feature">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -1681,6 +1684,9 @@ export default function ServicioDetalle() {
                     ))}
                   </ul>
 
+                  <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-plan-cta">
+                    {lang === "es" ? "Solicitar propuesta" : "Request proposal"}
+                  </a>
                 </div>
               ))}
             </div>

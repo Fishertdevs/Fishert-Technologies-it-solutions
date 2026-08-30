@@ -358,7 +358,7 @@
 .svc2-pricing-section {
   width: min(100% - 96px, 1120px);
   margin: 0 auto;
-  padding: 0 0 120px;
+  padding: 104px 0 120px;
 }
 
 .svc2-pricing-header {
@@ -1102,6 +1102,10 @@
 
   .svc2-pricing-header {
     margin-bottom: 34px;
+  }
+
+  .svc2-pricing-section {
+    padding-top: 72px;
   }
 
   .svc2-pricing-title {
