@@ -135,14 +135,16 @@
   padding: 96px max(48px, calc((100% - 1120px) / 2)) 104px;
   box-sizing: border-box;
   background: #e8621e;
+  border-radius: 32px;
+  overflow: hidden;
 }
 
 .svc2-process-header {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.82fr) minmax(360px, 1.18fr);
-  column-gap: 80px;
-  align-items: end;
-  margin-bottom: 41px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .svc2-section-eyebrow {
@@ -154,11 +156,6 @@
   letter-spacing: 0.18em;
   line-height: 1.2;
   text-transform: uppercase;
-}
-
-.svc2-process-header .svc2-section-eyebrow {
-  grid-column: 1 / -1;
-  color: #7d0009;
 }
 
 .svc2-process-header h2,
@@ -175,16 +172,14 @@
 
 .svc2-process-header h2 {
   color: #fdf3ec;
-}
-
-.svc2-process-header h2 {
-  grid-column: 1;
+  max-width: 100%;
+  font-size: clamp(28px, 4vw, 76px);
+  text-transform: uppercase;
 }
 
 .svc2-process-header > p {
-  grid-column: 2;
-  max-width: 420px;
-  margin: 0 0 2px;
+  max-width: 560px;
+  margin: 18px 0 0;
   color: rgba(253, 243, 236, 0.8);
   font-size: 14px;
   line-height: 1.5;
@@ -200,48 +195,35 @@
 
 .svc2-process-viewport {
   min-width: 0;
-  min-height: 270px;
+  min-height: 180px;
   touch-action: pan-y;
 }
 
 .svc2-process-stage {
   display: flex;
-  min-height: 270px;
+  min-height: 180px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 48px;
-  border: 1px solid rgba(253, 243, 236, 0.72);
-  border-radius: 24px;
-  background: rgba(125, 0, 9, 0.12);
+  gap: 18px;
+  padding: 24px 48px;
   text-align: center;
 }
 
-.svc2-process-number {
-  display: block;
-  margin-bottom: 16px;
-  color: #7d0009;
-  font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: 64px;
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 0.8;
-}
-
 .svc2-process-stage h3 {
-  margin: 0 0 12px;
-  color: #fdf3ec;
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  margin: 0;
+  color: #1a0f04;
+  font-size: clamp(16px, 1.7vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .svc2-process-stage p {
-  max-width: 490px;
+  max-width: 560px;
   margin: 0;
-  color: rgba(253, 243, 236, 0.82);
-  font-size: 14px;
-  line-height: 1.55;
+  color: #1a0f04;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .svc2-process-arrow {
@@ -251,17 +233,17 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  border: 1px solid #7d0009;
+  border: 1px solid #ffffff;
   border-radius: 999px;
   background: transparent;
-  color: #7d0009;
+  color: #ffffff;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .svc2-process-arrow:hover {
-  background: #7d0009;
-  color: #fdf3ec;
+  background: #ffffff;
+  color: #e8621e;
 }
 
 .svc2-process-dots {
@@ -277,14 +259,14 @@
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: rgba(253, 243, 236, 0.48);
+  background: rgba(255, 255, 255, 0.48);
   cursor: pointer;
   transition: width 0.2s ease, background 0.2s ease;
 }
 
 .svc2-process-dot--active {
   width: 25px;
-  background: #7d0009;
+  background: #ffffff;
 }
 
 .svc2-platforms-section {
@@ -1005,6 +987,7 @@
 
   .svc2-process-section {
     padding: 64px 24px 70px;
+    border-radius: 24px;
   }
 
   .svc2-process-header {
@@ -1014,7 +997,7 @@
 
   .svc2-process-header h2,
   .svc2-faq-header h2 {
-    font-size: clamp(38px, 11vw, 49px);
+    font-size: clamp(28px, 7vw, 34px);
   }
 
   .svc2-process-header > p {
@@ -1029,28 +1012,23 @@
   }
 
   .svc2-process-viewport {
-    min-height: 238px;
+    min-height: 180px;
   }
 
   .svc2-process-stage {
-    min-height: 238px;
-    padding: 32px 24px;
-    border-radius: 21px;
-  }
-
-  .svc2-process-number {
-    margin-bottom: 15px;
-    font-size: 58px;
+    min-height: 180px;
+    gap: 18px;
+    padding: 24px 18px;
   }
 
   .svc2-process-stage h3 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .svc2-process-stage p {
     max-width: 290px;
-    color: rgba(253, 243, 236, 0.82);
-    font-size: 12px;
+    color: #1a0f04;
+    font-size: 13px;
   }
 
   .svc2-process-arrow {

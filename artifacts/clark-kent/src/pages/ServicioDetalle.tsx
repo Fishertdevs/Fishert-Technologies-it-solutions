@@ -1512,13 +1512,10 @@ export default function ServicioDetalle() {
         {/* ── Process ── */}
         <section className="svc2-process-section" aria-labelledby="svc2-process-title">
           <div className="svc2-process-header">
-            <span className="svc2-section-eyebrow">
-              {lang === "es" ? "Cómo trabajamos" : "How we work"}
-            </span>
             <h2 id="svc2-process-title">
               {lang === "es"
-                ? "De una oportunidad a algo que funciona."
-                : "From an opportunity to something that works."}
+                ? "Cómo trabajamos"
+                : "How we work"}
             </h2>
             <p>
               {lang === "es"
@@ -1547,7 +1544,6 @@ export default function ServicioDetalle() {
               aria-live="polite"
             >
               <article className="svc2-process-stage" key={activeStage.number}>
-                <span className="svc2-process-number">{activeStage.number}</span>
                 <h3>{activeStage.title}</h3>
                 <p>{activeStage.description}</p>
               </article>
