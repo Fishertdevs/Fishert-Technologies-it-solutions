@@ -341,8 +341,8 @@ const serviceContexts: Record<string, ServiceContext> = {
       en: ["AI agents", "RPA & workflows", "CRM & ERP", "Intelligent data"],
     },
     pricingTitle: {
-      es: "Haz que tu operación piense mejor.",
-      en: "Make your operations think smarter.",
+      es: "Comienza a automatizar tus procesos.",
+      en: "Start automating your processes.",
     },
     pricingSub: {
       es: "Detectamos dónde se pierde tiempo y diseñamos una automatización que sí se usa.",
@@ -952,7 +952,7 @@ const data: Record<string, { es: ServiceData; en: ServiceData }> = {
   },
   "automatizacion-ia": {
     es: {
-      title: "Automatización e IA",
+      title: "Automatización + IA",
       eyebrow: "SERVICIO",
       hero: "svc3_2.jpg",
       intro: "Elimina tareas repetitivas. Activa inteligencia real.",
