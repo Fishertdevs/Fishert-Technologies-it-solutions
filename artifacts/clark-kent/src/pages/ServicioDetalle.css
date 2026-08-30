@@ -90,7 +90,7 @@
   letter-spacing: -0.05em;
   line-height: 0.92;
   text-align: center;
-  white-space: nowrap;
+  text-wrap: balance;
 }
 
 .svc2-title--compact {
@@ -812,6 +812,7 @@
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 0.98;
+  overflow-wrap: break-word;
 }
 
 .svc2-month-offer-copy p {
@@ -1043,10 +1044,6 @@
     margin-bottom: 18px;
     font-size: clamp(48px, 14vw, 60px);
     line-height: 0.96;
-  }
-
-  .svc2-title--compact {
-    font-size: clamp(36px, 9.6vw, 46px);
   }
 
   .svc2-intro {
@@ -1304,8 +1301,8 @@
   }
 
   .svc2-month-offer {
-    grid-template-columns: 72px 1fr;
-    gap: 17px;
+    grid-template-columns: 66px minmax(0, 1fr);
+    gap: 14px;
     margin-top: 50px;
     padding: 22px 0;
     border-radius: 0;
@@ -1326,7 +1323,8 @@
   }
 
   .svc2-month-offer-copy h3 {
-    font-size: 27px;
+    font-size: clamp(23px, 7vw, 27px);
+    line-height: 1.04;
   }
 
   .svc2-month-offer-copy p {

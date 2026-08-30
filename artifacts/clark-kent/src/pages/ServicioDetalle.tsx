@@ -311,8 +311,8 @@ const serviceContexts: Record<string, ServiceContext> = {
       en: ["MVPs", "SaaS", "APIs & integrations", "Mobile apps"],
     },
     pricingTitle: {
-      es: "Construye el producto que tu negocio necesita.",
-      en: "Build the product your business needs.",
+      es: "De la visión al producto.",
+      en: "From vision to product.",
     },
     pricingSub: {
       es: "Un equipo de producto para convertir una oportunidad en tecnología real.",
@@ -1714,7 +1714,7 @@ export default function ServicioDetalle() {
           <div className="svc2-hero-content">
             <div className="svc2-title-wrap">
               <span className="svc2-eyebrow">{t.eyebrow}</span>
-              <h1 className={`svc2-title ${t.title.length > 18 ? "svc2-title--compact" : ""}`}>{t.title}</h1>
+              <h1 className="svc2-title">{t.title}</h1>
             </div>
             <p className="svc2-intro">{t.intro}</p>
           </div>
