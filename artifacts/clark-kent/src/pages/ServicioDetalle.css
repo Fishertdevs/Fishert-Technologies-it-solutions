@@ -912,12 +912,12 @@
 }
 
 .svc2-faq-section--carousel .svc2-process-header h2 {
-  color: #1a0f04;
+  color: #fdf3ec;
   white-space: nowrap;
 }
 
 .svc2-faq-section--carousel .svc2-process-header > p {
-  color: #1a0f04;
+  color: rgba(253, 243, 236, 0.82);
 }
 
 .svc2-faq-section--carousel .svc2-process-stage h3,
