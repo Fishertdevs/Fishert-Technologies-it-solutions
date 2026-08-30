@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState, type TouchEvent as ReactTouchEvent } from "react";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
@@ -6,10 +6,35 @@ import Footer from "../Footer";
 const team = [
   {
     name: "Harry Fishert",
-    role: { es: "Fundador & Lead Developer", en: "Founder & Lead Developer" },
+    role: {
+      es: "Fundador · Líder de desarrollo y diseño",
+      en: "Founder · Development & Design Lead",
+    },
     bio: {
-      es: "Visionario detrás de Fishert Studio. Apasionado por crear soluciones digitales que desafíen lo convencional.",
-      en: "The visionary behind Fishert Studio. Passionate about creating digital solutions that challenge the conventional.",
+      es: "Transformo ideas ambiciosas en productos digitales claros, combinando estrategia, desarrollo y diseño para que cada decisión tenga propósito.",
+      en: "I turn ambitious ideas into clear digital products, combining strategy, development, and design so every decision has purpose.",
+    },
+  },
+  {
+    name: "David Moya",
+    role: {
+      es: "QA Tester",
+      en: "QA Tester",
+    },
+    bio: {
+      es: "Pongo cada experiencia a prueba para encontrar los detalles que importan y asegurar productos confiables, fluidos y listos para crecer.",
+      en: "I test every experience to find the details that matter and make sure products are reliable, smooth, and ready to grow.",
+    },
+  },
+  {
+    name: "Samuel Tellez",
+    role: {
+      es: "Gestión interna",
+      en: "Internal Operations",
+    },
+    bio: {
+      es: "Organizo los procesos internos que mantienen al estudio enfocado, coordinado y preparado para convertir buenas ideas en resultados.",
+      en: "I organize the internal processes that keep the studio focused, coordinated, and ready to turn good ideas into results.",
     },
   },
 ];
@@ -64,6 +89,25 @@ const values = {
 export default function QuienesSomos() {
   const { lang } = useLang();
   const v = values[lang];
+  const [activeTeamMember, setActiveTeamMember] = useState(0);
+  const teamTouchStartX = useRef<number | null>(null);
+  const currentTeamMember = team[activeTeamMember];
+
+  const changeTeamMember = (direction: number) => {
+    setActiveTeamMember((current) => (current + direction + team.length) % team.length);
+  };
+
+  const handleTeamTouchStart = (event: ReactTouchEvent<HTMLDivElement>) => {
+    teamTouchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleTeamTouchEnd = (event: ReactTouchEvent<HTMLDivElement>) => {
+    if (teamTouchStartX.current === null) return;
+    const distance = event.changedTouches[0]?.clientX - teamTouchStartX.current;
+    teamTouchStartX.current = null;
+    if (Math.abs(distance) < 45) return;
+    changeTeamMember(distance < 0 ? 1 : -1);
+  };
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -157,6 +201,64 @@ export default function QuienesSomos() {
           </div>
         </section>
 
+        {/* ── Team ── */}
+        <section className="qs-team">
+          <div className="qs-team-inner">
+            <p className="svc-plans-eyebrow">
+              {lang === "es" ? "CONOCE" : "MEET US"}
+            </p>
+            <h2 className="qs-team-heading">
+              {lang === "es" ? "Nuestro equipo." : "Our team."}
+            </h2>
+            <div className="qs-team-grid">
+              <button
+                type="button"
+                className="qs-team-arrow"
+                aria-label={lang === "es" ? "Ver integrante anterior" : "View previous team member"}
+                onClick={() => changeTeamMember(-1)}
+              >
+                ←
+              </button>
+              <div
+                className="qs-team-viewport"
+                onTouchStart={handleTeamTouchStart}
+                onTouchEnd={handleTeamTouchEnd}
+                aria-live="polite"
+              >
+                <article className="qs-team-card" key={currentTeamMember.name}>
+                  <div className="qs-team-avatar">
+                    {currentTeamMember.name.charAt(0)}
+                  </div>
+                  <h3 className="qs-team-name">{currentTeamMember.name}</h3>
+                  <p className="qs-team-role">{currentTeamMember.role[lang]}</p>
+                  <p className="qs-team-bio">{currentTeamMember.bio[lang]}</p>
+                </article>
+              </div>
+              <button
+                type="button"
+                className="qs-team-arrow"
+                aria-label={lang === "es" ? "Ver siguiente integrante" : "View next team member"}
+                onClick={() => changeTeamMember(1)}
+              >
+                →
+              </button>
+            </div>
+            <div className="qs-team-dots" role="tablist" aria-label={lang === "es" ? "Integrantes del equipo" : "Team members"}>
+              {team.map((member, index) => (
+                <button
+                  key={member.name}
+                  type="button"
+                  role="tab"
+                  className={index === activeTeamMember ? "qs-team-dot qs-team-dot--active" : "qs-team-dot"}
+                  aria-label={`${lang === "es" ? "Ver a" : "View"} ${member.name}`}
+                  aria-selected={index === activeTeamMember}
+                  onClick={() => setActiveTeamMember(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── Values ── */}
         <section className="qs-values">
           <div className="qs-values-inner">
@@ -176,30 +278,6 @@ export default function QuienesSomos() {
                     <h3 className="qs-value-title">{val.title}</h3>
                     <p className="qs-value-body">{val.body}</p>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Team ── */}
-        <section className="qs-team">
-          <div className="qs-team-inner">
-            <p className="svc-plans-eyebrow">
-              {lang === "es" ? "CONOCE" : "MEET US"}
-            </p>
-            <h2 className="qs-team-heading">
-              {lang === "es" ? "Nuestro equipo." : "Our team."}
-            </h2>
-            <div className="qs-team-grid">
-              {team.map((member, i) => (
-                <div key={i} className="qs-team-card">
-                  <div className="qs-team-avatar">
-                    {member.name.charAt(0)}
-                  </div>
-                  <h3 className="qs-team-name">{member.name}</h3>
-                  <p className="qs-team-role">{member.role[lang]}</p>
-                  <p className="qs-team-bio">{member.bio[lang]}</p>
                 </div>
               ))}
             </div>

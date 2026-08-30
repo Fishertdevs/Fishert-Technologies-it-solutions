@@ -62,6 +62,7 @@ type OfferCampaign = {
   priority: number;
   discount: number;
   getEventDate: (year: number) => CalendarDate;
+  activeWindowDays: number;
   kicker: LocalizedCopy;
   headline: LocalizedCopy;
 };
@@ -124,6 +125,7 @@ const offerCampaigns: OfferCampaign[] = [
     priority: 10,
     discount: 15,
     getEventDate: fixedDate(1, 1),
+    activeWindowDays: 10,
     kicker: { es: "Oferta de Año Nuevo", en: "New Year offer" },
     headline: {
       es: "Empieza el año con una idea más grande.",
@@ -135,6 +137,7 @@ const offerCampaigns: OfferCampaign[] = [
     priority: 10,
     discount: 12,
     getEventDate: fixedDate(2, 14),
+    activeWindowDays: 7,
     kicker: { es: "Oferta de San Valentín", en: "Valentine's offer" },
     headline: {
       es: "Enamórate de la próxima versión de tu negocio.",
@@ -146,6 +149,7 @@ const offerCampaigns: OfferCampaign[] = [
     priority: 10,
     discount: 18,
     getEventDate: fixedDate(3, 8),
+    activeWindowDays: 7,
     kicker: { es: "Oferta del Día de la Mujer", en: "Women's Day offer" },
     headline: {
       es: "Haz que tu negocio avance con intención.",
@@ -157,6 +161,7 @@ const offerCampaigns: OfferCampaign[] = [
     priority: 20,
     discount: 25,
     getEventDate: (year) => nthWeekdayOfMonth(year, 5, 0, 2),
+    activeWindowDays: 10,
     kicker: { es: "Oferta del Día de la Madre", en: "Mother's Day offer" },
     headline: {
       es: "Celebra a mamá haciendo crecer su negocio.",
@@ -168,6 +173,7 @@ const offerCampaigns: OfferCampaign[] = [
     priority: 20,
     discount: 20,
     getEventDate: (year) => nthWeekdayOfMonth(year, 6, 0, 3),
+    activeWindowDays: 10,
     kicker: { es: "Oferta del Día del Padre", en: "Father's Day offer" },
     headline: {
       es: "El mejor regalo para su negocio es avanzar.",
@@ -179,6 +185,7 @@ const offerCampaigns: OfferCampaign[] = [
     priority: 10,
     discount: 22,
     getEventDate: fixedDate(10, 31),
+    activeWindowDays: 7,
     kicker: { es: "Oferta de Halloween", en: "Halloween offer" },
     headline: {
       es: "Dale vida a una idea que parecía imposible.",
@@ -190,6 +197,7 @@ const offerCampaigns: OfferCampaign[] = [
     priority: 30,
     discount: 30,
     getEventDate: (year) => lastWeekdayOfMonth(year, 11, 5),
+    activeWindowDays: 7,
     kicker: { es: "Oferta de Black Friday", en: "Black Friday offer" },
     headline: {
       es: "La oferta más potente del año empieza aquí.",
@@ -201,6 +209,7 @@ const offerCampaigns: OfferCampaign[] = [
     priority: 10,
     discount: 28,
     getEventDate: fixedDate(12, 25),
+    activeWindowDays: 10,
     kicker: { es: "Oferta de Navidad", en: "Christmas offer" },
     headline: {
       es: "Regala a tu negocio una nueva versión.",
@@ -214,6 +223,7 @@ const defaultOffer: OfferCampaign = {
   priority: 0,
   discount: 20,
   getEventDate: fixedDate(1, 1),
+  activeWindowDays: 0,
   kicker: { es: "Oferta de este mes", en: "This month's offer" },
   headline: {
     es: "Tu próxima versión empieza hoy.",
@@ -222,8 +232,17 @@ const defaultOffer: OfferCampaign = {
 };
 
 const getOfferCampaign = (date: CalendarDate): OfferCampaign => {
+  const dateValue = Date.UTC(date.year, date.month - 1, date.day);
+  const isWithinCampaignWindow = (campaign: OfferCampaign) =>
+    [-1, 0, 1].some((yearOffset) => {
+      const eventDate = campaign.getEventDate(date.year + yearOffset);
+      const eventValue = Date.UTC(eventDate.year, eventDate.month - 1, eventDate.day);
+      const daysFromEvent = Math.abs(dateValue - eventValue) / (24 * 60 * 60 * 1000);
+      return daysFromEvent <= campaign.activeWindowDays;
+    });
+
   const matchingCampaign = offerCampaigns
-    .filter((campaign) => campaign.getEventDate(date.year).month === date.month)
+    .filter(isWithinCampaignWindow)
     .sort((a, b) => b.priority - a.priority)[0];
 
   return matchingCampaign ?? defaultOffer;

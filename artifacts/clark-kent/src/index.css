@@ -6949,6 +6949,104 @@ body {
   text-align: center;
 }
 
+.qs-team {
+  background-color: #ffffff;
+  background-image: conic-gradient(
+    #ffffff 0 25%,
+    #e2e2e2 0 50%,
+    #ffffff 0 75%,
+    #e2e2e2 0 100%
+  );
+  background-size: 72px 72px;
+}
+
+.qs-team-heading {
+  margin: 0 0 44px;
+  color: #171717;
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(48px, 7vw, 110px);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+}
+
+.qs-team-grid {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 600px) 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: none;
+}
+
+.qs-team-viewport {
+  min-width: 0;
+  touch-action: pan-y;
+}
+
+.qs-team-card {
+  width: 100%;
+  box-sizing: border-box;
+  animation: qs-team-card-in 0.45s ease both;
+}
+
+.qs-team-arrow {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #171717;
+  border-radius: 999px;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.qs-team-arrow:hover {
+  background: #171717;
+  color: #ffffff;
+}
+
+.qs-team-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 20px;
+}
+
+.qs-team-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #b9b9b9;
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.qs-team-dot--active {
+  width: 25px;
+  background: #c0001a;
+}
+
+@keyframes qs-team-card-in {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .qs-values-grid {
   gap: 0 70px;
 }
@@ -7061,6 +7159,26 @@ body {
     text-align: center;
   }
 
+  .qs-team-heading {
+    margin-bottom: 31px;
+    font-size: clamp(48px, 14vw, 62px);
+  }
+
+  .qs-team-grid {
+    grid-template-columns: 34px minmax(0, 1fr) 34px;
+    gap: 8px;
+  }
+
+  .qs-team-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 19px;
+  }
+
+  .qs-team-dots {
+    margin-top: 16px;
+  }
+
   .qs-values-grid {
     display: block;
   }
@@ -7124,5 +7242,9 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .qs-team-card {
+    animation: none;
   }
 }
