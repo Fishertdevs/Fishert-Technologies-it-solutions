@@ -7274,3 +7274,57 @@ body {
     max-height: 510px;
   }
 }
+
+/* Final spacing and team-card refinements */
+.qs-story {
+  padding-bottom: 58px;
+}
+
+.qs-team {
+  padding-top: 56px;
+}
+
+.qs-team-card {
+  border-color: #d1d1d1;
+  background-color: #ffffff;
+  background-image: conic-gradient(
+    #ffffff 0 25%,
+    #e2e2e2 0 50%,
+    #ffffff 0 75%,
+    #e2e2e2 0 100%
+  );
+  background-size: 52px 52px;
+}
+
+.qs-team-name {
+  color: #171717;
+}
+
+.qs-team-role {
+  color: #c0001a;
+}
+
+.qs-team-bio {
+  color: #555861;
+}
+
+.qs-footer-art img {
+  width: min(100%, 460px);
+  max-height: 530px;
+  margin-inline: auto;
+}
+
+@media (max-width: 768px) {
+  .qs-story {
+    padding-bottom: 34px;
+  }
+
+  .qs-team {
+    padding-top: 28px;
+  }
+
+  .qs-footer-art img {
+    width: min(100%, 330px);
+    max-height: 430px;
+  }
+}
