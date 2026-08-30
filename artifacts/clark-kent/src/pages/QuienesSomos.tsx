@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type TouchEvent as ReactTouchEvent } from 
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import footerPortrait from "@assets/image_(6)-Photoroom_1788126926994.png";
 
 const team = [
   {
@@ -282,6 +283,10 @@ export default function QuienesSomos() {
               ))}
             </div>
           </div>
+        </section>
+
+        <section className="qs-footer-art" aria-label="Fishert Studio">
+          <img src={footerPortrait} alt="" />
         </section>
 
       </main>

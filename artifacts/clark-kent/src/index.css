@@ -6951,13 +6951,7 @@ body {
 
 .qs-team {
   background-color: #ffffff;
-  background-image: conic-gradient(
-    #ffffff 0 25%,
-    #e2e2e2 0 50%,
-    #ffffff 0 75%,
-    #e2e2e2 0 100%
-  );
-  background-size: 72px 72px;
+  background-image: none;
 }
 
 .qs-team-heading {
@@ -7170,9 +7164,11 @@ body {
   }
 
   .qs-team-arrow {
-    width: 34px;
-    height: 34px;
-    font-size: 19px;
+    display: none;
+  }
+
+  .qs-team-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .qs-team-dots {
@@ -7246,5 +7242,35 @@ body {
 
   .qs-team-card {
     animation: none;
+  }
+}
+
+.qs-footer-art {
+  display: flex;
+  min-height: 0;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  padding: 18px 24px 0;
+  background: #ffffff;
+}
+
+.qs-footer-art img {
+  display: block;
+  width: min(100%, 540px);
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+@media (max-width: 768px) {
+  .qs-footer-art {
+    padding: 8px 14px 0;
+  }
+
+  .qs-footer-art img {
+    width: min(100%, 430px);
+    max-height: 510px;
   }
 }
