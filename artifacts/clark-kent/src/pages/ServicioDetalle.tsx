@@ -3,7 +3,7 @@ import { Link, useParams } from "wouter";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { buildInfoHref } from "../utils/whatsapp";
+import { buildServiceDiscountHref, buildServiceProposalHref } from "../utils/whatsapp";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ServicioDetalle.css";
@@ -311,12 +311,12 @@ const serviceContexts: Record<string, ServiceContext> = {
       en: ["MVPs", "SaaS", "APIs & integrations", "Mobile apps"],
     },
     pricingTitle: {
-      es: "De la visión al producto.",
-      en: "From vision to product.",
+      es: "De la idea al producto.",
+      en: "From idea to product.",
     },
     pricingSub: {
-      es: "Un equipo de producto para convertir una oportunidad en tecnología real.",
-      en: "A product team to turn an opportunity into real technology.",
+      es: "Diseñamos y construimos MVPs, SaaS y plataformas a medida para convertir tu oportunidad en software escalable.",
+      en: "We design and build MVPs, SaaS products, and custom platforms that turn your opportunity into scalable software.",
     },
     offerHeadline: {
       es: "De la idea al primer release.",
@@ -1903,7 +1903,7 @@ export default function ServicioDetalle() {
                     ))}
                   </ul>
 
-                  <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-plan-cta">
+                  <a href={buildServiceProposalHref(lang, t.title, plan.name)} target="_blank" rel="noopener noreferrer" className="svc2-plan-cta">
                     {lang === "es" ? "Solicitar propuesta" : "Request proposal"}
                   </a>
                 </div>
@@ -2025,7 +2025,7 @@ export default function ServicioDetalle() {
                   : `${activeOffer.discount}% off your first service.`}
               </p>
             </div>
-            <a href={buildInfoHref(lang)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
+            <a href={buildServiceDiscountHref(lang, t.title, activeOffer.discount)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
               {lang === "es" ? "Solicitar descuento" : "Request discount"}
             </a>
           </div>

@@ -33,3 +33,31 @@ export function buildInfoMessage(lang: "es" | "en"): string {
 export function buildInfoHref(lang: "es" | "en"): string {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildInfoMessage(lang))}`;
 }
+
+/** Builds a professional proposal request for a specific service and plan. */
+export function buildServiceProposalHref(
+  lang: "es" | "en",
+  serviceName: string,
+  planName: string,
+): string {
+  const greeting = getGreeting(lang);
+  const message = lang === "es"
+    ? `${greeting}, Fishert Studio. Me interesa el plan ${planName} de ${serviceName}. Agradezco que me compartan una propuesta con el alcance, los tiempos estimados y la inversión para evaluar el siguiente paso. Quedo atento(a). Muchas gracias.`
+    : `${greeting}, Fishert Studio. I am interested in the ${planName} plan for ${serviceName}. Please share a proposal with the scope, estimated timeline, and investment so I can evaluate the next step. I look forward to hearing from you. Thank you.`;
+
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+/** Builds a professional discount request tied to a specific service and campaign. */
+export function buildServiceDiscountHref(
+  lang: "es" | "en",
+  serviceName: string,
+  discount: number,
+): string {
+  const greeting = getGreeting(lang);
+  const message = lang === "es"
+    ? `${greeting}, Fishert Studio. Quiero solicitar el descuento vigente del ${discount}% para el servicio de ${serviceName}. Me gustaría conocer el plan más adecuado para mi proyecto, su alcance y cómo aplicar la oferta. Quedo atento(a) a su orientación. Muchas gracias.`
+    : `${greeting}, Fishert Studio. I would like to request the current ${discount}% discount for ${serviceName}. I would appreciate guidance on the best plan for my project, its scope, and how to apply the offer. I look forward to your reply. Thank you.`;
+
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+}
