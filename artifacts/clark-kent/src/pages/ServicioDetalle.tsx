@@ -1801,8 +1801,8 @@ export default function ServicioDetalle() {
             <h3 className={`svc2-pricing-title ${slug === "desarrollo-software" ? "svc2-pricing-title--single-line" : ""} ${slug === "automatizacion-ia" ? "svc2-pricing-title--two-line" : ""}`}>
               {slug === "automatizacion-ia" ? (
                 lang === "es"
-                  ? <>Comienza a<br />automatizar tus procesos.</>
-                  : <>Start automating<br />your processes.</>
+                  ? <>Comienza a automatizar<br />tus procesos.</>
+                  : <>Start automating your<br />processes.</>
               ) : context.pricingTitle[lang]}
             </h3>
             <p className="svc2-pricing-sub">
