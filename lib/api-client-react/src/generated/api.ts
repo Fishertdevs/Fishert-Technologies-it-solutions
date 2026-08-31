@@ -29,7 +29,8 @@ import type {
   ReviewInput,
   ReviewSubmission,
   ReviewsResponse,
-  SocialLinksResponse
+  SocialLinksResponse,
+  TeamResponse
 } from './api.schemas';
 
 import { customFetch } from '../custom-fetch';
@@ -586,4 +587,81 @@ export const useCreateContact = <TError = ErrorType<ErrorResponse>,
       > => {
       return useMutation(getCreateContactMutationOptions(options));
     }
+
+export const getListTeamMembersUrl = () => {
+
+
+
+
+  return `/api/team`
+}
+
+/**
+ * @summary List active team members
+ */
+export const listTeamMembers = async ( options?: Parameters<typeof customFetch>[1]): Promise<TeamResponse> => {
+
+  return customFetch<TeamResponse>(getListTeamMembersUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListTeamMembersQueryKey = () => {
+    return [
+    `/api/team`
+    ] as const;
+    }
+
+
+export const getListTeamMembersQueryOptions = <TData = Awaited<ReturnType<typeof listTeamMembers>>, TError = ErrorType<unknown>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listTeamMembers>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListTeamMembersQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listTeamMembers>>> = ({ signal }) => listTeamMembers({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listTeamMembers>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type ListTeamMembersQueryResult = NonNullable<Awaited<ReturnType<typeof listTeamMembers>>>
+export type ListTeamMembersQueryError = ErrorType<unknown>
+
+
+/**
+ * @summary List active team members
+ */
+
+export function useListTeamMembers<TData = Awaited<ReturnType<typeof listTeamMembers>>, TError = ErrorType<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listTeamMembers>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getListTeamMembersQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
 

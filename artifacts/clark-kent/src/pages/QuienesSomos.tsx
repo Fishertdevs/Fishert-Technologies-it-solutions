@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type TouchEvent as ReactTouchEvent } from "react";
+import { useListTeamMembers } from "@workspace/api-client-react";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
@@ -9,6 +10,7 @@ type TeamMember = {
   role: { es: string; en: string };
   bio: { es: string; en: string };
   bioLines?: { es: string[]; en: string[] };
+  imageRef?: string | null;
 };
 
 const team: TeamMember[] = [
@@ -109,14 +111,23 @@ const values = {
 export default function QuienesSomos() {
   const { lang } = useLang();
   const v = values[lang];
+  const teamQuery = useListTeamMembers();
+  const displayTeam: TeamMember[] = teamQuery.data?.length
+    ? teamQuery.data.map((member) => ({
+        name: member.name,
+        role: { es: member.roleEs, en: member.roleEn },
+        bio: { es: member.bioEs, en: member.bioEn },
+        imageRef: member.imageRef,
+      }))
+    : team;
   const [activeTeamMember, setActiveTeamMember] = useState(0);
   const [teamSlideDirection, setTeamSlideDirection] = useState<1 | -1>(1);
   const teamTouchStartX = useRef<number | null>(null);
-  const currentTeamMember = team[activeTeamMember];
+  const currentTeamMember = displayTeam[activeTeamMember] ?? displayTeam[0];
 
   const changeTeamMember = (direction: number) => {
     setTeamSlideDirection(direction < 0 ? -1 : 1);
-    setActiveTeamMember((current) => (current + direction + team.length) % team.length);
+    setActiveTeamMember((current) => (current + direction + displayTeam.length) % displayTeam.length);
   };
 
   const selectTeamMember = (index: number) => {
@@ -138,6 +149,10 @@ export default function QuienesSomos() {
   };
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  useEffect(() => {
+    setActiveTeamMember((current) => Math.min(current, Math.max(displayTeam.length - 1, 0)));
+  }, [displayTeam.length]);
 
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".qs-value-card"));
@@ -258,7 +273,11 @@ export default function QuienesSomos() {
                   key={currentTeamMember.name}
                 >
                   <div className="qs-team-avatar">
-                    {currentTeamMember.name.charAt(0)}
+                    {currentTeamMember.imageRef ? (
+                      <img src={currentTeamMember.imageRef} alt="" />
+                    ) : (
+                      currentTeamMember.name.charAt(0)
+                    )}
                   </div>
                   <h3 className="qs-team-name">{currentTeamMember.name}</h3>
                   <p className="qs-team-role">{currentTeamMember.role[lang]}</p>
@@ -284,7 +303,7 @@ export default function QuienesSomos() {
               </button>
             </div>
             <div className="qs-team-dots" role="tablist" aria-label={lang === "es" ? "Integrantes del equipo" : "Team members"}>
-              {team.map((member, index) => (
+              {displayTeam.map((member, index) => (
                 <button
                   key={member.name}
                   type="button"

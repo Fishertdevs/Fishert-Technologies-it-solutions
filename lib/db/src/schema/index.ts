@@ -24,3 +24,6 @@ export * from "./plans";
 export * from "./reviews";
 export * from "./service-categories";
 export * from "./social-links";
+export * from "./telegram-admins";
+export * from "./telegram-sessions";
+export * from "./team-members";

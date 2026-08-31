@@ -24,3 +24,5 @@ export * from './serviceCategory';
 export * from './socialLink';
 export * from './socialLinkCategory';
 export * from './socialLinksResponse';
+export * from './teamMember';
+export * from './teamResponse';

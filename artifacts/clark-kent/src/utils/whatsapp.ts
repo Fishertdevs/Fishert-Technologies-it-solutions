@@ -31,7 +31,11 @@ export function buildInfoMessage(lang: "es" | "en"): string {
 
 /** Full wa.me href with the standard info message pre-filled. */
 export function buildInfoHref(lang: "es" | "en"): string {
-  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildInfoMessage(lang))}`;
+  return buildInfoHrefForNumber(WA_NUMBER, lang);
+}
+
+export function buildInfoHrefForNumber(number: string, lang: "es" | "en"): string {
+  return `https://wa.me/${number}?text=${encodeURIComponent(buildInfoMessage(lang))}`;
 }
 
 /** Builds a professional proposal request for a specific service and plan. */

@@ -4,6 +4,7 @@ import {
   ListPlansResponse,
   ListSocialLinksResponse,
   ListPublishedReviewsResponse,
+  ListTeamMembersResponse,
 } from "@workspace/api-zod";
 import {
   db,
@@ -12,6 +13,7 @@ import {
   reviewsTable,
   serviceCategoriesTable,
   socialLinksTable,
+  teamMembersTable,
 } from "@workspace/db";
 
 const router: IRouter = Router();
@@ -100,6 +102,26 @@ router.get("/reviews", async (req, res): Promise<void> => {
       })),
     ),
   );
+});
+
+router.get("/team", async (_req, res): Promise<void> => {
+  const members = await db
+    .select({
+      id: teamMembersTable.id,
+      name: teamMembersTable.name,
+      roleEs: teamMembersTable.roleEs,
+      roleEn: teamMembersTable.roleEn,
+      bioEs: teamMembersTable.bioEs,
+      bioEn: teamMembersTable.bioEn,
+      imageRef: teamMembersTable.imageRef,
+      sortOrder: teamMembersTable.sortOrder,
+      isActive: teamMembersTable.isActive,
+    })
+    .from(teamMembersTable)
+    .where(eq(teamMembersTable.isActive, true))
+    .orderBy(asc(teamMembersTable.sortOrder), asc(teamMembersTable.id));
+
+  res.json(ListTeamMembersResponse.parse(members));
 });
 
 export default router;

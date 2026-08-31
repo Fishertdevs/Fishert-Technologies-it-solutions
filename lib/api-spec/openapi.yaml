@@ -16,6 +16,8 @@ tags:
     description: Contact submissions
   - name: reviews
     description: Customer reviews
+  - name: team
+    description: Public team members
 paths:
   /healthz:
     get:
@@ -131,6 +133,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+  /team:
+    get:
+      operationId: listTeamMembers
+      tags: [team]
+      summary: List active team members
+      responses:
+        "200":
+          description: Active Fishert Studio team members
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamResponse"
 components:
   schemas:
     HealthStatus:
@@ -340,4 +354,30 @@ components:
         createdAt:
           type: string
           format: date-time
+    TeamMember:
+      type: object
+      required: [id, name, roleEs, roleEn, bioEs, bioEn, sortOrder, isActive]
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        roleEs:
+          type: string
+        roleEn:
+          type: string
+        bioEs:
+          type: string
+        bioEn:
+          type: string
+        imageRef:
+          type: ["string", "null"]
+        sortOrder:
+          type: number
+        isActive:
+          type: boolean
+    TeamResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/TeamMember"
 

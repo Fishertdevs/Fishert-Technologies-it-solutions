@@ -152,3 +152,20 @@ export const CreateContactResponse = zod.object({
 })
 
 
+/**
+ * @summary List active team members
+ */
+export const ListTeamMembersResponseItem = zod.object({
+  "id": zod.number(),
+  "name": zod.string(),
+  "roleEs": zod.string(),
+  "roleEn": zod.string(),
+  "bioEs": zod.string(),
+  "bioEn": zod.string(),
+  "imageRef": zod.string().nullish(),
+  "sortOrder": zod.number(),
+  "isActive": zod.boolean()
+})
+export const ListTeamMembersResponse = zod.array(ListTeamMembersResponseItem)
+
+

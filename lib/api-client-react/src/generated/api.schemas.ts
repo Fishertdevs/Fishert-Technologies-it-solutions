@@ -154,3 +154,18 @@ export interface ContactSubmission {
   createdAt: string;
 }
 
+export interface TeamMember {
+  id: number;
+  name: string;
+  roleEs: string;
+  roleEn: string;
+  bioEs: string;
+  bioEn: string;
+  /** @nullable */
+  imageRef?: string | null;
+  sortOrder: number;
+  isActive: boolean;
+}
+
+export type TeamResponse = TeamMember[];
+
