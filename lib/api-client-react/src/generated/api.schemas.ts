@@ -9,141 +9,79 @@ export interface HealthStatus {
   status: string;
 }
 
-export interface ContactSettings {
-  email: string;
-  phone: string;
-  whatsappNumber: string;
-  location: string;
-  businessHoursWeekdays: string;
-  businessHoursWeekend: string;
-}
-
-export interface SocialLink {
-  platform: string;
-  label: string;
-  url: string;
-}
-
-export interface PlanFeature {
-  es: string;
-  en: string;
-}
-
-export interface ServicePlan {
-  slug: string;
-  name: string;
-  /** @nullable */
-  priceCop: number | null;
-  priceLabelEs: string;
-  priceLabelEn: string;
-  currency: string;
-  /** @nullable */
-  periodEs: string | null;
-  /** @nullable */
-  periodEn: string | null;
-  /** @nullable */
-  badgeEs: string | null;
-  /** @nullable */
-  badgeEn: string | null;
-  isCustom: boolean;
-  features: PlanFeature[];
+export interface ErrorResponse {
+  error: string;
 }
 
 export interface ServiceCategory {
   slug: string;
   nameEs: string;
   nameEn: string;
-  plans: ServicePlan[];
 }
 
-export interface SiteContent {
-  contact: ContactSettings;
-  socialLinks: SocialLink[];
-  services: ServiceCategory[];
+export interface SocialLink {
+  label: string;
+  icon: string;
+  url: string;
 }
 
-export type ReviewLanguage = typeof ReviewLanguage[keyof typeof ReviewLanguage];
+export interface SocialLinkCategory {
+  category: string;
+  links: SocialLink[];
+}
 
+export type SocialLinksResponse = SocialLinkCategory[];
 
-export const ReviewLanguage = {
-  es: 'es',
-  en: 'en',
-} as const;
+export interface PlanFeature {
+  textEs: string;
+  textEn: string;
+}
+
+export interface Plan {
+  slug: string;
+  nameEs: string;
+  nameEn: string;
+  price: string;
+  currency: string;
+  /** @nullable */
+  periodEs?: string | null;
+  /** @nullable */
+  periodEn?: string | null;
+  /** @nullable */
+  badgeEs?: string | null;
+  /** @nullable */
+  badgeEn?: string | null;
+  isCustom: boolean;
+  features: PlanFeature[];
+}
+
+export interface PlanCategory {
+  category: ServiceCategory;
+  plans: Plan[];
+}
+
+export type PlansResponse = PlanCategory[];
 
 export interface Review {
-  id: number;
-  authorName: string;
+  name: string;
   /** @nullable */
-  company: string | null;
-  quote: string;
-  /**
-     * @minimum 1
-     * @maximum 5
-     */
-  stars: number;
-  language: ReviewLanguage;
-  createdAt: string;
-}
-
-export interface ReviewsResponse {
-  reviews: Review[];
-  average: number;
-  total: number;
-}
-
-export type CreateReviewRequestLanguage = typeof CreateReviewRequestLanguage[keyof typeof CreateReviewRequestLanguage];
-
-
-export const CreateReviewRequestLanguage = {
-  es: 'es',
-  en: 'en',
-} as const;
-
-export interface CreateReviewRequest {
-  /**
-     * @minLength 2
-     * @maxLength 120
-     */
-  authorName: string;
-  /**
-     * @maxLength 160
-     * @nullable
-     */
   company?: string | null;
-  /**
-     * @minLength 10
-     * @maxLength 1200
-     */
-  quote: string;
+  text: string;
   /**
      * @minimum 1
      * @maximum 5
      */
-  stars: number;
-  language: CreateReviewRequestLanguage;
+  rating: number;
 }
 
-export type CreateContactMessageRequestLanguage = typeof CreateContactMessageRequestLanguage[keyof typeof CreateContactMessageRequestLanguage];
+export type ReviewsResponse = Review[];
 
-
-export const CreateContactMessageRequestLanguage = {
-  es: 'es',
-  en: 'en',
-} as const;
-
-export interface CreateContactMessageRequest {
+export interface ReviewInput {
   /**
      * @minLength 2
      * @maxLength 120
      */
   name: string;
-  /** @maxLength 254 */
-  email: string;
-  /**
-     * @maxLength 40
-     * @nullable
-     */
-  phone?: string | null;
   /**
      * @maxLength 160
      * @nullable
@@ -153,39 +91,54 @@ export interface CreateContactMessageRequest {
      * @minLength 10
      * @maxLength 2000
      */
-  message: string;
-  language: CreateContactMessageRequestLanguage;
+  text: string;
+  /**
+     * @minimum 1
+     * @maximum 5
+     */
+  rating: number;
 }
 
-export interface SubmissionResponse {
-  success: boolean;
-  id: number;
-  message: string;
-}
-
-export interface ErrorResponse {
-  message: string;
-}
-
-/**
- * Invalid request
- */
-export type BadRequestResponse = ErrorResponse;
-
-/**
- * Internal server error
- */
-export type ServerErrorResponse = ErrorResponse;
-
-export type GetReviewsParams = {
-language?: GetReviewsLanguage;
-};
-
-export type GetReviewsLanguage = typeof GetReviewsLanguage[keyof typeof GetReviewsLanguage];
+export type ReviewSubmissionStatus = typeof ReviewSubmissionStatus[keyof typeof ReviewSubmissionStatus];
 
 
-export const GetReviewsLanguage = {
-  es: 'es',
-  en: 'en',
+export const ReviewSubmissionStatus = {
+  pending: 'pending',
 } as const;
+
+export interface ReviewSubmission {
+  id: number;
+  status: ReviewSubmissionStatus;
+  createdAt: string;
+}
+
+export interface ContactInput {
+  /**
+     * @minLength 2
+     * @maxLength 120
+     */
+  name: string;
+  /** @maxLength 254 */
+  email: string;
+  /**
+     * @maxLength 160
+     * @nullable
+     */
+  company?: string | null;
+  /**
+     * @maxLength 40
+     * @nullable
+     */
+  phone?: string | null;
+  /**
+     * @minLength 10
+     * @maxLength 4000
+     */
+  message: string;
+}
+
+export interface ContactSubmission {
+  id: number;
+  createdAt: string;
+}
 

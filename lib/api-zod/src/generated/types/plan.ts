@@ -7,22 +7,20 @@
  */
 import type { PlanFeature } from './planFeature';
 
-export interface ServicePlan {
+export interface Plan {
   slug: string;
-  name: string;
-  /** @nullable */
-  priceCop: number | null;
-  priceLabelEs: string;
-  priceLabelEn: string;
+  nameEs: string;
+  nameEn: string;
+  price: string;
   currency: string;
   /** @nullable */
-  periodEs: string | null;
+  periodEs?: string | null;
   /** @nullable */
-  periodEn: string | null;
+  periodEn?: string | null;
   /** @nullable */
-  badgeEs: string | null;
+  badgeEs?: string | null;
   /** @nullable */
-  badgeEn: string | null;
+  badgeEn?: string | null;
   isCustom: boolean;
   features: PlanFeature[];
 }

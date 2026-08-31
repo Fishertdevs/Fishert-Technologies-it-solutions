@@ -18,133 +18,121 @@ export const HealthCheckResponse = zod.object({
 
 
 /**
- * @summary Get public site content
+ * @summary List active social links grouped by category
  */
-export const GetSiteContentResponse = zod.object({
-  "contact": zod.object({
-  "email": zod.string(),
-  "phone": zod.string(),
-  "whatsappNumber": zod.string(),
-  "location": zod.string(),
-  "businessHoursWeekdays": zod.string(),
-  "businessHoursWeekend": zod.string()
-}),
-  "socialLinks": zod.array(zod.object({
-  "platform": zod.string(),
+export const ListSocialLinksResponseItem = zod.object({
+  "category": zod.string(),
+  "links": zod.array(zod.object({
   "label": zod.string(),
+  "icon": zod.string(),
   "url": zod.string()
-})),
-  "services": zod.array(zod.object({
-  "slug": zod.string(),
-  "nameEs": zod.string(),
-  "nameEn": zod.string(),
-  "plans": zod.array(zod.object({
-  "slug": zod.string(),
-  "name": zod.string(),
-  "priceCop": zod.number().nullable(),
-  "priceLabelEs": zod.string(),
-  "priceLabelEn": zod.string(),
-  "currency": zod.string(),
-  "periodEs": zod.string().nullable(),
-  "periodEn": zod.string().nullable(),
-  "badgeEs": zod.string().nullable(),
-  "badgeEn": zod.string().nullable(),
-  "isCustom": zod.boolean(),
-  "features": zod.array(zod.object({
-  "es": zod.string(),
-  "en": zod.string()
-}))
-}))
 }))
 })
+export const ListSocialLinksResponse = zod.array(ListSocialLinksResponseItem)
 
 
 /**
- * @summary Get published reviews
+ * @summary List service plans grouped by category
  */
-export const GetReviewsQueryParams = zod.object({
-  "language": zod.enum(['es', 'en']).optional()
+export const ListPlansResponseItem = zod.object({
+  "category": zod.object({
+  "slug": zod.string(),
+  "nameEs": zod.string(),
+  "nameEn": zod.string()
+}),
+  "plans": zod.array(zod.object({
+  "slug": zod.string(),
+  "nameEs": zod.string(),
+  "nameEn": zod.string(),
+  "price": zod.string(),
+  "currency": zod.string(),
+  "periodEs": zod.string().nullish(),
+  "periodEn": zod.string().nullish(),
+  "badgeEs": zod.string().nullish(),
+  "badgeEn": zod.string().nullish(),
+  "isCustom": zod.boolean(),
+  "features": zod.array(zod.object({
+  "textEs": zod.string(),
+  "textEn": zod.string()
+}))
+}))
 })
-
-export const getReviewsResponseReviewsItemStarsMax = 5;
-
+export const ListPlansResponse = zod.array(ListPlansResponseItem)
 
 
-export const GetReviewsResponse = zod.object({
-  "reviews": zod.array(zod.object({
-  "id": zod.number(),
-  "authorName": zod.string(),
-  "company": zod.string().nullable(),
-  "quote": zod.string(),
-  "stars": zod.number().min(1).max(getReviewsResponseReviewsItemStarsMax),
-  "language": zod.enum(['es', 'en']),
-  "createdAt": zod.string()
-})),
-  "average": zod.number(),
-  "total": zod.number()
+/**
+ * @summary List published reviews
+ */
+export const listPublishedReviewsResponseRatingMax = 5;
+
+
+
+export const ListPublishedReviewsResponseItem = zod.object({
+  "name": zod.string(),
+  "company": zod.string().nullish(),
+  "text": zod.string(),
+  "rating": zod.number().min(1).max(listPublishedReviewsResponseRatingMax)
 })
+export const ListPublishedReviewsResponse = zod.array(ListPublishedReviewsResponseItem)
 
 
 /**
  * @summary Submit a review for moderation
  */
-export const createReviewBodyAuthorNameMin = 2;
-export const createReviewBodyAuthorNameMax = 120;
+export const createReviewBodyNameMin = 2;
+export const createReviewBodyNameMax = 120;
 
 export const createReviewBodyCompanyMax = 160;
 
-export const createReviewBodyQuoteMin = 10;
-export const createReviewBodyQuoteMax = 1200;
+export const createReviewBodyTextMin = 10;
+export const createReviewBodyTextMax = 2000;
 
-export const createReviewBodyStarsMax = 5;
+export const createReviewBodyRatingMax = 5;
 
 
 
 export const CreateReviewBody = zod.object({
-  "authorName": zod.string().min(createReviewBodyAuthorNameMin).max(createReviewBodyAuthorNameMax),
+  "name": zod.string().min(createReviewBodyNameMin).max(createReviewBodyNameMax),
   "company": zod.string().max(createReviewBodyCompanyMax).nullish(),
-  "quote": zod.string().min(createReviewBodyQuoteMin).max(createReviewBodyQuoteMax),
-  "stars": zod.number().min(1).max(createReviewBodyStarsMax),
-  "language": zod.enum(['es', 'en'])
+  "text": zod.string().min(createReviewBodyTextMin).max(createReviewBodyTextMax),
+  "rating": zod.number().min(1).max(createReviewBodyRatingMax)
 })
 
 export const CreateReviewResponse = zod.object({
-  "success": zod.boolean(),
   "id": zod.number(),
-  "message": zod.string()
+  "status": zod.enum(['pending']),
+  "createdAt": zod.coerce.date()
 })
 
 
 /**
  * @summary Submit a contact message
  */
-export const createContactMessageBodyNameMin = 2;
-export const createContactMessageBodyNameMax = 120;
+export const createContactBodyNameMin = 2;
+export const createContactBodyNameMax = 120;
 
-export const createContactMessageBodyEmailMax = 254;
+export const createContactBodyEmailMax = 254;
 
-export const createContactMessageBodyPhoneMax = 40;
+export const createContactBodyCompanyMax = 160;
 
-export const createContactMessageBodyCompanyMax = 160;
+export const createContactBodyPhoneMax = 40;
 
-export const createContactMessageBodyMessageMin = 10;
-export const createContactMessageBodyMessageMax = 2000;
+export const createContactBodyMessageMin = 10;
+export const createContactBodyMessageMax = 4000;
 
 
 
-export const CreateContactMessageBody = zod.object({
-  "name": zod.string().min(createContactMessageBodyNameMin).max(createContactMessageBodyNameMax),
-  "email": zod.string().max(createContactMessageBodyEmailMax),
-  "phone": zod.string().max(createContactMessageBodyPhoneMax).nullish(),
-  "company": zod.string().max(createContactMessageBodyCompanyMax).nullish(),
-  "message": zod.string().min(createContactMessageBodyMessageMin).max(createContactMessageBodyMessageMax),
-  "language": zod.enum(['es', 'en'])
+export const CreateContactBody = zod.object({
+  "name": zod.string().min(createContactBodyNameMin).max(createContactBodyNameMax),
+  "email": zod.string().max(createContactBodyEmailMax),
+  "company": zod.string().max(createContactBodyCompanyMax).nullish(),
+  "phone": zod.string().max(createContactBodyPhoneMax).nullish(),
+  "message": zod.string().min(createContactBodyMessageMin).max(createContactBodyMessageMax)
 })
 
-export const CreateContactMessageResponse = zod.object({
-  "success": zod.boolean(),
+export const CreateContactResponse = zod.object({
   "id": zod.number(),
-  "message": zod.string()
+  "createdAt": zod.coerce.date()
 })
 
 

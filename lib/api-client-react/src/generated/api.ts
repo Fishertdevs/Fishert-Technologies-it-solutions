@@ -20,15 +20,15 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  BadRequestResponse,
-  CreateContactMessageRequest,
-  CreateReviewRequest,
-  GetReviewsParams,
+  ContactInput,
+  ContactSubmission,
+  ErrorResponse,
   HealthStatus,
+  PlansResponse,
+  ReviewInput,
+  ReviewSubmission,
   ReviewsResponse,
-  ServerErrorResponse,
-  SiteContent,
-  SubmissionResponse
+  SocialLinksResponse
 } from './api.schemas';
 
 import { customFetch } from '../custom-fetch';
@@ -136,20 +136,20 @@ export function useHealthCheck<TData = Awaited<ReturnType<typeof healthCheck>>, 
 
 
 
-export const getGetSiteContentUrl = () => {
+export const getListSocialLinksUrl = () => {
 
 
 
 
-  return `/api/content`
+  return `/api/social-links`
 }
 
 /**
- * @summary Get public site content
+ * @summary List active social links grouped by category
  */
-export const getSiteContent = async ( options?: Parameters<typeof customFetch>[1]): Promise<SiteContent> => {
+export const listSocialLinks = async ( options?: Parameters<typeof customFetch>[1]): Promise<SocialLinksResponse> => {
 
-  return customFetch<SiteContent>(getGetSiteContentUrl(),
+  return customFetch<SocialLinksResponse>(getListSocialLinksUrl(),
   {
     ...options,
     method: 'GET'
@@ -162,45 +162,45 @@ export const getSiteContent = async ( options?: Parameters<typeof customFetch>[1
 
 
 
-export const getGetSiteContentQueryKey = () => {
+export const getListSocialLinksQueryKey = () => {
     return [
-    `/api/content`
+    `/api/social-links`
     ] as const;
     }
 
 
-export const getGetSiteContentQueryOptions = <TData = Awaited<ReturnType<typeof getSiteContent>>, TError = ErrorType<ServerErrorResponse>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSiteContent>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getListSocialLinksQueryOptions = <TData = Awaited<ReturnType<typeof listSocialLinks>>, TError = ErrorType<unknown>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listSocialLinks>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetSiteContentQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getListSocialLinksQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getSiteContent>>> = ({ signal }) => getSiteContent({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listSocialLinks>>> = ({ signal }) => listSocialLinks({ signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSiteContent>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listSocialLinks>>, TError, TData> & { queryKey: QueryKey }
 }
 
-export type GetSiteContentQueryResult = NonNullable<Awaited<ReturnType<typeof getSiteContent>>>
-export type GetSiteContentQueryError = ErrorType<ServerErrorResponse>
+export type ListSocialLinksQueryResult = NonNullable<Awaited<ReturnType<typeof listSocialLinks>>>
+export type ListSocialLinksQueryError = ErrorType<unknown>
 
 
 /**
- * @summary Get public site content
+ * @summary List active social links grouped by category
  */
 
-export function useGetSiteContent<TData = Awaited<ReturnType<typeof getSiteContent>>, TError = ErrorType<ServerErrorResponse>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSiteContent>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export function useListSocialLinks<TData = Awaited<ReturnType<typeof listSocialLinks>>, TError = ErrorType<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listSocialLinks>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getGetSiteContentQueryOptions(options)
+  const queryOptions = getListSocialLinksQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -213,27 +213,20 @@ export function useGetSiteContent<TData = Awaited<ReturnType<typeof getSiteConte
 
 
 
-export const getGetReviewsUrl = (params?: GetReviewsParams,) => {
-  const normalizedParams = new URLSearchParams();
+export const getListPlansUrl = () => {
 
-  Object.entries(params || {}).forEach(([key, value]) => {
 
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : String(value))
-    }
-  });
 
-  const stringifiedParams = normalizedParams.toString();
 
-  return stringifiedParams.length > 0 ? `/api/reviews?${stringifiedParams}` : `/api/reviews`
+  return `/api/plans`
 }
 
 /**
- * @summary Get published reviews
+ * @summary List service plans grouped by category
  */
-export const getReviews = async (params?: GetReviewsParams, options?: Parameters<typeof customFetch>[1]): Promise<ReviewsResponse> => {
+export const listPlans = async ( options?: Parameters<typeof customFetch>[1]): Promise<PlansResponse> => {
 
-  return customFetch<ReviewsResponse>(getGetReviewsUrl(params),
+  return customFetch<PlansResponse>(getListPlansUrl(),
   {
     ...options,
     method: 'GET'
@@ -246,45 +239,122 @@ export const getReviews = async (params?: GetReviewsParams, options?: Parameters
 
 
 
-export const getGetReviewsQueryKey = (params?: GetReviewsParams,) => {
+export const getListPlansQueryKey = () => {
     return [
-    `/api/reviews`, ...(params ? [params] : [])
+    `/api/plans`
     ] as const;
     }
 
 
-export const getGetReviewsQueryOptions = <TData = Awaited<ReturnType<typeof getReviews>>, TError = ErrorType<BadRequestResponse | ServerErrorResponse>>(params?: GetReviewsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getReviews>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getListPlansQueryOptions = <TData = Awaited<ReturnType<typeof listPlans>>, TError = ErrorType<unknown>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listPlans>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetReviewsQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getListPlansQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getReviews>>> = ({ signal }) => getReviews(params, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listPlans>>> = ({ signal }) => listPlans({ signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getReviews>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listPlans>>, TError, TData> & { queryKey: QueryKey }
 }
 
-export type GetReviewsQueryResult = NonNullable<Awaited<ReturnType<typeof getReviews>>>
-export type GetReviewsQueryError = ErrorType<BadRequestResponse | ServerErrorResponse>
+export type ListPlansQueryResult = NonNullable<Awaited<ReturnType<typeof listPlans>>>
+export type ListPlansQueryError = ErrorType<unknown>
 
 
 /**
- * @summary Get published reviews
+ * @summary List service plans grouped by category
  */
 
-export function useGetReviews<TData = Awaited<ReturnType<typeof getReviews>>, TError = ErrorType<BadRequestResponse | ServerErrorResponse>>(
- params?: GetReviewsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getReviews>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export function useListPlans<TData = Awaited<ReturnType<typeof listPlans>>, TError = ErrorType<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listPlans>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getGetReviewsQueryOptions(params,options)
+  const queryOptions = getListPlansQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getListPublishedReviewsUrl = () => {
+
+
+
+
+  return `/api/reviews`
+}
+
+/**
+ * @summary List published reviews
+ */
+export const listPublishedReviews = async ( options?: Parameters<typeof customFetch>[1]): Promise<ReviewsResponse> => {
+
+  return customFetch<ReviewsResponse>(getListPublishedReviewsUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getListPublishedReviewsQueryKey = () => {
+    return [
+    `/api/reviews`
+    ] as const;
+    }
+
+
+export const getListPublishedReviewsQueryOptions = <TData = Awaited<ReturnType<typeof listPublishedReviews>>, TError = ErrorType<unknown>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listPublishedReviews>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getListPublishedReviewsQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listPublishedReviews>>> = ({ signal }) => listPublishedReviews({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listPublishedReviews>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type ListPublishedReviewsQueryResult = NonNullable<Awaited<ReturnType<typeof listPublishedReviews>>>
+export type ListPublishedReviewsQueryError = ErrorType<unknown>
+
+
+/**
+ * @summary List published reviews
+ */
+
+export function useListPublishedReviews<TData = Awaited<ReturnType<typeof listPublishedReviews>>, TError = ErrorType<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof listPublishedReviews>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getListPublishedReviewsQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -308,14 +378,14 @@ export const getCreateReviewUrl = () => {
 /**
  * @summary Submit a review for moderation
  */
-export const createReview = async (createReviewRequest: CreateReviewRequest, options?: Parameters<typeof customFetch>[1]): Promise<SubmissionResponse> => {
+export const createReview = async (reviewInput: ReviewInput, options?: Parameters<typeof customFetch>[1]): Promise<ReviewSubmission> => {
 
-  return customFetch<SubmissionResponse>(getCreateReviewUrl(),
+  return customFetch<ReviewSubmission>(getCreateReviewUrl(),
   {
     ...options,
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(createReviewRequest)
+    body: JSON.stringify(reviewInput)
   }
 );}
 
@@ -323,9 +393,9 @@ export const createReview = async (createReviewRequest: CreateReviewRequest, opt
 
 
 
-export const getCreateReviewMutationOptions = <TError = ErrorType<BadRequestResponse | ServerErrorResponse>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createReview>>, TError,{data: BodyType<CreateReviewRequest>}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof createReview>>, TError,{data: BodyType<CreateReviewRequest>}, TContext> => {
+export const getCreateReviewMutationOptions = <TError = ErrorType<ErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createReview>>, TError,{data: BodyType<ReviewInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof createReview>>, TError,{data: BodyType<ReviewInput>}, TContext> => {
 
 const mutationKey = ['createReview'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -337,7 +407,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createReview>>, {data: BodyType<CreateReviewRequest>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createReview>>, {data: BodyType<ReviewInput>}> = (props) => {
           const {data} = props ?? {};
 
           return  createReview(data,requestOptions)
@@ -351,42 +421,42 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CreateReviewMutationResult = NonNullable<Awaited<ReturnType<typeof createReview>>>
-    export type CreateReviewMutationBody = BodyType<CreateReviewRequest>
-    export type CreateReviewMutationError = ErrorType<BadRequestResponse | ServerErrorResponse>
+    export type CreateReviewMutationBody = BodyType<ReviewInput>
+    export type CreateReviewMutationError = ErrorType<ErrorResponse>
 
     /**
  * @summary Submit a review for moderation
  */
-export const useCreateReview = <TError = ErrorType<BadRequestResponse | ServerErrorResponse>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createReview>>, TError,{data: BodyType<CreateReviewRequest>}, TContext>, request?: SecondParameter<typeof customFetch>}
+export const useCreateReview = <TError = ErrorType<ErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createReview>>, TError,{data: BodyType<ReviewInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof createReview>>,
         TError,
-        {data: BodyType<CreateReviewRequest>},
+        {data: BodyType<ReviewInput>},
         TContext
       > => {
       return useMutation(getCreateReviewMutationOptions(options));
     }
 
-export const getCreateContactMessageUrl = () => {
+export const getCreateContactUrl = () => {
 
 
 
 
-  return `/api/contact`
+  return `/api/contacts`
 }
 
 /**
  * @summary Submit a contact message
  */
-export const createContactMessage = async (createContactMessageRequest: CreateContactMessageRequest, options?: Parameters<typeof customFetch>[1]): Promise<SubmissionResponse> => {
+export const createContact = async (contactInput: ContactInput, options?: Parameters<typeof customFetch>[1]): Promise<ContactSubmission> => {
 
-  return customFetch<SubmissionResponse>(getCreateContactMessageUrl(),
+  return customFetch<ContactSubmission>(getCreateContactUrl(),
   {
     ...options,
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(createContactMessageRequest)
+    body: JSON.stringify(contactInput)
   }
 );}
 
@@ -394,11 +464,11 @@ export const createContactMessage = async (createContactMessageRequest: CreateCo
 
 
 
-export const getCreateContactMessageMutationOptions = <TError = ErrorType<BadRequestResponse | ServerErrorResponse>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createContactMessage>>, TError,{data: BodyType<CreateContactMessageRequest>}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof createContactMessage>>, TError,{data: BodyType<CreateContactMessageRequest>}, TContext> => {
+export const getCreateContactMutationOptions = <TError = ErrorType<ErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createContact>>, TError,{data: BodyType<ContactInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof createContact>>, TError,{data: BodyType<ContactInput>}, TContext> => {
 
-const mutationKey = ['createContactMessage'];
+const mutationKey = ['createContact'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -408,10 +478,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createContactMessage>>, {data: BodyType<CreateContactMessageRequest>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createContact>>, {data: BodyType<ContactInput>}> = (props) => {
           const {data} = props ?? {};
 
-          return  createContactMessage(data,requestOptions)
+          return  createContact(data,requestOptions)
         }
 
 
@@ -421,21 +491,21 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type CreateContactMessageMutationResult = NonNullable<Awaited<ReturnType<typeof createContactMessage>>>
-    export type CreateContactMessageMutationBody = BodyType<CreateContactMessageRequest>
-    export type CreateContactMessageMutationError = ErrorType<BadRequestResponse | ServerErrorResponse>
+    export type CreateContactMutationResult = NonNullable<Awaited<ReturnType<typeof createContact>>>
+    export type CreateContactMutationBody = BodyType<ContactInput>
+    export type CreateContactMutationError = ErrorType<ErrorResponse>
 
     /**
  * @summary Submit a contact message
  */
-export const useCreateContactMessage = <TError = ErrorType<BadRequestResponse | ServerErrorResponse>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createContactMessage>>, TError,{data: BodyType<CreateContactMessageRequest>}, TContext>, request?: SecondParameter<typeof customFetch>}
+export const useCreateContact = <TError = ErrorType<ErrorResponse>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createContact>>, TError,{data: BodyType<ContactInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
-        Awaited<ReturnType<typeof createContactMessage>>,
+        Awaited<ReturnType<typeof createContact>>,
         TError,
-        {data: BodyType<CreateContactMessageRequest>},
+        {data: BodyType<ContactInput>},
         TContext
       > => {
-      return useMutation(getCreateContactMessageMutationOptions(options));
+      return useMutation(getCreateContactMutationOptions(options));
     }
 

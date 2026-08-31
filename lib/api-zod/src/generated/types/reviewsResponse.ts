@@ -7,8 +7,4 @@
  */
 import type { Review } from './review';
 
-export interface ReviewsResponse {
-  reviews: Review[];
-  average: number;
-  total: number;
-}
+export type ReviewsResponse = Review[];

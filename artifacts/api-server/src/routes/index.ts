@@ -1,14 +1,12 @@
 import { Router, type IRouter } from "express";
-import contentRouter from "./content";
-import contactRouter from "./contact";
 import healthRouter from "./health";
-import reviewsRouter from "./reviews";
+import contentRouter from "./content";
+import submissionsRouter from "./submissions";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
 router.use(contentRouter);
-router.use(contactRouter);
-router.use(reviewsRouter);
+router.use(submissionsRouter);
 
 export default router;

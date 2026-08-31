@@ -5,7 +5,9 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
+import type { SocialLink } from './socialLink';
 
-export interface ErrorResponse {
-  error: string;
+export interface SocialLinkCategory {
+  category: string;
+  links: SocialLink[];
 }

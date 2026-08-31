@@ -5,14 +5,13 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-import type { CreateReviewRequestLanguage } from './createReviewRequestLanguage';
 
-export interface CreateReviewRequest {
+export interface ReviewInput {
   /**
      * @minLength 2
      * @maxLength 120
      */
-  authorName: string;
+  name: string;
   /**
      * @maxLength 160
      * @nullable
@@ -20,13 +19,12 @@ export interface CreateReviewRequest {
   company?: string | null;
   /**
      * @minLength 10
-     * @maxLength 1200
+     * @maxLength 2000
      */
-  quote: string;
+  text: string;
   /**
      * @minimum 1
      * @maximum 5
      */
-  stars: number;
-  language: CreateReviewRequestLanguage;
+  rating: number;
 }

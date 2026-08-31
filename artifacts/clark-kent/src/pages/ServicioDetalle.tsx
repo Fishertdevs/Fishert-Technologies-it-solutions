@@ -4,6 +4,7 @@ import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { buildServiceDiscountHref, buildServiceProposalHref } from "../utils/whatsapp";
+import { useListPlans } from "@workspace/api-client-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ServicioDetalle.css";
@@ -1444,6 +1445,17 @@ export default function ServicioDetalle() {
   const { lang } = useLang();
   const slug = params.slug ?? "";
   const service = data[slug];
+  const plansQuery = useListPlans();
+  const apiPlanGroup = plansQuery.data?.find((group) => group.category.slug === slug);
+  const plans: Plan[] = (apiPlanGroup?.plans ?? []).map((plan) => ({
+    name: lang === "es" ? plan.nameEs : plan.nameEn,
+    price: plan.price,
+    currency: plan.currency,
+    period: lang === "es" ? plan.periodEs ?? undefined : plan.periodEn ?? undefined,
+    badge: lang === "es" ? plan.badgeEs ?? undefined : plan.badgeEn ?? undefined,
+    features: plan.features.map((feature) => lang === "es" ? feature.textEs : feature.textEn),
+    isCustom: plan.isCustom,
+  }));
   const [billingMode, setBillingMode] = useState<"monthly" | "annual">("monthly");
   const [activePlan, setActivePlan] = useState(0);
   const [activeProcess, setActiveProcess] = useState(0);
@@ -1678,8 +1690,8 @@ export default function ServicioDetalle() {
     if (Math.abs(deltaX) < 40) return;
     setActivePlan((current) => (
       deltaX > 0
-        ? (current + 1) % t.plans.length
-        : (current - 1 + t.plans.length) % t.plans.length
+        ? (current + 1) % plans.length
+        : (current - 1 + plans.length) % plans.length
     ));
   };
 
@@ -1879,7 +1891,11 @@ export default function ServicioDetalle() {
                 planTouchStartX.current = null;
               }}
             >
-              {t.plans.map((plan, i) => (
+              {plansQuery.isLoading ? (
+                <p className="svc2-plans-status">{lang === "es" ? "Cargando planes…" : "Loading plans…"}</p>
+              ) : plansQuery.isError || plans.length === 0 ? (
+                <p className="svc2-plans-status">{lang === "es" ? "Los planes no están disponibles en este momento." : "Plans are not available right now."}</p>
+              ) : plans.map((plan, i) => (
                 <div
                   key={i}
                   className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""} ${activePlan === i ? "svc2-plan-card--active" : ""}`}
@@ -1951,7 +1967,7 @@ export default function ServicioDetalle() {
             </div>
           </div>
           <div className="svc2-plan-dots" aria-label={lang === "es" ? "Navegación de planes" : "Plan navigation"}>
-            {t.plans.map((plan, index) => (
+            {plans.map((plan, index) => (
               <button
                 key={plan.name}
                 type="button"

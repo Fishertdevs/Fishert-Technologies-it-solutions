@@ -5,9 +5,8 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-import type { CreateContactMessageRequestLanguage } from './createContactMessageRequestLanguage';
 
-export interface CreateContactMessageRequest {
+export interface ContactInput {
   /**
      * @minLength 2
      * @maxLength 120
@@ -16,19 +15,18 @@ export interface CreateContactMessageRequest {
   /** @maxLength 254 */
   email: string;
   /**
-     * @maxLength 40
-     * @nullable
-     */
-  phone?: string | null;
-  /**
      * @maxLength 160
      * @nullable
      */
   company?: string | null;
   /**
+     * @maxLength 40
+     * @nullable
+     */
+  phone?: string | null;
+  /**
      * @minLength 10
-     * @maxLength 2000
+     * @maxLength 4000
      */
   message: string;
-  language: CreateContactMessageRequestLanguage;
 }

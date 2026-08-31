@@ -7,6 +7,6 @@
  */
 
 export interface PlanFeature {
-  es: string;
-  en: string;
+  textEs: string;
+  textEn: string;
 }

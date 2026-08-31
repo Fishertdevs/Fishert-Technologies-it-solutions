@@ -7,7 +7,7 @@
  */
 
 export interface SocialLink {
-  platform: string;
   label: string;
+  icon: string;
   url: string;
 }

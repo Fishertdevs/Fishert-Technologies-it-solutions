@@ -3194,13 +3194,13 @@ body {
 
 .cslider-track {
   display: flex;
-  width: 200%;
+  width: 300%;
   height: 100%;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cslider-slide {
-  width: 50%;
+  width: 33.333333%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -3552,6 +3552,67 @@ body {
   font-size: clamp(18px, 2vw, 24px);
   font-weight: 600;
   color: #111;
+}
+
+.cslider-slide--message {
+  gap: 10px;
+}
+
+.contacto-form--compact {
+  gap: 10px;
+  width: 100%;
+}
+
+.contacto-form-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #ffffff;
+}
+
+.contacto-form-heading strong {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+.contacto-form-heading span {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: rgba(255,255,255,0.65);
+}
+
+.contacto-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.contacto-form--compact .contacto-input,
+.contacto-form--compact input,
+.contacto-form--compact textarea {
+  font-size: 11px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.9);
+}
+
+.contacto-form--compact textarea {
+  min-height: 64px;
+  resize: none;
+}
+
+.contacto-form--compact .contacto-submit {
+  align-self: flex-end;
+  font-size: 10px;
+  padding: 10px 16px;
+  border-radius: 6px;
+}
+
+.contacto-form-error {
+  color: #ffb3b3;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
 }
 
 /* ── Media queries ───────────────────────────────────────── */
@@ -5101,8 +5162,8 @@ body {
   }
 
   .cslider-slide {
-    flex: 0 0 50%;
-    width: 50%;
+    flex: 0 0 33.333333%;
+    width: 33.333333%;
     min-width: 0;
     overflow: hidden;
   }

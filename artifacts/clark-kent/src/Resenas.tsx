@@ -7,17 +7,13 @@ import {
 import { useLang } from "./LanguageContext";
 import ReviewForm from "./ReviewForm";
 import resenasBust from "@assets/resenas_bust.png";
+import { useListPublishedReviews } from "@workspace/api-client-react";
 
 type Review = {
   quote: string;
   author: string;
   company: string;
   stars: number;
-};
-
-const reviews: Record<"es" | "en", Review[]> = {
-  es: [],
-  en: [],
 };
 
 /* Blue Twitter-style verified badge */
@@ -95,10 +91,14 @@ function RatingSummary({ list, lang }: { list: Review[]; lang: "es" | "en" }) {
 function ReviewsCarousel({
   list,
   lang,
+  isLoading,
+  isError,
   onAddReview,
 }: {
   list: Review[];
   lang: "es" | "en";
+  isLoading: boolean;
+  isError: boolean;
   onAddReview: () => void;
 }) {
   const [start, setStart] = useState(0);
@@ -141,7 +141,17 @@ function ReviewsCarousel({
           swipeStartX.current = null;
         }}
       >
-        {list.length === 0 ? (
+        {isLoading ? (
+          <p className="resenas-empty">
+            {lang === "es" ? "Cargando reseñas…" : "Loading reviews…"}
+          </p>
+        ) : isError ? (
+          <p className="resenas-empty">
+            {lang === "es"
+              ? "No se pudieron cargar las reseñas."
+              : "Reviews could not be loaded."}
+          </p>
+        ) : list.length === 0 ? (
           <p className="resenas-empty">
             {lang === "es"
               ? "Aún no se tienen reseñas disponibles."
@@ -220,7 +230,13 @@ function ReviewsCarousel({
 
 export default function Resenas() {
   const { lang } = useLang();
-  const list = reviews[lang];
+  const { data: publishedReviews, isLoading, isError } = useListPublishedReviews();
+  const list: Review[] = (publishedReviews ?? []).map((review) => ({
+    quote: review.text,
+    author: review.name,
+    company: review.company ?? "",
+    stars: review.rating,
+  }));
   const [showForm, setShowForm] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -276,6 +292,8 @@ export default function Resenas() {
             <ReviewsCarousel
               list={list}
               lang={lang}
+              isLoading={isLoading}
+              isError={isError}
               onAddReview={() => setShowForm(true)}
             />
           </div>

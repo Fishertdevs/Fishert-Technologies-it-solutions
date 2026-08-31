@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useLang } from "./LanguageContext";
+import { useCreateReview } from "@workspace/api-client-react";
 
 interface Props {
   onClose: () => void;
@@ -33,7 +34,7 @@ const copy = {
     required: "Este campo es requerido.",
     success: {
       title: "¡Gracias por tu reseña!",
-      sub: "Tu opinión es muy valiosa para nosotros.",
+      sub: "La hemos recibido y quedará pendiente de aprobación antes de publicarse.",
       cta: "Cerrar",
     },
   },
@@ -64,7 +65,7 @@ const copy = {
     required: "This field is required.",
     success: {
       title: "Thank you for your review!",
-      sub: "Your opinion means a lot to us.",
+      sub: "We received it and it will remain pending approval before publication.",
       cta: "Close",
     },
   },
@@ -84,6 +85,7 @@ export default function ReviewForm({ onClose }: Props) {
   const [reviewErr, setReviewErr] = useState(false);
   const [done, setDone] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+  const createReviewMutation = useCreateReview();
 
   const TOTAL = 3;
   const slidePercent = `${step * -(100 / TOTAL)}%`;
@@ -91,13 +93,25 @@ export default function ReviewForm({ onClose }: Props) {
   function goNext() {
     if (step === 0 && rating === 0) return;
     if (step === 1) {
-      if (!name.trim()) { setNameErr(true); return; }
+      if (name.trim().length < 2) { setNameErr(true); return; }
       setNameErr(false);
     }
     if (step === 2) {
-      if (!review.trim()) { setReviewErr(true); return; }
+      if (review.trim().length < 10) { setReviewErr(true); return; }
       setReviewErr(false);
-      setDone(true);
+      createReviewMutation.mutate(
+        {
+          data: {
+            name: name.trim(),
+            company: company.trim() || null,
+            text: review.trim(),
+            rating,
+          },
+        },
+        {
+          onSuccess: () => setDone(true),
+        },
+      );
       return;
     }
     setStep(s => s + 1);
@@ -239,11 +253,25 @@ export default function ReviewForm({ onClose }: Props) {
                         className={`rf-input rf-textarea${reviewErr ? " rf-input--err" : ""}`}
                         placeholder={t.step3.ph}
                         rows={4}
+                        maxLength={2000}
                         value={review}
                         onChange={e => { setReview(e.target.value); setReviewErr(false); }}
                       />
-                      {reviewErr && <span className="rf-err-msg">{t.required}</span>}
+                      {reviewErr && (
+                        <span className="rf-err-msg">
+                          {lang === "es"
+                            ? "Escribe al menos 10 caracteres."
+                            : "Write at least 10 characters."}
+                        </span>
+                      )}
                     </div>
+                    {createReviewMutation.isError && (
+                      <p className="rf-err-msg" role="alert">
+                        {lang === "es"
+                          ? "No pudimos enviar la reseña. Inténtalo de nuevo."
+                          : "We could not send the review. Please try again."}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -262,8 +290,11 @@ export default function ReviewForm({ onClose }: Props) {
               <button
                 className={`rf-txt-btn${step === 0 && rating === 0 ? " rf-txt-btn--disabled" : ""}`}
                 onClick={goNext}
+                disabled={createReviewMutation.isPending}
               >
-                {step === 2 ? t.submit : t.next}
+                {createReviewMutation.isPending
+                  ? (lang === "es" ? "Enviando…" : "Sending…")
+                  : step === 2 ? t.submit : t.next}
               </button>
             </div>
           </>
