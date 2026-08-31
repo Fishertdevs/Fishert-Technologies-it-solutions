@@ -1,11 +1,6 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "./LanguageContext";
 import { buildInfoHref } from "./utils/whatsapp";
-import {
-  useCreateContact,
-  useGetContactSettings,
-  useListSocialLinks,
-} from "@workspace/api-client-react";
 
 /* ── Contact data ──────────────────────────────────────────── */
 const WA_NUMBER = "573112512939";
