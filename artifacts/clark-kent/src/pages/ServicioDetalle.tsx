@@ -1446,8 +1446,9 @@ export default function ServicioDetalle() {
   const slug = params.slug ?? "";
   const service = data[slug];
   const plansQuery = useListPlans();
-  const apiPlanGroup = plansQuery.data?.find((group) => group.category.slug === slug);
-  const plans: Plan[] = (apiPlanGroup?.plans ?? []).map((plan) => ({
+  const planGroups = Array.isArray(plansQuery.data) ? plansQuery.data : [];
+  const apiPlanGroup = planGroups.find((group) => group.category.slug === slug);
+  const plans: Plan[] = (apiPlanGroup?.plans ?? service?.plans ?? []).map((plan) => ({
     name: lang === "es" ? plan.nameEs : plan.nameEn,
     price: plan.price,
     currency: plan.currency,

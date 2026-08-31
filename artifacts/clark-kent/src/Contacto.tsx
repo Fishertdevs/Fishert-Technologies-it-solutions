@@ -162,7 +162,8 @@ export default function Contacto() {
   const createContactMutation = useCreateContact();
   const contactSettingsQuery = useGetContactSettings();
   const socialQuery = useListSocialLinks();
-  const socialLinks = socialQuery.data?.find((group) => group.category === "contact")?.links ?? [];
+  const socialGroups = Array.isArray(socialQuery.data) ? socialQuery.data : [];
+  const socialLinks = socialGroups.find((group) => group.category === "contact")?.links ?? [];
   const contactSettings = contactSettingsQuery.data;
   const contactEmail = contactSettings?.email ?? EMAIL;
   const contactPhone = contactSettings?.phone ?? PHONE_DISPLAY;

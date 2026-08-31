@@ -231,7 +231,8 @@ function ReviewsCarousel({
 export default function Resenas() {
   const { lang } = useLang();
   const { data: publishedReviews, isLoading, isError } = useListPublishedReviews();
-  const list: Review[] = (publishedReviews ?? []).map((review) => ({
+  const reviewRows = Array.isArray(publishedReviews) ? publishedReviews : [];
+  const list: Review[] = reviewRows.map((review) => ({
     quote: review.text,
     author: review.name,
     company: review.company ?? "",
