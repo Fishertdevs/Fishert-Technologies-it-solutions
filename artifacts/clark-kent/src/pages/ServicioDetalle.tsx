@@ -1448,15 +1448,17 @@ export default function ServicioDetalle() {
   const plansQuery = useListPlans();
   const planGroups = Array.isArray(plansQuery.data) ? plansQuery.data : [];
   const apiPlanGroup = planGroups.find((group) => group.category.slug === slug);
-  const plans: Plan[] = (apiPlanGroup?.plans ?? service?.plans ?? []).map((plan) => ({
-    name: lang === "es" ? plan.nameEs : plan.nameEn,
-    price: plan.price,
-    currency: plan.currency,
-    period: lang === "es" ? plan.periodEs ?? undefined : plan.periodEn ?? undefined,
-    badge: lang === "es" ? plan.badgeEs ?? undefined : plan.badgeEn ?? undefined,
-    features: plan.features.map((feature) => lang === "es" ? feature.textEs : feature.textEn),
-    isCustom: plan.isCustom,
-  }));
+  const plans: Plan[] = apiPlanGroup
+    ? apiPlanGroup.plans.map((plan) => ({
+        name: lang === "es" ? plan.nameEs : plan.nameEn,
+        price: plan.price,
+        currency: plan.currency,
+        period: lang === "es" ? plan.periodEs ?? undefined : plan.periodEn ?? undefined,
+        badge: lang === "es" ? plan.badgeEs ?? undefined : plan.badgeEn ?? undefined,
+        features: plan.features.map((feature) => lang === "es" ? feature.textEs : feature.textEn),
+        isCustom: plan.isCustom,
+      }))
+    : service?.[lang]?.plans ?? [];
   const [billingMode, setBillingMode] = useState<"monthly" | "annual">("monthly");
   const [activePlan, setActivePlan] = useState(0);
   const [activeProcess, setActiveProcess] = useState(0);
