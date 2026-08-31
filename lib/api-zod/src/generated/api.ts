@@ -32,6 +32,22 @@ export const ListSocialLinksResponse = zod.array(ListSocialLinksResponseItem)
 
 
 /**
+ * @summary Get public contact settings
+ */
+export const GetContactSettingsResponse = zod.object({
+  "email": zod.string(),
+  "phone": zod.string(),
+  "whatsappNumber": zod.string(),
+  "locationEs": zod.string(),
+  "locationEn": zod.string(),
+  "businessHoursWeekdaysEs": zod.string(),
+  "businessHoursWeekdaysEn": zod.string(),
+  "businessHoursWeekendEs": zod.string(),
+  "businessHoursWeekendEn": zod.string()
+})
+
+
+/**
  * @summary List service plans grouped by category
  */
 export const ListPlansResponseItem = zod.object({

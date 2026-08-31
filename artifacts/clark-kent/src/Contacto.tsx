@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useLang } from "./LanguageContext";
 import { buildInfoHref } from "./utils/whatsapp";
-import { useCreateContact, useListSocialLinks } from "@workspace/api-client-react";
+import {
+  useCreateContact,
+  useGetContactSettings,
+  useListSocialLinks,
+} from "@workspace/api-client-react";
 
 /* ── Contact data ──────────────────────────────────────────── */
 const WA_NUMBER = "573112512939";
@@ -156,8 +160,39 @@ export default function Contacto() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const createContactMutation = useCreateContact();
+  const contactSettingsQuery = useGetContactSettings();
   const socialQuery = useListSocialLinks();
   const socialLinks = socialQuery.data?.find((group) => group.category === "contact")?.links ?? [];
+  const contactSettings = contactSettingsQuery.data;
+  const contactEmail = contactSettings?.email ?? EMAIL;
+  const contactPhone = contactSettings?.phone ?? PHONE_DISPLAY;
+  const contactWhatsappNumber = contactSettings?.whatsappNumber ?? WA_NUMBER;
+  const contactInfo = t.info.map((item) => {
+    if (item.icon === "location") {
+      return {
+        ...item,
+        value: contactSettings
+          ? (lang === "es" ? contactSettings.locationEs : contactSettings.locationEn)
+          : item.value,
+        href: null,
+      };
+    }
+    if (item.icon === "email") {
+      return { ...item, value: contactEmail, href: `mailto:${contactEmail}` };
+    }
+    return {
+      ...item,
+      value: contactPhone,
+      href: item.icon === "whatsapp"
+        ? `https://wa.me/${contactWhatsappNumber}`
+        : `tel:${contactWhatsappNumber}`,
+    };
+  });
+  const contactHours = contactSettings
+    ? lang === "es"
+      ? [contactSettings.businessHoursWeekdaysEs, contactSettings.businessHoursWeekendEs]
+      : [contactSettings.businessHoursWeekdaysEn, contactSettings.businessHoursWeekendEn]
+    : t.hours;
 
   function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -249,7 +284,7 @@ export default function Contacto() {
                     <div className="cslide-contact-header">
                       <p className="contacto-info-sub">{t.sub}</p>
                       <div className="contacto-info-hours-block">
-                        {t.hours.map((h) => (
+                        {contactHours.map((h) => (
                           <p key={h} className="contacto-info-hours">
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
                               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -263,7 +298,7 @@ export default function Contacto() {
 
                     {/* Info list */}
                     <ul className="contacto-info-list">
-                      {t.info.map((item) => (
+                      {contactInfo.map((item) => (
                         <li key={item.icon} className="contacto-info-item">
                           <span className="contacto-info-icon">{iconMap[item.icon]}</span>
                           <span className="contacto-info-text">
@@ -365,7 +400,7 @@ export default function Contacto() {
 
                     {/* Agendar — right-aligned text button */}
                     <a
-                      href={`https://wa.me/${WA_NUMBER}?text=${buildBookingMsg(lang)}`}
+                      href={`https://wa.me/${contactWhatsappNumber}?text=${buildBookingMsg(lang)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="cslider-cta-text"

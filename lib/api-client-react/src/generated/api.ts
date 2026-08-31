@@ -21,6 +21,7 @@ import type {
 
 import type {
   ContactInput,
+  ContactSettings,
   ContactSubmission,
   ErrorResponse,
   HealthStatus,
@@ -201,6 +202,83 @@ export function useListSocialLinks<TData = Awaited<ReturnType<typeof listSocialL
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
   const queryOptions = getListSocialLinksQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getGetContactSettingsUrl = () => {
+
+
+
+
+  return `/api/contact-settings`
+}
+
+/**
+ * @summary Get public contact settings
+ */
+export const getContactSettings = async ( options?: Parameters<typeof customFetch>[1]): Promise<ContactSettings> => {
+
+  return customFetch<ContactSettings>(getGetContactSettingsUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetContactSettingsQueryKey = () => {
+    return [
+    `/api/contact-settings`
+    ] as const;
+    }
+
+
+export const getGetContactSettingsQueryOptions = <TData = Awaited<ReturnType<typeof getContactSettings>>, TError = ErrorType<ErrorResponse>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getContactSettings>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetContactSettingsQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getContactSettings>>> = ({ signal }) => getContactSettings({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getContactSettings>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type GetContactSettingsQueryResult = NonNullable<Awaited<ReturnType<typeof getContactSettings>>>
+export type GetContactSettingsQueryError = ErrorType<ErrorResponse>
+
+
+/**
+ * @summary Get public contact settings
+ */
+
+export function useGetContactSettings<TData = Awaited<ReturnType<typeof getContactSettings>>, TError = ErrorType<ErrorResponse>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getContactSettings>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getGetContactSettingsQueryOptions(options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 

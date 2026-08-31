@@ -42,6 +42,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SocialLinksResponse"
+  /contact-settings:
+    get:
+      operationId: getContactSettings
+      tags: [contact]
+      summary: Get public contact settings
+      responses:
+        "200":
+          description: Public Fishert Studio contact details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactSettings"
+        "404":
+          description: Contact settings are not configured
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
   /plans:
     get:
       operationId: listPlans
@@ -127,6 +145,37 @@ components:
       required: [error]
       properties:
         error:
+          type: string
+    ContactSettings:
+      type: object
+      required:
+        - email
+        - phone
+        - whatsappNumber
+        - locationEs
+        - locationEn
+        - businessHoursWeekdaysEs
+        - businessHoursWeekdaysEn
+        - businessHoursWeekendEs
+        - businessHoursWeekendEn
+      properties:
+        email:
+          type: string
+        phone:
+          type: string
+        whatsappNumber:
+          type: string
+        locationEs:
+          type: string
+        locationEn:
+          type: string
+        businessHoursWeekdaysEs:
+          type: string
+        businessHoursWeekdaysEn:
+          type: string
+        businessHoursWeekendEs:
+          type: string
+        businessHoursWeekendEn:
           type: string
     ServiceCategory:
       type: object

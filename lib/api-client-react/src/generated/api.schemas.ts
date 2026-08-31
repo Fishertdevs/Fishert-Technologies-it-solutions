@@ -13,6 +13,18 @@ export interface ErrorResponse {
   error: string;
 }
 
+export interface ContactSettings {
+  email: string;
+  phone: string;
+  whatsappNumber: string;
+  locationEs: string;
+  locationEn: string;
+  businessHoursWeekdaysEs: string;
+  businessHoursWeekdaysEn: string;
+  businessHoursWeekendEs: string;
+  businessHoursWeekendEn: string;
+}
+
 export interface ServiceCategory {
   slug: string;
   nameEs: string;
