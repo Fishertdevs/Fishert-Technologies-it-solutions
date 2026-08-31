@@ -144,72 +144,8 @@ export default function Contacto() {
   const { lang } = useLang();
   const t = content[lang];
   const [slide, setSlide] = useState(0);
-  const [contactForm, setContactForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    message: "",
-  });
-  const [contactSubmitted, setContactSubmitted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const createContactMutation = useCreateContact();
-  const contactSettingsQuery = useGetContactSettings();
-  const socialQuery = useListSocialLinks();
-  const socialGroups = Array.isArray(socialQuery.data) ? socialQuery.data : [];
-  const socialLinks = socialGroups.find((group) => group.category === "contact")?.links ?? [];
-  const contactSettings = contactSettingsQuery.data;
-  const contactEmail = contactSettings?.email ?? EMAIL;
-  const contactPhone = contactSettings?.phone ?? PHONE_DISPLAY;
-  const contactWhatsappNumber = contactSettings?.whatsappNumber ?? WA_NUMBER;
-  const contactInfo = t.info.map((item) => {
-    if (item.icon === "location") {
-      return {
-        ...item,
-        value: contactSettings
-          ? (lang === "es" ? contactSettings.locationEs : contactSettings.locationEn)
-          : item.value,
-        href: null,
-      };
-    }
-    if (item.icon === "email") {
-      return { ...item, value: contactEmail, href: `mailto:${contactEmail}` };
-    }
-    return {
-      ...item,
-      value: contactPhone,
-      href: item.icon === "whatsapp"
-        ? `https://wa.me/${contactWhatsappNumber}`
-        : `tel:${contactWhatsappNumber}`,
-    };
-  });
-  const contactHours = contactSettings
-    ? lang === "es"
-      ? [contactSettings.businessHoursWeekdaysEs, contactSettings.businessHoursWeekendEs]
-      : [contactSettings.businessHoursWeekdaysEn, contactSettings.businessHoursWeekendEn]
-    : t.hours;
-
-  function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    createContactMutation.mutate(
-      {
-        data: {
-          name: contactForm.name.trim(),
-          email: contactForm.email.trim(),
-          company: contactForm.company.trim() || null,
-          phone: contactForm.phone.trim() || null,
-          message: contactForm.message.trim(),
-        },
-      },
-      {
-        onSuccess: () => {
-          setContactSubmitted(true);
-          setContactForm({ name: "", email: "", company: "", phone: "", message: "" });
-        },
-      },
-    );
-  }
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -261,7 +197,7 @@ export default function Contacto() {
 
               {/* Tabs — centered */}
               <div className="cslider-tabs">
-                {[...t.tabs, lang === "es" ? "Enviar mensaje" : "Send a message"].map((tab, i) => (
+                {t.tabs.map((tab, i) => (
                   <button key={i}
                     className={`cslider-tab${slide === i ? " cslider-tab--active" : ""}`}
                     onClick={() => setSlide(i)}>
@@ -280,7 +216,7 @@ export default function Contacto() {
                     <div className="cslide-contact-header">
                       <p className="contacto-info-sub">{t.sub}</p>
                       <div className="contacto-info-hours-block">
-                        {contactHours.map((h) => (
+                        {t.hours.map((h) => (
                           <p key={h} className="contacto-info-hours">
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
                               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -294,7 +230,7 @@ export default function Contacto() {
 
                     {/* Info list */}
                     <ul className="contacto-info-list">
-                      {contactInfo.map((item) => (
+                      {t.info.map((item) => (
                         <li key={item.icon} className="contacto-info-item">
                           <span className="contacto-info-icon">{iconMap[item.icon]}</span>
                           <span className="contacto-info-text">
@@ -315,7 +251,6 @@ export default function Contacto() {
                     </ul>
 
                     {/* Social icons — centered, brand colors on hover */}
-                    {socialQuery.isLoading && (
                     <div className="contacto-social-row">
                       <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
                         className="contacto-social-btn contacto-social-btn--ig" aria-label="Instagram">
@@ -334,16 +269,6 @@ export default function Contacto() {
                         <WhatsAppIcon size={18} />
                       </a>
                     </div>
-                    )}
-                    {socialLinks.length > 0 && (
-                      <div className="contacto-social-row">
-                        {socialLinks.map((social) => (
-                          <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" className={`contacto-social-btn contacto-social-btn--${social.icon}`} aria-label={social.label}>
-                            {social.icon === "whatsapp" ? <WhatsAppIcon size={18} /> : social.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
                   </div>
 
                   {/* ── Slide 1: Contact form ────────────────── */}
