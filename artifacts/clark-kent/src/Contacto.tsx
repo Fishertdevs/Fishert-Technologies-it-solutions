@@ -208,7 +208,7 @@ export default function Contacto() {
 
               {/* Track */}
               <div className="cslider-track-wrap">
-                <div className="cslider-track" style={{ transform: `translateX(${slide * -(100 / 3)}%)` }}>
+                <div className="cslider-track" style={{ transform: `translateX(${slide * -50}%)` }}>
 
                   {/* ── Slide 0: Contáctanos ─────────────────── */}
                   <div className="cslider-slide">
@@ -271,38 +271,7 @@ export default function Contacto() {
                     </div>
                   </div>
 
-                  {/* ── Slide 1: Contact form ────────────────── */}
-                  <div className="cslider-slide cslider-slide--message">
-                    {contactSubmitted ? (
-                      <div className="contacto-success">
-                        <strong>{lang === "es" ? "Mensaje recibido." : "Message received."}</strong>
-                        <p>{lang === "es" ? "Te responderemos en menos de 24 horas." : "We will reply within 24 hours."}</p>
-                        <button type="button" className="cslider-cta-text" onClick={() => setContactSubmitted(false)}>
-                          {lang === "es" ? "Enviar otro mensaje" : "Send another message"}
-                        </button>
-                      </div>
-                    ) : (
-                      <form className="contacto-form contacto-form--compact" onSubmit={handleContactSubmit}>
-                        <div className="contacto-form-heading">
-                          <strong>{lang === "es" ? "Escríbenos directamente" : "Write to us directly"}</strong>
-                          <span>{lang === "es" ? "Cuéntanos brevemente tu proyecto." : "Tell us briefly about your project."}</span>
-                        </div>
-                        <div className="contacto-form-grid">
-                          <input required minLength={2} maxLength={120} aria-label={lang === "es" ? "Nombre" : "Name"} placeholder={lang === "es" ? "Nombre *" : "Name *"} value={contactForm.name} onChange={(event) => setContactForm((current) => ({ ...current, name: event.target.value }))} />
-                          <input required type="email" maxLength={254} aria-label="Email" placeholder="Email *" value={contactForm.email} onChange={(event) => setContactForm((current) => ({ ...current, email: event.target.value }))} />
-                          <input maxLength={160} aria-label={lang === "es" ? "Empresa" : "Company"} placeholder={lang === "es" ? "Empresa" : "Company"} value={contactForm.company} onChange={(event) => setContactForm((current) => ({ ...current, company: event.target.value }))} />
-                          <input maxLength={40} aria-label={lang === "es" ? "Teléfono" : "Phone"} placeholder={lang === "es" ? "Teléfono" : "Phone"} value={contactForm.phone} onChange={(event) => setContactForm((current) => ({ ...current, phone: event.target.value }))} />
-                        </div>
-                        <textarea required minLength={10} maxLength={4000} rows={3} aria-label={lang === "es" ? "Mensaje" : "Message"} placeholder={lang === "es" ? "Mensaje *" : "Message *"} value={contactForm.message} onChange={(event) => setContactForm((current) => ({ ...current, message: event.target.value }))} />
-                        {createContactMutation.isError && <span className="contacto-form-error" role="alert">{lang === "es" ? "No pudimos enviar el mensaje. Inténtalo de nuevo." : "We could not send your message. Please try again."}</span>}
-                        <button type="submit" className="contacto-submit" disabled={createContactMutation.isPending}>
-                          {createContactMutation.isPending ? (lang === "es" ? "Enviando…" : "Sending…") : (lang === "es" ? "Enviar mensaje" : "Send message")}
-                        </button>
-                      </form>
-                    )}
-                  </div>
-
-                  {/* ── Slide 2: Agendar cita ────────────────── */}
+                  {/* ── Slide 1: Agendar cita ────────────────── */}
                   <div className="cslider-slide cslider-slide--booking">
 
                     <p className="cslider-booking-intro">{t.bookingIntro}</p>
@@ -321,7 +290,7 @@ export default function Contacto() {
 
                     {/* Agendar — right-aligned text button */}
                     <a
-                      href={`https://wa.me/${contactWhatsappNumber}?text=${buildBookingMsg(lang)}`}
+                      href={`https://wa.me/${WA_NUMBER}?text=${buildBookingMsg(lang)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="cslider-cta-text"
