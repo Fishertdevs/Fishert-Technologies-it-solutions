@@ -887,6 +887,8 @@ router.post("/telegram/webhook", async (req, res): Promise<void> => {
     await processUpdate(req.body as TelegramUpdate, req.log);
   } catch (error) {
     req.log.error({ err: error }, "Telegram update failed");
+    res.status(500).json({ error: "Telegram update could not be processed." });
+    return;
   }
   res.sendStatus(200);
 });
