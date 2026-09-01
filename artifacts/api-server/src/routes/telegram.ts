@@ -18,6 +18,8 @@ import {
   backToMenuMarkup,
   editTelegramMessage,
   escapeTelegramText,
+  ensureTelegramWebhook,
+  getTelegramWebhookInfo,
   sendTelegramMessage,
   setTelegramCommands,
   telegramMenu,
@@ -890,10 +892,32 @@ router.post("/telegram/webhook", async (req, res): Promise<void> => {
 });
 
 router.get("/telegram/health", async (_req, res): Promise<void> => {
-  res.json({
-    configured: Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID),
-    chatIdConfigured: Boolean(process.env.TELEGRAM_CHAT_ID),
-  });
+  const configured = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
+  if (!configured) {
+    res.json({ configured, chatIdConfigured: Boolean(process.env.TELEGRAM_CHAT_ID) });
+    return;
+  }
+  await ensureTelegramWebhook();
+  try {
+    const webhook = await getTelegramWebhookInfo();
+    res.json({
+      configured,
+      chatIdConfigured: true,
+      webhook: {
+        registered: Boolean(webhook.url),
+        url: webhook.url ?? null,
+        pendingUpdates: webhook.pending_update_count ?? 0,
+        lastErrorMessage: webhook.last_error_message ?? null,
+      },
+    });
+  } catch (error) {
+    res.status(502).json({
+      configured,
+      chatIdConfigured: true,
+      webhook: { registered: false },
+      error: "Telegram API could not be checked.",
+    });
+  }
 });
 
 export default router;

@@ -93,10 +93,22 @@ export const setTelegramWebhook = async (url: string, secretToken?: string) =>
     allowed_updates: ["message", "callback_query"],
   });
 
-let webhookRegistrationAttempted = false;
+type TelegramWebhookInfo = {
+  url?: string;
+  has_custom_certificate?: boolean;
+  pending_update_count?: number;
+  last_error_date?: number;
+  last_error_message?: string;
+};
+
+export const getTelegramWebhookInfo = () =>
+  callTelegram<TelegramWebhookInfo>("getWebhookInfo", {});
+
+let webhookRegistration: Promise<void> | null = null;
 
 export const ensureTelegramWebhook = async () => {
-  if (webhookRegistrationAttempted || !process.env.TELEGRAM_BOT_TOKEN) return;
+  if (webhookRegistration) return webhookRegistration;
+  if (!process.env.TELEGRAM_BOT_TOKEN) return;
   const configuredWebhookUrl = process.env.TELEGRAM_WEBHOOK_URL?.replace(/\/+$/, "");
   const host = configuredWebhookUrl
     ? configuredWebhookUrl.endsWith("/api/telegram/webhook")
@@ -108,12 +120,15 @@ export const ensureTelegramWebhook = async () => {
         ? `https://${process.env.VERCEL_URL}`
         : "";
   if (!host) return;
-  webhookRegistrationAttempted = true;
-  try {
-    await setTelegramWebhook(`${host}/api/telegram/webhook`);
-  } catch {
-    webhookRegistrationAttempted = false;
-  }
+  webhookRegistration = (async () => {
+    try {
+      await setTelegramWebhook(`${host}/api/telegram/webhook`);
+      await setTelegramCommands();
+    } catch {
+      webhookRegistration = null;
+    }
+  })();
+  return webhookRegistration;
 };
 
 export const telegramMenu = (): TelegramReplyMarkup => ({
