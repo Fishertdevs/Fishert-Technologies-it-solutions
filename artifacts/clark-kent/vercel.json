@@ -1,7 +1,6 @@
 {
-  "buildCommand": "cd ../.. && pnpm --filter @workspace/clark-kent run build",
+  "buildCommand": "pnpm run build",
   "outputDirectory": "dist/public",
-  "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
   "framework": null,
   "routes": [
     {
