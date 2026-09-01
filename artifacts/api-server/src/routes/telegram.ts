@@ -18,10 +18,8 @@ import {
   backToMenuMarkup,
   editTelegramMessage,
   escapeTelegramText,
-  isTelegramSecretValid,
   sendTelegramMessage,
   setTelegramCommands,
-  setTelegramWebhook,
   telegramMenu,
 } from "../lib/telegram";
 
@@ -115,6 +113,8 @@ const clearSession = async (chatId: string) => {
 };
 
 const isAuthorized = async (chatId: string) => {
+  const configuredChatId = process.env.TELEGRAM_CHAT_ID?.trim();
+  if (configuredChatId) return configuredChatId === chatId;
   const [admin] = await db
     .select({ id: telegramAdminsTable.id })
     .from(telegramAdminsTable)
@@ -824,30 +824,6 @@ const handleMessage = async (message: TelegramMessage, log: TelegramLog) => {
 
   const commandMatch = text.match(/^\/([a-z_]+)(?:@\w+)?(?:\s+([\s\S]+))?$/i);
   const command = commandMatch?.[1]?.toLowerCase();
-  const argument = commandMatch?.[2]?.trim();
-
-  if (command === "setup") {
-    if (await hasAdmins()) {
-      await sendTelegramMessage(chatId, unauthorizedMessage);
-      return;
-    }
-    const expectedCode = process.env.TELEGRAM_SETUP_CODE;
-    if (!isTelegramSecretValid(argument, expectedCode)) {
-      await sendTelegramMessage(chatId, "Código de configuración inválido.");
-      return;
-    }
-    await db.insert(telegramAdminsTable).values({
-      chatId,
-      username: message.from?.username ?? null,
-      firstName: message.from?.first_name ?? null,
-    }).onConflictDoUpdate({
-      target: telegramAdminsTable.chatId,
-      set: { isActive: true, username: message.from?.username ?? null, firstName: message.from?.first_name ?? null, updatedAt: new Date() },
-    });
-    await clearSession(chatId);
-    await sendTelegramMessage(chatId, "Configuración completada. Esta cuenta quedó autorizada como administradora.", telegramMenu());
-    return;
-  }
 
   if (!(await isAuthorized(chatId))) {
     await sendTelegramMessage(chatId, unauthorizedMessage);
@@ -901,13 +877,7 @@ const processUpdate = async (update: TelegramUpdate, log: TelegramLog) => {
 };
 
 router.post("/telegram/webhook", async (req, res): Promise<void> => {
-  const configuredSecret = process.env.TELEGRAM_WEBHOOK_SECRET;
-  const providedSecret = req.get("x-telegram-bot-api-secret-token") ?? undefined;
-  if (configuredSecret && providedSecret !== configuredSecret) {
-    res.status(401).json({ error: "Invalid Telegram webhook secret." });
-    return;
-  }
-  if (!process.env.TELEGRAM_BOT_TOKEN) {
+  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
     res.status(503).json({ error: "Telegram bot is not configured." });
     return;
   }
@@ -919,35 +889,10 @@ router.post("/telegram/webhook", async (req, res): Promise<void> => {
   res.sendStatus(200);
 });
 
-router.post("/telegram/configure", async (req, res): Promise<void> => {
-  const setupCode = process.env.TELEGRAM_SETUP_CODE;
-  const providedCode = req.get("x-telegram-setup-code") ?? (typeof req.body?.code === "string" ? req.body.code : undefined);
-  if (!isTelegramSecretValid(providedCode, setupCode)) {
-    res.status(401).json({ error: "Invalid configuration code." });
-    return;
-  }
-  const webhookUrl = typeof req.body?.webhookUrl === "string"
-    ? req.body.webhookUrl.trim()
-    : process.env.TELEGRAM_WEBHOOK_URL ??
-      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}/api/telegram/webhook` : "");
-  if (!webhookUrl.startsWith("https://")) {
-    res.status(400).json({ error: "A public HTTPS webhookUrl is required." });
-    return;
-  }
-  try {
-    await setTelegramCommands();
-    await setTelegramWebhook(webhookUrl, process.env.TELEGRAM_WEBHOOK_SECRET);
-    res.json({ ok: true, webhookUrl });
-  } catch (error) {
-    req.log.error({ err: error }, "Telegram configuration failed");
-    res.status(502).json({ error: "Telegram could not be configured." });
-  }
-});
-
 router.get("/telegram/health", async (_req, res): Promise<void> => {
   res.json({
-    configured: Boolean(process.env.TELEGRAM_BOT_TOKEN),
-    webhookConfigured: Boolean(process.env.TELEGRAM_WEBHOOK_SECRET),
+    configured: Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID),
+    chatIdConfigured: Boolean(process.env.TELEGRAM_CHAT_ID),
   });
 });
 

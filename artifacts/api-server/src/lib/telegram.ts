@@ -1,5 +1,3 @@
-import { timingSafeEqual } from "node:crypto";
-
 type TelegramReplyMarkup = {
   inline_keyboard?: Array<Array<{
     text: string;
@@ -95,12 +93,27 @@ export const setTelegramWebhook = async (url: string, secretToken?: string) =>
     allowed_updates: ["message", "callback_query"],
   });
 
-export const isTelegramSecretValid = (provided: string | undefined, expected: string | undefined) => {
-  if (!provided || !expected) return false;
-  const providedBuffer = Buffer.from(provided);
-  const expectedBuffer = Buffer.from(expected);
-  return providedBuffer.length === expectedBuffer.length &&
-    timingSafeEqual(providedBuffer, expectedBuffer);
+let webhookRegistrationAttempted = false;
+
+export const ensureTelegramWebhook = async () => {
+  if (webhookRegistrationAttempted || !process.env.TELEGRAM_BOT_TOKEN) return;
+  const configuredWebhookUrl = process.env.TELEGRAM_WEBHOOK_URL?.replace(/\/+$/, "");
+  const host = configuredWebhookUrl
+    ? configuredWebhookUrl.endsWith("/api/telegram/webhook")
+      ? configuredWebhookUrl.slice(0, -"/api/telegram/webhook".length)
+      : configuredWebhookUrl
+    : process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "";
+  if (!host) return;
+  webhookRegistrationAttempted = true;
+  try {
+    await setTelegramWebhook(`${host}/api/telegram/webhook`);
+  } catch {
+    webhookRegistrationAttempted = false;
+  }
 };
 
 export const telegramMenu = (): TelegramReplyMarkup => ({
