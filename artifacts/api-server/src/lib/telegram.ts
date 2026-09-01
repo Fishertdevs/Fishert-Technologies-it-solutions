@@ -104,11 +104,7 @@ type TelegramWebhookInfo = {
 export const getTelegramWebhookInfo = () =>
   callTelegram<TelegramWebhookInfo>("getWebhookInfo", {});
 
-let webhookRegistration: Promise<void> | null = null;
-
-export const ensureTelegramWebhook = async () => {
-  if (webhookRegistration) return webhookRegistration;
-  if (!process.env.TELEGRAM_BOT_TOKEN) return;
+const getTelegramWebhookUrl = () => {
   const configuredWebhookUrl = process.env.TELEGRAM_WEBHOOK_URL?.replace(/\/+$/, "");
   const host = configuredWebhookUrl
     ? configuredWebhookUrl.endsWith("/api/telegram/webhook")
@@ -119,10 +115,21 @@ export const ensureTelegramWebhook = async () => {
       : process.env.VERCEL_URL
         ? `https://${process.env.VERCEL_URL}`
         : "";
-  if (!host) return;
+  return host ? `${host}/api/telegram/webhook` : null;
+};
+
+export const getTelegramWebhookTarget = () => getTelegramWebhookUrl();
+
+let webhookRegistration: Promise<void> | null = null;
+
+export const ensureTelegramWebhook = async () => {
+  if (webhookRegistration) return webhookRegistration;
+  if (!process.env.TELEGRAM_BOT_TOKEN) return;
+  const webhookUrl = getTelegramWebhookUrl();
+  if (!webhookUrl) return;
   webhookRegistration = (async () => {
     try {
-      await setTelegramWebhook(`${host}/api/telegram/webhook`);
+      await setTelegramWebhook(webhookUrl);
       await setTelegramCommands();
     } catch {
       webhookRegistration = null;

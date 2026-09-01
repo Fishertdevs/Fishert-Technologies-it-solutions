@@ -20,6 +20,7 @@ import {
   escapeTelegramText,
   ensureTelegramWebhook,
   getTelegramWebhookInfo,
+  getTelegramWebhookTarget,
   sendTelegramMessage,
   setTelegramCommands,
   telegramMenu,
@@ -908,16 +909,19 @@ router.get("/telegram/health", async (_req, res): Promise<void> => {
       webhook: {
         registered: Boolean(webhook.url),
         url: webhook.url ?? null,
+        target: getTelegramWebhookTarget(),
         pendingUpdates: webhook.pending_update_count ?? 0,
         lastErrorMessage: webhook.last_error_message ?? null,
       },
     });
   } catch (error) {
+    const reason = error instanceof Error ? error.message : "Unknown Telegram API error";
     res.status(502).json({
       configured,
       chatIdConfigured: true,
-      webhook: { registered: false },
+      webhook: { registered: false, target: getTelegramWebhookTarget() },
       error: "Telegram API could not be checked.",
+      reason: reason.replace(/bot\d+:[A-Za-z0-9_-]+/g, "bot[redacted]"),
     });
   }
 });
