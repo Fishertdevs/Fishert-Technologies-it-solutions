@@ -1,11 +1,19 @@
 {
-  "buildCommand": "pnpm run build",
+  "buildCommand": "cd ../.. && pnpm --filter @workspace/clark-kent run build",
   "outputDirectory": "dist/public",
+  "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
   "framework": null,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/api/(.*)",
+      "dest": "/api/[...path].ts"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
