@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm run build",
+  "buildCommand": "cd ../api-server && pnpm run build && cd ../clark-kent && pnpm run build",
   "outputDirectory": "dist/public",
   "framework": null,
   "routes": [
