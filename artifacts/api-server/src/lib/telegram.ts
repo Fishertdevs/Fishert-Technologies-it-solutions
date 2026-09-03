@@ -93,6 +93,41 @@ export const setTelegramWebhook = async (url: string, secretToken?: string) =>
     allowed_updates: ["message", "callback_query"],
   });
 
+export const pendingReviewMarkup = (reviewId: number): TelegramReplyMarkup => ({
+  inline_keyboard: [[
+    { text: "✅ Aprobar", callback_data: `review:publish:${reviewId}` },
+    { text: "🚫 Rechazar", callback_data: `review:reject:${reviewId}` },
+  ]],
+});
+
+export const notifyPendingReview = async (review: {
+  id: number;
+  name: string;
+  company?: string | null;
+  text: string;
+  rating: number;
+}) => {
+  const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
+  if (!chatId || !process.env.TELEGRAM_BOT_TOKEN) return false;
+
+  await sendTelegramMessage(
+    chatId,
+    [
+      "Nueva reseña pendiente de aprobación",
+      "",
+      `#${review.id} · ${escapeTelegramText(review.name)}`,
+      `Empresa: ${escapeTelegramText(review.company) || "—"}`,
+      `Calificación: ${review.rating}/5`,
+      "",
+      escapeTelegramText(review.text),
+      "",
+      "Puedes aprobarla o rechazarla con los botones.",
+    ].join("\n"),
+    pendingReviewMarkup(review.id),
+  );
+  return true;
+};
+
 type TelegramWebhookInfo = {
   url?: string;
   has_custom_certificate?: boolean;

@@ -1,6 +1,7 @@
 import { Router, type IRouter } from "express";
 import { CreateContactBody, CreateReviewBody } from "@workspace/api-zod";
 import { contactsTable, db, reviewsTable } from "@workspace/db";
+import { notifyPendingReview } from "../lib/telegram";
 
 const router: IRouter = Router();
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -62,6 +63,18 @@ router.post("/reviews", async (req, res): Promise<void> => {
       status: reviewsTable.status,
       createdAt: reviewsTable.createdAt,
     });
+
+  try {
+    await notifyPendingReview({
+      id: review.id,
+      name: parsed.data.name.trim(),
+      company: parsed.data.company?.trim() || null,
+      text: parsed.data.text.trim(),
+      rating: parsed.data.rating,
+    });
+  } catch (error) {
+    req.log.warn({ err: error, reviewId: review.id }, "Review saved but Telegram notification failed");
+  }
 
   res.status(201).json({
     id: review.id,
