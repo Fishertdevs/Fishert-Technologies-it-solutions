@@ -7944,7 +7944,7 @@ body {
   }
 
   .qs-footer-art-copy .qs-footer-art-lines--mobile {
-    font-size: clamp(18px, 6vw, 34px);
+    font-size: clamp(21px, 7vw, 38px);
     line-height: 0.92;
   }
 
