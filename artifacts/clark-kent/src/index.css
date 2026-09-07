@@ -1975,26 +1975,11 @@ body {
 .svc-desktop-grid {
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  align-items: end;
-  gap: 8px;
-  padding: 250px 24px 0;
   box-sizing: border-box;
 }
 
 .svc-desktop-grid .svc-item {
-  position: relative;
-  bottom: auto;
-  left: auto;
-  width: auto;
-  height: min(58vh, 520px);
   border-radius: 16px 16px 0 0;
-}
-
-.svc-desktop-grid .svc-item img {
-  animation: none !important;
-  transition: none !important;
 }
 
 /* ── Socios / Partners section ──────────────────────────────────────────── */
