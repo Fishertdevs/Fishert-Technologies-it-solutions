@@ -52,6 +52,9 @@ export default function ComoTrabajamos() {
             />
           </div>
           <div className="ctw-imagination-copy">
+            <p className="ctw-imagination-eyebrow">
+              {lang === "es" ? "Cómo trabajamos" : "How we work"}
+            </p>
             <h3 className="ctw-imagination-quote">{quote}</h3>
           </div>
         </div>
