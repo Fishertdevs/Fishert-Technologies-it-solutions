@@ -7943,4 +7943,8 @@ body {
   .qs-team-dots {
     transform: translateY(-24px);
   }
+
+  .qs-team-content .qs-team-heading {
+    transform: translateY(-24px);
+  }
 }
