@@ -182,6 +182,18 @@ const offerCampaigns: OfferCampaign[] = [
     },
   },
   {
+    id: "love-and-friendship-day-colombia",
+    priority: 25,
+    discount: 20,
+    getEventDate: (year) => nthWeekdayOfMonth(year, 9, 6, 3),
+    activeWindowDays: 14,
+    kicker: { es: "Oferta del Día del Amor y la Amistad", en: "Love and Friendship Day offer" },
+    headline: {
+      es: "Celebra las conexiones que hacen crecer tu negocio.",
+      en: "Celebrate the connections that help your business grow.",
+    },
+  },
+  {
     id: "halloween",
     priority: 10,
     discount: 22,
