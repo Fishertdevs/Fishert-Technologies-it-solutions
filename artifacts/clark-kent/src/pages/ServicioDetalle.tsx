@@ -479,6 +479,199 @@ const serviceContexts: Record<string, ServiceContext> = {
   },
 };
 
+const contextualOfferHeadlines: Record<string, Partial<Record<string, LocalizedCopy>>> = {
+  "desarrollo-web": {
+    "new-year": {
+      es: "Empieza el año con una web que acerque tu negocio a más clientes.",
+      en: "Start the year with a website that brings your business closer to more customers.",
+    },
+    "valentines-day": {
+      es: "Haz que tu presencia digital conecte con las personas correctas.",
+      en: "Make your digital presence connect with the right people.",
+    },
+    "womens-day": {
+      es: "Dale a tu marca una presencia digital tan fuerte como tu visión.",
+      en: "Give your brand a digital presence as strong as your vision.",
+    },
+    "mothers-day": {
+      es: "Regala a tu negocio una web lista para crecer contigo.",
+      en: "Give your business a website ready to grow with you.",
+    },
+    "fathers-day": {
+      es: "Construye una presencia digital sólida para el futuro de tu negocio.",
+      en: "Build a solid digital presence for the future of your business.",
+    },
+    "love-and-friendship-day-colombia": {
+      es: "Convierte cada visita en una conexión que haga crecer tu negocio.",
+      en: "Turn every visit into a connection that helps your business grow.",
+    },
+    halloween: {
+      es: "Dale vida a una web que haga imposible ignorar tu marca.",
+      en: "Bring a website to life that makes your brand impossible to ignore.",
+    },
+    "black-friday": {
+      es: "Haz que tu web convierta más oportunidades en resultados.",
+      en: "Make your website turn more opportunities into results.",
+    },
+    christmas: {
+      es: "Cierra el año con una presencia digital que tu negocio merezca.",
+      en: "Close the year with the digital presence your business deserves.",
+    },
+  },
+  "desarrollo-software": {
+    "new-year": {
+      es: "Convierte tu gran idea de este año en un producto listo para avanzar.",
+      en: "Turn this year's big idea into a product ready to move forward.",
+    },
+    "valentines-day": {
+      es: "Construye el producto que conecte tu visión con las personas correctas.",
+      en: "Build the product that connects your vision with the right people.",
+    },
+    "womens-day": {
+      es: "Impulsa una idea con tecnología diseñada para crecer a tu manera.",
+      en: "Move an idea forward with technology designed to grow your way.",
+    },
+    "mothers-day": {
+      es: "Dale a tu negocio el producto digital que necesita para florecer.",
+      en: "Give your business the digital product it needs to flourish.",
+    },
+    "fathers-day": {
+      es: "Haz que tu próxima decisión de producto tenga una base sólida.",
+      en: "Give your next product decision a solid foundation.",
+    },
+    "love-and-friendship-day-colombia": {
+      es: "Crea un producto que conecte tu negocio con las personas que lo hacen crecer.",
+      en: "Create a product that connects your business with the people who help it grow.",
+    },
+    halloween: {
+      es: "Haz realidad esa idea que parecía demasiado ambiciosa.",
+      en: "Bring to life the idea that once seemed too ambitious.",
+    },
+    "black-friday": {
+      es: "Lanza el producto que convierta una oportunidad en crecimiento.",
+      en: "Launch the product that turns an opportunity into growth.",
+    },
+    christmas: {
+      es: "Regálale a tu negocio una tecnología lista para el próximo año.",
+      en: "Give your business technology ready for the year ahead.",
+    },
+  },
+  "automatizacion-ia": {
+    "new-year": {
+      es: "Empieza el año liberando a tu equipo de las tareas que lo frenan.",
+      en: "Start the year by freeing your team from the tasks holding it back.",
+    },
+    "valentines-day": {
+      es: "Haz que tu equipo tenga más tiempo para cuidar cada relación con tus clientes.",
+      en: "Give your team more time to nurture every customer relationship.",
+    },
+    "womens-day": {
+      es: "Haz crecer el impacto de tu equipo con sistemas que trabajan a su favor.",
+      en: "Grow your team's impact with systems that work in their favor.",
+    },
+    "mothers-day": {
+      es: "Regala a tu equipo procesos más simples, ágiles y humanos.",
+      en: "Give your team simpler, faster, and more human processes.",
+    },
+    "fathers-day": {
+      es: "Convierte el esfuerzo de tu equipo en procesos que escalan mejor.",
+      en: "Turn your team's effort into processes that scale better.",
+    },
+    "love-and-friendship-day-colombia": {
+      es: "Automatiza lo repetitivo y deja que tu equipo se concentre en las conexiones importantes.",
+      en: "Automate the repetitive work so your team can focus on meaningful connections.",
+    },
+    halloween: {
+      es: "Haz desaparecer los cuellos de botella que asustan a tu operación.",
+      en: "Make the bottlenecks haunting your operation disappear.",
+    },
+    "black-friday": {
+      es: "Haz que tu operación responda más rápido cuando lleguen más oportunidades.",
+      en: "Make your operation respond faster when more opportunities arrive.",
+    },
+    christmas: {
+      es: "Cierra el año con una operación más ligera y preparada para crecer.",
+      en: "Close the year with a lighter operation ready to grow.",
+    },
+  },
+  "marketing-digital": {
+    "new-year": {
+      es: "Haz que tu marca empiece el año llegando más lejos.",
+      en: "Make your brand reach further this year.",
+    },
+    "valentines-day": {
+      es: "Crea campañas que hagan que tu audiencia elija tu marca.",
+      en: "Create campaigns that make your audience choose your brand.",
+    },
+    "womens-day": {
+      es: "Cuenta una historia de marca que inspire y genere movimiento.",
+      en: "Tell a brand story that inspires action and creates momentum.",
+    },
+    "mothers-day": {
+      es: "Haz crecer tu marca con una campaña que se sienta cercana.",
+      en: "Grow your brand with a campaign that feels personal.",
+    },
+    "fathers-day": {
+      es: "Conecta tu oferta con las personas que están listas para elegirte.",
+      en: "Connect your offer with the people ready to choose you.",
+    },
+    "love-and-friendship-day-colombia": {
+      es: "Haz que tu marca conecte de verdad con las personas que quieres atraer.",
+      en: "Make your brand truly connect with the people you want to attract.",
+    },
+    halloween: {
+      es: "Crea una campaña imposible de olvidar.",
+      en: "Create a campaign no one can forget.",
+    },
+    "black-friday": {
+      es: "Convierte la atención de temporada en crecimiento para tu marca.",
+      en: "Turn seasonal attention into growth for your brand.",
+    },
+    christmas: {
+      es: "Cierra el año con una campaña que tu audiencia quiera compartir.",
+      en: "Close the year with a campaign your audience wants to share.",
+    },
+  },
+  "cloud-devops": {
+    "new-year": {
+      es: "Prepara la infraestructura para todos los lanzamientos que vienen.",
+      en: "Prepare your infrastructure for every launch ahead.",
+    },
+    "valentines-day": {
+      es: "Construye una operación estable para cuidar cada experiencia de cliente.",
+      en: "Build a stable operation that protects every customer experience.",
+    },
+    "womens-day": {
+      es: "Dale a tu equipo una infraestructura que acompañe su ambición.",
+      en: "Give your team infrastructure that supports its ambition.",
+    },
+    "mothers-day": {
+      es: "Haz que tu plataforma crezca con seguridad y sin complicaciones.",
+      en: "Help your platform grow securely and without friction.",
+    },
+    "fathers-day": {
+      es: "Refuerza la base técnica que sostiene cada decisión de tu negocio.",
+      en: "Strengthen the technical foundation behind every business decision.",
+    },
+    "love-and-friendship-day-colombia": {
+      es: "Mantén cada lanzamiento conectado, estable y listo para crecer.",
+      en: "Keep every launch connected, stable, and ready to grow.",
+    },
+    halloween: {
+      es: "Haz desaparecer los riesgos que acechan tu infraestructura.",
+      en: "Make the risks haunting your infrastructure disappear.",
+    },
+    "black-friday": {
+      es: "Prepárate para más tráfico sin poner en riesgo tu operación.",
+      en: "Prepare for more traffic without putting your operation at risk.",
+    },
+    christmas: {
+      es: "Cierra el año con una infraestructura segura para lo que sigue.",
+      en: "Close the year with secure infrastructure for what's next.",
+    },
+  },
+};
+
 const platformDetails: Record<string, PlatformDetail> = {
   WordPress: {
     icon: "wordpress",
@@ -1652,9 +1845,9 @@ export default function ServicioDetalle() {
   const context = serviceContexts[slug];
   const isRecurring = slug === "marketing-digital";
   const activeOffer = getOfferCampaign(currentDate);
-  const offerHeadline = activeOffer.id === "monthly-default"
-    ? context.offerHeadline[lang]
-    : activeOffer.headline[lang];
+  const contextualOfferHeadline = contextualOfferHeadlines[slug]?.[activeOffer.id];
+  const offerHeadline = contextualOfferHeadline?.[lang]
+    ?? (activeOffer.id === "monthly-default" ? context.offerHeadline[lang] : activeOffer.headline[lang]);
 
   const formatPlanPrice = (plan: Plan) => {
     if (plan.isCustom || !isRecurring || billingMode === "monthly") {
