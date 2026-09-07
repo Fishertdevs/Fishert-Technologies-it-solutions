@@ -182,6 +182,30 @@ const offerCampaigns: OfferCampaign[] = [
     },
   },
   {
+    id: "colombia-independence-day",
+    priority: 22,
+    discount: 20,
+    getEventDate: fixedDate(7, 20),
+    activeWindowDays: 7,
+    kicker: { es: "Oferta de Independencia de Colombia", en: "Colombia Independence offer" },
+    headline: {
+      es: "Haz que tu negocio avance con una idea propia.",
+      en: "Move your business forward with an idea of your own.",
+    },
+  },
+  {
+    id: "battle-of-boyaca",
+    priority: 22,
+    discount: 18,
+    getEventDate: fixedDate(8, 7),
+    activeWindowDays: 5,
+    kicker: { es: "Oferta de la Batalla de Boyacá", en: "Battle of Boyacá offer" },
+    headline: {
+      es: "Construye una marca con carácter y dirección.",
+      en: "Build a brand with character and direction.",
+    },
+  },
+  {
     id: "love-and-friendship-day-colombia",
     priority: 25,
     discount: 20,
