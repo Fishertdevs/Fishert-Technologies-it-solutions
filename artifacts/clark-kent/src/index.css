@@ -7987,3 +7987,117 @@ body {
   }
 }
 
+/* Approved closing composition: desktop statue/quote, mobile Marilyn/technology. */
+.qs-footer-art {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 0;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 18px 24px 0;
+  background: #ffffff;
+}
+
+.qs-footer-art-copy {
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 4%;
+  text-align: center;
+}
+
+.qs-footer-art-copy p {
+  margin: 0;
+  color: #c0001a;
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(30px, 4.2vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.qs-footer-art-copy span {
+  display: block;
+  white-space: nowrap;
+}
+
+.qs-footer-art-media {
+  align-self: end;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.qs-footer-art-media img {
+  display: block;
+  width: min(100%, 540px);
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.qs-footer-art-copy--mobile,
+.qs-footer-art-media--mobile,
+.qs-footer-art-lines--mobile {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .qs-footer-art {
+    background: #b45b37;
+  }
+
+  .qs-footer-art-copy--desktop {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .qs-footer-art-media--desktop {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .qs-footer-art {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 14px 0;
+  }
+
+  .qs-footer-art-copy--desktop,
+  .qs-footer-art-media--desktop,
+  .qs-footer-art-lines--desktop {
+    display: none;
+  }
+
+  .qs-footer-art-copy--mobile {
+    display: block;
+    order: 1;
+    width: 100%;
+    padding: 24px 8px 12px;
+  }
+
+  .qs-footer-art-lines--mobile {
+    display: block;
+    font-size: clamp(21px, 7vw, 38px);
+    line-height: 0.92;
+  }
+
+  .qs-footer-art-media--mobile {
+    display: flex;
+    order: 2;
+    width: 100%;
+  }
+
+  .qs-footer-art-media--mobile img {
+    width: min(100%, 270px);
+    max-height: 350px;
+  }
+}
+
