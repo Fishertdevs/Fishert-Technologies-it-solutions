@@ -8123,6 +8123,10 @@ body {
 }
 
 @media (min-width: 769px) {
+  .qs-footer-art {
+    background: #b45b37;
+  }
+
   .qs-footer-art-copy--desktop {
     display: flex;
     grid-column: 2;
@@ -8138,6 +8142,10 @@ body {
   .qs-footer-art-media--desktop img {
     width: min(100%, 540px);
     max-height: 620px;
+  }
+
+  .qs-footer-art-copy--desktop p {
+    color: #f7eee6;
   }
 }
 
