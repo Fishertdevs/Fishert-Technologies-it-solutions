@@ -8051,6 +8051,10 @@ body {
     background: #b45b37;
   }
 
+  .qs-footer-art-copy--desktop p {
+    color: #f7eee6;
+  }
+
   .qs-footer-art-copy--desktop {
     grid-column: 2;
     grid-row: 1;
