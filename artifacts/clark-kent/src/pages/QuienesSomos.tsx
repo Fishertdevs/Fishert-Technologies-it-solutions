@@ -6,6 +6,7 @@ import Footer from "../Footer";
 import footerPortrait from "@assets/image_(6)-Photoroom_1788126926994.png";
 import teamSectionTexture from "@assets/image_1788744935304.png";
 import teamSectionArt from "@assets/image-Photoroom_(21)_1788745192839.png";
+import storySectionArt from "@assets/image-Photoroom_(22)_1788748318291.png";
 
 type TeamMember = {
   name: string;
@@ -259,23 +260,28 @@ export default function QuienesSomos() {
         {/* ── Origin story ── */}
         <section className="qs-story">
           <div className="qs-story-inner">
-            <p className="svc-plans-eyebrow">
-              {lang === "es" ? "NUESTRA HISTORIA" : "OUR STORY"}
-            </p>
-            <h2 className="qs-story-heading">
-              {lang === "es" ? "Cómo iniciamos esta idea." : "How we started this idea."}
-            </h2>
-            <div className="qs-story-body">
-              <p>
-                {lang === "es"
-                  ? "Fishert Studio es un estudio de software para ideas ambiciosas. Unimos estrategia, diseño e ingeniería para convertir oportunidades en experiencias digitales claras, útiles y preparadas para crecer."
-                  : "Fishert Studio is a software studio for ambitious ideas. We combine strategy, design, and engineering to turn opportunities into clear, useful digital experiences built to grow."}
+            <div className="qs-story-content">
+              <p className="svc-plans-eyebrow">
+                {lang === "es" ? "NUESTRA HISTORIA" : "OUR STORY"}
               </p>
-              <p>
-                {lang === "es"
-                  ? "Trabajamos junto a marcas y equipos que buscan más que una solución estándar: una identidad propia, decisiones bien pensadas y tecnología que haga avanzar su negocio. Cada proyecto empieza escuchando, explorando y encontrando la forma más directa de hacerlo realidad."
-                  : "We work with brands and teams looking for more than a standard solution: a distinct identity, thoughtful decisions, and technology that moves the business forward. Every project starts by listening, exploring, and finding the clearest way to make it real."}
-              </p>
+              <h2 className="qs-story-heading">
+                {lang === "es" ? "Cómo iniciamos esta idea." : "How we started this idea."}
+              </h2>
+              <div className="qs-story-body">
+                <p>
+                  {lang === "es"
+                    ? "Fishert Studio es un estudio de software para ideas ambiciosas. Unimos estrategia, diseño e ingeniería para convertir oportunidades en experiencias digitales claras, útiles y preparadas para crecer."
+                    : "Fishert Studio is a software studio for ambitious ideas. We combine strategy, design, and engineering to turn opportunities into clear, useful digital experiences built to grow."}
+                </p>
+                <p>
+                  {lang === "es"
+                    ? "Trabajamos junto a marcas y equipos que buscan más que una solución estándar: una identidad propia, decisiones bien pensadas y tecnología que haga avanzar su negocio. Cada proyecto empieza escuchando, explorando y encontrando la forma más directa de hacerlo realidad."
+                    : "We work with brands and teams looking for more than a standard solution: a distinct identity, thoughtful decisions, and technology that moves the business forward. Every project starts by listening, exploring, and finding the clearest way to make it real."}
+                </p>
+              </div>
+            </div>
+            <div className="qs-story-art" aria-hidden="true">
+              <img src={storySectionArt} alt="" />
             </div>
           </div>
         </section>
