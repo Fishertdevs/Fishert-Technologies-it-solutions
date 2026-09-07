@@ -7914,7 +7914,12 @@ body {
 /* Restore the larger artwork without changing the approved card layout. */
 @media (min-width: 769px) {
   .qs-team-art img {
-    transform: scale(1.3);
-    transform-origin: center bottom;
+    width: 130%;
+    max-width: none;
+    height: auto;
+    margin-left: -15%;
+    margin-bottom: -1px;
+    transform: none;
+    transform-origin: initial;
   }
 }
