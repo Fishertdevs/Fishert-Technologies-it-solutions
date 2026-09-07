@@ -7,6 +7,7 @@ import footerPortrait from "@assets/image_(6)-Photoroom_1788126926994.png";
 import teamSectionTexture from "@assets/image_1788744935304.png";
 import teamSectionArt from "@assets/image-Photoroom_(21)_1788745192839.png";
 import storySectionArt from "@assets/image-Photoroom_(22)_1788748318291.png";
+import ctwStatue from "@assets/ctw_statue.png";
 
 type TeamMember = {
   name: string;
@@ -380,7 +381,17 @@ export default function QuienesSomos() {
         </section>
 
         <section className="qs-footer-art" aria-label="Fishert Studio">
-          <div className="qs-footer-art-copy">
+          <div className="qs-footer-art-copy qs-footer-art-copy--desktop">
+            <p>
+              <span>Tu único</span>
+              <span>límite es tu</span>
+              <span>imaginación.</span>
+            </p>
+          </div>
+          <div className="qs-footer-art-media qs-footer-art-media--desktop">
+            <img src={ctwStatue} alt="" />
+          </div>
+          <div className="qs-footer-art-copy qs-footer-art-copy--mobile">
             <p className="qs-footer-art-lines--desktop">
               {(lang === "es"
                 ? ["La tecnología", "convierte las ideas", "en posibilidades."]
@@ -400,7 +411,7 @@ export default function QuienesSomos() {
               ))}
             </p>
           </div>
-          <div className="qs-footer-art-media">
+          <div className="qs-footer-art-media qs-footer-art-media--mobile">
             <img src={footerPortrait} alt="" />
           </div>
         </section>

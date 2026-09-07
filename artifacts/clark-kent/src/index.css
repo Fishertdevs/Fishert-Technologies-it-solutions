@@ -8115,3 +8115,45 @@ body {
     display: block;
   }
 }
+
+/* Restore the original desktop closing composition: statue left, quote right. */
+.qs-footer-art-copy--mobile,
+.qs-footer-art-media--mobile {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .qs-footer-art-copy--desktop {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .qs-footer-art-media--desktop {
+    display: flex;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .qs-footer-art-media--desktop img {
+    width: min(100%, 540px);
+    max-height: 620px;
+  }
+}
+
+@media (max-width: 768px) {
+  .qs-footer-art-copy--desktop,
+  .qs-footer-art-media--desktop {
+    display: none;
+  }
+
+  .qs-footer-art-copy--mobile {
+    display: block;
+    order: 1;
+  }
+
+  .qs-footer-art-media--mobile {
+    display: flex;
+    order: 2;
+  }
+}
