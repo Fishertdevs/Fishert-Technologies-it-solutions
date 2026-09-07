@@ -8058,6 +8058,16 @@ body {
 }
 
 @media (max-width: 768px) {
+  .qs-hero-title {
+    max-width: none;
+    width: 100%;
+    font-size: clamp(30px, 10.5vw, 46px);
+    letter-spacing: -0.06em;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
   .qs-story-content {
     width: 100%;
   }
