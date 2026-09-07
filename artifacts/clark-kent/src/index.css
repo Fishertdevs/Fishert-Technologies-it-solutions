@@ -7948,3 +7948,17 @@ body {
     transform: translateY(-24px);
   }
 }
+
+.qs-footer-art-lines--mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .qs-footer-art-lines--desktop {
+    display: none;
+  }
+
+  .qs-footer-art-lines--mobile {
+    display: block;
+  }
+}
