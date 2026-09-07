@@ -202,17 +202,8 @@ export default function Servicios() {
         borderRadius: "56px",
       }}
     >
-      {/* Desktop uses a straight edge; mobile keeps the original wave. */}
-      <svg
-        className="svc-top-wave svc-top-wave--desktop"
-        style={{ position: "absolute", top: -1, left: 0, width: "100%", height: 80, zIndex: 20, pointerEvents: "none" }}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path d="M0,0 H1440 V56 H0 Z" fill="#ffffff" />
-      </svg>
+      {/* Desktop uses a straight edge with the same rounded outer corners as the section bottom. */}
+      <div className="svc-top-edge svc-top-edge--desktop" aria-hidden="true" />
       <svg
         className="svc-top-wave svc-top-wave--mobile"
         style={{ position: "absolute", top: -1, left: 0, width: "100%", height: 80, zIndex: 20, pointerEvents: "none" }}

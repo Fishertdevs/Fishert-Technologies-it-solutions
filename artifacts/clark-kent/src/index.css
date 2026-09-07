@@ -2112,7 +2112,17 @@ body {
   display: block;
 }
 
-.svc-top-wave--desktop {
+.svc-top-edge--desktop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  box-sizing: border-box;
+  border-radius: 56px 56px 0 0;
+  background: #ffffff;
+  pointer-events: none;
+  z-index: 20;
   display: block;
 }
 
@@ -2121,7 +2131,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  #servicios .svc-top-wave--desktop {
+  #servicios .svc-top-edge--desktop {
     display: none;
   }
 
