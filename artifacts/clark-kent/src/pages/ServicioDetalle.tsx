@@ -1977,7 +1977,7 @@ export default function ServicioDetalle() {
           <div className="svc2-hero-content">
             <div className="svc2-title-wrap">
               <span className="svc2-eyebrow">{t.eyebrow}</span>
-              <h1 className={`svc2-title ${slug === "desarrollo-web" ? "svc2-title--web" : ""} ${slug === "marketing-digital" ? "svc2-title--single-line" : ""}`}>
+              <h1 className={`svc2-title ${slug === "marketing-digital" ? "svc2-title--single-line" : ""}`}>
                 {slug === "desarrollo-software" ? (
                   lang === "es" ? <>Desarrollo de<br />Software</> : <>Software<br />Development</>
                 ) : t.title}
