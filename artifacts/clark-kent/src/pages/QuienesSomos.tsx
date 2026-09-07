@@ -382,8 +382,8 @@ export default function QuienesSomos() {
           <div className="qs-footer-art-copy">
             <p className="qs-footer-art-lines--desktop">
               {(lang === "es"
-                ? ["La tecnología", "convierte las", "ideas en", "posibilidades."]
-                : ["Technology", "turns ideas into", "new digital", "possibilities."]
+                ? ["La tecnología", "convierte las ideas", "en posibilidades."]
+                : ["Technology", "turns ideas into", "new digital possibilities."]
               ).map((line, index) => (
                 <span key={line}>
                   {line}
