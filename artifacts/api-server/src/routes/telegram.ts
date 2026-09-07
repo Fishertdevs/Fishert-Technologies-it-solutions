@@ -16,6 +16,7 @@ import {
 import {
   answerTelegramCallback,
   backToMenuMarkup,
+  clearTelegramCommands,
   editTelegramMessage,
   escapeTelegramText,
   ensureTelegramWebhook,
@@ -115,9 +116,13 @@ const clearSession = async (chatId: string) => {
     .where(eq(telegramSessionsTable.chatId, chatId));
 };
 
-const isAuthorized = async (chatId: string) => {
+const isOwner = (chatId: string) => {
   const configuredChatId = process.env.TELEGRAM_CHAT_ID?.trim();
-  if (configuredChatId) return configuredChatId === chatId;
+  return Boolean(configuredChatId && configuredChatId === chatId);
+};
+
+const isAuthorized = async (chatId: string) => {
+  if (isOwner(chatId)) return true;
   const [admin] = await db
     .select({ id: telegramAdminsTable.id })
     .from(telegramAdminsTable)
@@ -143,6 +148,8 @@ const helpText = [
   "",
   "Usa los botones para administrar el contenido. El bot guarda todo en PostgreSQL y los cambios aparecen en el sitio al recargar.",
   "",
+  "Para solicitar acceso desde otra cuenta, usa /solicitar_acceso.",
+  "",
   "También puedes usar /cancelar para salir de cualquier operación.",
 ].join("\n");
 
@@ -151,8 +158,106 @@ const showHome = async (chatId: string, greeting = false) => {
   await sendTelegramMessage(
     chatId,
     greeting ? `Bienvenido al panel de Fishert Studio.\n\n${helpText}` : helpText,
-    telegramMenu(),
+    telegramMenu(isOwner(chatId)),
   );
+};
+
+const accessRequestMarkup = (adminId: number): ReplyMarkup =>
+  inline(
+    [
+      { text: "✅ Autorizar", callback_data: `access:approve:${adminId}` },
+      { text: "🚫 Rechazar", callback_data: `access:reject:${adminId}` },
+    ],
+  );
+
+const adminLabel = (admin: {
+  firstName?: string | null;
+  username?: string | null;
+  chatId: string;
+}) => {
+  const name = admin.firstName?.trim() || (admin.username ? `@${admin.username}` : "Usuario de Telegram");
+  return `${name} · ID ${admin.chatId}`;
+};
+
+const showAccesses = async (chatId: string) => {
+  if (!isOwner(chatId)) {
+    await sendTelegramMessage(chatId, "Sólo el propietario puede gestionar los accesos.", backToMenuMarkup() as ReplyMarkup);
+    return;
+  }
+
+  const admins = await db
+    .select()
+    .from(telegramAdminsTable)
+    .orderBy(asc(telegramAdminsTable.createdAt));
+  const active = admins.filter((admin) => admin.isActive);
+  const pending = admins.filter((admin) => !admin.isActive);
+  const lines = [
+    "Gestión de accesos",
+    "",
+    `Administradores activos: ${active.length}/2`,
+    ...(active.length ? active.map((admin) => `✅ ${adminLabel(admin)}`) : ["— Ninguno"]),
+    "",
+    `Solicitudes pendientes: ${pending.length}`,
+    ...(pending.length ? pending.map((admin) => `⏳ ${adminLabel(admin)}`) : ["— Ninguna"]),
+    "",
+    "Selecciona una solicitud o un administrador para gestionarlo:",
+  ];
+  const rows = [
+    ...pending.map((admin) => [{
+      text: `⏳ ${admin.firstName || admin.username || admin.chatId}`,
+      callback_data: `access:request:${admin.id}`,
+    }]),
+    ...active.map((admin) => [{
+      text: `🚫 Revocar ${admin.firstName || admin.username || admin.chatId}`,
+      callback_data: `access:revoke:${admin.id}`,
+    }]),
+    [{ text: "↩️ Volver al menú", callback_data: "menu:home" }],
+  ];
+  await sendLongMessage(chatId, lines.join("\n"), inline(...rows));
+};
+
+const requestAccess = async (message: TelegramMessage) => {
+  const chatId = String(message.chat.id);
+  if (await isAuthorized(chatId)) {
+    await setTelegramCommands(chatId);
+    await sendTelegramMessage(chatId, "Esta cuenta ya tiene acceso al panel.", telegramMenu(isOwner(chatId)));
+    return;
+  }
+
+  const [existing] = await db
+    .select()
+    .from(telegramAdminsTable)
+    .where(eq(telegramAdminsTable.chatId, chatId))
+    .limit(1);
+  if (existing) {
+    await sendTelegramMessage(chatId, "Tu solicitud ya está pendiente de aprobación.");
+    return;
+  }
+
+  const [admin] = await db.insert(telegramAdminsTable).values({
+    chatId,
+    username: message.from?.username ?? null,
+    firstName: message.from?.first_name ?? null,
+    isActive: false,
+  }).returning();
+  const ownerChatId = process.env.TELEGRAM_CHAT_ID?.trim();
+  await sendTelegramMessage(
+    chatId,
+    "Solicitud enviada. El propietario debe aprobar tu acceso antes de que puedas usar el panel.",
+  );
+  if (ownerChatId && admin) {
+    await sendTelegramMessage(
+      ownerChatId,
+      [
+        "Nueva solicitud de acceso al panel",
+        "",
+        adminLabel(admin),
+        "",
+        "Puedes autorizarla o rechazarla con los botones.",
+      ].join("\n"),
+      accessRequestMarkup(admin.id),
+    );
+  }
 };
 
 const showReviews = async (chatId: string) => {
