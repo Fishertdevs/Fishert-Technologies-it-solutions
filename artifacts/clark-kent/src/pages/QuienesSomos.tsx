@@ -282,6 +282,7 @@ export default function QuienesSomos() {
 
         {/* ── Team ── */}
         <section
+          id="team"
           className="qs-team"
           style={{ backgroundImage: `url(${teamSectionTexture})` }}
         >
