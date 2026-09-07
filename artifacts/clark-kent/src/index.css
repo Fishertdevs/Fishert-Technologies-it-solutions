@@ -7937,3 +7937,10 @@ body {
     padding: 38px 28px 42px;
   }
 }
+
+@media (min-width: 769px) {
+  .qs-team-desktop-list,
+  .qs-team-dots {
+    transform: translateY(-24px);
+  }
+}
