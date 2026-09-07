@@ -1926,22 +1926,29 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .port-arrow {
-  background: none;
-  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(17, 17, 17, 0.45);
+  background: transparent;
   color: #555;
   cursor: pointer;
-  padding: 6px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.18s;
-  border-radius: 4px;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
-.port-arrow:hover { color: #C0001A; }
+.port-arrow:hover {
+  background: #111111;
+  border-color: #111111;
+  color: #ffffff;
+}
 
 .port-pips {
   display: flex;
