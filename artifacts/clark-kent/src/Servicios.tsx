@@ -202,9 +202,20 @@ export default function Servicios() {
         borderRadius: "56px",
       }}
     >
-      {/* Top wave — white to match the section above */}
+      {/* Desktop uses a straight edge; mobile keeps the original wave. */}
       <svg
-        style={{ position: "absolute", top: -1, left: 0, width: "100%", height: 80, zIndex: 20, display: "block", pointerEvents: "none" }}
+        className="svc-top-wave svc-top-wave--desktop"
+        style={{ position: "absolute", top: -1, left: 0, width: "100%", height: 80, zIndex: 20, pointerEvents: "none" }}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M0,0 H1440 V56 H0 Z" fill="#ffffff" />
+      </svg>
+      <svg
+        className="svc-top-wave svc-top-wave--mobile"
+        style={{ position: "absolute", top: -1, left: 0, width: "100%", height: 80, zIndex: 20, pointerEvents: "none" }}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"

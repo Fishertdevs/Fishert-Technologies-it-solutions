@@ -2112,6 +2112,24 @@ body {
   display: block;
 }
 
+.svc-top-wave--desktop {
+  display: block;
+}
+
+.svc-top-wave--mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #servicios .svc-top-wave--desktop {
+    display: none;
+  }
+
+  #servicios .svc-top-wave--mobile {
+    display: block;
+  }
+}
+
 /* ══════════════════════════════════════════
    RESEÑAS SECTION
 ══════════════════════════════════════════ */
