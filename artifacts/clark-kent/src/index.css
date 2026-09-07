@@ -4635,6 +4635,27 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@media (min-width: 901px) {
+  .ctw-section {
+    background: #ffffff;
+  }
+
+  .ctw-imagination {
+    grid-template-columns: 44% 56%;
+  }
+
+  .ctw-imagination-copy {
+    align-self: center;
+    padding: 0 4% 0 3%;
+    text-align: center;
+  }
+
+  .ctw-imagination-quote {
+    color: #C0001A;
+    text-align: center;
+  }
+}
+
 @media (max-width: 900px) {
   .ctw-imagination {
     display: flex;
