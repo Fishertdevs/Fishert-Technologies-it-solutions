@@ -7848,3 +7848,65 @@ body {
     order: 1;
   }
 }
+
+/* Final desktop balance: wider cards, compact equal heights, artwork grounded at the edge. */
+@media (min-width: 769px) {
+  .qs-team-inner {
+    grid-template-columns: minmax(300px, 0.75fr) minmax(0, 1.25fr);
+    align-items: end;
+    gap: clamp(24px, 3vw, 36px);
+  }
+
+  .qs-team-art {
+    align-self: end;
+  }
+
+  .qs-team-art img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin-bottom: -1px;
+  }
+
+  .qs-team-content {
+    align-self: end;
+    padding-bottom: 30px;
+  }
+
+  .qs-team-desktop-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .qs-team-card--desktop {
+    min-height: 0;
+    height: 278px;
+    padding: 16px 14px 18px;
+    overflow: hidden;
+  }
+
+  .qs-team-card--desktop .qs-team-avatar {
+    width: 66px;
+    height: 66px;
+    margin-bottom: 10px;
+    font-size: 36px;
+  }
+
+  .qs-team-card--desktop .qs-team-name {
+    font-size: clamp(21px, 1.65vw, 26px);
+    line-height: 1.05;
+  }
+
+  .qs-team-card--desktop .qs-team-role {
+    margin-bottom: 8px;
+    font-size: 8px;
+    line-height: 1.2;
+  }
+
+  .qs-team-card--desktop .qs-team-bio {
+    font-size: 11.5px;
+    line-height: 1.35;
+  }
+}
