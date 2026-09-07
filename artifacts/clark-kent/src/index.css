@@ -8048,11 +8048,11 @@ body {
 
 @media (min-width: 769px) {
   .qs-footer-art {
-    background: #b45b37;
+    background: #b45b37 !important;
   }
 
   .qs-footer-art-copy--desktop p {
-    color: #f7eee6;
+    color: #f7eee6 !important;
   }
 
   .qs-footer-art-copy--desktop {
