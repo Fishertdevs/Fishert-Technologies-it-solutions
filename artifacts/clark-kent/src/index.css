@@ -7345,16 +7345,43 @@ body {
 }
 
 .qs-footer-art {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   min-height: 0;
   align-items: flex-end;
-  justify-content: center;
   overflow: hidden;
   padding: 18px 24px 0;
   background: #ffffff;
 }
 
-.qs-footer-art img {
+.qs-footer-art-copy {
+  align-self: center;
+  justify-self: center;
+  max-width: 480px;
+  padding: 0 7%;
+  text-align: center;
+}
+
+.qs-footer-art-copy p {
+  margin: 0;
+  color: #c0001a;
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-size: clamp(38px, 5vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.qs-footer-art-media {
+  align-self: end;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.qs-footer-art-media img {
   display: block;
   width: min(100%, 540px);
   height: auto;
@@ -7365,10 +7392,19 @@ body {
 
 @media (max-width: 768px) {
   .qs-footer-art {
+    display: flex;
     padding: 8px 14px 0;
   }
 
-  .qs-footer-art img {
+  .qs-footer-art-copy {
+    display: none;
+  }
+
+  .qs-footer-art-media {
+    width: 100%;
+  }
+
+  .qs-footer-art-media img {
     width: min(100%, 430px);
     max-height: 510px;
   }
@@ -7417,7 +7453,7 @@ body {
   text-align: center;
 }
 
-.qs-footer-art img {
+.qs-footer-art-media img {
   width: min(100%, 400px);
   max-height: 500px;
   margin-inline: auto;
@@ -7440,7 +7476,7 @@ body {
     font-size: clamp(26px, 8.6vw, 35px);
   }
 
-  .qs-footer-art img {
+  .qs-footer-art-media img {
     width: min(100%, 270px);
     max-height: 350px;
   }

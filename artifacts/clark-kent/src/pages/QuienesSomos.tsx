@@ -371,7 +371,16 @@ export default function QuienesSomos() {
         </section>
 
         <section className="qs-footer-art" aria-label="Fishert Studio">
-          <img src={footerPortrait} alt="" />
+          <div className="qs-footer-art-copy">
+            <p>
+              {lang === "es"
+                ? "La tecnología convierte las ideas en posibilidades."
+                : "Technology turns ideas into possibilities."}
+            </p>
+          </div>
+          <div className="qs-footer-art-media">
+            <img src={footerPortrait} alt="" />
+          </div>
         </section>
 
       </main>
