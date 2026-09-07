@@ -247,7 +247,7 @@ export default function QuienesSomos() {
         <section className="qs-hero">
           <div className="qs-hero-content">
             <h1 className="qs-hero-title">
-              {lang === "es" ? "Fishert Studio" : "Fishert Studio"}
+              {lang === "es" ? "FISHERT STUDIO" : "FISHERT STUDIO"}
             </h1>
             <p className="qs-hero-sub">
               {lang === "es"
@@ -270,13 +270,8 @@ export default function QuienesSomos() {
               <div className="qs-story-body">
                 <p>
                   {lang === "es"
-                    ? "Fishert Studio es un estudio de software para ideas ambiciosas. Unimos estrategia, diseño e ingeniería para convertir oportunidades en experiencias digitales claras, útiles y preparadas para crecer."
-                    : "Fishert Studio is a software studio for ambitious ideas. We combine strategy, design, and engineering to turn opportunities into clear, useful digital experiences built to grow."}
-                </p>
-                <p>
-                  {lang === "es"
-                    ? "Trabajamos junto a marcas y equipos que buscan más que una solución estándar: una identidad propia, decisiones bien pensadas y tecnología que haga avanzar su negocio. Cada proyecto empieza escuchando, explorando y encontrando la forma más directa de hacerlo realidad."
-                    : "We work with brands and teams looking for more than a standard solution: a distinct identity, thoughtful decisions, and technology that moves the business forward. Every project starts by listening, exploring, and finding the clearest way to make it real."}
+                    ? "Fishert Studio es un estudio de software para ideas ambiciosas. Unimos estrategia, diseño e ingeniería para convertir oportunidades en experiencias digitales claras, útiles y preparadas para crecer. Trabajamos junto a marcas y equipos que buscan más que una solución estándar: una identidad propia, decisiones bien pensadas y tecnología que haga avanzar su negocio. Cada proyecto empieza escuchando, explorando y encontrando la forma más directa de hacerlo realidad."
+                    : "Fishert Studio is a software studio for ambitious ideas. We combine strategy, design, and engineering to turn opportunities into clear, useful digital experiences built to grow. We work with brands and teams looking for more than a standard solution: a distinct identity, thoughtful decisions, and technology that moves the business forward. Every project starts by listening, exploring, and finding the clearest way to make it real."}
                 </p>
               </div>
             </div>
