@@ -6,7 +6,6 @@ import Footer from "../Footer";
 import teamSectionTexture from "@assets/image_1788744935304.png";
 import teamSectionArt from "@assets/image-Photoroom_(21)_1788745192839.png";
 import storySectionArt from "@assets/image-Photoroom_(22)_1788748318291.png";
-import ctwStatue from "@assets/ctw_statue.png";
 
 type TeamMember = {
   name: string;
@@ -376,25 +375,6 @@ export default function QuienesSomos() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="qs-footer-art" aria-label="Fishert Studio">
-          <div className="qs-footer-art-copy qs-footer-art-copy--desktop">
-            <p>
-              <span>Tu único</span>
-              <span>límite es tu</span>
-              <span>imaginación.</span>
-            </p>
-          </div>
-          <div className="qs-footer-art-media qs-footer-art-media--desktop">
-            <img src={ctwStatue} alt="" />
-          </div>
-          <div className="qs-footer-art-copy qs-footer-art-copy--mobile">
-            <p>{lang === "es" ? "Tu único límite es tu imaginación." : "Your only limit is your imagination."}</p>
-          </div>
-          <div className="qs-footer-art-media qs-footer-art-media--mobile">
-            <img src={ctwStatue} alt="" />
           </div>
         </section>
 

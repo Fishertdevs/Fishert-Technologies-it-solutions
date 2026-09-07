@@ -7344,79 +7344,6 @@ body {
   }
 }
 
-.qs-footer-art {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: 0;
-  align-items: flex-end;
-  overflow: hidden;
-  padding: 18px 24px 0;
-  background: #ffffff;
-}
-
-.qs-footer-art-copy {
-  align-self: center;
-  justify-self: center;
-  width: 100%;
-  max-width: none;
-  box-sizing: border-box;
-  padding: 0 4%;
-  text-align: center;
-}
-
-.qs-footer-art-copy p {
-  margin: 0;
-  color: #c0001a;
-  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(30px, 4.2vw, 64px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.98;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.qs-footer-art-copy span {
-  display: block;
-  white-space: nowrap;
-}
-
-.qs-footer-art-media {
-  align-self: end;
-  display: flex;
-  justify-content: center;
-  min-width: 0;
-}
-
-.qs-footer-art-media img {
-  display: block;
-  width: min(100%, 540px);
-  height: auto;
-  max-height: 620px;
-  object-fit: contain;
-  object-position: center bottom;
-}
-
-@media (max-width: 768px) {
-  .qs-footer-art {
-    display: flex;
-    padding: 8px 14px 0;
-  }
-
-  .qs-footer-art-copy {
-    display: none;
-  }
-
-  .qs-footer-art-media {
-    width: 100%;
-  }
-
-  .qs-footer-art-media img {
-    width: min(100%, 430px);
-    max-height: 510px;
-  }
-}
-
 /* Final spacing and team-card refinements */
 .qs-story {
   padding-bottom: 58px;
@@ -7744,11 +7671,6 @@ body {
   }
 }
 
-/* Definitive responsive team and closing-art sizing. */
-.qs-footer-art-copy p {
-  font-size: clamp(36px, 4.8vw, 76px);
-}
-
 @media (min-width: 769px) {
   .qs-team-inner {
     grid-template-columns: minmax(390px, 1.35fr) minmax(0, 1.25fr);
@@ -7799,28 +7721,6 @@ body {
     letter-spacing: -0.02em;
   }
 
-  .qs-footer-art {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .qs-footer-art-copy {
-    display: block;
-    order: 1;
-    width: 100%;
-    padding: 24px 8px 12px;
-  }
-
-  .qs-footer-art-copy p {
-    font-size: clamp(34px, 9.2vw, 48px);
-    line-height: 0.92;
-  }
-
-  .qs-footer-art-media {
-    order: 2;
-    width: 100%;
-  }
 }
 
 /* Keep desktop cards at their own compact height instead of stretching to the artwork row. */
@@ -7935,21 +7835,6 @@ body {
   .qs-team-grid .qs-team-card {
     min-height: 280px;
     padding: 44px 28px 50px;
-  }
-}
-
-@media (max-width: 768px) {
-  .qs-footer-art-copy {
-    padding-inline: 4px;
-  }
-
-  .qs-footer-art-copy .qs-footer-art-lines--mobile {
-    font-size: clamp(21px, 7vw, 38px);
-    line-height: 0.92;
-  }
-
-  .qs-footer-art-lines--mobile span {
-    white-space: nowrap;
   }
 }
 
@@ -8102,101 +7987,3 @@ body {
   }
 }
 
-.qs-footer-art-lines--mobile {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .qs-footer-art-lines--desktop {
-    display: none;
-  }
-
-  .qs-footer-art-lines--mobile {
-    display: block;
-  }
-}
-
-/* Restore the original desktop closing composition: statue left, quote right. */
-.qs-footer-art-copy--mobile,
-.qs-footer-art-media--mobile {
-  display: none;
-}
-
-@media (min-width: 769px) {
-  .qs-footer-art {
-    background: #b45b37;
-  }
-
-  .qs-footer-art-copy--desktop {
-    display: flex;
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .qs-footer-art-media--desktop {
-    display: flex;
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .qs-footer-art-media--desktop img {
-    width: min(100%, 540px);
-    max-height: 620px;
-  }
-
-  .qs-footer-art-copy--desktop p {
-    color: #f7eee6;
-  }
-}
-
-@media (max-width: 768px) {
-  .qs-footer-art-copy--desktop,
-  .qs-footer-art-media--desktop {
-    display: none;
-  }
-
-  .qs-footer-art-copy--mobile {
-    display: block;
-    order: 1;
-  }
-
-  .qs-footer-art-media--mobile {
-    display: flex;
-    order: 2;
-  }
-}
-
-@media (max-width: 768px) {
-  .qs-footer-art {
-    overflow: hidden;
-    padding: 30px 14px 0;
-    border-radius: 24px 24px 0 0;
-    background: #b45b37;
-  }
-
-  .qs-footer-art-copy--mobile {
-    width: 100%;
-    padding: 8px 4px 20px;
-  }
-
-  .qs-footer-art-copy--mobile p {
-    margin: 0 auto;
-    color: #f7eee6;
-    font-size: clamp(22px, 7.4vw, 34px);
-    line-height: 0.98;
-    text-align: center;
-    text-transform: uppercase;
-    white-space: normal;
-  }
-
-  .qs-footer-art-media--mobile {
-    width: 100%;
-    align-items: flex-end;
-    justify-content: center;
-  }
-
-  .qs-footer-art-media--mobile img {
-    width: min(100%, 360px);
-    max-height: none;
-  }
-}
