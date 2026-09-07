@@ -7953,6 +7953,126 @@ body {
   }
 }
 
+/* Desktop story composition: copy on the left, supplied artwork on the right. */
+.qs-story-content > .svc-plans-eyebrow,
+.qs-story-content .qs-story-heading,
+.qs-story-content .qs-story-body {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.qs-story-content > .svc-plans-eyebrow {
+  transition-delay: 0.04s;
+}
+
+.qs-story-content .qs-story-heading {
+  transition-delay: 0.14s;
+}
+
+.qs-story-content .qs-story-body {
+  transition-delay: 0.24s;
+}
+
+.qs-story--visible .qs-story-content > .svc-plans-eyebrow,
+.qs-story--visible .qs-story-content .qs-story-heading,
+.qs-story--visible .qs-story-content .qs-story-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.qs-story-art {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .qs-story {
+    padding: 86px 48px 84px;
+    text-align: left;
+  }
+
+  .qs-story-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+    align-items: center;
+    gap: clamp(36px, 5vw, 84px);
+    max-width: 1180px;
+  }
+
+  .qs-story-content {
+    min-width: 0;
+  }
+
+  .qs-story-content > .svc-plans-eyebrow {
+    margin: 0 0 15px;
+    text-align: left;
+  }
+
+  .qs-story-content .qs-story-heading {
+    max-width: none;
+    margin: 0 0 34px;
+    color: #171717;
+    font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+    font-size: clamp(42px, 4.2vw, 72px);
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .qs-story-content .qs-story-body {
+    max-width: none;
+    margin: 0;
+    text-align: left;
+  }
+
+  .qs-story-content .qs-story-body p {
+    margin: 0;
+  }
+
+  .qs-story-art {
+    display: flex;
+    min-width: 0;
+    min-height: 420px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qs-story-art img {
+    display: block;
+    width: min(100%, 480px);
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 768px) {
+  .qs-story-content {
+    width: 100%;
+  }
+
+  .qs-story-content > .svc-plans-eyebrow {
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .qs-story-content .qs-story-heading {
+    margin-bottom: 31px;
+    text-align: center;
+  }
+
+  .qs-story-content .qs-story-body {
+    gap: 18px;
+  }
+
+  .qs-story-art {
+    display: none;
+  }
+}
+
 @media (min-width: 769px) {
   .qs-team-desktop-list,
   .qs-team-dots {
