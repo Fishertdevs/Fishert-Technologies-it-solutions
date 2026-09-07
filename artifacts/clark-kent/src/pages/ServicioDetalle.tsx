@@ -5,6 +5,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { buildServiceDiscountHref, buildServiceProposalHref } from "../utils/whatsapp";
 import { useListPlans } from "@workspace/api-client-react";
+import frogOfferImage from "@assets/image-Photoroom_(23)_1788814073643.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ServicioDetalle.css";
@@ -2114,101 +2115,108 @@ export default function ServicioDetalle() {
               ) : null}
             </div>
           </div>
-          <div className="svc2-plans-carousel">
-            <div
-              className="svc2-plans-grid"
-              onTouchStart={handlePlanTouchStart}
-              onTouchEnd={handlePlanTouchEnd}
-              onTouchCancel={() => {
-                planTouchStartX.current = null;
-              }}
-            >
-              {plansQuery.isLoading ? (
-                <p className="svc2-plans-status">{lang === "es" ? "Cargando planes…" : "Loading plans…"}</p>
-              ) : plansQuery.isError || plans.length === 0 ? (
-                <p className="svc2-plans-status">{lang === "es" ? "Los planes no están disponibles en este momento." : "Plans are not available right now."}</p>
-              ) : plans.map((plan, i) => (
+          <div className="svc2-pricing-body">
+            <div className="svc2-pricing-plans">
+              <div className="svc2-plans-carousel">
                 <div
-                  key={i}
-                  className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""} ${activePlan === i ? "svc2-plan-card--active" : ""}`}
+                  className="svc2-plans-grid"
+                  onTouchStart={handlePlanTouchStart}
+                  onTouchEnd={handlePlanTouchEnd}
+                  onTouchCancel={() => {
+                    planTouchStartX.current = null;
+                  }}
                 >
-                  {plan.badge && (
-                    <span className="svc2-plan-badge">{plan.badge}</span>
-                  )}
+                  {plansQuery.isLoading ? (
+                    <p className="svc2-plans-status">{lang === "es" ? "Cargando planes…" : "Loading plans…"}</p>
+                  ) : plansQuery.isError || plans.length === 0 ? (
+                    <p className="svc2-plans-status">{lang === "es" ? "Los planes no están disponibles en este momento." : "Plans are not available right now."}</p>
+                  ) : plans.map((plan, i) => (
+                    <div
+                      key={i}
+                      className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""} ${activePlan === i ? "svc2-plan-card--active" : ""}`}
+                    >
+                      {plan.badge && (
+                        <span className="svc2-plan-badge">{plan.badge}</span>
+                      )}
 
-                  <h4 className="svc2-plan-name">{plan.name}</h4>
+                      <h4 className="svc2-plan-name">{plan.name}</h4>
 
-                  <div className="svc2-plan-price-wrap">
-                    {plan.isCustom ? (
-                      (() => {
-                        const customPrice = formatCustomPlanPrice(plan.price);
-                        return (
-                          <p className="svc2-plan-price svc2-plan-price--custom">
-                            <span className="svc2-plan-price-prefix">{customPrice.prefix}</span>
-                            <span className="svc2-plan-price-value">{customPrice.value}</span>
-                            {customPrice.currency && (
-                              <span className="svc2-plan-price-currency">{customPrice.currency}</span>
-                            )}
+                      <div className="svc2-plan-price-wrap">
+                        {plan.isCustom ? (
+                          (() => {
+                            const customPrice = formatCustomPlanPrice(plan.price);
+                            return (
+                              <p className="svc2-plan-price svc2-plan-price--custom">
+                                <span className="svc2-plan-price-prefix">{customPrice.prefix}</span>
+                                <span className="svc2-plan-price-value">{customPrice.value}</span>
+                                {customPrice.currency && (
+                                  <span className="svc2-plan-price-currency">{customPrice.currency}</span>
+                                )}
+                              </p>
+                            );
+                          })()
+                        ) : (
+                          <p className="svc2-plan-price">
+                            ${formatPlanPrice(plan)}
+                            <span className="svc2-plan-price-currency">
+                              {plan.currency} {planPeriod(plan)}
+                            </span>
                           </p>
-                        );
-                      })()
-                    ) : (
-                      <p className="svc2-plan-price">
-                        ${formatPlanPrice(plan)}
-                        <span className="svc2-plan-price-currency">
-                          {plan.currency} {planPeriod(plan)}
-                        </span>
-                      </p>
-                    )}
-                    {isRecurring && billingMode === "annual" && !plan.isCustom && (
-                      <span className="svc2-plan-saving">
-                        {lang === "es" ? "Ahorra 20% con pago anual" : "Save 20% with annual billing"}
-                      </span>
-                    )}
-                  </div>
-                  <p className="svc2-plan-tagline">{planTagline(plan)}</p>
+                        )}
+                        {isRecurring && billingMode === "annual" && !plan.isCustom && (
+                          <span className="svc2-plan-saving">
+                            {lang === "es" ? "Ahorra 20% con pago anual" : "Save 20% with annual billing"}
+                          </span>
+                        )}
+                      </div>
+                      <p className="svc2-plan-tagline">{planTagline(plan)}</p>
 
-                  <div className="svc2-plan-divider"></div>
+                      <div className="svc2-plan-divider"></div>
 
-                  <ul className="svc2-plan-features">
-                    <li className="svc2-plan-feature">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      <span>
-                        {lang === "es"
-                          ? "Tiempo estimado: 3–4 semanas"
-                          : "Estimated timing: 3–4 weeks"}
-                      </span>
-                    </li>
-                    {plan.features.map((f, j) => (
-                      <li key={j} className="svc2-plan-feature">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      <ul className="svc2-plan-features">
+                        <li className="svc2-plan-feature">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                          <span>
+                            {lang === "es"
+                              ? "Tiempo estimado: 3–4 semanas"
+                              : "Estimated timing: 3–4 weeks"}
+                          </span>
+                        </li>
+                        {plan.features.map((f, j) => (
+                          <li key={j} className="svc2-plan-feature">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
 
-                  <a href={buildServiceProposalHref(lang, t.title, plan.name)} target="_blank" rel="noopener noreferrer" className="svc2-plan-cta">
-                    {lang === "es" ? "Solicitar propuesta" : "Request proposal"}
-                  </a>
+                      <a href={buildServiceProposalHref(lang, t.title, plan.name)} target="_blank" rel="noopener noreferrer" className="svc2-plan-cta">
+                        {lang === "es" ? "Solicitar propuesta" : "Request proposal"}
+                      </a>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              <div className="svc2-plan-dots" aria-label={lang === "es" ? "Navegación de planes" : "Plan navigation"}>
+                {plans.map((plan, index) => (
+                  <button
+                    key={plan.name}
+                    type="button"
+                    className={activePlan === index ? "svc2-plan-dot svc2-plan-dot--active" : "svc2-plan-dot"}
+                    aria-label={`${lang === "es" ? "Ver plan" : "View plan"} ${plan.name}`}
+                    aria-pressed={activePlan === index}
+                    onClick={() => setActivePlan(index)}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="svc2-plan-dots" aria-label={lang === "es" ? "Navegación de planes" : "Plan navigation"}>
-            {plans.map((plan, index) => (
-              <button
-                key={plan.name}
-                type="button"
-                className={activePlan === index ? "svc2-plan-dot svc2-plan-dot--active" : "svc2-plan-dot"}
-                aria-label={`${lang === "es" ? "Ver plan" : "View plan"} ${plan.name}`}
-                aria-pressed={activePlan === index}
-                onClick={() => setActivePlan(index)}
-              />
-            ))}
+            <aside className="svc2-pricing-art" aria-label={lang === "es" ? "Imagen de la sección de planes" : "Pricing section artwork"}>
+              <img src={frogOfferImage} alt="" />
+            </aside>
           </div>
         </section>
 
