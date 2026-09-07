@@ -7993,7 +7993,7 @@ body {
 
   .qs-story-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
+    grid-template-columns: minmax(0, 1.6fr) minmax(220px, 0.65fr);
     align-items: center;
     gap: clamp(28px, 4vw, 64px);
     max-width: 1180px;
@@ -8021,7 +8021,6 @@ body {
     text-align: center;
     text-transform: uppercase;
     white-space: nowrap;
-    font-size: clamp(30px, 3.4vw, 60px);
   }
 
   .qs-story-content .qs-story-body {
@@ -8049,6 +8048,12 @@ body {
     height: auto;
     max-height: 410px;
     object-fit: contain;
+  }
+}
+
+@media (min-width: 769px) {
+  .qs-hero-title {
+    font-size: clamp(48px, 5.5vw, 82px);
   }
 }
 
