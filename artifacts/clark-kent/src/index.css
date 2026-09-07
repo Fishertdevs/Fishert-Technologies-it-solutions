@@ -7923,3 +7923,17 @@ body {
     transform-origin: initial;
   }
 }
+
+/* Small spacing refinement requested for the approved team composition. */
+@media (min-width: 769px) {
+  .qs-team-content {
+    transform: translateY(-34px);
+  }
+}
+
+@media (max-width: 768px) {
+  .qs-team-grid .qs-team-card {
+    min-height: 240px;
+    padding: 38px 28px 42px;
+  }
+}
