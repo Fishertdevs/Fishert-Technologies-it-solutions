@@ -290,12 +290,9 @@ export default function QuienesSomos() {
               <img src={teamSectionArt} alt="" />
             </div>
             <div className="qs-team-content">
-            <p className="svc-plans-eyebrow">
-              {lang === "es" ? "CONOCE" : "MEET US"}
-            </p>
-            <h2 className="qs-team-heading">
-              {lang === "es" ? "Nuestro equipo." : "Our team."}
-            </h2>
+              <h2 className="qs-team-heading">
+                {lang === "es" ? "Nuestro equipo." : "Our team."}
+              </h2>
             <div className="qs-team-desktop-list">
               {displayTeam.slice(0, 3).map((member) => (
                 <TeamMemberCard
