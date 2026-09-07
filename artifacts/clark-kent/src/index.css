@@ -7822,3 +7822,29 @@ body {
     width: 100%;
   }
 }
+
+/* Keep desktop cards at their own compact height instead of stretching to the artwork row. */
+@media (min-width: 769px) {
+  .qs-team-desktop-list {
+    align-items: start;
+  }
+
+  .qs-team-card--desktop {
+    align-self: start;
+    min-height: 292px;
+    height: auto;
+  }
+}
+
+/* On mobile, the artwork follows the carousel content. */
+@media (max-width: 768px) {
+  .qs-team-art {
+    order: 2;
+    margin-top: 18px;
+    margin-bottom: 0;
+  }
+
+  .qs-team-content {
+    order: 1;
+  }
+}
