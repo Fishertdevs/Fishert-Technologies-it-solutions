@@ -202,8 +202,7 @@ export default function Servicios() {
         borderRadius: "56px",
       }}
     >
-      {/* Desktop uses a straight edge with the same rounded outer corners as the section bottom. */}
-      <div className="svc-top-edge svc-top-edge--desktop" aria-hidden="true" />
+      {/* Mobile keeps the original transition; desktop uses the curved checker surface. */}
       <svg
         className="svc-top-wave svc-top-wave--mobile"
         style={{ position: "absolute", top: -1, left: 0, width: "100%", height: 80, zIndex: 20, pointerEvents: "none" }}
