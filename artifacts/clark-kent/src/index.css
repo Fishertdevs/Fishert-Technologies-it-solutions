@@ -1982,6 +1982,26 @@ body {
   border-radius: 16px 16px 0 0;
 }
 
+@media (min-width: 769px) {
+  #servicios {
+    background: #ffffff !important;
+  }
+
+  #servicios .svc-checker-surface {
+    position: absolute;
+    inset: 56px 0 0;
+    z-index: 0;
+    border-radius: 56px;
+    background: repeating-conic-gradient(#111111 0% 25%, #333333 0% 50%) center / 52px 52px;
+    pointer-events: none;
+  }
+
+  #servicios > .works-text-block,
+  #servicios > .svc-desktop-grid {
+    z-index: 1;
+  }
+}
+
 /* ── Socios / Partners section ──────────────────────────────────────────── */
 .socios-section {
   width: 100%;
@@ -2112,29 +2132,11 @@ body {
   display: block;
 }
 
-.svc-top-edge--desktop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 56px;
-  box-sizing: border-box;
-  border-radius: 56px 56px 0 0;
-  background: #ffffff;
-  pointer-events: none;
-  z-index: 20;
-  display: block;
-}
-
 .svc-top-wave--mobile {
   display: none;
 }
 
 @media (max-width: 768px) {
-  #servicios .svc-top-edge--desktop {
-    display: none;
-  }
-
   #servicios .svc-top-wave--mobile {
     display: block;
   }

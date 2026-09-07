@@ -202,6 +202,8 @@ export default function Servicios() {
         borderRadius: "56px",
       }}
     >
+      <div className="svc-checker-surface" aria-hidden="true" />
+
       {/* Mobile keeps the original transition; desktop uses the curved checker surface. */}
       <svg
         className="svc-top-wave svc-top-wave--mobile"
