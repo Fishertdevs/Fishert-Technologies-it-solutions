@@ -351,6 +351,7 @@ export default function QuienesSomos() {
                 />
               ))}
             </div>
+            </div>
           </div>
         </section>
 
