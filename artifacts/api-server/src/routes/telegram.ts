@@ -776,6 +776,7 @@ const handleCallback = async (chatId: string, callback: TelegramCallback, log: T
     await sendTelegramMessage(chatId, helpText, backToMenuMarkup() as ReplyMarkup);
     return;
   }
+  if (data === "menu:access") return showAccesses(chatId);
   if (data === "menu:reviews") return showReviews(chatId);
   if (data === "menu:plans") return showPlanCategories(chatId);
   if (data === "menu:social") return showSocialLinks(chatId);
@@ -784,6 +785,104 @@ const handleCallback = async (chatId: string, callback: TelegramCallback, log: T
   if (data === "menu:contacts") return showContacts(chatId);
 
   const parts = data.split(":");
+  if (parts[0] === "access") {
+    if (!isOwner(chatId)) {
+      await sendTelegramMessage(chatId, "Sólo el propietario puede gestionar los accesos.");
+      return;
+    }
+    const adminId = parseId(parts[2]);
+    if (!adminId) return;
+    const [admin] = await db
+      .select()
+      .from(telegramAdminsTable)
+      .where(eq(telegramAdminsTable.id, adminId))
+      .limit(1);
+    if (!admin) {
+      await sendTelegramMessage(chatId, "La solicitud o el administrador ya no existe.", backToMenuMarkup() as ReplyMarkup);
+      return;
+    }
+    if (parts[1] === "request") {
+      await sendTelegramMessage(
+        chatId,
+        [
+          "Solicitud de acceso",
+          "",
+          adminLabel(admin),
+          "",
+          "¿Qué quieres hacer con esta solicitud?",
+        ].join("\n"),
+        inline(
+          [
+            { text: "✅ Autorizar", callback_data: `access:approve:${admin.id}` },
+            { text: "🚫 Rechazar", callback_data: `access:reject:${admin.id}` },
+          ],
+          [{ text: "↩️ Volver a accesos", callback_data: "menu:access" }],
+        ),
+      );
+      return;
+    }
+    if (parts[1] === "approve") {
+      if (admin.isActive) {
+        await sendTelegramMessage(chatId, "Ese administrador ya está activo.", backToMenuMarkup() as ReplyMarkup);
+        return;
+      }
+      const activeAdmins = await db
+        .select({ id: telegramAdminsTable.id })
+        .from(telegramAdminsTable)
+        .where(eq(telegramAdminsTable.isActive, true));
+      if (activeAdmins.length >= 2) {
+        await sendTelegramMessage(
+          chatId,
+          "Ya tienes dos administradores activos. Revoca uno antes de autorizar a otra persona.",
+          backToMenuMarkup() as ReplyMarkup,
+        );
+        return;
+      }
+      await db
+        .update(telegramAdminsTable)
+        .set({ isActive: true, updatedAt: new Date() })
+        .where(eq(telegramAdminsTable.id, admin.id));
+      try {
+        await setTelegramCommands(admin.chatId);
+        await sendTelegramMessage(
+          admin.chatId,
+          "Tu acceso al panel de Fishert Studio fue autorizado. Envía /start para comenzar.",
+        );
+      } catch {
+        // The database authorization remains valid even if Telegram delivery fails.
+      }
+      await sendTelegramMessage(chatId, `Acceso autorizado: ${adminLabel(admin)}.`, backToMenuMarkup() as ReplyMarkup);
+      return;
+    }
+    if (parts[1] === "reject") {
+      await db.delete(telegramAdminsTable).where(eq(telegramAdminsTable.id, admin.id));
+      await clearTelegramCommands(admin.chatId);
+      try {
+        await sendTelegramMessage(admin.chatId, "Tu solicitud de acceso al panel fue rechazada.");
+      } catch {
+        // The requester may have blocked the bot.
+      }
+      await sendTelegramMessage(chatId, `Solicitud rechazada: ${adminLabel(admin)}.`, backToMenuMarkup() as ReplyMarkup);
+      return;
+    }
+    if (parts[1] === "revoke") {
+      if (!admin.isActive) {
+        await sendTelegramMessage(chatId, "Ese acceso ya no está activo.", backToMenuMarkup() as ReplyMarkup);
+        return;
+      }
+      await db.delete(telegramAdminsTable).where(eq(telegramAdminsTable.id, admin.id));
+      await clearSession(admin.chatId);
+      await clearTelegramCommands(admin.chatId);
+      try {
+        await sendTelegramMessage(admin.chatId, "Tu acceso al panel de Fishert Studio fue revocado.");
+      } catch {
+        // The former administrator may have blocked the bot.
+      }
+      await sendTelegramMessage(chatId, `Acceso revocado: ${adminLabel(admin)}.`, backToMenuMarkup() as ReplyMarkup);
+      return;
+    }
+  }
+
   if (parts[0] === "review") {
     const id = parseId(parts[2]);
     if (!id) return;
@@ -933,6 +1032,11 @@ const handleMessage = async (message: TelegramMessage, log: TelegramLog) => {
   const commandMatch = text.match(/^\/([a-z_]+)(?:@\w+)?(?:\s+([\s\S]+))?$/i);
   const command = commandMatch?.[1]?.toLowerCase();
 
+  if (command === "solicitar_acceso") {
+    await requestAccess(message);
+    return;
+  }
+
   if (!(await isAuthorized(chatId))) {
     await sendTelegramMessage(chatId, unauthorizedMessage);
     return;
@@ -940,7 +1044,7 @@ const handleMessage = async (message: TelegramMessage, log: TelegramLog) => {
 
   if (command === "start") {
     try {
-      await setTelegramCommands();
+      await setTelegramCommands(chatId);
     } catch (error) {
       log.warn({ err: error }, "Could not refresh Telegram command menu");
     }
@@ -953,6 +1057,10 @@ const handleMessage = async (message: TelegramMessage, log: TelegramLog) => {
   }
   if (command === "cancelar") {
     await showHome(chatId);
+    return;
+  }
+  if (command === "accesos") {
+    await showAccesses(chatId);
     return;
   }
   if (command === "resenas") return showReviews(chatId);
