@@ -378,7 +378,6 @@ export default function QuienesSomos() {
                 : ["Technology", "turns ideas into", "new digital", "possibilities."]
               ).map((line, index) => (
                 <span key={line}>
-                  {index > 0 && <br />}
                   {line}
                 </span>
               ))}
