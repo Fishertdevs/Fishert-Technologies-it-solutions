@@ -7933,8 +7933,23 @@ body {
 
 @media (max-width: 768px) {
   .qs-team-grid .qs-team-card {
-    min-height: 240px;
-    padding: 38px 28px 42px;
+    min-height: 260px;
+    padding: 40px 28px 44px;
+  }
+}
+
+@media (max-width: 768px) {
+  .qs-footer-art-copy {
+    padding-inline: 4px;
+  }
+
+  .qs-footer-art-lines--mobile {
+    font-size: clamp(28px, 8vw, 42px);
+    line-height: 0.92;
+  }
+
+  .qs-footer-art-lines--mobile span {
+    white-space: nowrap;
   }
 }
 
