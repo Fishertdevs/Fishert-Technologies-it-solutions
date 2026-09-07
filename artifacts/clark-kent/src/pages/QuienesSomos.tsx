@@ -373,9 +373,15 @@ export default function QuienesSomos() {
         <section className="qs-footer-art" aria-label="Fishert Studio">
           <div className="qs-footer-art-copy">
             <p>
-              {lang === "es"
-                ? "La tecnología convierte las ideas en posibilidades."
-                : "Technology turns ideas into possibilities."}
+              {(lang === "es"
+                ? ["La tecnología", "convierte las", "ideas en", "posibilidades."]
+                : ["Technology", "turns ideas into", "new digital", "possibilities."]
+              ).map((line, index) => (
+                <span key={line}>
+                  {index > 0 && <br />}
+                  {line}
+                </span>
+              ))}
             </p>
           </div>
           <div className="qs-footer-art-media">
