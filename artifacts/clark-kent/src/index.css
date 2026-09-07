@@ -7357,8 +7357,10 @@ body {
 .qs-footer-art-copy {
   align-self: center;
   justify-self: center;
-  max-width: 480px;
-  padding: 0 7%;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  padding: 0 4%;
   text-align: center;
 }
 
@@ -7366,12 +7368,17 @@ body {
   margin: 0;
   color: #c0001a;
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
-  font-size: clamp(38px, 5vw, 72px);
+  font-size: clamp(30px, 4.2vw, 64px);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 0.98;
   text-align: center;
   text-transform: uppercase;
+}
+
+.qs-footer-art-copy span {
+  display: block;
+  white-space: nowrap;
 }
 
 .qs-footer-art-media {
