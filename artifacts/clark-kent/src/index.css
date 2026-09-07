@@ -3741,6 +3741,7 @@ body {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  border-radius: 0 0 32px 32px;
 }
 
 .faq2-section .faq2-heading,
@@ -3784,7 +3785,10 @@ body {
   display: block;
 }
 .faq2-wave--top    { top: -1px; }
-.faq2-wave--bottom { bottom: -1px; }
+.faq2-wave--bottom {
+  bottom: -1px;
+  display: none;
+}
 
 .faq2-inner {
   height: 100%;
