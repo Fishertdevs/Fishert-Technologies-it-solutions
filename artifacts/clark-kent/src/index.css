@@ -8157,3 +8157,38 @@ body {
     order: 2;
   }
 }
+
+@media (max-width: 768px) {
+  .qs-footer-art {
+    overflow: hidden;
+    padding: 30px 14px 0;
+    border-radius: 24px 24px 0 0;
+    background: #b45b37;
+  }
+
+  .qs-footer-art-copy--mobile {
+    width: 100%;
+    padding: 8px 4px 20px;
+  }
+
+  .qs-footer-art-copy--mobile p {
+    margin: 0 auto;
+    color: #f7eee6;
+    font-size: clamp(22px, 7.4vw, 34px);
+    line-height: 0.98;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: normal;
+  }
+
+  .qs-footer-art-media--mobile {
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .qs-footer-art-media--mobile img {
+    width: min(100%, 360px);
+    max-height: none;
+  }
+}

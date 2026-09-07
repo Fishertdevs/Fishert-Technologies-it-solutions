@@ -3,7 +3,6 @@ import { useListTeamMembers } from "@workspace/api-client-react";
 import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import footerPortrait from "@assets/image_(6)-Photoroom_1788126926994.png";
 import teamSectionTexture from "@assets/image_1788744935304.png";
 import teamSectionArt from "@assets/image-Photoroom_(21)_1788745192839.png";
 import storySectionArt from "@assets/image-Photoroom_(22)_1788748318291.png";
@@ -392,27 +391,10 @@ export default function QuienesSomos() {
             <img src={ctwStatue} alt="" />
           </div>
           <div className="qs-footer-art-copy qs-footer-art-copy--mobile">
-            <p className="qs-footer-art-lines--desktop">
-              {(lang === "es"
-                ? ["La tecnología", "convierte las ideas", "en posibilidades."]
-                : ["Technology", "turns ideas into", "new digital possibilities."]
-              ).map((line, index) => (
-                <span key={line}>
-                  {line}
-                </span>
-              ))}
-            </p>
-            <p className="qs-footer-art-lines--mobile">
-              {(lang === "es"
-                ? ["La tecnología", "convierte las ideas", "en posibilidades."]
-                : ["Technology", "turns ideas into", "new digital possibilities."]
-              ).map((line) => (
-                <span key={line}>{line}</span>
-              ))}
-            </p>
+            <p>{lang === "es" ? "Tu único límite es tu imaginación." : "Your only limit is your imagination."}</p>
           </div>
           <div className="qs-footer-art-media qs-footer-art-media--mobile">
-            <img src={footerPortrait} alt="" />
+            <img src={ctwStatue} alt="" />
           </div>
         </section>
 
