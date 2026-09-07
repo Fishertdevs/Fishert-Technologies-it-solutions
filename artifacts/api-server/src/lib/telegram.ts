@@ -71,20 +71,42 @@ export const answerTelegramCallback = async (
     ...(text ? { text } : {}),
   });
 
-export const setTelegramCommands = async () =>
-  callTelegram("setMyCommands", {
-    commands: [
-      { command: "start", description: "Abrir el panel de administración" },
-      { command: "ayuda", description: "Ver ayuda y comandos" },
-      { command: "resenas", description: "Administrar reseñas" },
-      { command: "planes", description: "Administrar planes" },
-      { command: "redes", description: "Administrar redes sociales" },
-      { command: "contacto", description: "Editar datos de contacto" },
-      { command: "equipo", description: "Administrar integrantes del equipo" },
-      { command: "mensajes", description: "Ver mensajes de contacto" },
-      { command: "cancelar", description: "Cancelar la operación actual" },
-    ],
+const telegramCommands = [
+  { command: "start", description: "Abrir el panel de administración" },
+  { command: "ayuda", description: "Ver ayuda y comandos" },
+  { command: "resenas", description: "Administrar reseñas" },
+  { command: "planes", description: "Administrar planes" },
+  { command: "redes", description: "Administrar redes sociales" },
+  { command: "contacto", description: "Editar datos de contacto" },
+  { command: "equipo", description: "Administrar integrantes del equipo" },
+  { command: "mensajes", description: "Ver mensajes de contacto" },
+  { command: "accesos", description: "Gestionar accesos del equipo" },
+  { command: "cancelar", description: "Cancelar la operación actual" },
+];
+
+const chatCommandScope = (chatId: string) => {
+  const numericChatId = Number(chatId);
+  return Number.isSafeInteger(numericChatId)
+    ? { type: "chat" as const, chat_id: numericChatId }
+    : null;
+};
+
+export const setTelegramCommands = async (chatId?: string) => {
+  const scope = chatId ? chatCommandScope(chatId) : null;
+  await callTelegram("setMyCommands", {
+    commands: telegramCommands,
+    ...(scope ? { scope } : {}),
   });
+};
+
+export const clearTelegramCommands = async (chatId: string) => {
+  const scope = chatCommandScope(chatId);
+  if (!scope) return;
+  await callTelegram("setMyCommands", { commands: [], scope });
+};
+
+export const clearTelegramDefaultCommands = async () =>
+  callTelegram("setMyCommands", { commands: [] });
 
 export const setTelegramWebhook = async (url: string, secretToken?: string) =>
   callTelegram("setWebhook", {
@@ -165,7 +187,9 @@ export const ensureTelegramWebhook = async () => {
   webhookRegistration = (async () => {
     try {
       await setTelegramWebhook(webhookUrl);
-      await setTelegramCommands();
+      await clearTelegramDefaultCommands();
+      const ownerChatId = process.env.TELEGRAM_CHAT_ID?.trim();
+      if (ownerChatId) await setTelegramCommands(ownerChatId);
     } catch {
       webhookRegistration = null;
     }
@@ -173,7 +197,7 @@ export const ensureTelegramWebhook = async () => {
   return webhookRegistration;
 };
 
-export const telegramMenu = (): TelegramReplyMarkup => ({
+export const telegramMenu = (includeAccess = false): TelegramReplyMarkup => ({
   inline_keyboard: [
     [
       { text: "⭐ Reseñas", callback_data: "menu:reviews" },
@@ -188,6 +212,9 @@ export const telegramMenu = (): TelegramReplyMarkup => ({
       { text: "📨 Mensajes", callback_data: "menu:contacts" },
     ],
     [{ text: "❓ Ayuda", callback_data: "menu:help" }],
+    ...(includeAccess
+      ? [[{ text: "🔐 Gestionar accesos", callback_data: "menu:access" }]]
+      : []),
   ],
 });
 
