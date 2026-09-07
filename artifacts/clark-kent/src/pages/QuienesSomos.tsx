@@ -108,6 +108,40 @@ const values = {
   ],
 };
 
+function TeamMemberCard({
+  member,
+  lang,
+  className = "qs-team-card",
+}: {
+  member: TeamMember;
+  lang: "es" | "en";
+  className?: string;
+}) {
+  return (
+    <article className={className}>
+      <div className="qs-team-avatar">
+        {member.imageRef ? (
+          <img src={member.imageRef} alt="" />
+        ) : (
+          member.name.charAt(0)
+        )}
+      </div>
+      <h3 className="qs-team-name">{member.name}</h3>
+      <p className="qs-team-role">{member.role[lang]}</p>
+      <p className="qs-team-bio">
+        {member.bioLines?.[lang]
+          ? member.bioLines[lang].map((line, index) => (
+              <span key={line}>
+                {index > 0 && <br />}
+                {line}
+              </span>
+            ))
+          : member.bio[lang]}
+      </p>
+    </article>
+  );
+}
+
 export default function QuienesSomos() {
   const { lang } = useLang();
   const v = values[lang];
@@ -253,6 +287,16 @@ export default function QuienesSomos() {
             <h2 className="qs-team-heading">
               {lang === "es" ? "Nuestro equipo." : "Our team."}
             </h2>
+            <div className="qs-team-desktop-list">
+              {displayTeam.slice(0, 3).map((member) => (
+                <TeamMemberCard
+                  key={member.name}
+                  member={member}
+                  lang={lang}
+                  className="qs-team-card qs-team-card--desktop"
+                />
+              ))}
+            </div>
             <div className="qs-team-grid">
               <button
                 type="button"
@@ -268,30 +312,13 @@ export default function QuienesSomos() {
                 onTouchEnd={handleTeamTouchEnd}
                 aria-live="polite"
               >
-                <article
-                  className={`qs-team-card ${teamSlideDirection > 0 ? "qs-team-card--next" : "qs-team-card--previous"}`}
+                <TeamMemberCard
                   key={currentTeamMember.name}
+                  member={currentTeamMember}
+                  lang={lang}
+                  className={`qs-team-card ${teamSlideDirection > 0 ? "qs-team-card--next" : "qs-team-card--previous"}`}
                 >
-                  <div className="qs-team-avatar">
-                    {currentTeamMember.imageRef ? (
-                      <img src={currentTeamMember.imageRef} alt="" />
-                    ) : (
-                      currentTeamMember.name.charAt(0)
-                    )}
-                  </div>
-                  <h3 className="qs-team-name">{currentTeamMember.name}</h3>
-                  <p className="qs-team-role">{currentTeamMember.role[lang]}</p>
-                  <p className="qs-team-bio">
-                    {currentTeamMember.bioLines?.[lang]
-                      ? currentTeamMember.bioLines[lang].map((line, index) => (
-                          <span key={line}>
-                            {index > 0 && <br />}
-                            {line}
-                          </span>
-                        ))
-                      : currentTeamMember.bio[lang]}
-                  </p>
-                </article>
+                </TeamMemberCard>
               </div>
               <button
                 type="button"
