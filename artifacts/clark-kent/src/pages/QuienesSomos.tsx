@@ -4,6 +4,8 @@ import { useLang } from "../LanguageContext";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import footerPortrait from "@assets/image_(6)-Photoroom_1788126926994.png";
+import teamSectionTexture from "@assets/image_1788744935304.png";
+import teamSectionArt from "@assets/image-Photoroom_(21)_1788745192839.png";
 
 type TeamMember = {
   name: string;
@@ -279,8 +281,15 @@ export default function QuienesSomos() {
         </section>
 
         {/* ── Team ── */}
-        <section className="qs-team">
+        <section
+          className="qs-team"
+          style={{ backgroundImage: `url(${teamSectionTexture})` }}
+        >
           <div className="qs-team-inner">
+            <div className="qs-team-art" aria-hidden="true">
+              <img src={teamSectionArt} alt="" />
+            </div>
+            <div className="qs-team-content">
             <p className="svc-plans-eyebrow">
               {lang === "es" ? "CONOCE" : "MEET US"}
             </p>

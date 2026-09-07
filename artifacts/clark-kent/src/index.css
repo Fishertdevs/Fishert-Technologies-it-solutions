@@ -7588,3 +7588,54 @@ body {
     display: grid;
   }
 }
+
+/* Team section composition: studio mark on the left over the supplied green texture. */
+.qs-team {
+  background-color: #5e8d61;
+  background-repeat: repeat;
+  background-size: 130px 125px;
+}
+
+.qs-team-inner {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.7fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 78px);
+}
+
+.qs-team-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.qs-team-art img {
+  display: block;
+  width: min(100%, 480px);
+  height: auto;
+  object-fit: contain;
+}
+
+.qs-team-content {
+  min-width: 0;
+}
+
+.qs-team-content > .svc-plans-eyebrow {
+  color: #ffffff;
+}
+
+.qs-team-content .qs-team-heading {
+  max-width: none;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .qs-team-inner {
+    display: block;
+  }
+
+  .qs-team-art {
+    display: none;
+  }
+}
