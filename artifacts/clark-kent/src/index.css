@@ -8005,7 +8005,7 @@ body {
 
   .qs-story-content > .svc-plans-eyebrow {
     margin: 0 0 15px;
-    text-align: left;
+    text-align: center;
   }
 
   .qs-story-content .qs-story-heading {
@@ -8018,18 +8018,19 @@ body {
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 0.98;
-    text-align: left;
+    text-align: center;
     text-transform: uppercase;
   }
 
   .qs-story-content .qs-story-body {
     max-width: none;
     margin: 0;
-    text-align: left;
+    text-align: center;
   }
 
   .qs-story-content .qs-story-body p {
     margin: 0;
+    text-align: center;
   }
 
   .qs-story-art {
@@ -8042,9 +8043,9 @@ body {
 
   .qs-story-art img {
     display: block;
-    width: min(100%, 480px);
+    width: min(100%, 360px);
     height: auto;
-    max-height: 520px;
+    max-height: 410px;
     object-fit: contain;
   }
 }
