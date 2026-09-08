@@ -5,7 +5,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { buildServiceDiscountHref, buildServiceProposalHref } from "../utils/whatsapp";
 import { useListPlans } from "@workspace/api-client-react";
-import frogOfferImage from "@assets/image-Photoroom_(23)_1788814073643.png";
+import frogOfferImage from "@assets/frog-pricing-transparent.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ServicioDetalle.css";
