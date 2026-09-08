@@ -1106,6 +1106,11 @@
 }
 
 @media (min-width: 769px) {
+  .svc2-pricing-title {
+    max-width: none;
+    white-space: nowrap;
+  }
+
   .svc2-plan-card {
     min-height: 0;
     padding: 20px 16px 16px;
@@ -1456,15 +1461,18 @@
   }
 
   .svc2-plan-feature {
+    display: grid;
+    grid-template-columns: 16px minmax(0, 1fr);
     align-items: flex-start;
-    justify-content: center;
+    justify-content: start;
     margin-bottom: 13px;
     font-size: 14px;
-    text-align: center;
+    text-align: left;
   }
 
   .svc2-plan-feature span {
-    max-width: 270px;
+    max-width: none;
+    text-align: left;
   }
 
   .svc2-plan-arrow {
