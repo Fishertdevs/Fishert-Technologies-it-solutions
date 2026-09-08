@@ -1111,6 +1111,15 @@
     white-space: nowrap;
   }
 
+  .svc2-pricing-header {
+    margin-bottom: 20px;
+  }
+
+  .svc2-pricing-sub {
+    max-width: none;
+    white-space: nowrap;
+  }
+
   .svc2-plan-card {
     min-height: 0;
     padding: 20px 16px 16px;
