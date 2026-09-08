@@ -1105,6 +1105,69 @@
   background: #970015;
 }
 
+@media (min-width: 769px) {
+  .svc2-plan-card {
+    min-height: 470px;
+    padding: 24px 18px 20px;
+  }
+
+  .svc2-plan-name {
+    margin-bottom: 10px;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+
+  .svc2-plan-price-wrap {
+    min-height: 48px;
+  }
+
+  .svc2-plan-price {
+    font-size: clamp(24px, 2.35vw, 32px);
+    letter-spacing: -0.06em;
+  }
+
+  .svc2-plan-price-prefix {
+    font-size: 10px;
+  }
+
+  .svc2-plan-price--custom {
+    gap: 0 4px;
+  }
+
+  .svc2-plan-price-currency {
+    margin-left: 4px;
+    font-size: 9px;
+  }
+
+  .svc2-plan-tagline {
+    min-height: 38px;
+    font-size: 11px;
+    line-height: 1.28;
+  }
+
+  .svc2-plan-divider {
+    margin: 16px 0;
+  }
+
+  .svc2-plan-feature {
+    gap: 7px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    line-height: 1.28;
+  }
+
+  .svc2-plan-feature svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .svc2-plan-cta {
+    min-height: 45px;
+    padding: 0 12px;
+    font-size: 10px;
+  }
+}
+
 @media (max-width: 768px) {
   .svc2-hero {
     min-height: 300px;
