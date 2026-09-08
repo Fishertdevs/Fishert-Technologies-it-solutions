@@ -2061,62 +2061,62 @@ export default function ServicioDetalle() {
 
         {/* ── Pricing ── */}
         <section className="svc2-pricing-section">
-          <div className="svc2-pricing-header">
-            <h3 className={`svc2-pricing-title ${slug === "desarrollo-software" ? "svc2-pricing-title--single-line" : ""} ${slug === "automatizacion-ia" || slug === "cloud-devops" ? "svc2-pricing-title--two-line" : ""}`}>
-              {slug === "automatizacion-ia" ? (
-                lang === "es"
-                  ? <>Comienza a automatizar<br />tus procesos.</>
-                  : <>Start automating your<br />processes.</>
-              ) : slug === "cloud-devops" ? (
-                lang === "es"
-                  ? <>Entrega más rápido.<br />Opera con confianza.</>
-                  : <>Ship faster.<br />Operate with confidence.</>
-              ) : context.pricingTitle[lang]}
-            </h3>
-            <p className="svc2-pricing-sub">
-              {context.pricingSub[lang]}
-            </p>
-            <div className="svc2-cycle-row">
-              {isRecurring ? (
-                <>
-                  <div className="svc2-cycle-toggle" role="group" aria-label={lang === "es" ? "Frecuencia de pago" : "Billing frequency"}>
-                    <button
-                      type="button"
-                      className={billingMode === "monthly" ? "svc2-cycle-option svc2-cycle-option--active" : "svc2-cycle-option"}
-                      aria-pressed={billingMode === "monthly"}
-                      onClick={() => setBillingMode("monthly")}
-                    >
-                      {lang === "es" ? "Mensual" : "Monthly"}
-                    </button>
-                    <button
-                      type="button"
-                      className={billingMode === "annual" ? "svc2-cycle-option svc2-cycle-option--active" : "svc2-cycle-option"}
-                      aria-pressed={billingMode === "annual"}
-                      onClick={() => setBillingMode("annual")}
-                    >
-                      {lang === "es" ? "Anual" : "Annual"}
-                    </button>
-                  </div>
-                  {billingMode === "annual" && (
-                    <span className="svc2-annual-note">
-                      <svg className="svc2-annual-note-arrow" viewBox="0 0 64 52" fill="none" aria-hidden="true">
-                        <path d="M7 7C7 31 22 43 54 43" />
-                        <path d="M43 32L54 43L40 47" />
-                      </svg>
-                      <span className="svc2-annual-note-copy">
-                        <strong>20% OFF</strong>
-                        <span>
-                          {lang === "es" ? "Eso es 2 meses GRATIS" : "That's 2 months FREE"}
-                        </span>
-                      </span>
-                    </span>
-                  )}
-                </>
-              ) : null}
-            </div>
-          </div>
           <div className="svc2-pricing-body">
             <div className="svc2-pricing-plans">
+              <div className="svc2-pricing-header">
+                <h3 className={`svc2-pricing-title ${slug === "desarrollo-software" ? "svc2-pricing-title--single-line" : ""} ${slug === "automatizacion-ia" || slug === "cloud-devops" ? "svc2-pricing-title--two-line" : ""}`}>
+                  {slug === "automatizacion-ia" ? (
+                    lang === "es"
+                      ? <>Comienza a automatizar<br />tus procesos.</>
+                      : <>Start automating your<br />processes.</>
+                  ) : slug === "cloud-devops" ? (
+                    lang === "es"
+                      ? <>Entrega más rápido.<br />Opera con confianza.</>
+                      : <>Ship faster.<br />Operate with confidence.</>
+                  ) : context.pricingTitle[lang]}
+                </h3>
+                <p className="svc2-pricing-sub">
+                  {context.pricingSub[lang]}
+                </p>
+                <div className="svc2-cycle-row">
+                  {isRecurring ? (
+                    <>
+                      <div className="svc2-cycle-toggle" role="group" aria-label={lang === "es" ? "Frecuencia de pago" : "Billing frequency"}>
+                        <button
+                          type="button"
+                          className={billingMode === "monthly" ? "svc2-cycle-option svc2-cycle-option--active" : "svc2-cycle-option"}
+                          aria-pressed={billingMode === "monthly"}
+                          onClick={() => setBillingMode("monthly")}
+                        >
+                          {lang === "es" ? "Mensual" : "Monthly"}
+                        </button>
+                        <button
+                          type="button"
+                          className={billingMode === "annual" ? "svc2-cycle-option svc2-cycle-option--active" : "svc2-cycle-option"}
+                          aria-pressed={billingMode === "annual"}
+                          onClick={() => setBillingMode("annual")}
+                        >
+                          {lang === "es" ? "Anual" : "Annual"}
+                        </button>
+                      </div>
+                      {billingMode === "annual" && (
+                        <span className="svc2-annual-note">
+                          <svg className="svc2-annual-note-arrow" viewBox="0 0 64 52" fill="none" aria-hidden="true">
+                            <path d="M7 7C7 31 22 43 54 43" />
+                            <path d="M43 32L54 43L40 47" />
+                          </svg>
+                          <span className="svc2-annual-note-copy">
+                            <strong>20% OFF</strong>
+                            <span>
+                              {lang === "es" ? "Eso es 2 meses GRATIS" : "That's 2 months FREE"}
+                            </span>
+                          </span>
+                        </span>
+                      )}
+                    </>
+                  ) : null}
+                </div>
+              </div>
               <div className="svc2-plans-carousel">
                 <div
                   className="svc2-plans-grid"
