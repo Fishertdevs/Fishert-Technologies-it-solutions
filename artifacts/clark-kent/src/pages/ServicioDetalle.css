@@ -1113,7 +1113,6 @@
 
   .svc2-pricing-title {
     max-width: none;
-    font-size: clamp(34px, 4.1vw, 56px);
     white-space: nowrap;
   }
 
@@ -1133,7 +1132,7 @@
 
   .svc2-pricing-art img {
     position: absolute;
-    bottom: -120px;
+    bottom: 0;
     left: 50%;
     width: min(120%, 430px);
     height: auto;
