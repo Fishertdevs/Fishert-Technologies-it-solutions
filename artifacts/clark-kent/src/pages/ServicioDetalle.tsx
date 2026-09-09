@@ -1724,6 +1724,15 @@ export default function ServicioDetalle() {
         ".svc2-pricing-title",
         ".svc2-pricing-sub",
         ".svc2-cycle-row",
+        ".svc2-process-section .svc2-process-header > *",
+        ".svc2-process-section .svc2-process-stage",
+        ".svc2-process-section .svc2-process-dots",
+        ".svc2-faq-section .svc2-process-header > *",
+        ".svc2-faq-section .svc2-process-stage",
+        ".svc2-faq-section .svc2-process-dots",
+        ".svc2-platforms-section .svc2-platforms-label",
+        ".svc2-platform",
+        ".svc2-plan-card",
         ".svc2-month-offer",
         ".svc2-month-offer-mark",
         ".svc2-month-offer-copy > *",
@@ -1743,6 +1752,15 @@ export default function ServicioDetalle() {
           ".svc2-pricing-title",
           ".svc2-pricing-sub",
           ".svc2-cycle-row",
+          ".svc2-process-section .svc2-process-header > *",
+          ".svc2-process-section .svc2-process-stage",
+          ".svc2-process-section .svc2-process-dots",
+          ".svc2-faq-section .svc2-process-header > *",
+          ".svc2-faq-section .svc2-process-stage",
+          ".svc2-faq-section .svc2-process-dots",
+          ".svc2-platforms-section .svc2-platforms-label",
+          ".svc2-platform",
+          ".svc2-plan-card",
           ".svc2-month-offer-copy > *",
           ".svc2-month-offer-link",
         ],
@@ -1750,6 +1768,20 @@ export default function ServicioDetalle() {
       );
       gsap.set(".svc2-month-offer", { y: 32, opacity: 0 });
       gsap.set(".svc2-month-offer-mark", { scale: 0.72, rotation: -12, opacity: 0 });
+      gsap.set(
+        [
+          ".svc2-process-section .svc2-process-header > *",
+          ".svc2-process-section .svc2-process-stage",
+          ".svc2-process-section .svc2-process-dots",
+          ".svc2-faq-section .svc2-process-header > *",
+          ".svc2-faq-section .svc2-process-stage",
+          ".svc2-faq-section .svc2-process-dots",
+          ".svc2-platforms-section .svc2-platforms-label",
+          ".svc2-platform",
+          ".svc2-plan-card",
+        ],
+        { y: 28, opacity: 0 },
+      );
 
       gsap.to(".svc2-hero-content > *", {
         y: 0,
@@ -1768,6 +1800,74 @@ export default function ServicioDetalle() {
         scrollTrigger: {
           trigger: ".svc2-desc-section",
           start: "top 80%",
+        },
+      });
+
+      gsap.to(
+        [
+          ".svc2-process-section .svc2-process-header > *",
+          ".svc2-process-section .svc2-process-stage",
+          ".svc2-process-section .svc2-process-dots",
+        ],
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".svc2-process-section",
+            start: "top 82%",
+          },
+        },
+      );
+
+      gsap.to(
+        [
+          ".svc2-faq-section .svc2-process-header > *",
+          ".svc2-faq-section .svc2-process-stage",
+          ".svc2-faq-section .svc2-process-dots",
+        ],
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".svc2-faq-section",
+            start: "top 82%",
+          },
+        },
+      );
+
+      gsap.to(
+        [
+          ".svc2-platforms-section .svc2-platforms-label",
+          ".svc2-platform",
+        ],
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.75,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".svc2-platforms-section",
+            start: "top 82%",
+          },
+        },
+      );
+
+      gsap.to(".svc2-plan-card", {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".svc2-pricing-section",
+          start: "top 72%",
         },
       });
 
