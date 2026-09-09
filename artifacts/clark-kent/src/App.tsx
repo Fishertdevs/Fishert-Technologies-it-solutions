@@ -21,6 +21,7 @@ import CasoEstudio from "./pages/CasoEstudio";
 import ComoTrabajamos from "./ComoTrabajamos";
 import WhatsAppButton from "./components/WhatsAppButton";
 import NotFound from "./pages/not-found";
+import WelcomeSplash from "./WelcomeSplash";
 
 const base = import.meta.env.BASE_URL?.replace(/\/$/, "") || "";
 
@@ -46,6 +47,7 @@ function MainPage() {
 export default function App() {
   return (
     <LanguageProvider>
+      <WelcomeSplash />
       <Router base={base}>
         <Switch>
           <Route path="/" component={MainPage} />
