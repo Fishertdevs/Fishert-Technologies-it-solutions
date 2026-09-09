@@ -510,7 +510,7 @@
   display: flex;
   min-width: 0;
   min-height: 560px;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   overflow: visible;
   background: transparent;
