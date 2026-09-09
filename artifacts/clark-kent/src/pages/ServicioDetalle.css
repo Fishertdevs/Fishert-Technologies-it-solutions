@@ -1392,7 +1392,21 @@
   }
 
   .svc2-pricing-art {
-    display: none;
+    display: flex;
+    min-height: 300px;
+    margin-top: 32px;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .svc2-pricing-art img {
+    position: static;
+    width: min(90%, 300px);
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+    transform: none;
   }
 
   .svc2-pricing-title {
