@@ -574,6 +574,10 @@
   display: flex;
 }
 
+.svc2-plan-card--desktop-hidden {
+  display: none;
+}
+
 .svc2-plan-popular {
   border-color: #c0001a;
 }

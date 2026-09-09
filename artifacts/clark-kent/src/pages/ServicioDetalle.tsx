@@ -1968,6 +1968,10 @@ export default function ServicioDetalle() {
 
   const activeStage = t.process[activeProcess] ?? t.process[0];
   const activeFaqItem = t.faqs[activeFaq] ?? t.faqs[0];
+  const isPlanVisible = (index: number) => (
+    plans.length > 0
+    && (index === activePlan || index === (activePlan + 1) % plans.length)
+  );
 
   return (
     <>
@@ -2133,7 +2137,7 @@ export default function ServicioDetalle() {
                   ) : plans.map((plan, i) => (
                     <div
                       key={i}
-                      className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""} ${activePlan === i ? "svc2-plan-card--active" : ""}`}
+                      className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""} ${activePlan === i ? "svc2-plan-card--active" : ""} ${isPlanVisible(i) ? "" : "svc2-plan-card--desktop-hidden"}`}
                     >
                       {plan.badge && (
                         <span className="svc2-plan-badge">{plan.badge}</span>
@@ -2199,6 +2203,30 @@ export default function ServicioDetalle() {
                       </a>
                     </div>
                   ))}
+                </div>
+                <div className="svc2-plans-arrows" aria-label={lang === "es" ? "Controles de navegación de planes" : "Plan navigation controls"}>
+                  <button
+                    type="button"
+                    className="svc2-plan-arrow"
+                    aria-label={lang === "es" ? "Ver planes anteriores" : "View previous plans"}
+                    onClick={() => setActivePlan((current) => plans.length ? (current - 1 + plans.length) % plans.length : 0)}
+                    disabled={plans.length < 2}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    className="svc2-plan-arrow"
+                    aria-label={lang === "es" ? "Ver siguientes planes" : "View next plans"}
+                    onClick={() => setActivePlan((current) => plans.length ? (current + 1) % plans.length : 0)}
+                    disabled={plans.length < 2}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
                 </div>
               </div>
               <div className="svc2-plan-dots" aria-label={lang === "es" ? "Navegación de planes" : "Plan navigation"}>
