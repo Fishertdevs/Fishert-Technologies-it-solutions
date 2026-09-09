@@ -1120,6 +1120,10 @@
     white-space: nowrap;
   }
 
+  .svc2-pricing-art img {
+    transform: translateY(clamp(70px, 5.5vw, 86px));
+  }
+
   .svc2-plan-card {
     min-height: 0;
     padding: 20px 16px 16px;
