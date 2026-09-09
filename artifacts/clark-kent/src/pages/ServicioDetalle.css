@@ -574,10 +574,6 @@
   display: flex;
 }
 
-.svc2-plan-card--desktop-hidden {
-  display: none;
-}
-
 .svc2-plan-popular {
   border-color: #c0001a;
 }
@@ -800,9 +796,9 @@
 
 .svc2-plan-arrow {
   display: inline-flex;
-  width: 48px;
-  height: 48px;
-  flex: 0 0 48px;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
   align-items: center;
   justify-content: center;
   border: 1px solid #1b2332;
@@ -1133,7 +1129,7 @@
     position: absolute;
     bottom: -120px;
     left: 50%;
-    width: min(145%, 520px);
+    width: min(120%, 430px);
     height: auto;
     max-width: none;
     max-height: none;
@@ -1143,6 +1139,16 @@
   .svc2-plan-card {
     min-height: 0;
     padding: 20px 16px 16px;
+  }
+
+  .svc2-plans-grid {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .svc2-plans-grid > .svc2-plan-card {
+    flex: 0 0 calc((100% - 32px) / 3);
   }
 
   .svc2-plan-name {

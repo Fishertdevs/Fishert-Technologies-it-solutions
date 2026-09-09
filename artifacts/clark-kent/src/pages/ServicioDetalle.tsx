@@ -1968,10 +1968,11 @@ export default function ServicioDetalle() {
 
   const activeStage = t.process[activeProcess] ?? t.process[0];
   const activeFaqItem = t.faqs[activeFaq] ?? t.faqs[0];
-  const isPlanVisible = (index: number) => (
-    plans.length > 0
-    && (index === activePlan || index === (activePlan + 1) % plans.length)
-  );
+  const visiblePlanIndexes = plans.length > 1
+    ? [activePlan % plans.length, (activePlan + 1) % plans.length]
+    : plans.length === 1
+      ? [0]
+      : [];
 
   return (
     <>
@@ -2134,10 +2135,12 @@ export default function ServicioDetalle() {
                     <p className="svc2-plans-status">{lang === "es" ? "Cargando planes…" : "Loading plans…"}</p>
                   ) : plansQuery.isError || plans.length === 0 ? (
                     <p className="svc2-plans-status">{lang === "es" ? "Los planes no están disponibles en este momento." : "Plans are not available right now."}</p>
-                  ) : plans.map((plan, i) => (
+                  ) : visiblePlanIndexes.map((planIndex) => {
+                    const plan = plans[planIndex];
+                    return (
                     <div
-                      key={i}
-                      className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""} ${activePlan === i ? "svc2-plan-card--active" : ""} ${isPlanVisible(i) ? "" : "svc2-plan-card--desktop-hidden"}`}
+                      key={plan.name}
+                      className={`svc2-plan-card ${plan.badge ? "svc2-plan-popular" : ""} ${activePlan === planIndex ? "svc2-plan-card--active" : ""}`}
                     >
                       {plan.badge && (
                         <span className="svc2-plan-badge">{plan.badge}</span>
@@ -2202,7 +2205,8 @@ export default function ServicioDetalle() {
                         {lang === "es" ? "Solicitar propuesta" : "Request proposal"}
                       </a>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
                 <div className="svc2-plans-arrows" aria-label={lang === "es" ? "Controles de navegación de planes" : "Plan navigation controls"}>
                   <button
