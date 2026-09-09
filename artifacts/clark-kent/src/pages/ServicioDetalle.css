@@ -1256,7 +1256,10 @@
   }
 
   .svc2-title--single-line {
-    font-size: clamp(36px, 10.5vw, 48px);
+    max-width: 100%;
+    font-size: clamp(32px, 8.7vw, 38px);
+    white-space: normal;
+    text-wrap: balance;
   }
 
   .svc2-intro {
@@ -1459,13 +1462,22 @@
   }
 
   .svc2-pricing-title--single-line {
-    max-width: none;
+    max-width: 320px;
     font-size: clamp(30px, 8vw, 36px);
+    white-space: normal;
+    text-wrap: balance;
   }
 
   .svc2-pricing-title--two-line {
     max-width: 340px;
     font-size: clamp(30px, 8vw, 36px);
+  }
+
+  .svc2-pricing-title--cloud {
+    max-width: 355px;
+    font-size: clamp(27px, 7.2vw, 32px);
+    white-space: normal;
+    text-wrap: balance;
   }
 
   .svc2-pricing-sub {
