@@ -383,6 +383,7 @@
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.94;
+  text-transform: uppercase;
 }
 
 .svc2-pricing-title--single-line {
@@ -1112,11 +1113,12 @@
 
   .svc2-pricing-title {
     max-width: none;
+    font-size: clamp(34px, 4.1vw, 56px);
     white-space: nowrap;
   }
 
   .svc2-pricing-header {
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 
   .svc2-pricing-sub {
@@ -1143,6 +1145,11 @@
   .svc2-plan-card {
     min-height: 0;
     padding: 20px 16px 16px;
+  }
+
+  .svc2-plans-grid {
+    width: 95%;
+    margin-inline: auto;
   }
 
   .svc2-plan-name {
