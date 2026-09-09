@@ -2280,6 +2280,11 @@ export default function ServicioDetalle() {
               />
             ))}
           </div>
+          <div className="svc2-faq-wave" aria-hidden="true">
+            <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+              <path d="M0 46C170 78 310 78 480 44S790 10 960 44s310 34 480 2V90H0Z" />
+            </svg>
+          </div>
         </section>
 
         <section className="svc2-offer-section" aria-label={activeOffer.kicker[lang]}>
