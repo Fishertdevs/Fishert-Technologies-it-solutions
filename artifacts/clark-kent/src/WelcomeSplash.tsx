@@ -22,8 +22,6 @@ export default function WelcomeSplash() {
 
   if (!isVisible) return null;
 
-  const socialImageUrl = `${import.meta.env.BASE_URL}og-image-social.png`;
-
   return (
     <div
       className={`welcome-splash${isLeaving ? " welcome-splash--leaving" : ""}`}
@@ -32,11 +30,14 @@ export default function WelcomeSplash() {
       aria-label="Cargando Fishert Studio"
     >
       <div className="welcome-splash-inner">
-        <img
-          className="welcome-splash-logo"
-          src={socialImageUrl}
-          alt="Fishert Studio"
-        />
+        <div className="welcome-splash-wordmark" aria-label="Fishert Studio">
+          <strong>FISHERT</strong>
+          <span className="welcome-splash-submark">
+            <i />
+            <b>STUDIO</b>
+            <i />
+          </span>
+        </div>
         <div className="welcome-splash-loader" aria-hidden="true">
           <span />
           <span />
