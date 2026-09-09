@@ -1442,8 +1442,8 @@
     position: relative;
     z-index: 2;
     display: flex;
-    min-height: 270px;
-    margin-top: 28px;
+    min-height: 230px;
+    margin-top: 8px;
     align-items: flex-end;
     justify-content: center;
     overflow: visible;
