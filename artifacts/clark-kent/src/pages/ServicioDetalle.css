@@ -1385,6 +1385,7 @@
 
   .svc2-pricing-section {
     padding-top: 72px;
+    padding-bottom: 0;
   }
 
   .svc2-pricing-body {
@@ -1393,8 +1394,8 @@
 
   .svc2-pricing-art {
     display: flex;
-    min-height: 300px;
-    margin-top: 32px;
+    min-height: 270px;
+    margin-top: 28px;
     align-items: flex-end;
     justify-content: center;
     overflow: visible;
@@ -1402,7 +1403,7 @@
 
   .svc2-pricing-art img {
     position: static;
-    width: min(90%, 300px);
+    width: min(84%, 270px);
     height: auto;
     max-width: 100%;
     max-height: none;
@@ -1411,17 +1412,17 @@
 
   .svc2-pricing-title {
     max-width: 320px;
-    font-size: clamp(38px, 11vw, 48px);
+    font-size: clamp(30px, 8vw, 36px);
   }
 
   .svc2-pricing-title--single-line {
     max-width: none;
-    font-size: clamp(38px, 10vw, 50px);
+    font-size: clamp(30px, 8vw, 36px);
   }
 
   .svc2-pricing-title--two-line {
     max-width: 340px;
-    font-size: clamp(32px, 8.5vw, 42px);
+    font-size: clamp(30px, 8vw, 36px);
   }
 
   .svc2-pricing-sub {
