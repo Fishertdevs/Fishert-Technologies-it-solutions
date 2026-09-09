@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const splashDuration = 5000;
+const splashDuration = 3000;
 const fadeDuration = 500;
 
 export default function WelcomeSplash() {

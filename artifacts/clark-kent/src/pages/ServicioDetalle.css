@@ -1439,6 +1439,8 @@
   }
 
   .svc2-pricing-art {
+    position: relative;
+    z-index: 2;
     display: flex;
     min-height: 270px;
     margin-top: 28px;
@@ -1453,7 +1455,12 @@
     height: auto;
     max-width: 100%;
     max-height: none;
-    transform: none;
+    transform: translateY(105px);
+  }
+
+  .svc2-faq-section--carousel {
+    z-index: 1;
+    padding-top: 155px;
   }
 
   .svc2-pricing-title {
