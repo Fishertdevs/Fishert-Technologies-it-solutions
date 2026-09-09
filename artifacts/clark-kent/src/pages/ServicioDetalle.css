@@ -1113,8 +1113,8 @@
 
   .svc2-pricing-title {
     max-width: 100%;
-    font-size: clamp(38px, 4.6vw, 62px);
-    white-space: normal;
+    font-size: clamp(28px, 3.4vw, 42px);
+    white-space: nowrap;
   }
 
   .svc2-pricing-header {
