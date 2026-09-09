@@ -1449,7 +1449,7 @@
 
   .svc2-pricing-art img {
     position: static;
-    width: min(78%, 250px);
+    width: min(72%, 230px);
     height: auto;
     max-width: 100%;
     max-height: none;
