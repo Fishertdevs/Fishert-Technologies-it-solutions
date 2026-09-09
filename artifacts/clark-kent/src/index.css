@@ -105,9 +105,9 @@ body.welcome-splash-active {
 
 .welcome-splash-wordmark > strong {
   font-size: clamp(42px, 10vw, 118px);
-  font-weight: 800;
-  letter-spacing: 0.34em;
-  padding-left: 0.34em;
+  font-weight: 900;
+  letter-spacing: 0.29em;
+  padding-left: 0.29em;
 }
 
 .welcome-splash-submark {
@@ -116,7 +116,7 @@ body.welcome-splash-active {
   align-items: center;
   justify-content: center;
   gap: 22px;
-  margin-top: 15px;
+  margin-top: 17px;
 }
 
 .welcome-splash-submark i {
@@ -127,10 +127,10 @@ body.welcome-splash-active {
 }
 
 .welcome-splash-submark b {
-  font-size: clamp(10px, 1.7vw, 18px);
-  font-weight: 700;
-  letter-spacing: 0.52em;
-  padding-left: 0.52em;
+  font-size: clamp(13px, 2.2vw, 23px);
+  font-weight: 800;
+  letter-spacing: 0.42em;
+  padding-left: 0.42em;
 }
 
 .welcome-splash-loader {
