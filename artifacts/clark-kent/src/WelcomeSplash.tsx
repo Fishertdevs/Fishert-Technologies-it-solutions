@@ -32,7 +32,11 @@ export default function WelcomeSplash() {
       <div className="welcome-splash-inner">
         <div className="welcome-splash-wordmark" aria-label="Fishert Studio">
           <strong>FISHERT</strong>
-          <span>STUDIO</span>
+          <span className="welcome-splash-submark">
+            <i />
+            <b>STUDIO</b>
+            <i />
+          </span>
         </div>
         <div className="welcome-splash-loader" aria-hidden="true">
           <span />
