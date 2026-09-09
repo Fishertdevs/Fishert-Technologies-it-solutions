@@ -1129,9 +1129,9 @@
     position: absolute;
     bottom: -120px;
     left: 50%;
-    width: 100%;
+    width: min(145%, 520px);
     height: auto;
-    max-width: 100%;
+    max-width: none;
     max-height: none;
     transform: translateX(-50%);
   }
