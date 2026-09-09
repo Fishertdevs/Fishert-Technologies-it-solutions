@@ -1455,7 +1455,7 @@
     height: auto;
     max-width: 100%;
     max-height: none;
-    transform: translateY(105px);
+    transform: translateY(55px);
   }
 
   .svc2-faq-section--carousel {
@@ -1694,8 +1694,8 @@
   }
 
   .svc2-faq-section--carousel {
-    padding: 44px 20px 64px;
-    border-radius: 0;
+    padding: 155px 20px 64px;
+    border-radius: 32px 32px 0 0;
   }
 
   .svc2-faq-wave {
