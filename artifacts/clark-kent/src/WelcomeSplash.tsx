@@ -31,7 +31,8 @@ export default function WelcomeSplash() {
     >
       <div className="welcome-splash-inner">
         <div className="welcome-splash-wordmark" aria-label="Fishert Studio">
-          <strong>FISHERT STUDIO</strong>
+          <strong>FISHERT</strong>
+          <span>STUDIO</span>
         </div>
         <div className="welcome-splash-loader" aria-hidden="true">
           <span />
