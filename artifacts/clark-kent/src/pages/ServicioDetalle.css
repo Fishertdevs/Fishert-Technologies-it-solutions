@@ -1121,6 +1121,7 @@
     width: 95%;
     margin-inline: auto;
     margin-bottom: 0;
+    transform: translateY(70px);
   }
 
   .svc2-pricing-sub {
