@@ -94,43 +94,16 @@ body.welcome-splash-active {
 }
 
 .welcome-splash-wordmark {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   color: #111111;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
   line-height: 1;
   text-align: center;
 }
 
 .welcome-splash-wordmark > strong {
-  font-size: clamp(42px, 10vw, 118px);
-  font-weight: 900;
-  letter-spacing: 0.29em;
-  padding-left: 0.29em;
-}
-
-.welcome-splash-submark {
-  display: flex;
-  width: min(64%, 420px);
-  align-items: center;
-  justify-content: center;
-  gap: 22px;
-  margin-top: 17px;
-}
-
-.welcome-splash-submark i {
-  display: block;
-  height: 2px;
-  flex: 1;
-  background: #111111;
-}
-
-.welcome-splash-submark b {
-  font-size: clamp(13px, 2.2vw, 23px);
-  font-weight: 800;
-  letter-spacing: 0.42em;
-  padding-left: 0.42em;
+  font-size: clamp(21px, 3.6vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 .welcome-splash-loader {
