@@ -1724,6 +1724,8 @@ export default function ServicioDetalle() {
         ".svc2-pricing-title",
         ".svc2-pricing-sub",
         ".svc2-cycle-row",
+        ".svc2-month-offer",
+        ".svc2-month-offer-mark",
         ".svc2-month-offer-copy > *",
         ".svc2-month-offer-link",
       ];
@@ -1746,6 +1748,8 @@ export default function ServicioDetalle() {
         ],
         { y: 26, opacity: 0 },
       );
+      gsap.set(".svc2-month-offer", { y: 32, opacity: 0 });
+      gsap.set(".svc2-month-offer-mark", { scale: 0.72, rotation: -12, opacity: 0 });
 
       gsap.to(".svc2-hero-content > *", {
         y: 0,
@@ -1787,6 +1791,40 @@ export default function ServicioDetalle() {
           },
         },
       );
+
+      gsap.to(".svc2-month-offer", {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".svc2-offer-section",
+          start: "top 82%",
+        },
+      });
+
+      gsap.to(".svc2-month-offer-mark", {
+        y: 0,
+        scale: 1,
+        rotation: -3,
+        opacity: 1,
+        duration: 0.9,
+        delay: 0.12,
+        ease: "back.out(1.8)",
+        scrollTrigger: {
+          trigger: ".svc2-offer-section",
+          start: "top 82%",
+        },
+        onComplete: () => {
+          gsap.to(".svc2-month-offer-mark", {
+            y: -4,
+            duration: 1.6,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
+        },
+      });
     });
 
     return () => ctx.revert();

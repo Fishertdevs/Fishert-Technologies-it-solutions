@@ -1575,6 +1575,8 @@
     margin-top: 50px;
     padding: 22px 16px;
     box-sizing: border-box;
+    border-top: 0;
+    border-bottom: 0;
     border-radius: 0;
     text-align: center;
   }
