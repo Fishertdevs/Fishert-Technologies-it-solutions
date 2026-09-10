@@ -5,6 +5,7 @@
 - [Mobile oversized portraits](mobile-oversized-portraits.md) — center intentionally oversized transparent portraits geometrically, not with automatic margins.
 - [Mobile touch carousels](mobile-touch-carousels.md) — direct touch handlers plus `touch-action: pan-y` are more reliable than pointer-only swipes in mobile previews.
 - [Pricing artwork transparency](pricing-artwork-transparency.md) — replace black-background frog sources with flood-filled transparent derivatives and bottom-align the artwork column.
+- [Decorative image overlays](decorative-image-overlays.md) — section-crossing artwork needs a trimmed transparent asset so the foreground can touch a contrasting section edge cleanly.
 - [Task merge locks](task-merge-locks.md) — accepted tasks may enter merge-managed `WAITING_FOR_LOCK`; manual completion only works for active main tasks.
 - [Node seed scripts](node-seed-scripts.md) — this workspace runs Node 20; database seeds should use native ESM JavaScript rather than Node 24-only TypeScript flags.
 - [Neon contact settings](neon-contact-settings.md) — public studio contact details belong in contact_settings; contacts is reserved for visitor leads.
