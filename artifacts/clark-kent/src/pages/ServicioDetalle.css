@@ -136,15 +136,15 @@
 
 .svc2-shakespeare-art {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   height: 160px;
-  overflow: hidden;
+  overflow: visible;
   background: #ffffff;
 }
 
 .svc2-shakespeare-art img {
   position: absolute;
-  bottom: -82px;
+  bottom: -4px;
   left: 50%;
   display: block;
   width: min(360px, 42vw);
@@ -1306,7 +1306,7 @@
   }
 
   .svc2-shakespeare-art img {
-    bottom: -70px;
+    bottom: -4px;
     width: min(330px, 88vw);
   }
 

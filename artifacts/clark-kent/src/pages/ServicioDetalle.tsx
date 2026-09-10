@@ -6,7 +6,7 @@ import Footer from "../Footer";
 import { buildServiceDiscountHref, buildServiceProposalHref } from "../utils/whatsapp";
 import { useListPlans } from "@workspace/api-client-react";
 import frogOfferImage from "@assets/frog-pricing-transparent-v2.png";
-import shakespeareImage from "@assets/1789024142820_1789024343838.png";
+import shakespeareImage from "@assets/shakespeare-transparent.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ServicioDetalle.css";
