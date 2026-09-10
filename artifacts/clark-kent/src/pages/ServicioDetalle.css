@@ -1302,11 +1302,11 @@
   }
 
   .svc2-shakespeare-art {
-    height: 135px;
+    height: 150px;
   }
 
   .svc2-shakespeare-art img {
-    bottom: -18px;
+    bottom: -4px;
     width: min(330px, 88vw);
   }
 
