@@ -74,7 +74,16 @@ export default function Navbar() {
     e.preventDefault();
     setMenuOpen(false);
     const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: "smooth" });
+    if (target) {
+      const navbarHeight = document.querySelector(".navbar")?.getBoundingClientRect().height ?? NAVBAR_H;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+      const topOffset = navbarHeight + 16;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop - topOffset),
+        behavior: "smooth",
+      });
+    }
   };
 
   useEffect(() => {
