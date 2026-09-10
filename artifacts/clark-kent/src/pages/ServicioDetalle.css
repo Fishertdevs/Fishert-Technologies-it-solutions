@@ -1306,7 +1306,7 @@
   }
 
   .svc2-shakespeare-art img {
-    bottom: 0;
+    bottom: -18px;
     width: min(330px, 88vw);
   }
 
