@@ -134,6 +134,25 @@
   line-height: 1.18;
 }
 
+.svc2-shakespeare-art {
+  position: relative;
+  z-index: 2;
+  height: 160px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.svc2-shakespeare-art img {
+  position: absolute;
+  bottom: -82px;
+  left: 50%;
+  display: block;
+  width: min(360px, 42vw);
+  height: auto;
+  max-width: none;
+  transform: translateX(-50%);
+}
+
 .svc2-process-section {
   position: relative;
   width: 100%;
@@ -1280,6 +1299,15 @@
   .svc2-process-section {
     padding: 44px 20px 64px;
     border-radius: 24px;
+  }
+
+  .svc2-shakespeare-art {
+    height: 145px;
+  }
+
+  .svc2-shakespeare-art img {
+    bottom: -70px;
+    width: min(330px, 88vw);
   }
 
   .svc2-process-wave {
