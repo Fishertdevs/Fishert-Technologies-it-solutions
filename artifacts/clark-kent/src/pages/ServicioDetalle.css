@@ -1288,7 +1288,7 @@
   }
 
   .svc2-desc-section {
-    padding: 52px 24px 20px;
+    padding: 72px 24px 0;
   }
 
   .svc2-desc-text {
@@ -1297,17 +1297,17 @@
   }
 
   .svc2-process-section {
-    margin-top: -18px;
+    margin-top: 0;
     padding: 44px 20px 64px;
     border-radius: 24px;
   }
 
   .svc2-shakespeare-art {
-    height: 135px;
+    height: 110px;
   }
 
   .svc2-shakespeare-art img {
-    bottom: -8px;
+    bottom: -18px;
     width: min(330px, 88vw);
   }
 
