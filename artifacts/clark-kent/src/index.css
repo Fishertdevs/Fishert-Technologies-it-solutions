@@ -8387,6 +8387,18 @@ body {
   }
 }
 
+/* Final mobile team-art scale: the source has transparent space above the cow,
+   so the complete square must grow to make the visible illustration larger. */
+@media (max-width: 768px) {
+  .qs-team-art img {
+    width: 480px !important;
+    max-width: none !important;
+    height: 480px !important;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
+}
+
 /* Keep each page's approved closing composition in its own place. */
 .qs-footer-art {
   display: grid;
