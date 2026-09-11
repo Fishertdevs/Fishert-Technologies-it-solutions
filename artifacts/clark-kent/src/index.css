@@ -7088,6 +7088,7 @@ body {
 /* Final about-page refinements */
 .qs-hero {
   height: 360px;
+  border-radius: 32px;
   background-color: #ffffff;
   background-image: conic-gradient(
     #ffffff 0 25%,
@@ -7355,6 +7356,7 @@ body {
 @media (max-width: 768px) {
   .qs-hero {
     height: 270px;
+    border-radius: 28px;
     background-size: 60px 60px;
   }
 
