@@ -394,13 +394,8 @@ export default function QuienesSomos() {
             </span>
             <p>
               {lang === "es"
-                ? "Detrás de cada resultado hay un equipo que combina estrategia, diseño y tecnología para convertir ideas ambiciosas en experiencias digitales claras, relevantes y preparadas para crecer."
-                : "Behind every result is a team that combines strategy, design, and technology to turn ambitious ideas into clear, meaningful digital experiences built to grow."}
-            </p>
-            <p className="qs-team-values-bridge-detail">
-              {lang === "es"
-                ? "Escuchamos cada desafío, alineamos las decisiones con los objetivos del negocio y cuidamos cada detalle para construir soluciones que conecten con las personas y generen resultados sostenibles."
-                : "We listen to every challenge, align decisions with business goals, and care for every detail to build solutions that connect with people and create lasting results."}
+                ? "Detrás de cada resultado hay un equipo que combina estrategia, diseño y tecnología para convertir ideas ambiciosas en experiencias digitales claras, relevantes y preparadas para crecer. Escuchamos cada desafío, alineamos las decisiones con los objetivos del negocio y cuidamos cada detalle para construir soluciones que conecten con las personas y generen resultados sostenibles."
+                : "Behind every result is a team that combines strategy, design, and technology to turn ambitious ideas into clear, meaningful digital experiences built to grow. We listen to every challenge, align decisions with business goals, and care for every detail to build solutions that connect with people and create lasting results."}
             </p>
           </div>
         </section>
