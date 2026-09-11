@@ -3,13 +3,13 @@ import { useLang } from "./LanguageContext";
 
 const content = {
   es: {
-    titleFirst: "Bienvenidos a",
-    titleSecond: "Fishert Studio",
+    titleFirst: "BIENVENIDOS A",
+    titleSecond: "FISHERT STUDIO",
     body: "Somos una agencia de software especializada en diseñar, construir y escalar productos digitales de alto impacto. Convertimos ideas ambiciosas en experiencias reales que posicionan a los negocios como líderes de su industria.",
   },
   en: {
-    titleFirst: "Welcome to",
-    titleSecond: "Fishert Studio",
+    titleFirst: "WELCOME TO",
+    titleSecond: "FISHERT STUDIO",
     body: "We are a software agency specialized in designing, building and scaling high-impact digital products. We turn ambitious ideas into real experiences that position businesses as leaders of their industry.",
   },
 };
