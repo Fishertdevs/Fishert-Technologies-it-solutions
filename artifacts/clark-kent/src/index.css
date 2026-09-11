@@ -1408,6 +1408,7 @@ body {
   height: 100vh;
   position: relative;
   overflow: hidden;
+  border-radius: 32px 32px 0 0;
   box-sizing: border-box;
 }
 
@@ -6308,6 +6309,7 @@ body {
     height: auto;
     min-height: 0;
     overflow: hidden;
+    border-radius: 24px 24px 0 0;
   }
 
   .nos-layout {
