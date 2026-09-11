@@ -8445,6 +8445,10 @@ body {
   text-align: center;
 }
 
+.qs-team-values-bridge-detail {
+  margin-top: 18px !important;
+}
+
 /* The values section closes with the same soft geometry as the other sections. */
 .qs-values {
   border-radius: 0 0 36px 36px;
