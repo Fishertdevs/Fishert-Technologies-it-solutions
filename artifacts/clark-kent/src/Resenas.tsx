@@ -10,10 +10,12 @@ import resenasBust from "@assets/resenas_bust.png";
 import { useListPublishedReviews } from "@workspace/api-client-react";
 
 type Review = {
+  id: number;
   quote: string;
   author: string;
   company: string;
   stars: number;
+  createdAt: string;
 };
 
 /* Blue Twitter-style verified badge */
@@ -49,6 +51,100 @@ const Stars = ({ count, lang }: { count: number; lang: "es" | "en" }) => (
 );
 
 const VISIBLE = 2;
+
+function formatRelativeDate(createdAt: string, lang: "es" | "en") {
+  const createdTime = new Date(createdAt).getTime();
+  if (!Number.isFinite(createdTime)) {
+    return lang === "es" ? "Publicado recientemente" : "Published recently";
+  }
+
+  const elapsedSeconds = Math.max(0, Math.floor((Date.now() - createdTime) / 1000));
+  if (elapsedSeconds < 60) return lang === "es" ? "hace un momento" : "just now";
+
+  const minutes = Math.floor(elapsedSeconds / 60);
+  if (minutes < 60) {
+    return lang === "es"
+      ? `hace ${minutes} ${minutes === 1 ? "minuto" : "minutos"}`
+      : `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
+  }
+
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) {
+    return lang === "es"
+      ? `hace ${hours} ${hours === 1 ? "hora" : "horas"}`
+      : `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+  }
+
+  const days = Math.floor(hours / 24);
+  if (days < 30) {
+    return lang === "es"
+      ? `hace ${days} ${days === 1 ? "día" : "días"}`
+      : `${days} ${days === 1 ? "day" : "days"} ago`;
+  }
+
+  const months = Math.floor(days / 30.4375);
+  if (months < 12) {
+    return lang === "es"
+      ? `hace ${months} ${months === 1 ? "mes" : "meses"}`
+      : `${months} ${months === 1 ? "month" : "months"} ago`;
+  }
+
+  const years = Math.floor(months / 12);
+  return lang === "es"
+    ? `hace ${years} ${years === 1 ? "año" : "años"}`
+    : `${years} ${years === 1 ? "year" : "years"} ago`;
+}
+
+function ReviewCard({ review, lang }: { review: Review; lang: "es" | "en" }) {
+  const storageKey = `fishert-review-helpful:${review.id}`;
+  const [helpfulVote, setHelpfulVote] = useState<"yes" | "no" | null>(() => {
+    if (typeof window === "undefined") return null;
+    const storedVote = window.localStorage.getItem(storageKey);
+    return storedVote === "yes" || storedVote === "no" ? storedVote : null;
+  });
+
+  const vote = (value: "yes" | "no") => {
+    setHelpfulVote(value);
+    window.localStorage.setItem(storageKey, value);
+  };
+
+  return (
+    <div className="resena-card">
+      <Stars count={review.stars} lang={lang} />
+      <blockquote className="resena-quote">"{review.quote}"</blockquote>
+      <div className="resena-author">
+        <span className="resena-name">{review.author}</span>
+        <span className="resena-company">{review.company}</span>
+      </div>
+      <span className="resena-date">
+        {formatRelativeDate(review.createdAt, lang)}
+      </span>
+      <div className="resena-helpful">
+        <span className="resena-helpful-question">
+          {lang === "es" ? "¿Te fue útil esta reseña?" : "Was this review helpful?"}
+        </span>
+        <div className="resena-helpful-actions">
+          <button
+            type="button"
+            className={`resena-helpful-btn${helpfulVote === "yes" ? " resena-helpful-btn--selected" : ""}`}
+            aria-pressed={helpfulVote === "yes"}
+            onClick={() => vote("yes")}
+          >
+            {lang === "es" ? "Sí" : "Yes"}
+          </button>
+          <button
+            type="button"
+            className={`resena-helpful-btn${helpfulVote === "no" ? " resena-helpful-btn--selected" : ""}`}
+            aria-pressed={helpfulVote === "no"}
+            onClick={() => vote("no")}
+          >
+            {lang === "es" ? "No" : "No"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function useMobileReviewsLayout() {
   const query = "(max-width: 768px)";
@@ -163,14 +259,7 @@ function ReviewsCarousel({
             style={isMobile ? { transform: `translateX(-${start * 100}%)` } : undefined}
           >
             {visible.map((r, i) => (
-              <div key={`${isMobile ? "mobile" : start}-${r.author}-${i}`} className="resena-card">
-                <Stars count={r.stars} lang={lang} />
-                <blockquote className="resena-quote">"{r.quote}"</blockquote>
-                <div className="resena-author">
-                  <span className="resena-name">{r.author}</span>
-                  <span className="resena-company">{r.company}</span>
-                </div>
-              </div>
+              <ReviewCard key={`${isMobile ? "mobile" : start}-${r.id}-${i}`} review={r} lang={lang} />
             ))}
           </div>
         )}
@@ -233,10 +322,12 @@ export default function Resenas() {
   const { data: publishedReviews, isLoading, isError } = useListPublishedReviews();
   const reviewRows = Array.isArray(publishedReviews) ? publishedReviews : [];
   const list: Review[] = reviewRows.map((review) => ({
+    id: review.id,
     quote: review.text,
     author: review.name,
     company: review.company ?? "",
     stars: review.rating,
+    createdAt: review.createdAt,
   }));
   const [showForm, setShowForm] = useState(false);
   const [isVisible, setIsVisible] = useState(false);

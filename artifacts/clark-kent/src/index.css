@@ -2554,6 +2554,57 @@ body {
   letter-spacing: 0.02em;
 }
 
+.resena-date {
+  color: #777;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.resena-helpful {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.resena-helpful-question {
+  color: #555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.resena-helpful-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.resena-helpful-btn {
+  min-width: 42px;
+  padding: 4px 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #555;
+  cursor: pointer;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.resena-helpful-btn:hover,
+.resena-helpful-btn--selected {
+  border-color: #c0001a;
+  background: #c0001a;
+  color: #ffffff;
+}
+
 /* ── Controls row: add review + carousel nav ─────────────── */
 .resenas-controls {
   display: grid;
