@@ -7492,7 +7492,7 @@ body {
 }
 
 .qs-values {
-  border-radius: 0 0 32px 32px;
+  border-radius: 32px;
 }
 
 .qs-team-heading {
@@ -7542,7 +7542,7 @@ body {
   }
 
   .qs-values {
-    border-radius: 0 0 24px 24px;
+    border-radius: 24px;
   }
 
   .qs-team-heading {
