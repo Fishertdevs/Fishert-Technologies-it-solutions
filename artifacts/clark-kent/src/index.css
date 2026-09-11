@@ -8317,7 +8317,7 @@ body {
 .qs-team-card--portrait {
   position: relative;
   overflow: hidden !important;
-  padding-bottom: 156px !important;
+  padding-bottom: 240px !important;
 }
 
 .qs-team-avatar--portrait {
@@ -8337,9 +8337,12 @@ body {
 }
 
 .qs-team-avatar--portrait img {
-  position: static;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  right: auto;
+  bottom: 0;
+  left: -105px;
+  width: 360px;
+  height: 223px;
   max-width: none;
   object-fit: contain;
   object-position: center bottom;
@@ -8364,12 +8367,13 @@ body {
   .qs-team-card--portrait .qs-team-avatar {
     left: 14px !important;
     width: 360px !important;
-    height: 240px !important;
+    height: 230px !important;
   }
 
   .qs-team-card--portrait .qs-team-avatar img {
-    width: 100%;
-    height: 100%;
+    left: -125px;
+    width: 430px;
+    height: 266px;
   }
 }
 
@@ -8377,12 +8381,13 @@ body {
   .qs-team-card--portrait .qs-team-avatar {
     left: 10px !important;
     width: 310px !important;
-    height: 215px !important;
+    height: 220px !important;
   }
 
   .qs-team-card--portrait .qs-team-avatar img {
-    width: 100%;
-    height: 100%;
+    left: -105px;
+    width: 360px;
+    height: 223px;
   }
 }
 
