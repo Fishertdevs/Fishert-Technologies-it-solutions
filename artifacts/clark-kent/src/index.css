@@ -8461,6 +8461,18 @@ body {
   line-height: 0;
 }
 
+.qs-team::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  z-index: 3;
+  height: 2px;
+  background: #ffffff;
+  content: "";
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
   .qs-team-values-bridge {
     min-height: 230px;
