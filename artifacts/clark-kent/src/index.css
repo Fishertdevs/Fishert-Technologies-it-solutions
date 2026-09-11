@@ -6709,6 +6709,8 @@ body {
 }
 
 .qs-team-avatar {
+  position: relative;
+  overflow: visible;
   grid-row: 1 / span 3;
   width: 112px;
   height: 112px;
@@ -6717,6 +6719,20 @@ body {
   background: #c0001a;
   color: #ffffff;
   font-size: 54px;
+}
+
+.qs-team-avatar img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 142%;
+  height: 142%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .qs-team-name {
@@ -6903,6 +6919,11 @@ body {
     column-gap: 17px;
     padding: 25px 21px;
     border-radius: 22px;
+  }
+
+  .qs-team-card--centered-copy .qs-team-name,
+  .qs-team-card--centered-copy .qs-team-role {
+    text-align: center;
   }
 
   .qs-team-avatar {

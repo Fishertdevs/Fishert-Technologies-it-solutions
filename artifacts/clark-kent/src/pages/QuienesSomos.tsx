@@ -7,6 +7,7 @@ import footerPortrait from "@assets/image_(6)-Photoroom_1788126926994.png";
 import teamSectionTexture from "@assets/image_1788744935304.png";
 import teamSectionArt from "@assets/image-Photoroom_(21)_1788745192839.png";
 import storySectionArt from "@assets/image-Photoroom_(22)_1788748318291.png";
+import harryPortrait from "@assets/image_1789091398593.png";
 
 type TeamMember = {
   name: string;
@@ -19,6 +20,7 @@ type TeamMember = {
 const team: TeamMember[] = [
   {
     name: "Harry Fishert",
+    imageRef: harryPortrait,
     role: {
       es: "Fundador · Líder de desarrollo y diseño",
       en: "Founder · Development & Design Lead",
@@ -120,8 +122,10 @@ function TeamMemberCard({
   lang: "es" | "en";
   className?: string;
 }) {
+  const shouldCenterCopy = member.name === "David Moya" || member.name === "Samuel Tellez";
+
   return (
-    <article className={className}>
+    <article className={`${className}${shouldCenterCopy ? " qs-team-card--centered-copy" : ""}`}>
       <div className="qs-team-avatar">
         {member.imageRef ? (
           <img src={member.imageRef} alt="" />
@@ -154,7 +158,7 @@ export default function QuienesSomos() {
         name: member.name,
         role: { es: member.roleEs, en: member.roleEn },
         bio: { es: member.bioEs, en: member.bioEn },
-        imageRef: member.imageRef,
+        imageRef: member.imageRef || (member.name === "Harry Fishert" ? harryPortrait : null),
       }))
     : team;
   const [activeTeamMember, setActiveTeamMember] = useState(0);
