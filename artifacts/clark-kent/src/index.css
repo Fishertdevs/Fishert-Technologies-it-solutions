@@ -7493,6 +7493,7 @@ body {
 
 .qs-values {
   border-radius: 32px;
+  overflow: hidden;
 }
 
 .qs-team-heading {
