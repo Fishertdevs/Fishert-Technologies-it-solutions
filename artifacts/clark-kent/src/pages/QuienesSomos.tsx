@@ -123,10 +123,17 @@ function TeamMemberCard({
   className?: string;
 }) {
   const shouldCenterCopy = member.name === "David Moya" || member.name === "Samuel Tellez";
+  const hasPortrait = Boolean(member.imageRef);
 
   return (
-    <article className={`${className}${shouldCenterCopy ? " qs-team-card--centered-copy" : ""}`}>
-      <div className="qs-team-avatar">
+    <article
+      className={[
+        className,
+        shouldCenterCopy ? "qs-team-card--centered-copy" : "",
+        hasPortrait ? "qs-team-card--portrait" : "",
+      ].filter(Boolean).join(" ")}
+    >
+      <div className={`qs-team-avatar${hasPortrait ? " qs-team-avatar--portrait" : ""}`}>
         {member.imageRef ? (
           <img src={member.imageRef} alt="" />
         ) : (
