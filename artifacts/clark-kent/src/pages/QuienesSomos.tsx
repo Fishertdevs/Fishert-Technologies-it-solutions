@@ -385,6 +385,13 @@ export default function QuienesSomos() {
         {/* ── Values ── */}
         <section className="qs-values">
           <div className="qs-values-inner">
+            <div className="qs-values-intro">
+              <p>
+                {lang === "es"
+                  ? "Detrás de cada resultado hay un equipo que combina estrategia, diseño y tecnología para convertir ideas ambiciosas en experiencias digitales claras, relevantes y preparadas para crecer."
+                  : "Behind every result is a team that combines strategy, design, and technology to turn ambitious ideas into clear, meaningful digital experiences built to grow."}
+              </p>
+            </div>
             <h2 className="qs-values-heading">
               {lang === "es" ? "QUÉ NOS DIFERENCIA." : "WHAT SETS US APART."}
             </h2>

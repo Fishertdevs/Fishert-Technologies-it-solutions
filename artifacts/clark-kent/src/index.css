@@ -8391,11 +8391,49 @@ body {
    so the complete square must grow to make the visible illustration larger. */
 @media (max-width: 768px) {
   .qs-team-art img {
-    width: 480px !important;
+    width: 420px !important;
     max-width: none !important;
-    height: 480px !important;
+    height: 420px !important;
     aspect-ratio: 1 / 1;
     object-fit: contain;
+  }
+}
+
+/* Professional bridge between the team and values sections. */
+.qs-values-intro {
+  width: min(100%, 760px);
+  margin: 0 auto clamp(22px, 3vw, 34px);
+  text-align: center;
+}
+
+.qs-values-intro p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(14px, 1.35vw, 18px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+/* The values section closes with the same soft geometry as the other sections. */
+.qs-values {
+  border-radius: 0 0 36px 36px;
+}
+
+@media (max-width: 768px) {
+  .qs-values-intro {
+    width: min(100%, 340px);
+    margin-bottom: 22px;
+  }
+
+  .qs-values-intro p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .qs-values {
+    border-radius: 0 0 24px 24px;
   }
 }
 
