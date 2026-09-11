@@ -140,16 +140,18 @@ function TeamMemberCard({
       )}
       <h3 className="qs-team-name">{member.name}</h3>
       <p className="qs-team-role">{member.role[lang]}</p>
-      <p className="qs-team-bio">
-        {member.bioLines?.[lang]
-          ? member.bioLines[lang].map((line, index) => (
-              <span key={line}>
-                {index > 0 && <br />}
-                {line}
-              </span>
-            ))
-          : member.bio[lang]}
-      </p>
+      {!hasPortrait && (
+        <p className="qs-team-bio">
+          {member.bioLines?.[lang]
+            ? member.bioLines[lang].map((line, index) => (
+                <span key={line}>
+                  {index > 0 && <br />}
+                  {line}
+                </span>
+              ))
+            : member.bio[lang]}
+        </p>
+      )}
       {hasPortrait && (
         <div className="qs-team-avatar qs-team-avatar--portrait">
           <img src={member.imageRef!} alt="" />

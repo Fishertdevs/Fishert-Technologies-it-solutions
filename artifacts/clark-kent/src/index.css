@@ -8325,14 +8325,14 @@ body {
   right: auto !important;
   top: auto !important;
   bottom: 0 !important;
-  left: 10px !important;
-  width: 310px !important;
-  height: 215px !important;
+  left: 50% !important;
+  width: 320px !important;
+  height: 220px !important;
   margin: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
-  transform: none !important;
+  transform: translateX(-50%) !important;
   z-index: 3;
 }
 
@@ -8340,13 +8340,13 @@ body {
   position: absolute;
   right: auto;
   bottom: 0;
-  left: -105px;
-  width: 360px;
-  height: 223px;
+  left: 50%;
+  width: 400px;
+  height: 248px;
   max-width: none;
   object-fit: contain;
   object-position: center bottom;
-  transform: none;
+  transform: translateX(-50%);
 }
 
 .qs-team-card--centered-copy .qs-team-name,
@@ -8365,29 +8365,29 @@ body {
 
 @media (min-width: 769px) {
   .qs-team-card--portrait .qs-team-avatar {
-    left: 14px !important;
+    left: 50% !important;
     width: 360px !important;
-    height: 230px !important;
+    height: 240px !important;
   }
 
   .qs-team-card--portrait .qs-team-avatar img {
-    left: -125px;
-    width: 430px;
-    height: 266px;
+    left: 50%;
+    width: 450px;
+    height: 279px;
   }
 }
 
 @media (max-width: 768px) {
   .qs-team-card--portrait .qs-team-avatar {
-    left: 10px !important;
-    width: 310px !important;
+    left: 50% !important;
+    width: 320px !important;
     height: 220px !important;
   }
 
   .qs-team-card--portrait .qs-team-avatar img {
-    left: -105px;
-    width: 360px;
-    height: 223px;
+    left: 50%;
+    width: 400px;
+    height: 248px;
   }
 }
 
