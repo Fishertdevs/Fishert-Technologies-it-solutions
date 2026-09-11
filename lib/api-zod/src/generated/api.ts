@@ -84,10 +84,12 @@ export const listPublishedReviewsResponseRatingMax = 5;
 
 
 export const ListPublishedReviewsResponseItem = zod.object({
+  "id": zod.number(),
   "name": zod.string(),
   "company": zod.string().nullish(),
   "text": zod.string(),
-  "rating": zod.number().min(1).max(listPublishedReviewsResponseRatingMax)
+  "rating": zod.number().min(1).max(listPublishedReviewsResponseRatingMax),
+  "createdAt": zod.coerce.date()
 })
 export const ListPublishedReviewsResponse = zod.array(ListPublishedReviewsResponseItem)
 

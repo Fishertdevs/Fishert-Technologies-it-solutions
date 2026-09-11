@@ -75,6 +75,7 @@ export interface PlanCategory {
 export type PlansResponse = PlanCategory[];
 
 export interface Review {
+  id: number;
   name: string;
   /** @nullable */
   company?: string | null;
@@ -84,6 +85,7 @@ export interface Review {
      * @maximum 5
      */
   rating: number;
+  createdAt: string;
 }
 
 export type ReviewsResponse = Review[];
