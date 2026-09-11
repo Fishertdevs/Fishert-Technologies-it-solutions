@@ -95,10 +95,12 @@ router.get("/reviews", async (req, res): Promise<void> => {
   res.json(
     ListPublishedReviewsResponse.parse(
       reviews.map((review) => ({
+        id: review.id,
         name: review.name,
         company: review.company,
         text: review.text,
         rating: review.rating,
+        createdAt: review.createdAt,
       })),
     ),
   );
