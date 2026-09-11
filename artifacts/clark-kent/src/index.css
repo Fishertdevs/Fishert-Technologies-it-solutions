@@ -8391,9 +8391,9 @@ body {
    so the complete square must grow to make the visible illustration larger. */
 @media (max-width: 768px) {
   .qs-team-art img {
-    width: 420px !important;
+    width: 360px !important;
     max-width: none !important;
-    height: 420px !important;
+    height: 360px !important;
     aspect-ratio: 1 / 1;
     object-fit: contain;
   }
@@ -8402,16 +8402,39 @@ body {
 /* Professional bridge between the team and values sections. */
 .qs-team-values-bridge {
   display: flex;
-  min-height: 138px;
+  min-height: 170px;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 30px 7%;
+  padding: 42px 7%;
   background: #ffffff;
 }
 
-.qs-team-values-bridge p {
+.qs-team-values-bridge-copy {
   width: min(100%, 760px);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.qs-team-values-bridge--visible .qs-team-values-bridge-copy {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.qs-team-values-bridge-eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  color: #c0001a;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-align: center;
+}
+
+.qs-team-values-bridge p {
+  width: 100%;
   margin: 0;
   color: #555861;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -8429,8 +8452,13 @@ body {
 
 @media (max-width: 768px) {
   .qs-team-values-bridge {
-    min-height: 176px;
-    padding: 34px 20px;
+    min-height: 230px;
+    padding: 48px 20px 54px;
+  }
+
+  .qs-team-values-bridge-eyebrow {
+    margin-bottom: 20px;
+    font-size: 11px;
   }
 
   .qs-team-values-bridge p {
@@ -8541,6 +8569,14 @@ body {
 @media (min-width: 769px) {
   .nos-layout .nos-body {
     text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qs-team-values-bridge-copy {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

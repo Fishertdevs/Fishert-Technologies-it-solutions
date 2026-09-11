@@ -211,11 +211,13 @@ export default function QuienesSomos() {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".qs-value-card"));
     const heroSection = document.querySelector<HTMLElement>(".qs-hero");
     const storySection = document.querySelector<HTMLElement>(".qs-story");
+    const bridgeSection = document.querySelector<HTMLElement>(".qs-team-values-bridge");
     const valuesSection = document.querySelector<HTMLElement>(".qs-values");
     if (!("IntersectionObserver" in window)) {
       cards.forEach((card) => card.classList.add("qs-value-card--visible"));
       heroSection?.classList.add("qs-hero--visible");
       storySection?.classList.add("qs-story--visible");
+      bridgeSection?.classList.add("qs-team-values-bridge--visible");
       valuesSection?.classList.add("qs-values--visible");
       return;
     }
@@ -237,7 +239,9 @@ export default function QuienesSomos() {
             ? "qs-hero--visible"
             : target.classList.contains("qs-story")
               ? "qs-story--visible"
-              : "qs-values--visible";
+              : target.classList.contains("qs-team-values-bridge")
+                ? "qs-team-values-bridge--visible"
+                : "qs-values--visible";
           target.classList.toggle(visibleClass, entry.isIntersecting);
         });
       },
@@ -247,6 +251,7 @@ export default function QuienesSomos() {
     cards.forEach((card) => cardsObserver.observe(card));
     if (heroSection) sectionObserver.observe(heroSection);
     if (storySection) sectionObserver.observe(storySection);
+    if (bridgeSection) sectionObserver.observe(bridgeSection);
     if (valuesSection) sectionObserver.observe(valuesSection);
     return () => {
       cardsObserver.disconnect();
@@ -383,11 +388,16 @@ export default function QuienesSomos() {
         </section>
 
         <section className="qs-team-values-bridge" aria-label={lang === "es" ? "Transición entre secciones" : "Section transition"}>
-          <p>
-            {lang === "es"
-              ? "Detrás de cada resultado hay un equipo que combina estrategia, diseño y tecnología para convertir ideas ambiciosas en experiencias digitales claras, relevantes y preparadas para crecer."
-              : "Behind every result is a team that combines strategy, design, and technology to turn ambitious ideas into clear, meaningful digital experiences built to grow."}
-          </p>
+          <div className="qs-team-values-bridge-copy">
+            <span className="qs-team-values-bridge-eyebrow">
+              {lang === "es" ? "NUESTRO EQUIPO" : "OUR TEAM"}
+            </span>
+            <p>
+              {lang === "es"
+                ? "Detrás de cada resultado hay un equipo que combina estrategia, diseño y tecnología para convertir ideas ambiciosas en experiencias digitales claras, relevantes y preparadas para crecer."
+                : "Behind every result is a team that combines strategy, design, and technology to turn ambitious ideas into clear, meaningful digital experiences built to grow."}
+            </p>
+          </div>
         </section>
 
         {/* ── Values ── */}
