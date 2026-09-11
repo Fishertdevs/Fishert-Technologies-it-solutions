@@ -7482,6 +7482,7 @@ body {
 /* Final spacing and team-card refinements */
 .qs-story {
   padding-bottom: 58px;
+  border-radius: 32px 32px 0 0;
 }
 
 .qs-team {
@@ -7531,6 +7532,7 @@ body {
 @media (max-width: 768px) {
   .qs-story {
     padding-bottom: 34px;
+    border-radius: 24px 24px 0 0;
   }
 
   .qs-team {
