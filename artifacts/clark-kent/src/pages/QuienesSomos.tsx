@@ -133,13 +133,11 @@ function TeamMemberCard({
         hasPortrait ? "qs-team-card--portrait" : "",
       ].filter(Boolean).join(" ")}
     >
-      <div className={`qs-team-avatar${hasPortrait ? " qs-team-avatar--portrait" : ""}`}>
-        {member.imageRef ? (
-          <img src={member.imageRef} alt="" />
-        ) : (
-          member.name.charAt(0)
-        )}
-      </div>
+      {!hasPortrait && (
+        <div className="qs-team-avatar">
+          {member.name.charAt(0)}
+        </div>
+      )}
       <h3 className="qs-team-name">{member.name}</h3>
       <p className="qs-team-role">{member.role[lang]}</p>
       <p className="qs-team-bio">
@@ -152,6 +150,11 @@ function TeamMemberCard({
             ))
           : member.bio[lang]}
       </p>
+      {hasPortrait && (
+        <div className="qs-team-avatar qs-team-avatar--portrait">
+          <img src={member.imageRef!} alt="" />
+        </div>
+      )}
     </article>
   );
 }

@@ -8315,25 +8315,34 @@ body {
 /* Final team-card treatment: Harry's portrait is an independent overflowing cutout,
    while David and Samuel keep their copy centered in the mobile carousel. */
 .qs-team-card--portrait {
+  position: relative;
   overflow: visible !important;
+  padding-bottom: 126px !important;
 }
 
 .qs-team-avatar--portrait {
-  width: 132px !important;
-  height: 142px !important;
-  margin: -18px 0 6px -24px !important;
+  position: absolute !important;
+  right: auto !important;
+  bottom: -118px !important;
+  left: 50% !important;
+  width: 290px !important;
+  height: 180px !important;
+  margin: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
+  transform: translateX(-50%) !important;
   z-index: 3;
 }
 
 .qs-team-avatar--portrait img {
-  top: 50%;
-  left: 50%;
+  position: static;
   width: 165%;
   height: 165%;
-  transform: translate(-50%, -50%);
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+  transform: none;
 }
 
 .qs-team-card--centered-copy .qs-team-name,
@@ -8343,27 +8352,27 @@ body {
 
 @media (min-width: 769px) {
   .qs-team-card--portrait .qs-team-avatar {
-    width: 150px !important;
-    height: 158px !important;
-    margin: -28px auto 2px !important;
+    bottom: -132px !important;
+    width: 360px !important;
+    height: 220px !important;
   }
 
   .qs-team-card--portrait .qs-team-avatar img {
-    width: 160%;
-    height: 160%;
+    width: 150%;
+    height: 150%;
   }
 }
 
 @media (max-width: 768px) {
   .qs-team-card--portrait .qs-team-avatar {
-    width: 118px !important;
-    height: 126px !important;
-    margin: -16px 0 4px -18px !important;
+    bottom: -112px !important;
+    width: 280px !important;
+    height: 172px !important;
   }
 
   .qs-team-card--portrait .qs-team-avatar img {
-    width: 170%;
-    height: 170%;
+    width: 150%;
+    height: 150%;
   }
 }
 
