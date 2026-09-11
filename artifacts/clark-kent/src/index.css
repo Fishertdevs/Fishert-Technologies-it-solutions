@@ -8429,13 +8429,14 @@ body {
 
 @media (max-width: 768px) {
   .qs-team-values-bridge {
-    min-height: 128px;
-    padding: 26px 24px;
+    min-height: 176px;
+    padding: 34px 20px;
   }
 
   .qs-team-values-bridge p {
-    font-size: 13px;
-    line-height: 1.55;
+    width: min(100%, 360px);
+    font-size: 16px;
+    line-height: 1.65;
   }
 
   .qs-values {
