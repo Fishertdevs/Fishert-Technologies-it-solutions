@@ -279,18 +279,6 @@ export default function QuienesSomos() {
               <img src={storySectionArt} alt="" />
             </div>
           </div>
-          <svg
-            className="qs-team-wave qs-team-wave--bottom"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 80"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-              fill="#1a1a1a"
-            />
-          </svg>
         </section>
 
         {/* ── Team ── */}
@@ -364,6 +352,18 @@ export default function QuienesSomos() {
             </div>
             </div>
           </div>
+          <svg
+            className="qs-team-wave qs-team-wave--bottom"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 80"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+              fill="#1a1a1a"
+            />
+          </svg>
         </section>
 
         {/* ── Values ── */}
