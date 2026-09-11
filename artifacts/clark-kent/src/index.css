@@ -8325,14 +8325,14 @@ body {
   right: auto !important;
   top: auto !important;
   bottom: 0 !important;
-  left: 50% !important;
-  width: 270px !important;
-  height: 190px !important;
+  left: 10px !important;
+  width: 310px !important;
+  height: 215px !important;
   margin: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
-  transform: translateX(-50%) !important;
+  transform: none !important;
   z-index: 3;
 }
 
@@ -8351,10 +8351,20 @@ body {
   text-align: center !important;
 }
 
+.qs-team-card--portrait .qs-team-name,
+.qs-team-card--portrait .qs-team-role,
+.qs-team-card--portrait .qs-team-bio {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  text-align: center !important;
+}
+
 @media (min-width: 769px) {
   .qs-team-card--portrait .qs-team-avatar {
-    width: 320px !important;
-    height: 220px !important;
+    left: 14px !important;
+    width: 360px !important;
+    height: 240px !important;
   }
 
   .qs-team-card--portrait .qs-team-avatar img {
@@ -8365,8 +8375,9 @@ body {
 
 @media (max-width: 768px) {
   .qs-team-card--portrait .qs-team-avatar {
-    width: 270px !important;
-    height: 190px !important;
+    left: 10px !important;
+    width: 310px !important;
+    height: 215px !important;
   }
 
   .qs-team-card--portrait .qs-team-avatar img {
