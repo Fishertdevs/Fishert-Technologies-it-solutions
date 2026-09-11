@@ -360,6 +360,11 @@ export default function Portafolio() {
             </svg>
           </button>
         </div>
+        <p className="port-professional-text">
+          {lang === "es"
+            ? "Cada proyecto refleja nuestro compromiso con el diseño, la estrategia y la tecnología para crear experiencias digitales que conectan, generan confianza y hacen crecer los negocios."
+            : "Every project reflects our commitment to design, strategy, and technology to create digital experiences that connect, build trust, and help businesses grow."}
+        </p>
       </div>
 
     </section>
