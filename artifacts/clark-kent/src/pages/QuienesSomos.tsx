@@ -376,13 +376,13 @@ export default function QuienesSomos() {
           <svg
             className="qs-team-wave qs-team-wave--bottom"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 80"
+            viewBox="0 0 1440 90"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
             <path
-              d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-              fill="#5e8d61"
+              d="M0 46C170 78 310 78 480 44S790 10 960 44s310 34 480 2V90H0Z"
+              fill="#ffffff"
             />
           </svg>
         </section>

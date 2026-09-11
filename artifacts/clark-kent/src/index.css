@@ -8450,6 +8450,13 @@ body {
   border-radius: 0 0 36px 36px;
 }
 
+/* Match the plans' FAQ wave exactly at the team-to-bridge boundary. */
+.qs-team-wave {
+  bottom: -3px;
+  height: 42px;
+  line-height: 0;
+}
+
 @media (max-width: 768px) {
   .qs-team-values-bridge {
     min-height: 230px;
