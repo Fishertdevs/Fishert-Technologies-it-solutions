@@ -2440,27 +2440,29 @@ export default function ServicioDetalle() {
 
         <section className="svc2-offer-section" aria-label={activeOffer.kicker[lang]}>
           <div className="svc2-month-offer">
+            <div className="svc2-month-offer-content">
+              <div className="svc2-month-offer-mark" aria-hidden="true">
+                <strong>{activeOffer.discount}%</strong>
+                <span>OFF</span>
+              </div>
+              <div className="svc2-month-offer-copy">
+                <span className="svc2-month-offer-kicker">
+                  {activeOffer.kicker[lang]}
+                </span>
+                <h3>{offerHeadline}</h3>
+                <p>
+                  {lang === "es"
+                    ? `${activeOffer.discount}% de descuento en tu primer servicio.`
+                    : `${activeOffer.discount}% off your first service.`}
+                </p>
+              </div>
+              <a href={buildServiceDiscountHref(lang, t.title, activeOffer.discount)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
+                {lang === "es" ? "Solicitar descuento" : "Request discount"}
+              </a>
+            </div>
             <div className="svc2-month-offer-art" aria-hidden="true">
               <img src={offerCharacterImage} alt="" />
             </div>
-            <div className="svc2-month-offer-mark" aria-hidden="true">
-              <strong>{activeOffer.discount}%</strong>
-              <span>OFF</span>
-            </div>
-            <div className="svc2-month-offer-copy">
-              <span className="svc2-month-offer-kicker">
-                {activeOffer.kicker[lang]}
-              </span>
-              <h3>{offerHeadline}</h3>
-              <p>
-                {lang === "es"
-                  ? `${activeOffer.discount}% de descuento en tu primer servicio.`
-                  : `${activeOffer.discount}% off your first service.`}
-              </p>
-            </div>
-            <a href={buildServiceDiscountHref(lang, t.title, activeOffer.discount)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
-              {lang === "es" ? "Solicitar descuento" : "Request discount"}
-            </a>
           </div>
         </section>
 
