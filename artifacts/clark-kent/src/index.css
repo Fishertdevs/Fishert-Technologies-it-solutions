@@ -1657,7 +1657,7 @@ body {
 .port-anchor-img {
   position: absolute;
   right: 0;
-  bottom: -1px;
+  bottom: -20%;
   height: 95%;
   width: auto;
   max-width: none;
