@@ -209,12 +209,13 @@ export default function Portafolio() {
     <div className="port-outer">
 
       {/* Right-anchored decorative portrait — pinned to viewport edge */}
-      <img
-        src={`${base}casos-exito-retrato.png`}
-        alt=""
-        aria-hidden="true"
-        className="port-anchor-img"
-      />
+      <div className="port-anchor-wrap" aria-hidden="true">
+        <img
+          src={`${base}casos-exito-retrato.png`}
+          alt=""
+          className="port-anchor-img"
+        />
+      </div>
 
     <section
       id="portafolio"

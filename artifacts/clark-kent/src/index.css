@@ -1654,22 +1654,42 @@ body {
 }
 
 /* ── Right-anchored decorative portrait ── */
-.port-anchor-img {
+.port-anchor-wrap {
   position: absolute;
   right: 0;
   bottom: -20%;
   height: 95%;
-  width: auto;
-  max-width: none;
-  object-fit: contain;
-  object-position: right bottom;
+  aspect-ratio: 525 / 910;
   z-index: 2;
   pointer-events: none;
   user-select: none;
 }
 
+.port-anchor-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 18px;
+  background: var(--port-next-section);
+  z-index: 1;
+}
+
+.port-anchor-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
 @media (max-width: 768px) {
-  .port-anchor-img {
+  .port-anchor-wrap {
     display: none;
   }
 }
@@ -1762,24 +1782,15 @@ body {
   }
 
   .port-anchor-img {
+    object-position: center bottom;
+  }
+
+  .port-anchor-wrap {
     right: clamp(24px, 6vw, 96px);
     top: auto;
     bottom: 0;
     height: clamp(360px, 44vw, 620px);
     object-position: center bottom;
-    transform: none;
-  }
-
-  .port-outer::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 18px;
-    background: var(--port-next-section);
-    z-index: 20;
-    pointer-events: none;
   }
 }
 
