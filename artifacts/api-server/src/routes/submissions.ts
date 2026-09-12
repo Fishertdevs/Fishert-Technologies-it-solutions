@@ -1,7 +1,8 @@
 import multer from "multer";
 import { Router, type IRouter, type RequestHandler } from "express";
+import { eq } from "drizzle-orm";
 import { CreateContactBody, CreateReviewBody } from "@workspace/api-zod";
-import { contactsTable, db, eq, reviewsTable } from "@workspace/db";
+import { contactsTable, db, reviewsTable } from "@workspace/db";
 import { notifyPendingReview } from "../lib/telegram";
 
 const router: IRouter = Router();
