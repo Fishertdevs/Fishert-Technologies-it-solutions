@@ -1210,6 +1210,7 @@
     height: 100%;
     object-fit: contain;
     object-position: center bottom;
+    transform: translateY(12px);
   }
 
   .svc2-offer-section .svc2-month-offer-mark {
