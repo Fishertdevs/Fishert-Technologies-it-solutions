@@ -1665,17 +1665,6 @@ body {
   user-select: none;
 }
 
-.port-anchor-wrap::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 18px;
-  background: var(--port-next-section);
-  z-index: 1;
-}
-
 .port-anchor-img {
   position: absolute;
   inset: 0;
@@ -1788,7 +1777,7 @@ body {
   .port-anchor-wrap {
     right: clamp(24px, 6vw, 96px);
     top: auto;
-    bottom: 0;
+    bottom: -18px;
     height: clamp(360px, 44vw, 620px);
     object-position: center bottom;
   }
