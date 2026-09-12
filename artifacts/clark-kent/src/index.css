@@ -8927,8 +8927,17 @@ body {
 
 /* Desktop: center only the copy inside the existing white card. */
 @media (min-width: 769px) {
+  .nos-layout .nos-card {
+    display: block;
+  }
+
   .nos-layout .nos-body {
+    display: inline;
     text-align: center;
+  }
+
+  .nos-layout .nos-body + .nos-body::before {
+    content: " ";
   }
 }
 
