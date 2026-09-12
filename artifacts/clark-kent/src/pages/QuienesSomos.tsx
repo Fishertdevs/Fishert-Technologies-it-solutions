@@ -134,30 +134,25 @@ function TeamMemberCard({
         hasPortrait ? "qs-team-card--portrait" : "",
       ].filter(Boolean).join(" ")}
     >
-      {!hasPortrait && (
-        <div className="qs-team-avatar">
+      <div className={`qs-team-avatar ${hasPortrait ? "qs-team-avatar--portrait" : ""}`}>
+        {hasPortrait ? (
+          <img src={member.imageRef!} alt="" />
+        ) : (
           {member.name.charAt(0)}
-        </div>
-      )}
+        )}
+      </div>
       <h3 className="qs-team-name">{member.name}</h3>
       <p className="qs-team-role">{member.role[lang]}</p>
-      {!hasPortrait && (
-        <p className="qs-team-bio">
-          {member.bioLines?.[lang]
-            ? member.bioLines[lang].map((line, index) => (
-                <span key={line}>
-                  {index > 0 && <br />}
-                  {line}
-                </span>
-              ))
-            : member.bio[lang]}
-        </p>
-      )}
-      {hasPortrait && (
-        <div className="qs-team-avatar qs-team-avatar--portrait">
-          <img src={member.imageRef!} alt="" />
-        </div>
-      )}
+      <p className="qs-team-bio">
+        {member.bioLines?.[lang]
+          ? member.bioLines[lang].map((line, index) => (
+              <span key={line}>
+                {index > 0 && <br />}
+                {line}
+              </span>
+            ))
+          : member.bio[lang]}
+      </p>
     </article>
   );
 }

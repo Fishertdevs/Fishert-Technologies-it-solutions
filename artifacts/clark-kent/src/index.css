@@ -8124,20 +8124,39 @@ body {
     padding-bottom: 32px;
   }
 
+  .qs-team-art {
+    margin-bottom: -32px;
+  }
+
   .qs-team-wave {
     display: none;
   }
 
-  .qs-team-card--desktop,
-  .qs-team-card--portrait {
+  .qs-team-card--desktop {
     height: 278px;
     padding: 16px 14px 18px !important;
   }
 
-  .qs-team-card--portrait .qs-team-avatar--portrait {
-    width: 100px !important;
-    height: 120px !important;
-    margin: 8px auto 0 !important;
+  .qs-team-card--desktop .qs-team-avatar,
+  .qs-team-card--desktop .qs-team-avatar--portrait {
+    width: 66px !important;
+    height: 66px !important;
+    margin: 0 auto 10px !important;
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: auto;
+  }
+
+  .qs-team-card--desktop .qs-team-avatar--portrait {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  .qs-team-card--desktop .qs-team-avatar--portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 
@@ -8566,6 +8585,33 @@ body {
 }
 
 @media (max-width: 768px) {
+  .qs-team-grid .qs-team-card--portrait {
+    min-height: 280px;
+    padding: 44px 28px 50px !important;
+  }
+
+  .qs-team-grid .qs-team-card--portrait .qs-team-avatar,
+  .qs-team-grid .qs-team-card--portrait .qs-team-avatar--portrait {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    justify-self: start;
+    width: 74px !important;
+    height: 74px !important;
+    margin: 0 !important;
+  }
+
+  .qs-team-grid .qs-team-card--portrait .qs-team-avatar--portrait {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  .qs-team-grid .qs-team-card--portrait .qs-team-avatar--portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
   .qs-team-values-bridge {
     min-height: 230px;
     padding: 48px 20px 54px;
