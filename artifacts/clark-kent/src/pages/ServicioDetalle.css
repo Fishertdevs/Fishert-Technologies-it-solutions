@@ -114,8 +114,8 @@
 .svc2-desc-art-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-  align-items: center;
-  min-height: 286px;
+  align-items: stretch;
+  min-height: 330px;
   padding: 0 max(48px, calc((100% - 1120px) / 2));
   background: #ffffff;
   box-sizing: border-box;
@@ -148,17 +148,18 @@
 .svc2-shakespeare-art {
   position: relative;
   z-index: 3;
-  height: 286px;
+  height: auto;
+  min-height: 330px;
   overflow: visible;
   background: #ffffff;
 }
 
 .svc2-shakespeare-art img {
   position: absolute;
-  bottom: -4px;
+  bottom: 0;
   left: 50%;
   display: block;
-  width: min(360px, 30vw);
+  width: min(520px, 48vw);
   height: auto;
   max-width: none;
   transform: translateX(-50%);
