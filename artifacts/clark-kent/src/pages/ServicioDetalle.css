@@ -1209,7 +1209,7 @@
     display: grid;
     width: calc(100% - 390px);
     min-height: 280px;
-    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-columns: 150px minmax(0, 1fr);
     align-items: center;
     column-gap: 24px;
     justify-items: center;
@@ -1241,6 +1241,8 @@
   .svc2-offer-section .svc2-month-offer-mark {
     grid-column: 1;
     grid-row: 1;
+    width: 140px;
+    min-height: 120px;
   }
 
   .svc2-offer-section .svc2-month-offer-copy {
