@@ -8626,8 +8626,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 280px;
-    padding: 44px 28px 50px !important;
+    min-height: 0;
+    height: 278px;
+    padding: 16px 14px 18px !important;
     text-align: center;
   }
 
@@ -8637,12 +8638,23 @@ body {
     text-align: center !important;
   }
 
+  .qs-team-grid .qs-team-card .qs-team-name {
+    font-size: clamp(21px, 1.65vw, 26px);
+    line-height: 1.05;
+  }
+
+  .qs-team-grid .qs-team-card .qs-team-role {
+    margin-bottom: 8px;
+    font-size: 8px;
+    line-height: 1.2;
+  }
+
   .qs-team-grid .qs-team-card .qs-team-avatar,
   .qs-team-grid .qs-team-card .qs-team-avatar--portrait {
-    width: 160px !important;
-    height: 195px !important;
-    margin: 18px auto 0 !important;
-    flex: 0 0 195px;
+    width: 185px !important;
+    height: 225px !important;
+    margin: 10px auto 0 !important;
+    flex: 0 0 225px;
     grid-column: auto;
     grid-row: auto;
     justify-self: auto;
@@ -8662,8 +8674,9 @@ body {
   }
 
   .qs-team-grid .qs-team-card--portrait {
-    min-height: 280px;
-    padding: 44px 28px 50px !important;
+    min-height: 0;
+    height: 278px;
+    padding: 16px 14px 18px !important;
   }
 
   .qs-team-values-bridge {
@@ -8687,6 +8700,10 @@ body {
   .qs-team-values-bridge-copy {
     align-self: center;
     padding-right: 0;
+  }
+
+  .qs-team-values-bridge--visible .qs-team-values-bridge-copy {
+    transform: translateY(40px);
   }
 
   .qs-team-values-bridge-art {
