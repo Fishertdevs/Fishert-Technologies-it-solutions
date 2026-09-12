@@ -73,7 +73,7 @@ export default function Socios() {
       {/* ── Header ── */}
       <div className="socios-header">
         <h2 className="socios-title">
-          {lang === "es" ? "Marcas que confían en nosotros" : "Brands that trust us"}
+          {lang === "es" ? "MARCAS QUE CONFÍAN EN NOSOTROS" : "BRANDS THAT TRUST US"}
         </h2>
       </div>
 

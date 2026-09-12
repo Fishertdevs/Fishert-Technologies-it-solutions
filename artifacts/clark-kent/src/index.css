@@ -1679,7 +1679,28 @@ body {
 
 @media (max-width: 768px) {
   .port-anchor-wrap {
-    display: none;
+    display: block;
+    order: 2;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: min(100%, 300px);
+    height: clamp(300px, 90vw, 420px);
+    margin: 0 auto;
+    aspect-ratio: 525 / 910;
+    z-index: 0;
+  }
+
+  .port-anchor-wrap .port-anchor-img {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    transform: none;
   }
 }
 
@@ -6364,24 +6385,6 @@ body {
     padding: 58px 14px 64px;
     gap: 24px;
     box-sizing: border-box;
-  }
-
-  .port-anchor-img {
-    order: 2;
-    display: none;
-    position: relative;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    align-self: flex-start;
-    width: auto;
-    height: clamp(300px, 100vw, 430px);
-    max-width: none;
-    object-fit: contain;
-    object-position: center bottom;
-    z-index: 0;
-    margin: 0;
-    transform: translateX(-50%);
   }
 
   .port-left {
