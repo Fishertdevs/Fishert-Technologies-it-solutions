@@ -334,6 +334,7 @@ export default function Portafolio() {
               </a>
             </div>
           </div>
+        </div>
 
         {/* Navigation */}
         <div className="port-nav">
