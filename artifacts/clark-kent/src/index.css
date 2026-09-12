@@ -1769,6 +1769,18 @@ body {
     object-position: center bottom;
     transform: none;
   }
+
+  .port-outer::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 18px;
+    background: var(--port-next-section);
+    z-index: 20;
+    pointer-events: none;
+  }
 }
 
 /* ── Google wrapper ── */
