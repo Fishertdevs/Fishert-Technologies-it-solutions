@@ -179,7 +179,6 @@ export default function Portafolio() {
     start > event.clientX ? next() : prev();
   };
   const project = projects[current];
-  const nextProject = projects[(current + 1) % projects.length];
 
   const showResults = phase === "results" || phase === "cursor" || phase === "image";
   const showCursor  = phase === "cursor" || phase === "image";
@@ -234,7 +233,6 @@ export default function Portafolio() {
 
       {/* ── Right: Google search simulation ── */}
       <div className="port-right">
-        <div className="port-project-pair">
           <div className="port-blob-outer">
           <div
             className={`port-google-wrap${showImage ? " port-google-wrap--image" : ""}`}
@@ -336,28 +334,6 @@ export default function Portafolio() {
               </a>
             </div>
           </div>
-          </div>
-
-          <article className="port-secondary-card">
-            <div className="port-secondary-media">
-              <img
-                src={`${base}${nextProject.img}`}
-                alt={nextProject.title}
-                className="port-secondary-img"
-              />
-              <div className="port-secondary-caption">
-                <span>{nextProject.title}</span>
-                <a
-                  href={`https://${nextProject.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {lang === "es" ? "Ver proyecto →" : "View project →"}
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
 
         {/* Navigation */}
         <div className="port-nav">
