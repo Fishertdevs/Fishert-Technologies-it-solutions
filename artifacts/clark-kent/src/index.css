@@ -8622,6 +8622,12 @@ body {
   object-position: center bottom;
 }
 
+@media (min-width: 769px) {
+  .qs-footer-art-media img {
+    width: min(100%, 500px);
+  }
+}
+
 @media (max-width: 768px) {
   .qs-footer-art {
     display: flex;
