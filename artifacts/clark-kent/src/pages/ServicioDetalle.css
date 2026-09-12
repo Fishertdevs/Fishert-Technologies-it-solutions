@@ -903,6 +903,10 @@
   display: none;
 }
 
+.svc2-month-offer-content {
+  display: contents;
+}
+
 .svc2-offer-section {
   width: min(100% - 96px, 1120px);
   margin: 0 auto;
@@ -1191,9 +1195,24 @@
     white-space: nowrap;
   }
 
+  .svc2-offer-section {
+    padding: 140px 0 0;
+  }
+
   .svc2-offer-section .svc2-month-offer {
-    grid-template-columns: 112px minmax(0, 1fr) 250px;
+    display: block;
+    min-height: 280px;
+    padding: 0;
+  }
+
+  .svc2-month-offer-content {
+    display: grid;
+    width: calc(100% - 390px);
+    min-height: 280px;
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: center;
     column-gap: 24px;
+    justify-items: center;
   }
 
   .svc2-month-offer-art {
