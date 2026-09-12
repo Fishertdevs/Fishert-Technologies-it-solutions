@@ -8552,10 +8552,10 @@ body {
   margin-bottom: 18px;
   color: #c0001a;
   font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
-  font-size: clamp(22px, 2.4vw, 34px);
+  font-size: clamp(42px, 4.2vw, 72px);
   font-weight: 700;
-  letter-spacing: 0.06em;
-  line-height: 1;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
   text-align: center;
 }
 
@@ -8675,7 +8675,7 @@ body {
 
   .qs-team-values-bridge-eyebrow {
     margin-bottom: 18px;
-    font-size: 26px;
+    font-size: clamp(22px, 7.5vw, 32px);
   }
 
   .qs-team-values-bridge p {
