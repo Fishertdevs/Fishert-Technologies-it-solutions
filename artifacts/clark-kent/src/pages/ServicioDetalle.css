@@ -1200,9 +1200,9 @@
     display: flex;
     position: absolute;
     right: max(48px, calc((100% - 920px) / 2));
-    bottom: -63px;
-    width: 320px;
-    height: 438px;
+    bottom: -103px;
+    width: 360px;
+    height: 493px;
     grid-column: auto;
     grid-row: auto;
     align-items: flex-end;
