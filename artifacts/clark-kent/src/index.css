@@ -1770,6 +1770,15 @@ body {
     display: none;
   }
 
+  .port-right {
+    margin-left: clamp(24px, 3.2vw, 40px);
+    margin-right: 0;
+  }
+
+  .port-right .port-nav {
+    justify-content: center;
+  }
+
   .port-anchor-img {
     object-position: center bottom;
   }
