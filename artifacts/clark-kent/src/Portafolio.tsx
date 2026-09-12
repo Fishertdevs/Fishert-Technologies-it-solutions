@@ -336,6 +336,7 @@ export default function Portafolio() {
               </a>
             </div>
           </div>
+          </div>
 
           <article className="port-secondary-card">
             <div className="port-secondary-media">
