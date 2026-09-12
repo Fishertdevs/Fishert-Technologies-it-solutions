@@ -1755,6 +1755,12 @@ body {
   text-align: center;
 }
 
+@media (min-width: 769px) {
+  .port-professional-text {
+    order: -1;
+  }
+}
+
 /* ── Google wrapper ── */
 .port-google-wrap {
   background: #fff;
