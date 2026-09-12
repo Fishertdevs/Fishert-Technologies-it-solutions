@@ -8929,6 +8929,7 @@ body {
 @media (min-width: 769px) {
   .nos-layout .nos-card {
     display: block;
+    text-align: center;
   }
 
   .nos-layout .nos-body {
