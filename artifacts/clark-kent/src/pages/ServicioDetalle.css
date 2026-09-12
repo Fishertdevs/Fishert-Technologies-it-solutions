@@ -179,7 +179,7 @@
 
   .svc2-shakespeare-art img {
     right: 0;
-    bottom: 0;
+    bottom: -18px;
     left: auto;
     width: 100%;
     transform: none;
