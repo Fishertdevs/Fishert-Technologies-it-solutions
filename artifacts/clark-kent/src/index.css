@@ -680,6 +680,14 @@ body {
   text-align: center;
 }
 
+.wlc-title-line {
+  display: inline;
+}
+
+.wlc-title-line + .wlc-title-line::before {
+  content: " ";
+}
+
 /* Body paragraph — full-width natural flow */
 .wlc-body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -709,6 +717,14 @@ body {
     font-size: clamp(28px, 8vw, 38px);
     line-height: 1.02;
     margin-bottom: 30px;
+  }
+
+  .wlc-title-line {
+    display: block;
+  }
+
+  .wlc-title-line + .wlc-title-line::before {
+    content: none;
   }
 
   .wlc-body {

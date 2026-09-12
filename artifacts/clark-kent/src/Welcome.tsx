@@ -49,9 +49,8 @@ export default function Welcome() {
     >
       <div className="welcome-inner">
         <h2 className="wlc-title">
-          {t.titleFirst}
-          <br />
-          {t.titleSecond}
+          <span className="wlc-title-line">{t.titleFirst}</span>
+          <span className="wlc-title-line">{t.titleSecond}</span>
         </h2>
         <p className="wlc-body">{t.body}</p>
       </div>
