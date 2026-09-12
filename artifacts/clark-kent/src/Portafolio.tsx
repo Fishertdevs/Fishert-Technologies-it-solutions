@@ -179,6 +179,7 @@ export default function Portafolio() {
     start > event.clientX ? next() : prev();
   };
   const project = projects[current];
+  const nextProject = projects[(current + 1) % projects.length];
 
   const showResults = phase === "results" || phase === "cursor" || phase === "image";
   const showCursor  = phase === "cursor" || phase === "image";
@@ -233,109 +234,129 @@ export default function Portafolio() {
 
       {/* ── Right: Google search simulation ── */}
       <div className="port-right">
-        <div className="port-blob-outer">
-        <div
-          className={`port-google-wrap${showImage ? " port-google-wrap--image" : ""}`}
-          style={{ borderColor: hovered ? project.color : '#111111' }}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={() => { touchStartX.current = null; }}
-        >
+        <div className="port-project-pair">
+          <div className="port-blob-outer">
+          <div
+            className={`port-google-wrap${showImage ? " port-google-wrap--image" : ""}`}
+            style={{ borderColor: hovered ? project.color : '#111111' }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={() => { touchStartX.current = null; }}
+          >
 
-          {/* Search UI (fades out when image shows) */}
-          <div className={`port-google-content ${showImage ? "port-google-content--hidden" : ""}`}>
+            {/* Search UI (fades out when image shows) */}
+            <div className={`port-google-content ${showImage ? "port-google-content--hidden" : ""}`}>
 
-            {/* Google logo */}
-            <div className="port-google-top">
-              <GoogleIcon />
-              <span className="port-google-wordmark">
-                <span style={{ color: "#4285F4" }}>G</span>
-                <span style={{ color: "#EA4335" }}>o</span>
-                <span style={{ color: "#FBBC05" }}>o</span>
-                <span style={{ color: "#4285F4" }}>g</span>
-                <span style={{ color: "#34A853" }}>l</span>
-                <span style={{ color: "#EA4335" }}>e</span>
-              </span>
-            </div>
+              {/* Google logo */}
+              <div className="port-google-top">
+                <GoogleIcon />
+                <span className="port-google-wordmark">
+                  <span style={{ color: "#4285F4" }}>G</span>
+                  <span style={{ color: "#EA4335" }}>o</span>
+                  <span style={{ color: "#FBBC05" }}>o</span>
+                  <span style={{ color: "#4285F4" }}>g</span>
+                  <span style={{ color: "#34A853" }}>l</span>
+                  <span style={{ color: "#EA4335" }}>e</span>
+                </span>
+              </div>
 
-            {/* Search bar */}
-            <div className="port-google-bar">
-              <svg className="port-bar-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <circle cx="11" cy="11" r="8" stroke="#9aa0a6" strokeWidth="2"/>
-                <path d="M21 21l-4.35-4.35" stroke="#9aa0a6" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-              <span className="port-bar-text">{typedUrl}</span>
-              <span className="port-bar-cursor" aria-hidden="true" />
-            </div>
+              {/* Search bar */}
+              <div className="port-google-bar">
+                <svg className="port-bar-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <circle cx="11" cy="11" r="8" stroke="#9aa0a6" strokeWidth="2"/>
+                  <path d="M21 21l-4.35-4.35" stroke="#9aa0a6" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                <span className="port-bar-text">{typedUrl}</span>
+                <span className="port-bar-cursor" aria-hidden="true" />
+              </div>
 
-            {/* Results */}
-            <div className={`port-results ${showResults ? "port-results-in" : ""}`}>
-              <div className="port-result-row">
-                <div className="port-result-left">
-                  <div className="port-result-site">
-                    <div className="port-result-favicon"><GoogleIcon /></div>
-                    <div>
-                      <p className="port-result-sitename">{project.title}</p>
-                      <p className="port-result-url">https://{project.url}</p>
+              {/* Results */}
+              <div className={`port-results ${showResults ? "port-results-in" : ""}`}>
+                <div className="port-result-row">
+                  <div className="port-result-left">
+                    <div className="port-result-site">
+                      <div className="port-result-favicon"><GoogleIcon /></div>
+                      <div>
+                        <p className="port-result-sitename">{project.title}</p>
+                        <p className="port-result-url">https://{project.url}</p>
+                      </div>
                     </div>
+
+                    {/* Title + cursor */}
+                    <div className="port-title-wrap">
+                      <h3 className="port-result-title">{project.title}</h3>
+                      {showCursor && (
+                        <span className={`port-click-cursor ${clicking ? "port-click-cursor--click" : ""}`}>
+                          <CursorIcon />
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="port-result-desc">{project.desc}</p>
+                    <a
+                      className="port-visit"
+                      href={`https://${project.url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {lang === "es" ? "Ver proyecto →" : "View project →"}
+                    </a>
                   </div>
 
-                  {/* Title + cursor */}
-                  <div className="port-title-wrap">
-                    <h3 className="port-result-title">{project.title}</h3>
-                    {showCursor && (
-                      <span className={`port-click-cursor ${clicking ? "port-click-cursor--click" : ""}`}>
-                        <CursorIcon />
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="port-result-desc">{project.desc}</p>
-                  <a
-                    className="port-visit"
-                    href={`https://${project.url}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {lang === "es" ? "Ver proyecto →" : "View project →"}
-                  </a>
+                  {/* Small thumb stub (visible during results/cursor, hidden during image) */}
+                  <div className="port-result-thumb-stub" />
                 </div>
 
-                {/* Small thumb stub (visible during results/cursor, hidden during image) */}
-                <div className="port-result-thumb-stub" />
+                {/* Ghost lines */}
+                <div className="port-ghost-results">
+                  <div className="port-ghost-line" style={{ width: "60%" }} />
+                  <div className="port-ghost-line" style={{ width: "80%" }} />
+                  <div className="port-ghost-line" style={{ width: "50%" }} />
+                </div>
               </div>
+            </div>
 
-              {/* Ghost lines */}
-              <div className="port-ghost-results">
-                <div className="port-ghost-line" style={{ width: "60%" }} />
-                <div className="port-ghost-line" style={{ width: "80%" }} />
-                <div className="port-ghost-line" style={{ width: "50%" }} />
-              </div>
+            {/* Full-size image overlay (fills wrap on click) */}
+            <div className={`port-full-overlay ${showImage ? "port-full-overlay--visible" : ""}`}>
+              <img
+                key={current}
+                src={`${base}${project.img}`}
+                alt={project.title}
+                className="port-full-img"
+              />
+              <a
+                className="port-overlay-link"
+                href={`https://${project.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {lang === "es" ? "Ver proyecto →" : "View project →"}
+              </a>
             </div>
           </div>
 
-          {/* Full-size image overlay (fills wrap on click) */}
-          <div className={`port-full-overlay ${showImage ? "port-full-overlay--visible" : ""}`}>
-            <img
-              key={current}
-              src={`${base}${project.img}`}
-              alt={project.title}
-              className="port-full-img"
-            />
-            <a
-              className="port-overlay-link"
-              href={`https://${project.url}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {lang === "es" ? "Ver proyecto →" : "View project →"}
-            </a>
-          </div>
-
+          <article className="port-secondary-card">
+            <div className="port-secondary-media">
+              <img
+                src={`${base}${nextProject.img}`}
+                alt={nextProject.title}
+                className="port-secondary-img"
+              />
+              <div className="port-secondary-caption">
+                <span>{nextProject.title}</span>
+                <a
+                  href={`https://${nextProject.url}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {lang === "es" ? "Ver proyecto →" : "View project →"}
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
-        </div>{/* port-blob-outer */}
 
         {/* Navigation */}
         <div className="port-nav">
