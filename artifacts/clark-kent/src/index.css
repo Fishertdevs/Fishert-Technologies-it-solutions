@@ -1657,7 +1657,7 @@ body {
 .port-anchor-img {
   position: absolute;
   right: 0;
-  bottom: -8%;
+  bottom: -1px;
   height: 95%;
   width: auto;
   max-width: none;
@@ -1730,7 +1730,7 @@ body {
   justify-content: center;
   align-items: stretch;     /* card fills the column, flush-left under title */
   width: 100%;
-  max-width: 700px;         /* same width as the card → same as the title line */
+  max-width: 620px;
   margin-right: auto;       /* pin the whole column to the left */
   position: relative;
   z-index: 1;
@@ -1740,7 +1740,7 @@ body {
 .port-blob-outer,
 .port-right .port-nav {
   width: 100%;
-  max-width: 700px;
+  max-width: 620px;
 }
 
 .port-professional-text {

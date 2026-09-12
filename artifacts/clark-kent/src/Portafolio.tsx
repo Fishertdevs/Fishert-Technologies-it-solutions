@@ -7,7 +7,7 @@ const base = import.meta.env.BASE_URL || "/";
 const projects = [
   {
     title: "Alterego Store",
-    img:   "proj-alterego.png",
+    img:   "proj-alterego.svg",
     url:   "www.alterego-store.com.co",
     desc:  "Tienda de moda y lifestyle con catálogo digital y experiencia de compra única.",
     color: "#111111",
