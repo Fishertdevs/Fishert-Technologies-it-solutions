@@ -1658,7 +1658,7 @@ body {
   position: absolute;
   right: 0;
   bottom: -8%;
-  height: 95%;
+  height: 78%;
   width: auto;
   max-width: none;
   object-fit: contain;
@@ -1666,6 +1666,40 @@ body {
   z-index: 2;
   pointer-events: none;
   user-select: none;
+}
+
+@media (min-width: 1101px) {
+  .port-section {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: clamp(36px, 4.5vw, 72px);
+    padding-top: 68px;
+  }
+
+  .port-left {
+    flex: 0 0 clamp(250px, 29%, 410px);
+    width: auto;
+    max-width: 410px;
+    padding-top: 3px;
+  }
+
+  .port-title {
+    text-align: left;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .port-right {
+    flex: 1 1 700px;
+    width: auto;
+    max-width: 700px;
+    margin-right: 0;
+  }
+
+  .port-anchor-img {
+    right: -2.5%;
+    bottom: -6%;
+  }
 }
 
 @media (max-width: 1100px) {
