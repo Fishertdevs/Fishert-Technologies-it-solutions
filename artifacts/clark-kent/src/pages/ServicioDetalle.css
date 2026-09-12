@@ -1739,11 +1739,11 @@
   }
 
   .svc2-month-offer {
-    display: grid;
-    grid-template-columns: 78px minmax(0, 1fr) 110px;
-    align-items: center;
-    gap: 12px;
+    display: flex;
     width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
     margin-top: 50px;
     padding: 22px 16px;
     box-sizing: border-box;
@@ -1755,10 +1755,9 @@
 
   .svc2-month-offer-art {
     display: flex;
-    width: 110px;
-    height: 150px;
-    grid-column: 3;
-    grid-row: 1 / span 2;
+    width: 170px;
+    height: 232px;
+    order: 4;
     align-items: flex-end;
     justify-content: center;
     align-self: end;
@@ -1773,20 +1772,19 @@
   }
 
   .svc2-offer-section .svc2-month-offer-mark {
-    grid-column: 1;
-    grid-row: 1;
+    order: 1;
   }
 
   .svc2-offer-section .svc2-month-offer-copy {
-    grid-column: 2;
-    grid-row: 1;
-    align-items: flex-start;
-    text-align: left;
+    order: 2;
+    align-items: center;
+    text-align: center;
   }
 
   .svc2-offer-section .svc2-month-offer-link {
-    grid-column: 1 / 3;
-    grid-row: 2;
+    order: 3;
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .svc2-offer-section {
