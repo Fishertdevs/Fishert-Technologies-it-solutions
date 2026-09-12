@@ -27,6 +27,15 @@ const copy = {
       sub: "Tu opinión ayuda a otros a conocer nuestro trabajo.",
       label: "Tu reseña",
       ph: "Cuéntanos qué fue lo que más valoraste del trabajo con Fishert Studio…",
+      videoLabel: "Video testimonio (opcional)",
+      videoHint: "MP4, WebM o MOV · máximo 20 MB",
+      chooseVideo: "Seleccionar video",
+      removeVideo: "Quitar video",
+      consent:
+        "Autorizo expresamente a Fishert Studio a tratar mi imagen, voz y demás datos personales contenidos en este video para publicar mi testimonio en sus canales digitales, conforme a la Ley 1581 de 2012 y demás normas colombianas aplicables.",
+      consentRequired: "Debes autorizar el tratamiento de datos para subir un video.",
+      videoTooLarge: "El video no puede superar los 20 MB.",
+      videoType: "Selecciona un video MP4, WebM o MOV.",
     },
     back: "Atrás",
     next: "Continuar",
@@ -58,6 +67,15 @@ const copy = {
       sub: "Your feedback helps others discover our work.",
       label: "Your review",
       ph: "Tell us what you valued most about working with Fishert Studio…",
+      videoLabel: "Video testimonial (optional)",
+      videoHint: "MP4, WebM or MOV · 20 MB maximum",
+      chooseVideo: "Choose video",
+      removeVideo: "Remove video",
+      consent:
+        "I expressly authorize Fishert Studio to process my image, voice, and other personal data contained in this video to publish my testimonial on its digital channels, in accordance with Colombian Law 1581 of 2012 and other applicable regulations.",
+      consentRequired: "You must authorize data processing to upload a video.",
+      videoTooLarge: "The video cannot exceed 20 MB.",
+      videoType: "Choose an MP4, WebM, or MOV video.",
     },
     back: "Back",
     next: "Continue",
@@ -81,6 +99,9 @@ export default function ReviewForm({ onClose }: Props) {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [review, setReview] = useState("");
+  const [video, setVideo] = useState<File | null>(null);
+  const [videoConsent, setVideoConsent] = useState(false);
+  const [videoErr, setVideoErr] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [reviewErr, setReviewErr] = useState(false);
   const [done, setDone] = useState(false);
@@ -99,6 +120,11 @@ export default function ReviewForm({ onClose }: Props) {
     if (step === 2) {
       if (review.trim().length < 10) { setReviewErr(true); return; }
       setReviewErr(false);
+      if (video && !videoConsent) {
+        setVideoErr(t.step3.consentRequired);
+        return;
+      }
+      setVideoErr("");
       createReviewMutation.mutate(
         {
           data: {
@@ -106,6 +132,7 @@ export default function ReviewForm({ onClose }: Props) {
             company: company.trim() || null,
             text: review.trim(),
             rating,
+            ...(video ? { video, videoConsent: true } : {}),
           },
         },
         {
@@ -115,6 +142,21 @@ export default function ReviewForm({ onClose }: Props) {
       return;
     }
     setStep(s => s + 1);
+  }
+
+  function handleVideoChange(file: File | undefined) {
+    if (!file) return;
+    if (!file.type.startsWith("video/")) {
+      setVideoErr(t.step3.videoType);
+      return;
+    }
+    if (file.size > 20 * 1024 * 1024) {
+      setVideoErr(t.step3.videoTooLarge);
+      return;
+    }
+    setVideo(file);
+    setVideoConsent(false);
+    setVideoErr("");
   }
 
   function goBack() {
@@ -264,6 +306,47 @@ export default function ReviewForm({ onClose }: Props) {
                             : "Write at least 10 characters."}
                         </span>
                       )}
+                    </div>
+                    <div className="rf-video-field">
+                      <div className="rf-video-heading">
+                        <span className="rf-label">{t.step3.videoLabel}</span>
+                        <span className="rf-video-hint">{t.step3.videoHint}</span>
+                      </div>
+                      <label className={`rf-video-picker${videoErr && !videoConsent ? " rf-video-picker--err" : ""}`}>
+                        <input
+                          type="file"
+                          accept="video/mp4,video/webm,video/quicktime"
+                          onChange={e => handleVideoChange(e.target.files?.[0])}
+                        />
+                        <span className="rf-video-icon" aria-hidden="true">＋</span>
+                        <span>{video ? video.name : t.step3.chooseVideo}</span>
+                      </label>
+                      {video && (
+                        <>
+                          <div className="rf-video-selected">
+                            <span>{(video.size / (1024 * 1024)).toFixed(1)} MB</span>
+                            <button type="button" onClick={() => {
+                              setVideo(null);
+                              setVideoConsent(false);
+                              setVideoErr("");
+                            }}>
+                              {t.step3.removeVideo}
+                            </button>
+                          </div>
+                          <label className="rf-consent">
+                            <input
+                              type="checkbox"
+                              checked={videoConsent}
+                              onChange={e => {
+                                setVideoConsent(e.target.checked);
+                                if (e.target.checked) setVideoErr("");
+                              }}
+                            />
+                            <span>{t.step3.consent}</span>
+                          </label>
+                        </>
+                      )}
+                      {videoErr && <span className="rf-err-msg">{videoErr}</span>}
                     </div>
                     {createReviewMutation.isError && (
                       <p className="rf-err-msg" role="alert">

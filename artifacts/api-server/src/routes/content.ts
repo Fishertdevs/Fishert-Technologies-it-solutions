@@ -1,5 +1,6 @@
 import { asc, desc, eq } from "drizzle-orm";
 import { Router, type IRouter } from "express";
+import { Readable } from "node:stream";
 import {
   ListPlansResponse,
   ListSocialLinksResponse,
@@ -15,6 +16,7 @@ import {
   socialLinksTable,
   teamMembersTable,
 } from "@workspace/db";
+import { downloadTelegramFile } from "../lib/telegram";
 
 const router: IRouter = Router();
 
@@ -100,10 +102,54 @@ router.get("/reviews", async (req, res): Promise<void> => {
         company: review.company,
         text: review.text,
         rating: review.rating,
+        category: review.category === "testimonial" ? "testimonial" : "review",
+        videoUrl:
+          review.category === "testimonial" && review.telegramFileId
+            ? `/api/reviews/${review.id}/video`
+            : null,
         createdAt: review.createdAt,
       })),
     ),
   );
+});
+
+router.get("/reviews/:id/video", async (req, res): Promise<void> => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id) || id <= 0) {
+    res.status(404).json({ error: "Video not found" });
+    return;
+  }
+
+  const [review] = await db
+    .select({
+      telegramFileId: reviewsTable.telegramFileId,
+      status: reviewsTable.status,
+    })
+    .from(reviewsTable)
+    .where(eq(reviewsTable.id, id))
+    .limit(1);
+
+  if (!review || review.status !== "published" || !review.telegramFileId) {
+    res.status(404).json({ error: "Video not found" });
+    return;
+  }
+
+  try {
+    const videoResponse = await downloadTelegramFile(review.telegramFileId);
+    const contentType = videoResponse.headers.get("content-type") ?? "video/mp4";
+    const contentLength = videoResponse.headers.get("content-length");
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    if (contentLength) res.setHeader("Content-Length", contentLength);
+    if (!videoResponse.body) {
+      res.status(502).json({ error: "Video stream unavailable" });
+      return;
+    }
+    Readable.fromWeb(videoResponse.body as never).pipe(res);
+  } catch (error) {
+    req.log.warn({ err: error, reviewId: id }, "Published review video could not be streamed");
+    res.status(502).json({ error: "Video could not be loaded" });
+  }
 });
 
 router.get("/team", async (_req, res): Promise<void> => {
