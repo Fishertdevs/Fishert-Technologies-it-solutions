@@ -8118,6 +8118,29 @@ body {
   }
 }
 
+@media (min-width: 769px) {
+  .qs-team {
+    border-radius: 36px;
+    padding-bottom: 32px;
+  }
+
+  .qs-team-wave {
+    display: none;
+  }
+
+  .qs-team-card--desktop,
+  .qs-team-card--portrait {
+    height: 278px;
+    padding: 16px 14px 18px !important;
+  }
+
+  .qs-team-card--portrait .qs-team-avatar--portrait {
+    width: 100px !important;
+    height: 120px !important;
+    margin: 8px auto 0 !important;
+  }
+}
+
 /* Desktop story composition: copy on the left, supplied artwork on the right. */
 .qs-story-content > .svc-plans-eyebrow,
 .qs-story-content .qs-story-heading,
