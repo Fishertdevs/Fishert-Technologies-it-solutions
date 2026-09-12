@@ -2156,7 +2156,6 @@ body {
 @media (min-width: 769px) {
   #servicios {
     background: #ffffff !important;
-    height: 90vh !important;
   }
 
   #servicios .svc-checker-surface {
