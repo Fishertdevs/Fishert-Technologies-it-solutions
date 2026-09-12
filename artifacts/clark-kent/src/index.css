@@ -1687,7 +1687,7 @@ body {
     bottom: auto;
     width: min(100%, 300px);
     height: clamp(300px, 90vw, 420px);
-    margin: 0 auto;
+    margin: 0 auto -36px;
     aspect-ratio: 525 / 910;
     z-index: 0;
   }
@@ -6390,6 +6390,10 @@ body {
   .port-left {
     width: 100%;
     max-width: none;
+  }
+
+  .socios-title {
+    font-size: clamp(22px, 6vw, 26px);
   }
 
   .port-title {
