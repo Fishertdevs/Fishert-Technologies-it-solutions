@@ -93,7 +93,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: "#/components/schemas/ReviewInput"
       responses:
@@ -129,6 +129,35 @@ paths:
                 $ref: "#/components/schemas/ContactSubmission"
         "400":
           description: Invalid contact message
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /reviews/{id}/video:
+    get:
+      operationId: getReviewVideo
+      tags: [reviews]
+      summary: Stream the video attached to a published review
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Review video
+          content:
+            video/mp4:
+              schema:
+                type: string
+                format: binary
+            video/webm:
+              schema:
+                type: string
+                format: binary
+        "404":
+          description: Published review video not found
           content:
             application/json:
               schema:
@@ -277,7 +306,7 @@ components:
         $ref: "#/components/schemas/PlanCategory"
     Review:
       type: object
-      required: [id, name, text, rating, createdAt]
+      required: [id, name, text, rating, category, videoUrl, createdAt]
       properties:
         id:
           type: number
@@ -291,6 +320,11 @@ components:
           type: number
           minimum: 1
           maximum: 5
+        category:
+          type: string
+          enum: [review, testimonial]
+        videoUrl:
+          type: ["string", "null"]
         createdAt:
           type: string
           format: date-time
@@ -317,6 +351,11 @@ components:
           type: number
           minimum: 1
           maximum: 5
+        video:
+          type: string
+          format: binary
+        videoConsent:
+          type: boolean
     ReviewSubmission:
       type: object
       required: [id, status, createdAt]

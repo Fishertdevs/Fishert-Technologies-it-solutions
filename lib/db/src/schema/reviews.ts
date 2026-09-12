@@ -18,6 +18,9 @@ export const reviewsTable = pgTable(
     company: text("company"),
     text: text("text").notNull(),
     rating: integer("rating").notNull(),
+    category: text("category").notNull().default("review"),
+    telegramFileId: text("telegram_file_id"),
+    videoConsentAt: timestamp("video_consent_at", { withTimezone: true }),
     status: text("status").notNull().default("pending"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
@@ -32,6 +35,10 @@ export const reviewsTable = pgTable(
     check(
       "reviews_status_values",
       sql`status IN ('pending', 'published', 'rejected')`,
+    ),
+    check(
+      "reviews_category_values",
+      sql`category IN ('review', 'testimonial')`,
     ),
   ],
 );
