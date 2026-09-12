@@ -1762,12 +1762,12 @@ body {
   }
 
   .port-anchor-img {
-    top: 50%;
     right: clamp(24px, 6vw, 96px);
-    bottom: auto;
+    top: auto;
+    bottom: 0;
     height: clamp(360px, 44vw, 620px);
-    object-position: center;
-    transform: translateY(-50%);
+    object-position: center bottom;
+    transform: none;
   }
 }
 
