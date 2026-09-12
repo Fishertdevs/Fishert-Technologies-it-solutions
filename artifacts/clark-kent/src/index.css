@@ -2265,6 +2265,9 @@ body {
   text-align: center;
   white-space: nowrap;
 }
+.socios-title-mobile-break {
+  display: none;
+}
 
 /* Horizontal rule */
 .socios-rule {
@@ -6393,7 +6396,7 @@ body {
   }
 
   .socios-title {
-    font-size: clamp(22px, 6vw, 26px);
+    font-size: clamp(18px, 5.5vw, 22px);
   }
 
   .port-title {
@@ -6622,10 +6625,14 @@ body {
 
   .socios-title {
     max-width: 100%;
-    font-size: clamp(28px, 8.8vw, 40px);
+    font-size: clamp(18px, 5.5vw, 22px);
     line-height: 1.05;
     white-space: normal;
     text-wrap: balance;
+  }
+
+  .socios-title-mobile-break {
+    display: inline;
   }
 
   .socios-rule {
