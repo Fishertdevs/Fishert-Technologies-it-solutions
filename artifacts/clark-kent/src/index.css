@@ -8522,17 +8522,21 @@ body {
 
 /* Professional bridge between the team and values sections. */
 .qs-team-values-bridge {
-  display: flex;
-  min-height: 170px;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  min-height: 330px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
+  align-items: stretch;
   box-sizing: border-box;
-  padding: 42px 7%;
+  padding: 42px 0 0 7%;
   background: #ffffff;
+  overflow: hidden;
 }
 
 .qs-team-values-bridge-copy {
   width: min(100%, 760px);
+  align-self: center;
+  justify-self: center;
+  padding-right: 6%;
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
@@ -8545,12 +8549,13 @@ body {
 
 .qs-team-values-bridge-eyebrow {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   color: #c0001a;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
+  font-family: "Cormorant Garamond", "Cormorant", Georgia, serif;
+  font-size: clamp(22px, 2.4vw, 34px);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.06em;
+  line-height: 1;
   text-align: center;
 }
 
@@ -8564,6 +8569,26 @@ body {
   letter-spacing: 0.01em;
   line-height: 1.6;
   text-align: center;
+}
+
+.qs-team-values-bridge-art {
+  align-self: stretch;
+  display: flex;
+  min-width: 0;
+  align-items: flex-end;
+  justify-content: flex-end;
+  overflow: visible;
+}
+
+.qs-team-values-bridge-art img {
+  display: block;
+  width: min(100%, 520px);
+  height: auto;
+  max-height: none;
+  margin: 0 -8% -19% 0;
+  object-fit: contain;
+  object-position: right bottom;
+  transform: translateY(19%);
 }
 
 /* The values section closes with the same soft geometry as the other sections. */
@@ -8637,19 +8662,39 @@ body {
   }
 
   .qs-team-values-bridge {
-    min-height: 230px;
-    padding: 48px 20px 54px;
+    min-height: 470px;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 48px 20px 0;
   }
 
   .qs-team-values-bridge-eyebrow {
-    margin-bottom: 20px;
-    font-size: 11px;
+    margin-bottom: 18px;
+    font-size: 26px;
   }
 
   .qs-team-values-bridge p {
     width: min(100%, 360px);
     font-size: 16px;
     line-height: 1.65;
+  }
+
+  .qs-team-values-bridge-copy {
+    align-self: center;
+    padding-right: 0;
+  }
+
+  .qs-team-values-bridge-art {
+    width: 100%;
+    min-height: 250px;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .qs-team-values-bridge-art img {
+    width: min(100%, 420px);
+    margin: 0 0 -19% 0;
+    transform: translateY(19%);
   }
 
   .qs-values {

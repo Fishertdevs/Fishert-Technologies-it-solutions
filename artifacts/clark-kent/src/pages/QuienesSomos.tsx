@@ -374,7 +374,7 @@ export default function QuienesSomos() {
         <section className="qs-team-values-bridge" aria-label={lang === "es" ? "Transición entre secciones" : "Section transition"}>
           <div className="qs-team-values-bridge-copy">
             <span className="qs-team-values-bridge-eyebrow">
-              {lang === "es" ? "NUESTRO EQUIPO" : "OUR TEAM"}
+              {lang === "es" ? "QUÉ HACEMOS" : "WHAT WE DO"}
             </span>
             <p>
               {lang === "es"
