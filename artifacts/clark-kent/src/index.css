@@ -1658,7 +1658,7 @@ body {
   position: absolute;
   right: 0;
   bottom: -8%;
-  height: 78%;
+  height: 95%;
   width: auto;
   max-width: none;
   object-fit: contain;
@@ -2121,18 +2121,18 @@ body {
 }
 
 .port-pip {
-  width: 26px;
-  height: 4px;
-  border-radius: 999px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
   border: none;
   background: #ddd;
   cursor: pointer;
   padding: 0;
-  transition: background 0.2s, transform 0.2s, width 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 .port-pip-active {
   background: #C0001A;
-  transform: none;
+  transform: scale(1.3);
 }
 
 /* ── Servicios gallery items ─────────────────────────────── */
