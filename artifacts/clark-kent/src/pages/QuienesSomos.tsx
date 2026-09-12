@@ -5,7 +5,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import footerPortrait from "@assets/image_(6)-Photoroom_1788126926994.png";
 import teamSectionTexture from "@assets/image_1788744935304.png";
-import teamSectionArt from "@assets/image-Photoroom_(21)_1788745192839.png";
+import teamSectionArt from "@assets/image-Photoroom_(25)_1789231231820.png";
 import storySectionArt from "@assets/image-Photoroom_(22)_1788748318291.png";
 import harryPortrait from "@assets/harry-portrait-cropped.png";
 
