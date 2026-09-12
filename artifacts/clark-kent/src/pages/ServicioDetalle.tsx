@@ -7,6 +7,7 @@ import { buildServiceDiscountHref, buildServiceProposalHref } from "../utils/wha
 import { useListPlans } from "@workspace/api-client-react";
 import frogOfferImage from "@assets/frog-pricing-transparent-v2.png";
 import shakespeareImage from "@assets/shakespeare-transparent.png";
+import offerCharacterImage from "@assets/image-Photoroom_(27)_1789236789923.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ServicioDetalle.css";
@@ -2439,6 +2440,9 @@ export default function ServicioDetalle() {
 
         <section className="svc2-offer-section" aria-label={activeOffer.kicker[lang]}>
           <div className="svc2-month-offer">
+            <div className="svc2-month-offer-art" aria-hidden="true">
+              <img src={offerCharacterImage} alt="" />
+            </div>
             <div className="svc2-month-offer-mark" aria-hidden="true">
               <strong>{activeOffer.discount}%</strong>
               <span>OFF</span>
