@@ -156,10 +156,10 @@
 
 .svc2-shakespeare-art img {
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 50%;
   display: block;
-  width: min(520px, 48vw);
+  width: min(560px, 52vw);
   height: auto;
   max-width: none;
   transform: translateX(-50%);
