@@ -8577,13 +8577,14 @@ body {
   display: flex;
   min-width: 0;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: center;
   overflow: hidden;
 }
 
 .qs-team-values-bridge-art img {
   position: absolute;
-  right: -9%;
+  right: auto;
+  left: 50%;
   bottom: -117px;
   display: block;
   width: min(120%, 600px);
@@ -8592,7 +8593,7 @@ body {
   margin: 0;
   object-fit: contain;
   object-position: right bottom;
-  transform: none;
+  transform: translateX(-50%);
 }
 
 /* The values section closes with the same soft geometry as the other sections. */
@@ -8697,7 +8698,8 @@ body {
   }
 
   .qs-team-values-bridge-art img {
-    right: -9%;
+    right: auto;
+    left: 50%;
     bottom: -98px;
     width: min(120%, 500px);
   }
