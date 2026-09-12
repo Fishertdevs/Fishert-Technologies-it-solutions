@@ -8523,11 +8523,11 @@ body {
 /* Professional bridge between the team and values sections. */
 .qs-team-values-bridge {
   display: grid;
-  min-height: 430px;
+  min-height: 500px;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
   align-items: stretch;
   box-sizing: border-box;
-  padding: 42px 0 0 7%;
+  padding: 64px 0 0 7%;
   background: #ffffff;
   overflow: hidden;
 }
@@ -8584,7 +8584,7 @@ body {
 .qs-team-values-bridge-art img {
   position: absolute;
   right: -9%;
-  bottom: -27%;
+  bottom: -117px;
   display: block;
   width: min(120%, 600px);
   height: auto;
@@ -8666,10 +8666,10 @@ body {
   }
 
   .qs-team-values-bridge {
-    min-height: 560px;
+    min-height: 620px;
     grid-template-columns: 1fr;
     gap: 0;
-    padding: 48px 20px 0;
+    padding: 64px 20px 0;
   }
 
   .qs-team-values-bridge-eyebrow {
@@ -8698,7 +8698,7 @@ body {
 
   .qs-team-values-bridge-art img {
     right: -9%;
-    bottom: -30%;
+    bottom: -98px;
     width: min(120%, 500px);
   }
 
