@@ -5,6 +5,7 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
+import type { ReviewCategory } from './reviewCategory';
 
 export interface Review {
   id: number;
@@ -17,5 +18,8 @@ export interface Review {
      * @maximum 5
      */
   rating: number;
+  category: ReviewCategory;
+  /** @nullable */
+  videoUrl: string | null;
   createdAt: Date;
 }

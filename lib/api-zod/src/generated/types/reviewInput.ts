@@ -27,4 +27,6 @@ export interface ReviewInput {
      * @maximum 5
      */
   rating: number;
+  video?: Blob;
+  videoConsent?: boolean;
 }

@@ -16,6 +16,7 @@ export * from './planCategory';
 export * from './planFeature';
 export * from './plansResponse';
 export * from './review';
+export * from './reviewCategory';
 export * from './reviewInput';
 export * from './reviewsResponse';
 export * from './reviewSubmission';

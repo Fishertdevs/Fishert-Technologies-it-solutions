@@ -89,6 +89,8 @@ export const ListPublishedReviewsResponseItem = zod.object({
   "company": zod.string().nullish(),
   "text": zod.string(),
   "rating": zod.number().min(1).max(listPublishedReviewsResponseRatingMax),
+  "category": zod.enum(['review', 'testimonial']),
+  "videoUrl": zod.string().nullable(),
   "createdAt": zod.coerce.date()
 })
 export const ListPublishedReviewsResponse = zod.array(ListPublishedReviewsResponseItem)
@@ -113,7 +115,9 @@ export const CreateReviewBody = zod.object({
   "name": zod.string().min(createReviewBodyNameMin).max(createReviewBodyNameMax),
   "company": zod.string().max(createReviewBodyCompanyMax).nullish(),
   "text": zod.string().min(createReviewBodyTextMin).max(createReviewBodyTextMax),
-  "rating": zod.number().min(1).max(createReviewBodyRatingMax)
+  "rating": zod.number().min(1).max(createReviewBodyRatingMax),
+  "video": zod.instanceof(File).optional(),
+  "videoConsent": zod.boolean().optional()
 })
 
 export const CreateReviewResponse = zod.object({
@@ -152,6 +156,16 @@ export const CreateContactResponse = zod.object({
   "id": zod.number(),
   "createdAt": zod.coerce.date()
 })
+
+
+/**
+ * @summary Stream the video attached to a published review
+ */
+export const GetReviewVideoParams = zod.object({
+  "id": zod.coerce.number().int()
+})
+
+export const GetReviewVideoResponse = zod.unknown()
 
 
 /**

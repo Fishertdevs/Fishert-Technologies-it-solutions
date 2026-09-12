@@ -458,13 +458,26 @@ export const getCreateReviewUrl = () => {
  * @summary Submit a review for moderation
  */
 export const createReview = async (reviewInput: ReviewInput, options?: Parameters<typeof customFetch>[1]): Promise<ReviewSubmission> => {
+    const formData = new FormData();
+formData.append(`name`, reviewInput.name);
+if(reviewInput.company !== undefined && reviewInput.company !== null) {
+ formData.append(`company`, reviewInput.company);
+ }
+formData.append(`text`, reviewInput.text);
+formData.append(`rating`, reviewInput.rating.toString())
+if(reviewInput.video !== undefined) {
+ formData.append(`video`, reviewInput.video);
+ }
+if(reviewInput.videoConsent !== undefined) {
+ formData.append(`videoConsent`, reviewInput.videoConsent.toString())
+ }
 
   return customFetch<ReviewSubmission>(getCreateReviewUrl(),
   {
     ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(reviewInput)
+    method: 'POST'
+    ,
+    body: formData
   }
 );}
 
@@ -587,6 +600,83 @@ export const useCreateContact = <TError = ErrorType<ErrorResponse>,
       > => {
       return useMutation(getCreateContactMutationOptions(options));
     }
+
+export const getGetReviewVideoUrl = (id: number,) => {
+
+
+
+
+  return `/api/reviews/${id}/video`
+}
+
+/**
+ * @summary Stream the video attached to a published review
+ */
+export const getReviewVideo = async (id: number, options?: Parameters<typeof customFetch>[1]): Promise<Blob> => {
+
+  return customFetch<Blob>(getGetReviewVideoUrl(id),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetReviewVideoQueryKey = (id: number,) => {
+    return [
+    `/api/reviews/${id}/video`
+    ] as const;
+    }
+
+
+export const getGetReviewVideoQueryOptions = <TData = Awaited<ReturnType<typeof getReviewVideo>>, TError = ErrorType<ErrorResponse>>(id: number, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getReviewVideo>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetReviewVideoQueryKey(id);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getReviewVideo>>> = ({ signal }) => getReviewVideo(id, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, enabled: id !== null && id !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getReviewVideo>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type GetReviewVideoQueryResult = NonNullable<Awaited<ReturnType<typeof getReviewVideo>>>
+export type GetReviewVideoQueryError = ErrorType<ErrorResponse>
+
+
+/**
+ * @summary Stream the video attached to a published review
+ */
+
+export function useGetReviewVideo<TData = Awaited<ReturnType<typeof getReviewVideo>>, TError = ErrorType<ErrorResponse>>(
+ id: number, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getReviewVideo>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getGetReviewVideoQueryOptions(id,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
 
 export const getListTeamMembersUrl = () => {
 

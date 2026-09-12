@@ -74,6 +74,14 @@ export interface PlanCategory {
 
 export type PlansResponse = PlanCategory[];
 
+export type ReviewCategory = typeof ReviewCategory[keyof typeof ReviewCategory];
+
+
+export const ReviewCategory = {
+  review: 'review',
+  testimonial: 'testimonial',
+} as const;
+
 export interface Review {
   id: number;
   name: string;
@@ -85,6 +93,9 @@ export interface Review {
      * @maximum 5
      */
   rating: number;
+  category: ReviewCategory;
+  /** @nullable */
+  videoUrl: string | null;
   createdAt: string;
 }
 
@@ -111,6 +122,8 @@ export interface ReviewInput {
      * @maximum 5
      */
   rating: number;
+  video?: Blob;
+  videoConsent?: boolean;
 }
 
 export type ReviewSubmissionStatus = typeof ReviewSubmissionStatus[keyof typeof ReviewSubmissionStatus];
