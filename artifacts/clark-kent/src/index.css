@@ -1776,7 +1776,7 @@ body {
   }
 
   .port-right .port-nav {
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .port-anchor-img {
