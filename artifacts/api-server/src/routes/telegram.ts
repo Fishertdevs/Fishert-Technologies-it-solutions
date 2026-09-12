@@ -307,6 +307,8 @@ const showReview = async (chatId: string, reviewId: number, messageId?: number) 
     `Nombre: ${escapeTelegramText(review.name)}`,
     `Empresa: ${escapeTelegramText(review.company) || "—"}`,
     `Calificación: ${review.rating}/5`,
+    `Categoría: ${review.category === "testimonial" ? "Testimonio del cliente" : "Reseña del cliente"}`,
+    `Video: ${review.telegramFileId ? "Sí" : "No"}`,
     "",
     escapeTelegramText(review.text),
   ].join("\n");

@@ -15,6 +15,8 @@ type Review = {
   author: string;
   company: string;
   stars: number;
+  category: "review" | "testimonial";
+  videoUrl: string | null;
   createdAt: string;
 };
 
@@ -111,6 +113,23 @@ function ReviewCard({ review, lang }: { review: Review; lang: "es" | "en" }) {
   return (
     <div className="resena-card">
       <Stars count={review.stars} lang={lang} />
+      {review.category === "testimonial" && (
+        <div className="resena-testimonial">
+          <span className="resena-testimonial-label">
+            {lang === "es" ? "Testimonio del cliente" : "Client testimonial"}
+          </span>
+          {review.videoUrl && (
+            <video
+              className="resena-video"
+              controls
+              preload="metadata"
+              playsInline
+              src={review.videoUrl}
+              aria-label={lang === "es" ? "Video del testimonio" : "Testimonial video"}
+            />
+          )}
+        </div>
+      )}
       <blockquote className="resena-quote">"{review.quote}"</blockquote>
       <div className="resena-author">
         <span className="resena-name">{review.author}</span>
@@ -327,6 +346,8 @@ export default function Resenas() {
     author: review.name,
     company: review.company ?? "",
     stars: review.rating,
+    category: review.category,
+    videoUrl: review.videoUrl,
     createdAt: review.createdAt,
   }));
   const [showForm, setShowForm] = useState(false);
