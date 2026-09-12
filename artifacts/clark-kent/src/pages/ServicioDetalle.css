@@ -167,6 +167,10 @@
 }
 
 @media (min-width: 769px) {
+  .svc2-container {
+    overflow: visible;
+  }
+
   .svc2-offer-section {
     position: relative;
   }
@@ -1211,8 +1215,9 @@
     min-height: 280px;
     grid-template-columns: 150px minmax(0, 1fr);
     align-items: center;
-    column-gap: 24px;
+    column-gap: 42px;
     justify-items: center;
+    transform: translateX(-48px);
   }
 
   .svc2-month-offer-art {
@@ -1224,6 +1229,7 @@
     height: 534px;
     grid-column: auto;
     grid-row: auto;
+    z-index: 4;
     align-items: flex-end;
     justify-content: center;
     align-self: end;
