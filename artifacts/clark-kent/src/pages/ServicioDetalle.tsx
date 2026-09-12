@@ -2127,15 +2127,17 @@ export default function ServicioDetalle() {
           </div>
         </header>
 
-        {/* ── Description ── */}
-        <section className="svc2-desc-section">
-          <div className="svc2-desc-inner">
-            <h2 className="svc2-desc-text">{t.description}</h2>
-          </div>
-        </section>
+        {/* ── Description + Shakespeare ── */}
+        <div className="svc2-desc-art-layout">
+          <section className="svc2-desc-section">
+            <div className="svc2-desc-inner">
+              <h2 className="svc2-desc-text">{t.description}</h2>
+            </div>
+          </section>
 
-        <div className="svc2-shakespeare-art" aria-hidden="true">
-          <img src={shakespeareImage} alt="" />
+          <div className="svc2-shakespeare-art" aria-hidden="true">
+            <img src={shakespeareImage} alt="" />
+          </div>
         </div>
 
         {/* ── Process ── */}
