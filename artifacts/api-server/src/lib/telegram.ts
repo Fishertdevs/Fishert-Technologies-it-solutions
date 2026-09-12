@@ -14,6 +14,14 @@ type TelegramApiResponse<T> = {
   description?: string;
 };
 
+type TelegramVideo = {
+  file_id: string;
+};
+
+type TelegramFile = {
+  file_path?: string;
+};
+
 const telegramApiBase = () => {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   if (!token) {
@@ -48,6 +56,43 @@ export const sendTelegramMessage = async (
     text,
     ...(replyMarkup ? { reply_markup: replyMarkup } : {}),
   });
+
+export const sendTelegramVideo = async (
+  chatId: string,
+  video: { buffer: Buffer; mimeType: string; fileName: string },
+  caption: string,
+  replyMarkup?: TelegramReplyMarkup,
+) => {
+  const formData = new FormData();
+  formData.append("chat_id", chatId);
+  formData.append(
+    "video",
+    new Blob([new Uint8Array(video.buffer)], { type: video.mimeType }),
+    video.fileName,
+  );
+  formData.append("caption", caption);
+  if (replyMarkup) formData.append("reply_markup", JSON.stringify(replyMarkup));
+
+  const response = await fetch(`${telegramApiBase()}/sendVideo`, {
+    method: "POST",
+    body: formData,
+  });
+  const body = (await response.json()) as TelegramApiResponse<{ video?: TelegramVideo }>;
+  if (!response.ok || !body.ok || !body.result?.video?.file_id) {
+    throw new Error(body.description ?? "Telegram video upload failed");
+  }
+  return body.result;
+};
+
+export const downloadTelegramFile = async (fileId: string) => {
+  const file = await callTelegram<TelegramFile>("getFile", { file_id: fileId });
+  if (!file.file_path) throw new Error("Telegram did not return a file path");
+  const response = await fetch(
+    `${telegramApiBase().replace("/bot", "/file/bot")}/${file.file_path}`,
+  );
+  if (!response.ok) throw new Error("Telegram video download failed");
+  return response;
+};
 
 export const editTelegramMessage = async (
   chatId: string,
@@ -128,26 +173,39 @@ export const notifyPendingReview = async (review: {
   company?: string | null;
   text: string;
   rating: number;
-}) => {
+  category: "review" | "testimonial";
+  video?: { buffer: Buffer; mimeType: string; fileName: string };
+}): Promise<{ notified: boolean; telegramFileId: string | null }> => {
   const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
-  if (!chatId || !process.env.TELEGRAM_BOT_TOKEN) return false;
+  if (!chatId || !process.env.TELEGRAM_BOT_TOKEN) {
+    return { notified: false, telegramFileId: null };
+  }
 
-  await sendTelegramMessage(
-    chatId,
-    [
-      "Nueva reseña pendiente de aprobación",
-      "",
-      `#${review.id} · ${escapeTelegramText(review.name)}`,
-      `Empresa: ${escapeTelegramText(review.company) || "—"}`,
-      `Calificación: ${review.rating}/5`,
-      "",
-      escapeTelegramText(review.text),
-      "",
-      "Puedes aprobarla o rechazarla con los botones.",
-    ].join("\n"),
-    pendingReviewMarkup(review.id),
-  );
-  return true;
+  const caption = [
+    "Nueva reseña pendiente de aprobación",
+    "",
+    `#${review.id} · ${escapeTelegramText(review.name)}`,
+    `Empresa: ${escapeTelegramText(review.company) || "—"}`,
+    `Calificación: ${review.rating}/5`,
+    `Categoría: ${review.category === "testimonial" ? "Testimonio del cliente" : "Reseña del cliente"}`,
+    "",
+    escapeTelegramText(review.text),
+    "",
+    "Puedes aprobarla o rechazarla con los botones.",
+  ].join("\n");
+
+  if (review.video) {
+    const result = await sendTelegramVideo(
+      chatId,
+      review.video,
+      caption,
+      pendingReviewMarkup(review.id),
+    );
+    return { notified: true, telegramFileId: result.video?.file_id ?? null };
+  }
+
+  await sendTelegramMessage(chatId, caption, pendingReviewMarkup(review.id));
+  return { notified: true, telegramFileId: null };
 };
 
 type TelegramWebhookInfo = {
