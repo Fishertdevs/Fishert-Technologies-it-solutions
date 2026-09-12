@@ -8038,7 +8038,6 @@ body {
   }
 
   .qs-team-art {
-    grid-column: 2;
     align-self: end;
   }
 
@@ -8051,7 +8050,6 @@ body {
   }
 
   .qs-team-content {
-    grid-column: 1;
     align-self: end;
     padding-bottom: 30px;
   }

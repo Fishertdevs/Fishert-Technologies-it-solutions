@@ -399,6 +399,9 @@ export default function QuienesSomos() {
                 : "Behind every result is a team that combines strategy, design, and technology to turn ambitious ideas into clear, meaningful digital experiences built to grow. We listen to every challenge, align decisions with business goals, and care for every detail to build solutions that connect with people and create lasting results."}
             </p>
           </div>
+          <div className="qs-team-values-bridge-art" aria-hidden="true">
+            <img src={teamBridgeArt} alt="" />
+          </div>
         </section>
 
         {/* ── Values ── */}
