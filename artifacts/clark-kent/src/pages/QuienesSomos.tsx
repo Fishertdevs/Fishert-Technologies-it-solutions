@@ -131,28 +131,16 @@ function TeamMemberCard({
       className={[
         className,
         shouldCenterCopy ? "qs-team-card--centered-copy" : "",
-        hasPortrait ? "qs-team-card--portrait" : "",
       ].filter(Boolean).join(" ")}
     >
-      <div className={`qs-team-avatar ${hasPortrait ? "qs-team-avatar--portrait" : ""}`}>
-        {hasPortrait ? (
-          <img src={member.imageRef!} alt="" />
-        ) : (
-          {member.name.charAt(0)}
-        )}
-      </div>
       <h3 className="qs-team-name">{member.name}</h3>
       <p className="qs-team-role">{member.role[lang]}</p>
-      <p className="qs-team-bio">
-        {member.bioLines?.[lang]
-          ? member.bioLines[lang].map((line, index) => (
-              <span key={line}>
-                {index > 0 && <br />}
-                {line}
-              </span>
-            ))
-          : member.bio[lang]}
-      </p>
+      <div
+        className={`qs-team-avatar ${hasPortrait ? "qs-team-avatar--portrait" : ""}`}
+        aria-hidden="true"
+      >
+        {hasPortrait && <img src={member.imageRef!} alt="" />}
+      </div>
     </article>
   );
 }
