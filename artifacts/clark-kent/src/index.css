@@ -1765,7 +1765,7 @@ body {
     right: clamp(24px, 6vw, 96px);
     top: auto;
     bottom: 0;
-    height: clamp(480px, 55vw, 780px);
+    height: clamp(360px, 44vw, 620px);
     object-position: center bottom;
     transform: none;
   }
