@@ -1588,6 +1588,7 @@
 
   .svc2-month-offer-content {
     display: grid;
+    position: relative;
     width: calc(100% - 390px);
     min-height: 280px;
     grid-template-columns: 150px minmax(0, 1fr);
@@ -1595,7 +1596,9 @@
     align-items: center;
     column-gap: 42px;
     justify-items: center;
-    transform: translate(-48px, 40px);
+    top: 80px;
+    left: -48px;
+    transform: none;
   }
 
   .svc2-month-offer-content .svc2-offer-title {
