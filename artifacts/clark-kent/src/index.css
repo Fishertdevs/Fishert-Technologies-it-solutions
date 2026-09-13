@@ -690,7 +690,8 @@ body {
 
 /* Body paragraph — full-width natural flow */
 .wlc-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  font-style: italic;
   font-size: clamp(20px, 2.1vw, 30px);
   font-weight: 400;
   line-height: 1.65;
