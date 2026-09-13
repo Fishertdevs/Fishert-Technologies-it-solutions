@@ -2227,10 +2227,6 @@ export default function ServicioDetalle() {
                     lang === "es"
                       ? <>Comienza a automatizar<br />tus procesos.</>
                       : <>Start automating your<br />processes.</>
-                  ) : slug === "cloud-devops" ? (
-                    lang === "es"
-                      ? <>Entrega más rápido.<br />Opera con confianza.</>
-                      : <>Ship faster.<br />Operate with confidence.</>
                   ) : context.pricingTitle[lang]}
                 </h3>
                 <p className="svc2-pricing-sub">
@@ -2450,7 +2446,7 @@ export default function ServicioDetalle() {
           </div>
         </section>
 
-        <section className="svc2-offer-section" aria-label={activeOffer.kicker[lang]}>
+        <section className={`svc2-offer-section${slug === "cloud-devops" ? " svc2-offer-section--cloud" : ""}`} aria-label={activeOffer.kicker[lang]}>
           <div className="svc2-month-offer">
             <div className="svc2-month-offer-content">
               <h2 className="svc2-offer-title">

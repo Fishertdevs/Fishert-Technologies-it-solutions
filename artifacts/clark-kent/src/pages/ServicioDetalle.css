@@ -1683,6 +1683,17 @@
     display: none;
   }
 
+  .svc2-offer-section--cloud .svc2-month-offer-copy h3 {
+    max-width: 360px;
+    font-size: clamp(26px, 2.5vw, 32px);
+  }
+
+  .svc2-pricing-title--cloud {
+    max-width: none;
+    font-size: clamp(32px, 3.8vw, 54px);
+    white-space: nowrap;
+  }
+
   .svc2-pricing-header {
     width: 95%;
     margin-inline: auto;
