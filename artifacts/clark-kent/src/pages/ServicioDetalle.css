@@ -1691,7 +1691,7 @@
   .svc2-pricing-title--cloud {
     width: 100%;
     max-width: 840px;
-    font-size: clamp(28px, 3vw, 42px);
+    font-size: clamp(28px, 2.8vw, 40px);
     text-align: center;
     white-space: nowrap;
   }
