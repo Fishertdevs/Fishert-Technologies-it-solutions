@@ -1704,6 +1704,10 @@
     font-size: 11px;
   }
 
+  .svc2-offer-section .svc2-month-offer-copy p {
+    color: #c0001a;
+  }
+
   .svc2-offer-section .svc2-month-offer-copy {
     grid-column: 2;
     grid-row: 2;
