@@ -1616,7 +1616,7 @@
   .svc2-month-offer-art {
     display: flex;
     position: absolute;
-    top: 20px;
+    top: 28px;
     right: max(24px, calc((100% - 920px) / 2 - 20px));
     bottom: auto;
     width: 375px;
