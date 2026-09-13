@@ -1622,6 +1622,22 @@
 
   .svc2-offer-section--cloud .svc2-month-offer {
     box-sizing: border-box;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .svc2-offer-section--cloud .svc2-month-offer-content {
+    isolation: isolate;
+  }
+
+  .svc2-offer-section--cloud .svc2-month-offer-content::before {
+    position: absolute;
+    z-index: 0;
+    top: 72px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     border: 1px solid #e4e4e4;
     border-radius: 28px;
     background-color: #d8d8d8;
@@ -1632,6 +1648,13 @@
       #d8d8d8 0 100%
     );
     background-size: 52px 52px;
+    content: "";
+    pointer-events: none;
+  }
+
+  .svc2-offer-section--cloud .svc2-month-offer-content > * {
+    position: relative;
+    z-index: 1;
   }
 
   .svc2-month-offer-content .svc2-offer-title {
