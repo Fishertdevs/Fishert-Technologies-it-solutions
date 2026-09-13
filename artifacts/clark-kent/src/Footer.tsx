@@ -92,12 +92,14 @@ export default function Footer() {
 
         {/* Legal links */}
         <nav className="footer-links">
-          {t.links.map((link, i) => (
-            <span key={link.label} className="footer-link-group">
-              <Link href={link.href} className="footer-link">{link.label}</Link>
-              {i < t.links.length - 1 && <span className="footer-dot">•</span>}
-            </span>
-          ))}
+          <div className="footer-links-row footer-links-row--primary">
+            <Link href={t.links[0].href} className="footer-link">{t.links[0].label}</Link>
+          </div>
+          <div className="footer-links-row">
+            <Link href={t.links[1].href} className="footer-link">{t.links[1].label}</Link>
+            <span className="footer-dot">•</span>
+            <Link href={t.links[2].href} className="footer-link">{t.links[2].label}</Link>
+          </div>
         </nav>
 
         <p className="footer-copy">{t.copy}</p>
