@@ -2195,18 +2195,18 @@ export default function ServicioDetalle() {
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               </button>
-            </div>
-            <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de metodología" : "Methodology navigation"}>
-              {t.process.map((stage, index) => (
-                <button
-                  key={stage.number}
-                  type="button"
-                  className={activeProcess === index ? "svc2-process-dot svc2-process-dot--active" : "svc2-process-dot"}
-                  aria-label={`${lang === "es" ? "Ver etapa" : "View stage"} ${index + 1}: ${stage.title}`}
-                  aria-pressed={activeProcess === index}
-                  onClick={() => setActiveProcess(index)}
-                />
-              ))}
+              <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de metodología" : "Methodology navigation"}>
+                {t.process.map((stage, index) => (
+                  <button
+                    key={stage.number}
+                    type="button"
+                    className={activeProcess === index ? "svc2-process-dot svc2-process-dot--active" : "svc2-process-dot"}
+                    aria-label={`${lang === "es" ? "Ver etapa" : "View stage"} ${index + 1}: ${stage.title}`}
+                    aria-pressed={activeProcess === index}
+                    onClick={() => setActiveProcess(index)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <div className="svc2-process-wave" aria-hidden="true">

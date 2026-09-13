@@ -1236,7 +1236,10 @@
   }
 
   .svc2-process-content .svc2-process-header h2 {
-    font-size: clamp(48px, 5vw, 78px);
+    width: max-content;
+    max-width: none;
+    font-size: clamp(38px, 4.7vw, 70px);
+    white-space: nowrap;
   }
 
   .svc2-process-content .svc2-process-header > p {
@@ -1303,10 +1306,6 @@
 
   .svc2-process-content .svc2-process-stage h3 {
     font-size: clamp(20px, 2vw, 30px);
-  }
-
-  .svc2-process-content .svc2-process-dots {
-    margin-top: 14px;
   }
 
   .svc2-faq-section--carousel .svc2-process-header {
