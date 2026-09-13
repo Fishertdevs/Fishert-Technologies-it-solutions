@@ -2424,18 +2424,18 @@ export default function ServicioDetalle() {
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </button>
-          </div>
-          <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de preguntas frecuentes" : "FAQ navigation"}>
-            {t.faqs.map((faq, index) => (
-              <button
-                key={faq.question}
-                type="button"
-                className={activeFaq === index ? "svc2-process-dot svc2-process-dot--active" : "svc2-process-dot"}
-                aria-label={`${lang === "es" ? "Ver pregunta" : "View question"} ${index + 1}`}
-                aria-pressed={activeFaq === index}
-                onClick={() => setActiveFaq(index)}
-              />
-            ))}
+              <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de preguntas frecuentes" : "FAQ navigation"}>
+                {t.faqs.map((faq, index) => (
+                  <button
+                    key={faq.question}
+                    type="button"
+                    className={activeFaq === index ? "svc2-process-dot svc2-process-dot--active" : "svc2-process-dot"}
+                    aria-label={`${lang === "es" ? "Ver pregunta" : "View question"} ${index + 1}`}
+                    aria-pressed={activeFaq === index}
+                    onClick={() => setActiveFaq(index)}
+                  />
+                ))}
+              </div>
           </div>
           <div className="svc2-faq-wave" aria-hidden="true">
             <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
