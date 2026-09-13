@@ -2133,6 +2133,9 @@ export default function ServicioDetalle() {
         <div className="svc2-desc-art-layout">
           <section className="svc2-desc-section">
             <div className="svc2-desc-inner">
+              <span className="svc2-desc-eyebrow">
+                {lang === "es" ? "Qué hacemos" : "What we do"}
+              </span>
               <h2 className="svc2-desc-text">{t.description}</h2>
             </div>
           </section>

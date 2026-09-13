@@ -135,6 +135,17 @@
   text-align: center;
 }
 
+.svc2-desc-eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  color: #c0001a;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
 .svc2-desc-text {
   margin: 0;
   color: #171717;
