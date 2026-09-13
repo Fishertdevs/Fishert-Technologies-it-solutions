@@ -1257,28 +1257,34 @@
     min-height: 500px;
     align-items: flex-end;
     justify-content: center;
+    box-sizing: border-box;
+    padding-bottom: 62px;
   }
 
   .svc2-faq-art img {
     display: block;
-    width: min(520px, calc(100% + 36px));
+    width: min(460px, calc(100% + 24px));
     height: auto;
     max-height: none;
     object-fit: contain;
-    transform: translateY(67px);
+    transform: none;
   }
 
   .svc2-faq-content {
     display: flex;
     min-width: 0;
+    width: 100%;
     flex-direction: column;
     align-items: center;
+    justify-self: center;
     text-align: center;
   }
 
   .svc2-faq-content .svc2-process-header {
     width: 100%;
+    align-items: center;
     margin-bottom: 10px;
+    text-align: center;
   }
 
   .svc2-faq-content .svc2-process-header > p {
@@ -1287,6 +1293,7 @@
 
   .svc2-faq-content .svc2-process-carousel {
     width: 100%;
+    max-width: 760px;
     grid-template-columns: 1fr auto 1fr;
     grid-template-rows: minmax(150px, auto) 28px;
     gap: 18px 24px;
@@ -1331,8 +1338,11 @@
   }
 
   .svc2-faq-content .svc2-process-stage {
+    width: 100%;
+    box-sizing: border-box;
     padding-right: 20px;
     padding-left: 20px;
+    text-align: center;
   }
 
   .svc2-faq-content .svc2-process-stage h3 {
@@ -1633,7 +1643,8 @@
 
   .svc2-pricing-art img {
     position: absolute;
-    bottom: -120px;
+    z-index: 4;
+    bottom: -155px;
     left: 50%;
     width: min(120%, 430px);
     height: auto;
