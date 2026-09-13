@@ -2454,6 +2454,9 @@ export default function ServicioDetalle() {
         </section>
 
         <section className="svc2-offer-section" aria-label={activeOffer.kicker[lang]}>
+          <h2 className="svc2-offer-title">
+            {lang === "es" ? "Tenemos algo para ti" : "We have something for you"}
+          </h2>
           <div className="svc2-month-offer">
             <div className="svc2-month-offer-content">
               <div className="svc2-month-offer-mark" aria-hidden="true">
