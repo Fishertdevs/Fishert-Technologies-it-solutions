@@ -213,6 +213,14 @@
   display: none;
 }
 
+.svc2-process-art {
+  display: none;
+}
+
+.svc2-process-content {
+  display: contents;
+}
+
 .svc2-process-header {
   display: flex;
   flex-direction: column;
@@ -1189,6 +1197,80 @@
 }
 
 @media (min-width: 769px) {
+  .svc2-process-section {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.95fr) minmax(430px, 1.05fr);
+    align-items: center;
+    column-gap: clamp(36px, 5vw, 84px);
+    padding: 72px max(48px, calc((100% - 1120px) / 2));
+  }
+
+  .svc2-process-art {
+    display: flex;
+    min-width: 0;
+    min-height: 360px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .svc2-process-art img {
+    display: block;
+    width: min(100%, 420px);
+    height: auto;
+    max-height: 390px;
+    object-fit: contain;
+  }
+
+  .svc2-process-content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .svc2-process-content .svc2-process-header {
+    width: 100%;
+    margin-bottom: 22px;
+  }
+
+  .svc2-process-content .svc2-process-header > p {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .svc2-process-content .svc2-process-carousel {
+    width: 100%;
+    grid-template-columns: 26px minmax(0, 1fr) 26px;
+    gap: 22px;
+  }
+
+  .svc2-process-content .svc2-process-arrow {
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid rgba(253, 243, 236, 0.82);
+    color: #fdf3ec;
+  }
+
+  .svc2-process-content .svc2-process-arrow:hover {
+    border-color: #fdf3ec;
+    background: #fdf3ec;
+    color: #e8621e;
+  }
+
+  .svc2-process-content .svc2-process-viewport {
+    min-height: 150px;
+  }
+
+  .svc2-process-content .svc2-process-stage {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .svc2-process-content .svc2-process-dots {
+    margin-top: 14px;
+  }
+
   .svc2-title {
     font-size: clamp(38px, 4.6vw, 62px);
   }

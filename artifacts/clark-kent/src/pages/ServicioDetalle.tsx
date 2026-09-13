@@ -8,6 +8,7 @@ import { useListPlans } from "@workspace/api-client-react";
 import frogOfferImage from "@assets/frog-pricing-transparent-v2.png";
 import shakespeareImage from "@assets/shakespeare-transparent.png";
 import offerCharacterImage from "@assets/image-Photoroom_(27)_1789236789923.png";
+import processImage from "@assets/image-Photoroom_(28)_1789324189589.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ServicioDetalle.css";
@@ -2143,65 +2144,70 @@ export default function ServicioDetalle() {
 
         {/* ── Process ── */}
         <section className="svc2-process-section" aria-labelledby="svc2-process-title">
-          <div className="svc2-process-header">
-            <h2 id="svc2-process-title">
-              {lang === "es"
-                ? "Cómo trabajamos"
-                : "How we work"}
-            </h2>
-            <p>
-              {lang === "es"
-                ? "Un proceso claro para tomar mejores decisiones, construir con intención y seguir mejorando."
-                : "A clear process for making better decisions, building with intention, and continuing to improve."}
-            </p>
+          <div className="svc2-process-art" aria-hidden="true">
+            <img src={processImage} alt="" />
           </div>
-          <div className="svc2-process-carousel" aria-roledescription="carousel">
-            <button
-              type="button"
-              className="svc2-process-arrow"
-              aria-label={lang === "es" ? "Etapa anterior" : "Previous stage"}
-              onClick={() => setActiveProcess((current) => (current - 1 + t.process.length) % t.process.length)}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
-            <div
-              className="svc2-process-viewport"
-              onTouchStart={handleProcessTouchStart}
-              onTouchEnd={handleProcessTouchEnd}
-              onTouchCancel={() => {
-                processTouchStartX.current = null;
-              }}
-              aria-live="polite"
-            >
-              <article className="svc2-process-stage" key={activeStage.number}>
-                <h3>{activeStage.title}</h3>
-                <p>{activeStage.description}</p>
-              </article>
+          <div className="svc2-process-content">
+            <div className="svc2-process-header">
+              <h2 id="svc2-process-title">
+                {lang === "es"
+                  ? "Cómo trabajamos"
+                  : "How we work"}
+              </h2>
+              <p>
+                {lang === "es"
+                  ? "Un proceso claro para tomar mejores decisiones, construir con intención y seguir mejorando."
+                  : "A clear process for making better decisions, building with intention, and continuing to improve."}
+              </p>
             </div>
-            <button
-              type="button"
-              className="svc2-process-arrow"
-              aria-label={lang === "es" ? "Siguiente etapa" : "Next stage"}
-              onClick={() => setActiveProcess((current) => (current + 1) % t.process.length)}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
-          </div>
-          <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de metodología" : "Methodology navigation"}>
-            {t.process.map((stage, index) => (
+            <div className="svc2-process-carousel" aria-roledescription="carousel">
               <button
-                key={stage.number}
                 type="button"
-                className={activeProcess === index ? "svc2-process-dot svc2-process-dot--active" : "svc2-process-dot"}
-                aria-label={`${lang === "es" ? "Ver etapa" : "View stage"} ${index + 1}: ${stage.title}`}
-                aria-pressed={activeProcess === index}
-                onClick={() => setActiveProcess(index)}
-              />
-            ))}
+                className="svc2-process-arrow"
+                aria-label={lang === "es" ? "Etapa anterior" : "Previous stage"}
+                onClick={() => setActiveProcess((current) => (current - 1 + t.process.length) % t.process.length)}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <div
+                className="svc2-process-viewport"
+                onTouchStart={handleProcessTouchStart}
+                onTouchEnd={handleProcessTouchEnd}
+                onTouchCancel={() => {
+                  processTouchStartX.current = null;
+                }}
+                aria-live="polite"
+              >
+                <article className="svc2-process-stage" key={activeStage.number}>
+                  <h3>{activeStage.title}</h3>
+                  <p>{activeStage.description}</p>
+                </article>
+              </div>
+              <button
+                type="button"
+                className="svc2-process-arrow"
+                aria-label={lang === "es" ? "Siguiente etapa" : "Next stage"}
+                onClick={() => setActiveProcess((current) => (current + 1) % t.process.length)}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+            <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de metodología" : "Methodology navigation"}>
+              {t.process.map((stage, index) => (
+                <button
+                  key={stage.number}
+                  type="button"
+                  className={activeProcess === index ? "svc2-process-dot svc2-process-dot--active" : "svc2-process-dot"}
+                  aria-label={`${lang === "es" ? "Ver etapa" : "View stage"} ${index + 1}: ${stage.title}`}
+                  aria-pressed={activeProcess === index}
+                  onClick={() => setActiveProcess(index)}
+                />
+              ))}
+            </div>
           </div>
           <div className="svc2-process-wave" aria-hidden="true">
             <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
