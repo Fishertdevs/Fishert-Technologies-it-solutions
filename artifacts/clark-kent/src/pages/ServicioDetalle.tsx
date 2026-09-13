@@ -9,6 +9,7 @@ import frogOfferImage from "@assets/frog-pricing-transparent-v2.png";
 import shakespeareImage from "@assets/shakespeare-transparent.png";
 import offerCharacterImage from "@assets/image-Photoroom_(27)_1789236789923.png";
 import processImage from "@assets/image-Photoroom_(28)_1789324189589.png";
+import faqImage from "@assets/image-Photoroom_(29)_1789329700856.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ServicioDetalle.css";
@@ -2382,51 +2383,55 @@ export default function ServicioDetalle() {
 
         {/* ── FAQ ── */}
         <section className="svc2-faq-section svc2-faq-section--carousel" aria-labelledby="svc2-faq-title">
-          <div className="svc2-process-header">
-            <h2 id="svc2-faq-title">
-              {lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}
-            </h2>
-            <p>
-              {lang === "es"
-                ? "Claridad sobre la relación, el producto y lo que viene después."
-                : "Clarity on the relationship, the product, and what comes next."}
-            </p>
+          <div className="svc2-faq-art" aria-hidden="true">
+            <img src={faqImage} alt="" />
           </div>
-          <div className="svc2-process-carousel svc2-faq-carousel" aria-roledescription="carousel">
-            <button
-              type="button"
-              className="svc2-process-arrow"
-              aria-label={lang === "es" ? "Pregunta anterior" : "Previous question"}
-              onClick={() => setActiveFaq((current) => (current - 1 + t.faqs.length) % t.faqs.length)}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
-            <div
-              className="svc2-process-viewport"
-              onTouchStart={handleFaqTouchStart}
-              onTouchEnd={handleFaqTouchEnd}
-              onTouchCancel={() => {
-                faqTouchStartX.current = null;
-              }}
-              aria-live="polite"
-            >
-              <article className="svc2-process-stage" key={activeFaq}>
-                <h3>{activeFaqItem.question}</h3>
-                <p>{activeFaqItem.answer}</p>
-              </article>
+          <div className="svc2-faq-content">
+            <div className="svc2-process-header">
+              <h2 id="svc2-faq-title">
+                {lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}
+              </h2>
+              <p>
+                {lang === "es"
+                  ? "Claridad sobre la relación, el producto y lo que viene después."
+                  : "Clarity on the relationship, the product, and what comes next."}
+              </p>
             </div>
-            <button
-              type="button"
-              className="svc2-process-arrow"
-              aria-label={lang === "es" ? "Siguiente pregunta" : "Next question"}
-              onClick={() => setActiveFaq((current) => (current + 1) % t.faqs.length)}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
+            <div className="svc2-process-carousel svc2-faq-carousel" aria-roledescription="carousel">
+              <button
+                type="button"
+                className="svc2-process-arrow"
+                aria-label={lang === "es" ? "Pregunta anterior" : "Previous question"}
+                onClick={() => setActiveFaq((current) => (current - 1 + t.faqs.length) % t.faqs.length)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <div
+                className="svc2-process-viewport"
+                onTouchStart={handleFaqTouchStart}
+                onTouchEnd={handleFaqTouchEnd}
+                onTouchCancel={() => {
+                  faqTouchStartX.current = null;
+                }}
+                aria-live="polite"
+              >
+                <article className="svc2-process-stage" key={activeFaq}>
+                  <h3>{activeFaqItem.question}</h3>
+                  <p>{activeFaqItem.answer}</p>
+                </article>
+              </div>
+              <button
+                type="button"
+                className="svc2-process-arrow"
+                aria-label={lang === "es" ? "Siguiente pregunta" : "Next question"}
+                onClick={() => setActiveFaq((current) => (current + 1) % t.faqs.length)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
               <div className="svc2-process-dots" aria-label={lang === "es" ? "Navegación de preguntas frecuentes" : "FAQ navigation"}>
                 {t.faqs.map((faq, index) => (
                   <button
@@ -2439,6 +2444,7 @@ export default function ServicioDetalle() {
                   />
                 ))}
               </div>
+            </div>
           </div>
           <div className="svc2-faq-wave" aria-hidden="true">
             <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
