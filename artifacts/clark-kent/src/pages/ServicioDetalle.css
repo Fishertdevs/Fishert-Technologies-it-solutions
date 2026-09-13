@@ -1599,10 +1599,10 @@
     position: relative;
     width: calc(100% - 390px);
     min-height: 280px;
-    grid-template-columns: 150px minmax(0, 1fr);
+    grid-template-columns: 190px minmax(0, 1fr);
     grid-template-rows: auto minmax(0, 1fr) auto;
     align-items: center;
-    column-gap: 42px;
+    column-gap: 32px;
     justify-items: center;
     top: 140px;
     left: -48px;
@@ -1689,11 +1689,19 @@
   .svc2-offer-section .svc2-month-offer-mark {
     grid-column: 1;
     grid-row: 2;
-    width: 140px;
-    min-height: 120px;
+    width: 180px;
+    min-height: 150px;
     box-sizing: border-box;
     gap: 2px;
     padding: 10px;
+  }
+
+  .svc2-offer-section .svc2-month-offer-mark strong {
+    font-size: 34px;
+  }
+
+  .svc2-offer-section .svc2-month-offer-mark span {
+    font-size: 11px;
   }
 
   .svc2-offer-section .svc2-month-offer-copy {
