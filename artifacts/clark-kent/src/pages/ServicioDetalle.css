@@ -1595,7 +1595,7 @@
     align-items: center;
     column-gap: 42px;
     justify-items: center;
-    transform: translateX(-48px);
+    transform: translate(-48px, 40px);
   }
 
   .svc2-month-offer-content .svc2-offer-title {
