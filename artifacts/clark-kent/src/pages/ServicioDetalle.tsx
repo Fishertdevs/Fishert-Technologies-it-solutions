@@ -2222,11 +2222,11 @@ export default function ServicioDetalle() {
           <div className="svc2-pricing-body">
             <div className="svc2-pricing-plans">
               <div className="svc2-pricing-header">
-                <h3 className={`svc2-pricing-title ${slug === "desarrollo-software" ? "svc2-pricing-title--single-line" : ""} ${slug === "automatizacion-ia" || slug === "cloud-devops" ? "svc2-pricing-title--two-line" : ""} ${slug === "cloud-devops" ? "svc2-pricing-title--cloud" : ""}`}>
+                <h3 className={`svc2-pricing-title ${slug === "desarrollo-software" || slug === "automatizacion-ia" ? "svc2-pricing-title--single-line" : ""} ${slug === "cloud-devops" ? "svc2-pricing-title--two-line" : ""} ${slug === "cloud-devops" ? "svc2-pricing-title--cloud" : ""}`}>
                   {slug === "automatizacion-ia" ? (
                     lang === "es"
-                      ? <>Comienza a automatizar<br />tus procesos.</>
-                      : <>Start automating your<br />processes.</>
+                      ? "Comienza a automatizar tus procesos."
+                      : "Start automating your processes."
                   ) : context.pricingTitle[lang]}
                 </h3>
                 <p className="svc2-pricing-sub">
