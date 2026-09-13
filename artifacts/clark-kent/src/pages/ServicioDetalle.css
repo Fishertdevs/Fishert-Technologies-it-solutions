@@ -1415,6 +1415,10 @@
     white-space: nowrap;
   }
 
+  .svc2-pricing-section {
+    padding-top: 24px;
+  }
+
   .svc2-offer-section {
     padding: 140px 0 0;
   }
