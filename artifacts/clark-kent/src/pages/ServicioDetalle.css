@@ -1295,13 +1295,21 @@
 
   .svc2-faq-content .svc2-process-header {
     width: 100%;
+    max-width: 760px;
     align-items: center;
     margin-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
   }
 
   .svc2-faq-content .svc2-process-header > p {
     display: none;
+  }
+
+  .svc2-faq-content .svc2-process-header h2 {
+    width: 100%;
+    text-align: center;
   }
 
   .svc2-faq-content .svc2-process-carousel {
