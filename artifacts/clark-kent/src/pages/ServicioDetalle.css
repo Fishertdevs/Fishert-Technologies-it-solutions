@@ -1654,9 +1654,16 @@
   }
 
   .svc2-offer-section .svc2-month-offer-link {
-    grid-column: 1;
-    grid-row: 3;
-    justify-self: center;
+    position: absolute;
+    top: 172px;
+    left: 0;
+    z-index: 2;
+    width: 150px;
+    justify-content: center;
+    margin-top: 0;
+    font-size: 8px;
+    letter-spacing: 0.04em;
+    text-underline-offset: 4px;
   }
 
   .svc2-pricing-header {
@@ -2216,6 +2223,8 @@
   }
 
   .svc2-offer-section .svc2-month-offer-link {
+    position: static;
+    width: auto;
     order: 3;
     grid-column: auto;
     grid-row: auto;
