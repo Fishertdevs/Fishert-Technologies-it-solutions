@@ -1696,6 +1696,14 @@
     white-space: nowrap;
   }
 
+  .svc2-pricing-title--cloud + .svc2-pricing-sub {
+    width: min(100%, 760px);
+    max-width: 760px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.45;
+  }
+
   .svc2-pricing-header {
     width: 95%;
     margin-inline: auto;
