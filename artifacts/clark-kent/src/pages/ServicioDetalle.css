@@ -1620,18 +1620,18 @@
     min-height: 520px;
   }
 
-  .svc2-offer-section--cloud .svc2-month-offer {
+  .svc2-offer-section .svc2-month-offer {
     box-sizing: border-box;
     border: 0;
     border-radius: 0;
     background: transparent;
   }
 
-  .svc2-offer-section--cloud .svc2-month-offer-content {
+  .svc2-offer-section .svc2-month-offer-content {
     isolation: isolate;
   }
 
-  .svc2-offer-section--cloud .svc2-month-offer-content::before {
+  .svc2-offer-section .svc2-month-offer-content::before {
     position: absolute;
     z-index: 0;
     top: 72px;
@@ -1652,7 +1652,7 @@
     pointer-events: none;
   }
 
-  .svc2-offer-section--cloud .svc2-month-offer-content > * {
+  .svc2-offer-section .svc2-month-offer-content > * {
     position: relative;
     z-index: 1;
   }
