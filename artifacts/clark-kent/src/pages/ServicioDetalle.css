@@ -1668,7 +1668,8 @@
 
   .svc2-month-offer-content .svc2-offer-title {
     font-size: clamp(30px, 3.4vw, 44px);
-    transform: translateY(-12px);
+    top: -24px !important;
+    transform: none !important;
   }
 
   .svc2-month-offer-art {
