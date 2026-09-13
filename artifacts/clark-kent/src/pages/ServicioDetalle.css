@@ -1258,12 +1258,12 @@
     align-items: flex-end;
     justify-content: center;
     box-sizing: border-box;
-    padding-bottom: 62px;
+    padding-bottom: 0;
   }
 
   .svc2-faq-art img {
     display: block;
-    width: min(460px, calc(100% + 24px));
+    width: min(520px, calc(100% + 100px));
     height: auto;
     max-height: none;
     object-fit: contain;
@@ -1644,7 +1644,7 @@
   .svc2-pricing-art img {
     position: absolute;
     z-index: 4;
-    bottom: -155px;
+    bottom: -125px;
     left: 50%;
     width: min(120%, 430px);
     height: auto;
