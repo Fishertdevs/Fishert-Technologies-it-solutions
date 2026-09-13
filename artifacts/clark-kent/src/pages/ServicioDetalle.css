@@ -1655,15 +1655,21 @@
 
   .svc2-offer-section .svc2-month-offer-link {
     position: absolute;
-    top: 172px;
+    top: 198px;
     left: 0;
     z-index: 2;
     width: 150px;
     justify-content: center;
     margin-top: 0;
+    color: #ffffff;
     font-size: 8px;
     letter-spacing: 0.04em;
+    text-decoration-color: #ffffff;
     text-underline-offset: 4px;
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
   }
 
   .svc2-pricing-header {

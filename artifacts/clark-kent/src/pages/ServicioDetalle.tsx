@@ -1740,7 +1740,6 @@ export default function ServicioDetalle() {
         ".svc2-month-offer",
         ".svc2-month-offer-mark",
         ".svc2-month-offer-copy > *",
-        ".svc2-month-offer-link",
       ];
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1766,7 +1765,6 @@ export default function ServicioDetalle() {
           ".svc2-platform",
           ".svc2-plan-card",
           ".svc2-month-offer-copy > *",
-          ".svc2-month-offer-link",
         ],
         { y: 26, opacity: 0 },
       );
@@ -1881,7 +1879,6 @@ export default function ServicioDetalle() {
           ".svc2-pricing-sub",
           ".svc2-cycle-row",
           ".svc2-month-offer-copy > *",
-          ".svc2-month-offer-link",
         ],
         {
           y: 0,
