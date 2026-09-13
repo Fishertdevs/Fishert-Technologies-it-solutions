@@ -1267,7 +1267,7 @@
     height: auto;
     max-height: none;
     object-fit: contain;
-    transform: none;
+    transform: translateY(28px);
   }
 
   .svc2-faq-content {
