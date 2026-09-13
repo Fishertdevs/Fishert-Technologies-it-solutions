@@ -139,7 +139,7 @@
   display: block;
   margin-bottom: 16px;
   color: #c0001a;
-  font-size: 11px;
+  font-size: clamp(14px, 1.35vw, 18px);
   font-weight: 900;
   letter-spacing: 0.2em;
   line-height: 1.2;
