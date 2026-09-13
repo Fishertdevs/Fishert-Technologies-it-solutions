@@ -1646,6 +1646,9 @@
     grid-row: 2;
     width: 140px;
     min-height: 120px;
+    box-sizing: border-box;
+    gap: 2px;
+    padding: 10px;
   }
 
   .svc2-offer-section .svc2-month-offer-copy {
@@ -1654,22 +1657,27 @@
   }
 
   .svc2-offer-section .svc2-month-offer-link {
-    position: absolute;
-    top: 198px;
-    left: 0;
-    z-index: 2;
-    width: 150px;
+    position: static;
+    width: auto;
     justify-content: center;
     margin-top: 0;
-    color: #ffffff;
-    font-size: 8px;
-    letter-spacing: 0.04em;
-    text-decoration-color: #ffffff;
-    text-underline-offset: 4px;
-    opacity: 1;
     transform: none;
     transition: none;
     animation: none;
+  }
+
+  .svc2-offer-section .svc2-month-offer-link--desktop {
+    display: inline-flex;
+    color: #ffffff;
+    font-size: 7px;
+    letter-spacing: 0.02em;
+    text-decoration-color: #ffffff;
+    text-underline-offset: 3px;
+    opacity: 1;
+  }
+
+  .svc2-offer-section .svc2-month-offer-link--mobile {
+    display: none;
   }
 
   .svc2-pricing-header {
@@ -2234,6 +2242,14 @@
     order: 3;
     grid-column: auto;
     grid-row: auto;
+  }
+
+  .svc2-offer-section .svc2-month-offer-link--desktop {
+    display: none;
+  }
+
+  .svc2-offer-section .svc2-month-offer-link--mobile {
+    display: inline-flex;
   }
 
   .svc2-offer-section {

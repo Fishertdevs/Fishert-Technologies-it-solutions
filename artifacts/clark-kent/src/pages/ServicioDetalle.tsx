@@ -2456,9 +2456,17 @@ export default function ServicioDetalle() {
               <h2 className="svc2-offer-title">
                 {lang === "es" ? "Tenemos algo para ti" : "We have something for you"}
               </h2>
-              <div className="svc2-month-offer-mark" aria-hidden="true">
+              <div className="svc2-month-offer-mark">
                 <strong>{activeOffer.discount}%</strong>
                 <span>OFF</span>
+                <a
+                  href={buildServiceDiscountHref(lang, t.title, activeOffer.discount)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="svc2-month-offer-link svc2-month-offer-link--desktop"
+                >
+                  {lang === "es" ? "Solicitar descuento" : "Request discount"}
+                </a>
               </div>
               <div className="svc2-month-offer-copy">
                 <span className="svc2-month-offer-kicker">
@@ -2471,7 +2479,12 @@ export default function ServicioDetalle() {
                     : `${activeOffer.discount}% off your first service.`}
                 </p>
               </div>
-              <a href={buildServiceDiscountHref(lang, t.title, activeOffer.discount)} target="_blank" rel="noopener noreferrer" className="svc2-month-offer-link">
+              <a
+                href={buildServiceDiscountHref(lang, t.title, activeOffer.discount)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="svc2-month-offer-link svc2-month-offer-link--mobile"
+              >
                 {lang === "es" ? "Solicitar descuento" : "Request discount"}
               </a>
             </div>
