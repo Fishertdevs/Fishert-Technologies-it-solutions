@@ -106,6 +106,49 @@ router.post("/reviews", parseReviewUpload, async (req, res): Promise<void> => {
       createdAt: reviewsTable.createdAt,
     });
 
+  const reviewResponse = {
+    id: review.id,
+    status: "pending" as const,
+    createdAt: review.createdAt,
+  };
+
+  if (video) {
+    res.status(201).json(reviewResponse);
+
+    void (async () => {
+      try {
+        const notification = await notifyPendingReview({
+          id: review.id,
+          name: parsed.data.name.trim(),
+          company: parsed.data.company?.trim() || null,
+          text: parsed.data.text.trim(),
+          rating: parsed.data.rating,
+          category: "testimonial",
+          video: {
+            buffer: video.buffer,
+            mimeType: video.mimetype,
+            fileName: video.originalname || "testimonio.mp4",
+          },
+        });
+
+        if (!notification.notified || !notification.telegramFileId) {
+          await db.delete(reviewsTable).where(eq(reviewsTable.id, review.id));
+          req.log.error({ reviewId: review.id }, "Review video could not be stored in Telegram");
+          return;
+        }
+
+        await db
+          .update(reviewsTable)
+          .set({ telegramFileId: notification.telegramFileId, updatedAt: new Date() })
+          .where(eq(reviewsTable.id, review.id));
+      } catch (error) {
+        await db.delete(reviewsTable).where(eq(reviewsTable.id, review.id));
+        req.log.warn({ err: error, reviewId: review.id }, "Background review video upload failed");
+      }
+    })();
+    return;
+  }
+
   try {
     const notification = await notifyPendingReview({
       id: review.id,
@@ -113,22 +156,8 @@ router.post("/reviews", parseReviewUpload, async (req, res): Promise<void> => {
       company: parsed.data.company?.trim() || null,
       text: parsed.data.text.trim(),
       rating: parsed.data.rating,
-      category: video ? "testimonial" : "review",
-      ...(video
-        ? {
-            video: {
-              buffer: video.buffer,
-              mimeType: video.mimetype,
-              fileName: video.originalname || "testimonio.mp4",
-            },
-          }
-        : {}),
+      category: "review",
     });
-    if (video && (!notification.notified || !notification.telegramFileId)) {
-      await db.delete(reviewsTable).where(eq(reviewsTable.id, review.id));
-      res.status(503).json({ error: "El almacenamiento seguro del video no está disponible." });
-      return;
-    }
     if (notification.telegramFileId) {
       await db
         .update(reviewsTable)
@@ -136,20 +165,10 @@ router.post("/reviews", parseReviewUpload, async (req, res): Promise<void> => {
         .where(eq(reviewsTable.id, review.id));
     }
   } catch (error) {
-    if (video) {
-      await db.delete(reviewsTable).where(eq(reviewsTable.id, review.id));
-      req.log.warn({ err: error, reviewId: review.id }, "Review video upload failed");
-      res.status(502).json({ error: "No pudimos guardar el video en este momento." });
-      return;
-    }
     req.log.warn({ err: error, reviewId: review.id }, "Review saved but Telegram notification failed");
   }
 
-  res.status(201).json({
-    id: review.id,
-    status: "pending",
-    createdAt: review.createdAt,
-  });
+  res.status(201).json(reviewResponse);
 });
 
 export default router;
