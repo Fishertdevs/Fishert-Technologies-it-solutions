@@ -2444,7 +2444,7 @@ body {
   display: block;
 }
 .resenas-wave--top    { top: -1px; }
-.resenas-wave--bottom { bottom: -1px; z-index: 0; }
+.resenas-wave--bottom { bottom: -1px; }
 
 .resenas-inner {
   max-width: 1200px;
@@ -2481,8 +2481,6 @@ body {
   justify-content: center;
   gap: 32px;
   min-width: 0;
-  position: relative;
-  z-index: 1;
 }
 
 .resenas-header {
@@ -2502,6 +2500,12 @@ body {
 
   .resenas-header {
     top: 4px;
+  }
+
+  .resenas-grid,
+  .resenas-controls {
+    position: relative;
+    top: -52px;
   }
 }
 
