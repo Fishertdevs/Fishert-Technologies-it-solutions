@@ -2506,7 +2506,7 @@ body {
 
   .resenas-content {
     position: relative;
-    top: -52px;
+    top: 0;
   }
 }
 
@@ -2815,7 +2815,7 @@ body {
   left: 56%;
   bottom: -100px;
   transform: translateX(-50%);
-  height: 90%;
+  height: 100%;
   width: auto;
   max-width: none;
   object-fit: contain;
