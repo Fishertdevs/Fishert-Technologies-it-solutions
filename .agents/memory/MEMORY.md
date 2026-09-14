@@ -12,3 +12,4 @@
 - [Neon contact settings](neon-contact-settings.md) — public studio contact details belong in contact_settings; contacts is reserved for visitor leads.
 - [About-page CSS cascade](about-page-css-cascade.md) — final Quienes Somos overrides are the authoritative place for checkerboard radius changes.
 - [Telegram review videos](telegram-review-videos.md) — video bytes stay in Telegram; PostgreSQL stores only the Telegram file ID, category, and consent timestamp.
+- [Review video upload latency](review-video-upload-latency.md) — background Telegram work cannot shorten a multipart request; the browser must finish uploading the body first.

@@ -2362,7 +2362,8 @@
     order: 0;
     width: 100%;
     margin-bottom: 0;
-    font-size: clamp(30px, 8vw, 36px);
+    font-size: clamp(18px, 5.8vw, 30px);
+    letter-spacing: -0.06em;
     white-space: nowrap;
   }
 
