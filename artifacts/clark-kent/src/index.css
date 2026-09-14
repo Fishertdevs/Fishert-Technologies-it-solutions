@@ -2493,6 +2493,16 @@ body {
   top: -28px;
 }
 
+@media (min-width: 981px) {
+  .resenas-section {
+    padding-bottom: 64px;
+  }
+
+  .resenas-header {
+    top: 4px;
+  }
+}
+
 .resenas-heading {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
   font-weight: 700;
@@ -5955,7 +5965,7 @@ body {
 
   .resenas-inner {
     height: auto;
-    padding: 88px 0 0;
+    padding: 88px 0 96px;
   }
 
   .resenas-layout {
