@@ -1596,8 +1596,9 @@ body {
   position: relative;
   width: 100%;
   background: var(--port-surface);
-  overflow: hidden;
+  overflow: visible;
   border-radius: 0 0 32px 32px;
+  z-index: 3;
 }
 
 .port-section {
@@ -1668,7 +1669,7 @@ body {
   bottom: -20%;
   height: 95%;
   aspect-ratio: 525 / 910;
-  z-index: 2;
+  z-index: 20;
   pointer-events: none;
   user-select: none;
 }
@@ -1697,7 +1698,7 @@ body {
     height: clamp(300px, 90vw, 420px);
     margin: 0 auto -36px;
     aspect-ratio: 525 / 910;
-    z-index: 0;
+    z-index: 20;
   }
 
   .port-anchor-wrap .port-anchor-img {
