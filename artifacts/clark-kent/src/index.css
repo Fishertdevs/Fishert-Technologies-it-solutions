@@ -2456,6 +2456,16 @@ body {
   z-index: 1;
 }
 
+@media (min-width: 981px) {
+  .resenas-section {
+    padding-top: 72px;
+  }
+
+  .resenas-inner {
+    box-sizing: border-box;
+  }
+}
+
 .resenas-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 460px;
