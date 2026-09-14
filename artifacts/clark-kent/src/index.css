@@ -6112,7 +6112,8 @@ body {
     min-height: 350px;
     overflow: hidden;
     position: relative;
-    z-index: 11;
+    margin-bottom: -176px;
+    z-index: 1;
   }
 
   .resenas-bust-img {
