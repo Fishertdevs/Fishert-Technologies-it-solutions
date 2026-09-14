@@ -2812,7 +2812,7 @@ body {
   left: 56%;
   bottom: -100px;
   transform: translateX(-50%);
-  height: calc(90% + 100px);
+  height: 90%;
   width: auto;
   max-width: none;
   object-fit: contain;
@@ -6121,7 +6121,7 @@ body {
     right: auto;
     bottom: -80px;
     width: auto;
-    height: calc(100% + 80px);
+    height: 100%;
     max-width: none;
     transform: translateX(-50%);
   }
