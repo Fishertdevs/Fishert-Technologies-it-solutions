@@ -5491,8 +5491,14 @@ body {
   .contacto-content-col {
     height: auto;
     min-height: 100vh;
-    gap: 18px;
-    padding: 48px 48px 28px;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 24px 36px 20px;
+  }
+
+  .contacto-wrap {
+    height: 322px;
+    grid-template-columns: 280px 1fr;
   }
 }
 
