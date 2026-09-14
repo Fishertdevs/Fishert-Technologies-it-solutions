@@ -337,6 +337,22 @@ export default function ReviewForm({ onClose }: Props) {
                       </label>
                       {video && (
                         <>
+                          {videoPreviewUrl && (
+                            <div className="rf-video-preview">
+                              <video
+                                className="rf-video-preview-player"
+                                controls
+                                controlsList="nodownload"
+                                disablePictureInPicture
+                                playsInline
+                                preload="metadata"
+                                src={videoPreviewUrl}
+                                onContextMenu={event => event.preventDefault()}
+                                aria-label={t.step3.videoPreview}
+                              />
+                              <span className="rf-video-preview-hint">{t.step3.videoPreview}</span>
+                            </div>
+                          )}
                           <div className="rf-video-selected">
                             <span>{(video.size / (1024 * 1024)).toFixed(1)} MB</span>
                             <button type="button" onClick={() => {
