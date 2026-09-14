@@ -2503,6 +2503,11 @@ body {
   .resenas-header {
     top: 4px;
   }
+
+  .resenas-content {
+    position: relative;
+    top: -52px;
+  }
 }
 
 .resenas-heading {
