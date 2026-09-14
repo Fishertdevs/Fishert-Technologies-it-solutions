@@ -5476,32 +5476,6 @@ body {
   .case-body, .case-quote-section, .case-tech-section { padding-left: 5%; padding-right: 5%; }
 }
 
-/* ── Contacto — desktop fit ────────────────────────────── */
-@media (min-width: 769px) {
-  .contacto-section {
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .contacto-layout {
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .contacto-content-col {
-    height: auto;
-    min-height: 100vh;
-    justify-content: flex-start;
-    gap: 12px;
-    padding: 24px 36px 20px;
-  }
-
-  .contacto-wrap {
-    height: 322px;
-    grid-template-columns: 280px 1fr;
-  }
-}
-
 /* ── Contacto — mobile single-column layout ─────────────── */
 @media (max-width: 768px) {
   .contacto-section {
