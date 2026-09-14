@@ -139,6 +139,8 @@ router.get("/reviews/:id/video", async (req, res): Promise<void> => {
     const contentType = videoResponse.headers.get("content-type") ?? "video/mp4";
     const contentLength = videoResponse.headers.get("content-length");
     res.setHeader("Content-Type", contentType);
+    res.setHeader("Content-Disposition", "inline");
+    res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("Cache-Control", "public, max-age=3600");
     if (contentLength) res.setHeader("Content-Length", contentLength);
     if (!videoResponse.body) {

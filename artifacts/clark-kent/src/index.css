@@ -2946,6 +2946,24 @@ body {
   line-height: 1;
 }
 .rf-video-picker--err { border-color: #C0001A; }
+.rf-video-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+.rf-video-preview-player {
+  display: block;
+  width: 100%;
+  max-height: 180px;
+  border-radius: 9px;
+  background: #111;
+  object-fit: contain;
+}
+.rf-video-preview-hint {
+  color: rgba(0,0,0,0.48);
+  font: 10px/1.35 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .rf-video-selected {
   display: flex;
   justify-content: space-between;

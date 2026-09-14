@@ -122,9 +122,12 @@ function ReviewCard({ review, lang }: { review: Review; lang: "es" | "en" }) {
             <video
               className="resena-video"
               controls
+              controlsList="nodownload"
+              disablePictureInPicture
               preload="metadata"
               playsInline
               src={review.videoUrl}
+              onContextMenu={event => event.preventDefault()}
               aria-label={lang === "es" ? "Video del testimonio" : "Testimonial video"}
             />
           )}
