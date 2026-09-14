@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLang } from "./LanguageContext";
 import { useCreateReview } from "@workspace/api-client-react";
 
@@ -31,6 +31,7 @@ const copy = {
       videoHint: "MP4, WebM o MOV · máximo 20 MB",
       chooseVideo: "Seleccionar video",
       removeVideo: "Quitar video",
+      videoPreview: "Vista previa · puedes elegir otro video sin perder la reseña.",
       consent:
         "Autorizo expresamente a Fishert Studio a tratar mi imagen, voz y demás datos personales contenidos en este video para publicar mi testimonio en sus canales digitales, conforme a la Ley 1581 de 2012 y demás normas colombianas aplicables.",
       consentRequired: "Debes autorizar el tratamiento de datos para subir un video.",
@@ -71,6 +72,7 @@ const copy = {
       videoHint: "MP4, WebM or MOV · 20 MB maximum",
       chooseVideo: "Choose video",
       removeVideo: "Remove video",
+      videoPreview: "Preview · you can choose another video without losing your review.",
       consent:
         "I expressly authorize Fishert Studio to process my image, voice, and other personal data contained in this video to publish my testimonial on its digital channels, in accordance with Colombian Law 1581 of 2012 and other applicable regulations.",
       consentRequired: "You must authorize data processing to upload a video.",
@@ -100,6 +102,7 @@ export default function ReviewForm({ onClose }: Props) {
   const [company, setCompany] = useState("");
   const [review, setReview] = useState("");
   const [video, setVideo] = useState<File | null>(null);
+  const [videoPreviewUrl, setVideoPreviewUrl] = useState<string | null>(null);
   const [videoConsent, setVideoConsent] = useState(false);
   const [videoErr, setVideoErr] = useState("");
   const [nameErr, setNameErr] = useState(false);
@@ -107,6 +110,17 @@ export default function ReviewForm({ onClose }: Props) {
   const [done, setDone] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const createReviewMutation = useCreateReview();
+
+  useEffect(() => {
+    if (!video) {
+      setVideoPreviewUrl(null);
+      return;
+    }
+
+    const previewUrl = URL.createObjectURL(video);
+    setVideoPreviewUrl(previewUrl);
+    return () => URL.revokeObjectURL(previewUrl);
+  }, [video]);
 
   const TOTAL = 3;
   const slidePercent = `${step * -(100 / TOTAL)}%`;
