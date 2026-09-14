@@ -2502,12 +2502,8 @@ body {
 
   .resenas-header {
     top: 4px;
-  }
-
-  .resenas-grid,
-  .resenas-controls {
-    position: relative;
-    top: -52px;
+    width: calc(100% + 484px);
+    align-self: flex-start;
   }
 }
 
