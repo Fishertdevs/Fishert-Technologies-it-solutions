@@ -6108,18 +6108,18 @@ body {
   .resenas-bust {
     display: block;
     width: 100%;
-    height: 350px;
-    min-height: 350px;
+    height: 94vw;
+    min-height: 0;
     overflow: visible;
     position: relative;
-    margin-bottom: 0;
+    margin-bottom: -176px;
     z-index: 1;
   }
 
   .resenas-bust-img {
     left: 50%;
     right: auto;
-    bottom: -80px;
+    bottom: 0;
     width: auto;
     height: 100%;
     max-width: none;
